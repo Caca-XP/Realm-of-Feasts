@@ -2,9 +2,14 @@
 #include <string>
 using namespace std;
 
+/* Support Class representing a singular recipe
+*/
+
 class Recipes {
 private:
+    /*Private data fields*/
     string name;
+    string series;
     string description;
     string ingredients;
     string instructions;
@@ -12,8 +17,10 @@ private:
     string difficulty;
 
 public:
-    Recipes(string nm, string desc, string ing, string ins, string t, string lv) {
+    /*Constructor*/
+    Recipes(string nm, string ser, string desc, string ing, string ins, string t, string lv) {
         name = nm;
+        series = ser;
         description = desc;
         ingredients = ing;
         instructions = ins;
@@ -23,6 +30,7 @@ public:
         
     }
 
+    /*Destructor code (idk what this is for)*/
     ~Recipes() {
         // Destructor code here
     }
