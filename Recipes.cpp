@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "Recipes.h"
 using namespace std;
 
 /* Support Class representing a singular recipe
@@ -17,8 +18,11 @@ private:
     string difficulty;
 
 public:
-    /*Constructor*/
-    Recipes(string nm, string ser, string desc, string ing, string ins, string t, string lv) {
+    /*Default Constructor */
+    Recipes::Recipes(){};
+
+    /*Defined Constructor*/
+    Recipes::Recipes(string nm, string ser, string desc, string ing, string ins, string t, string lv) {
         name = nm;
         series = ser;
         description = desc;
@@ -37,37 +41,37 @@ public:
 
     /* Accessor function to get the name of the recipe
     */
-    string getName() {
+    string Recipes::getName() {
         return name;
     }
 
     /* Accessor function to get the description of the recipe
     */
-    string getDescription() {
+    string Recipes::getDescription() {
         return description;
     }
 
     /* Accessor function to get the ingredients of the recipe
     */
-    string getIngredients() {
+    string Recipes::getIngredients() {
         return ingredients;
     }
 
     /* Accessor function to get the instructions of the recipe
     */
-    string getInstructions() {
+    string Recipes::getInstructions() {
         return instructions;
     }
 
     /* Accessor function to get the time of the recipe
     */
-    string getTime() {
+    string Recipes::getTime() {
         return time;
     }
 
     /* Accessor function to get the difficulty of the recipe
     */
-    string getDifficulty() {
+    string Recipes::getDifficulty() {
         return difficulty;
     }
     

@@ -1,15 +1,13 @@
 # include <iostream>
-
 # include <string>
-
 # include <fstream>
-
-# include "Recipes.cpp"
+# include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
 
 using namespace std;
 
 /// @todo find number of recipes in data
 const int numRecipes = 1;
+
 Recipes allRecipes[numRecipes];
 
 void setup(){
