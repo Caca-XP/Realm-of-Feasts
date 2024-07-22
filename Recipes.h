@@ -14,7 +14,7 @@ class Recipes {
     Recipes();
 
     //defined constructor
-    Recipes(string nm, string ser, string desc, string ing, string ins, string t, string lv);
+    Recipes(string nm, string ser, string desc, string ing, string ins, int t, enum Level lv);
 
     ~Recipes();
 
@@ -26,9 +26,11 @@ class Recipes {
 
     string getInstructions();
 
-    string getTime();
+    int getTime();
 
-    string getDifficulty();
+    enum Level getDifficulty();
+
+    string toString();
 
     private:
     /*Private data fields*/
@@ -37,8 +39,8 @@ class Recipes {
     string description;
     string ingredients;
     string instructions;
-    string time;
-    string difficulty;
+    int time;
+    enum Level difficulty;
 };
 
 #endif // RECIPES_H
