@@ -4,6 +4,7 @@
 # include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
 # include <array>
 # include <algorithm>
+# include <cstdlib>
 
 using namespace std;
 
@@ -98,9 +99,6 @@ enum Level {
 
 /// @todo find number of recipes in data
 const int numRecipes = 5;
-
-Recipes pasta = Recipes("Pasta", "Italian", "A simple pasta recipe", "Pasta, Tomato Sauce, Cheese", "Boil pasta, add sauce, add cheese", 30, Easy);
-
 array<Recipes, numRecipes> allRecipes;
 
 void setup(){
@@ -133,13 +131,17 @@ bool sortByTime(Recipes a, Recipes b){
     return a.getTime() < b.getTime();
 }
 
+void random(){
+    int randomIndex = rand() % numRecipes;
+    cout << allRecipes[randomIndex].toString() << endl;
+}
 
 
 void options(){
     printf("1. Display all recipes\n");
     printf("2. Search for a recipe\n");
     printf("3. Sort recipes\n");
-    printf("4. Filter recipes\n");
+    printf("4. Filter recipes by series\n");
     printf("5. Search by ingredient\n");
     printf("6. Random recipe\n");
     printf("7. Quit\n");
@@ -183,7 +185,7 @@ void options(){
         // searchByIngredient();
     }
     else if (choice == 6){
-        // random();
+        random();
     }
     else if (choice == 7){
         quit();
