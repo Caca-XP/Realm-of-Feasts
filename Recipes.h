@@ -2,7 +2,6 @@
 #define RECIPES_H
 
 // Include any necessary libraries or headers here
-#include <iostream>
 #include <string>
 using namespace std;
 
@@ -30,6 +29,16 @@ class Recipes {
     string getTime();
 
     string getDifficulty();
+
+    private:
+    /*Private data fields*/
+    string name;
+    string series;
+    string description;
+    string ingredients;
+    string instructions;
+    string time;
+    string difficulty;
 };
 
 #endif // RECIPES_H

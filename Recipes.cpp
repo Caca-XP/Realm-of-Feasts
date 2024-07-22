@@ -1,25 +1,23 @@
 #include <iostream>
 #include <string>
-#include "Recipes.h"
+#include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
 using namespace std;
 
-/* Support Class representing a singular recipe
-*/
+/* Support Class representing a singular recipe*/ 
+    int main(){
+        return 0;
+    }
 
-class Recipes {
-private:
-    /*Private data fields*/
-    string name;
-    string series;
-    string description;
-    string ingredients;
-    string instructions;
-    string time;
-    string difficulty;
-
-public:
     /*Default Constructor */
-    Recipes::Recipes(){};
+    Recipes::Recipes(){
+        name = "";
+        series = "";
+        description = "";
+        ingredients = "";
+        instructions = "";
+        time = "";
+        difficulty = "";
+    };
 
     /*Defined Constructor*/
     Recipes::Recipes(string nm, string ser, string desc, string ing, string ins, string t, string lv) {
@@ -35,7 +33,7 @@ public:
     }
 
     /*Destructor code (idk what this is for)*/
-    ~Recipes() {
+    Recipes::~Recipes() {
         // Destructor code here
     }
 
@@ -75,4 +73,3 @@ public:
         return difficulty;
     }
     
-};
