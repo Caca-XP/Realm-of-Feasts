@@ -5,6 +5,7 @@
 # include <array>
 # include <algorithm>
 # include <cstdlib>
+# include <vector>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ enum Level {
     Hard = 3
 };
 
+/// @todo maybe check if vector is better than array
 
 /*Default Constructor */
     Recipes::Recipes(){
@@ -98,7 +100,7 @@ enum Level {
 
 
 /// @todo find number of recipes in data
-const int numRecipes = 5;
+const int numRecipes = 6;
 array<Recipes, numRecipes> allRecipes;
 
 void setup(){
@@ -108,6 +110,7 @@ void setup(){
     allRecipes[2] = Recipes("Burger", "American", "A simple burger recipe", "Burger Patty, Bun, Lettuce, Tomato, Cheese", "Cook patty, assemble burger", 20 , Easy);
     allRecipes[3] = Recipes("Sushi", "Japanese", "A simple sushi recipe", "Rice, Fish, Seaweed", "Cook rice, add fish, wrap in seaweed", 60 , Hard);
     allRecipes[4] = Recipes("Curry", "Indian", "A simple curry recipe", "Curry Paste, Meat, Vegetables", "Cook meat, add vegetables, add paste", 45 , Medium);
+    allRecipes[5] = Recipes("Pizza Bread", "NZ", "Pizza but with soft bread recipe", "Peperoni, Tomato Sauce, Cheese, Bread Dough", "Roll dough, add sauce, add cheese and pepeponi", 75, Medium);
 }
 
 void display(array<Recipes, numRecipes> recipes){
@@ -131,6 +134,34 @@ bool sortByTime(Recipes a, Recipes b){
     return a.getTime() < b.getTime();
 }
 
+vector<Recipes> searchByName(){
+    vector<Recipes> results;
+    string search;
+    cout << "Enter the name of the recipe you are looking for: ";
+    cin >> search;
+    // lowercase the search string and remove leading and trailing spaces
+    transform(search.begin(), search.end(), search.begin(), ::tolower);
+    search.erase(0, search.find_first_not_of(" "));
+    search.erase(search.find_last_not_of(" ") + 1);
+    for (int i = 0; i < numRecipes; i++){
+        string name = allRecipes[i].getName();
+        // lowercase the name of the recipe
+        transform(name.begin(), name.end(), name.begin(), ::tolower);
+        if (name.find(search) != string::npos){
+            results.push_back(allRecipes[i]);
+        }
+    }
+    if (results.size() == 0){
+        cout << "No recipes found." << endl;
+    }else{
+        cout << "Results for recipes with " << search << ": " << endl;
+        for (int i = 0; i < results.size(); i++){
+            cout << results[i].toString() << endl;
+        }
+    }
+    return results;
+}
+
 void random(){
     int randomIndex = rand() % numRecipes;
     cout << allRecipes[randomIndex].toString() << endl;
@@ -151,7 +182,7 @@ void options(){
         display(allRecipes);
     }
     else if (choice == 2){
-        // search();
+        searchByName();
     }
     else if (choice == 3){
         while (true){
