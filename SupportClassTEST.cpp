@@ -1,5 +1,8 @@
 /**
  * Application for Unit Testing the Constructor of Recipes
+ * @see Recipes.h
+ * @see App.cpp
+ * @author Mythical Cooks
  */
 #include <assert.h>
 #include "Recipes.h"
