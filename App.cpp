@@ -3,6 +3,8 @@
 # include <fstream>
 # include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
 # include <array>
+# include <sstream>
+# include <iterator>
 # include <algorithm>
 # include <cstdlib>
 # include <vector>
@@ -16,11 +18,34 @@ using namespace std;
    @author Cooks 
 */
 
+//Enum of values of the difficulty levels
 enum Level {
     Easy = 1,
     Medium = 2,
     Hard = 3
 };
+
+// Function to split a string into a vector of strings
+vector<string> split_string(string str, string delimiter){
+    // lowercase the string
+    transform(str.begin(), str.end(), str.begin(), ::tolower);
+    vector<string> result;
+    size_t pos = 0;
+    string token;
+    while ((pos = str.find(delimiter)) != string::npos){
+        token = str.substr(0, pos);
+        // remove leading and trailing spaces
+        token.erase(0, token.find_first_not_of(" "));
+        token.erase(token.find_last_not_of(" ") + 1);
+
+        result.push_back(token);
+        str.erase(0, pos + delimiter.length());
+    }
+    str.erase(0, str.find_first_not_of(" "));
+    str.erase(str.find_last_not_of(" ") + 1);
+    result.push_back(str);
+    return result;
+}
 
 /// @todo maybe check if vector is better than array
 
@@ -34,7 +59,9 @@ enum Level {
         name = nm;
         series = ser;
         description = desc;
-        ingredients = ing;
+        ingredients = split_string(ing, ", ");
+        sort(ingredients.begin(), ingredients.end());
+        ingredients_str = ing;
         instructions = ins;
         time = t;
         difficulty = lv;
@@ -64,7 +91,7 @@ enum Level {
     /* Accessor function to get the ingredients of the recipe
         @return ingredients of the recipe (list)
     */
-    string Recipes::getIngredients() {
+    vector<string> Recipes::getIngredients() {
         return ingredients;
     }
 
@@ -96,7 +123,7 @@ enum Level {
         string result = "Name: " + name + "\n";
         result += "Series: " + series + "\n";
         result += "Description: " + description + "\n";
-        result += "Ingredients: " + ingredients + "\n";
+        result += "Ingredients: " + ingredients_str + "\n";
         result += "Instructions: " + instructions + "\n";
         result += "Time: " + to_string(time) + " minutes\n";
         result += "Difficulty: ";
@@ -134,9 +161,25 @@ void setup(){
     allRecipes[5] = Recipes("Pizza-Bread", "NZ", "Pizza but with soft bread recipe", "Peperoni, Tomato Sauce, Cheese, Bread Dough", "Roll dough, add sauce, add cheese and pepeponi", 75, Medium);
 }
 
-/* Function to display all the recipes in the allRecipes array
-    @param recipes array of recipes to display
+/* Function to replace comma space to comma
+   Remove empty spaces
 */
+string replaceAll(string str, string from, string to){
+    // check if from and to empty
+    if (from.empty() || to.empty()){
+        return str;
+    }
+    size_t start_pos = 0;
+    while ((start_pos = str.find(from, start_pos)) != string::npos){
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length();
+    }
+    return str;
+}
+
+/* Function to display recipes specified in the param
+    @param array of recipes
+ */
 void display(array<Recipes, numRecipes> recipes){
     for (int i = 0; i < recipes.size(); i++){
         cout << recipes[i].toString() << endl;
@@ -168,16 +211,25 @@ bool sortByTime(Recipes a, Recipes b){
     return a.getTime() < b.getTime();
 }
 
-/* Function to search for a recipe by name
-    @return vector of recipes that match the search string
+/* Function to read the whole line of user input instead of just one word
+ */
+string readLine(){
+    string s;
+    cin.ignore();
+    getline(cin, s);
+    return s;
+}
+
+/* Function to search the recipes array by specific name
+    Prints out recipes with the searched string in its name
+    @return vector of recipes containing the instance of recipes that contain the searched string
 */
 vector<Recipes> searchByName(){
     vector<Recipes> results;
     string search;
     // get the search string from the user
     cout << "Enter the name of the recipe you are looking for: ";
-    cin >> search;
-
+    search = readLine();
     // lowercase the search string and remove leading and trailing spaces
     transform(search.begin(), search.end(), search.begin(), ::tolower);
     search.erase(0, search.find_first_not_of(" "));
@@ -198,11 +250,58 @@ vector<Recipes> searchByName(){
     }
     // Check that there are recipes based on the search input
     if (results.size() == 0){
-        cout << "No recipes found." << endl;
+        cout << endl << "No recipes found." << endl << endl;
+    }else{
+        cout << endl << "Results for recipes with \"" << search << "\": " << endl << endl;
+        for (int i = 0; i < results.size(); i++){
+            cout << results[i].toString() << endl;
+        }
+    }
+    return results;
+}
 
+/* Function that searches the array of recipes by ingredient(s) separated by commas
+    ingredient(s) will be inputed by the user by typing
+    Displays recipes that contains all of the specified ingredient(s)
+    @return vector of recipes containing recipes that contain the ingredient(s)
+*/
+vector<Recipes> searchByIngredient(){
+    vector<Recipes> results;
+    string search;
+    cout << "Enter the ingredient you are looking for (comma separated): ";
+    search = readLine();
+    // remove leading and trailing spaces
+    search.erase(0, search.find_first_not_of(" "));
+    search.erase(search.find_last_not_of(" ") + 1);
+    // replace all ", " with ","
+    search = replaceAll(search, ", ", ",");
+    vector<string> searchIngredients = split_string(search, ",");
+    // sort the search ingredients
+    sort(searchIngredients.begin(), searchIngredients.end());
+
+    // change search to be the string with the ingredients separated by ", "
+    search = "";
+    for (int i = 0; i < searchIngredients.size(); i++){
+        search += searchIngredients[i];
+        if (i != searchIngredients.size() - 1){
+            search += ", ";
+        }
+    }
+
+    // Search for recipes that contain the all the ingredients
+    for (int i = 0; i < numRecipes; i++){
+        vector<string> ingredients = allRecipes[i].getIngredients();
+        // use double pointer to check if all the search ingredients are in the recipe ingredients
+        if (includes(ingredients.begin(), ingredients.end(), searchIngredients.begin(), searchIngredients.end())){
+            results.push_back(allRecipes[i]);
+        }
+
+    }
+    if (results.size() == 0){
+        cout << endl << "No recipes found." << endl << endl;
     }else{
         //Prints the recipes that contains the search string to the results vector
-        cout << "Results for recipes with " << search << ": " << endl;
+        cout << endl << "Results for recipes with " << search << ": " << endl << endl;
         for (int i = 0; i < results.size(); i++){
             cout << results[i].toString() << endl;
         }
@@ -211,8 +310,7 @@ vector<Recipes> searchByName(){
     return results;
 }
 
-/* Function to search for a recipe by ingredient
-    @return vector of recipes that match the search string
+/*Function that displays a random recipe within the allRecipes array
 */
 void random(){
     int randomIndex = rand() % numRecipes;
@@ -271,6 +369,9 @@ void options(){
             else{
                 // if invalid choice
                 cout << "Invalid choice. Please try again." << endl;
+                // reset the cin buffer
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
         }
     }
@@ -278,7 +379,7 @@ void options(){
         // filter();
     }
     else if (choice == 5){
-        // searchByIngredient();
+        searchByIngredient();
     }
     else if (choice == 6){
         random();
@@ -289,6 +390,9 @@ void options(){
     else{
         // if invalid choice
         cout << "Invalid choice. Please try again." << endl;
+        // reset the cin buffer
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
 }
