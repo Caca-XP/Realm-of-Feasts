@@ -3,6 +3,8 @@
 
 // Include any necessary libraries or headers here
 #include <string>
+#include <vector>
+
 using namespace std;
 
 // Declare any global constants or types here
@@ -14,7 +16,7 @@ class Recipes {
     Recipes();
 
     //defined constructor
-    Recipes(string nm, string ser, string desc, string ing, string ins, int t, enum Level lv);
+    Recipes(string nm, string ser, string desc, vector<string> ing, string ins, int t, enum Level lv);
 
     ~Recipes();
 
@@ -22,7 +24,7 @@ class Recipes {
 
     string getDescription();
 
-    string getIngredients();
+    vector<string> getIngredients();
 
     string getInstructions();
 
