@@ -16,7 +16,7 @@ class Recipes {
     Recipes();
 
     //defined constructor
-    Recipes(string nm, string ser, string desc, vector<string> ing, string ins, int t, enum Level lv);
+    Recipes(string nm, string ser, string desc, string ing, string ins, int t, enum Level lv);
 
     ~Recipes();
 
@@ -39,7 +39,8 @@ class Recipes {
     string name;
     string series;
     string description;
-    string ingredients;
+    vector<string> ingredients;
+    string ingredients_str;
     string instructions;
     int time;
     enum Level difficulty;
