@@ -18,6 +18,7 @@ using namespace std;
    @author Cooks 
 */
 
+//Enum of values of the difficulty levels
 enum Level {
     Easy = 1,
     Medium = 2,
@@ -160,6 +161,9 @@ void setup(){
     allRecipes[5] = Recipes("Pizza-Bread", "NZ", "Pizza but with soft bread recipe", "Peperoni, Tomato Sauce, Cheese, Bread Dough", "Roll dough, add sauce, add cheese and pepeponi", 75, Medium);
 }
 
+/* Function to replace comma space to comma
+   Remove empty spaces
+*/
 string replaceAll(string str, string from, string to){
     // check if from and to empty
     if (from.empty() || to.empty()){
@@ -173,6 +177,9 @@ string replaceAll(string str, string from, string to){
     return str;
 }
 
+/* Function to display recipes specified in the param
+    @param array of recipes
+ */
 void display(array<Recipes, numRecipes> recipes){
     for (int i = 0; i < recipes.size(); i++){
         cout << recipes[i].toString() << endl;
@@ -204,6 +211,8 @@ bool sortByTime(Recipes a, Recipes b){
     return a.getTime() < b.getTime();
 }
 
+/* Function to read the whole line of user input instead of just one word
+ */
 string readLine(){
     string s;
     cin.ignore();
@@ -211,6 +220,10 @@ string readLine(){
     return s;
 }
 
+/* Function to search the recipes array by specific name
+    Prints out recipes with the searched string in its name
+    @return vector of recipes containing the instance of recipes that contain the searched string
+*/
 vector<Recipes> searchByName(){
     vector<Recipes> results;
     string search;
@@ -247,6 +260,11 @@ vector<Recipes> searchByName(){
     return results;
 }
 
+/* Function that searches the array of recipes by ingredient(s) separated by commas
+    ingredient(s) will be inputed by the user by typing
+    Displays recipes that contains all of the specified ingredient(s)
+    @return vector of recipes containing recipes that contain the ingredient(s)
+*/
 vector<Recipes> searchByIngredient(){
     vector<Recipes> results;
     string search;
@@ -292,7 +310,8 @@ vector<Recipes> searchByIngredient(){
     return results;
 }
 
-
+/*Function that displays a random recipe within the allRecipes array
+*/
 void random(){
     int randomIndex = rand() % numRecipes;
     cout << allRecipes[randomIndex].toString() << endl;
