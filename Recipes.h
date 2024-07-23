@@ -3,6 +3,8 @@
 
 // Include any necessary libraries or headers here
 #include <string>
+#include <vector>
+
 using namespace std;
 
 // Declare any global constants or types here
@@ -22,7 +24,7 @@ class Recipes {
 
     string getDescription();
 
-    string getIngredients();
+    vector<string> getIngredients();
 
     string getInstructions();
 
@@ -37,7 +39,8 @@ class Recipes {
     string name;
     string series;
     string description;
-    string ingredients;
+    vector<string> ingredients;
+    string ingredients_str;
     string instructions;
     int time;
     enum Level difficulty;
