@@ -26,9 +26,11 @@ enum Level {
 };
 
 // Function to split a string into a vector of strings
-vector<string> split_string(string str, string delimiter){
+vector<string> split_string(string str, string delimiter, bool lowercase = true){
     // lowercase the string
-    transform(str.begin(), str.end(), str.begin(), ::tolower);
+    if (lowercase){
+        transform(str.begin(), str.end(), str.begin(), ::tolower);
+    }
     vector<string> result;
     size_t pos = 0;
     string token;
@@ -147,43 +149,51 @@ vector<string> split_string(string str, string delimiter){
     }
 
 
-
-/// @todo find number of recipes in data after data base is done
-
-/* Array of the recipes, declared based on number of arrays in the database
+/* Vector of the recipes, declared based on number of recipes in the database
 */
-const int numRecipes = 6;
-array<Recipes, numRecipes> allRecipes;
-vector<Recipes> allRecipesVector;
+vector<Recipes> allRecipes;
 int timeFilter = 0;
 int difficultyFilter = 0;
 
-vector<string> series;
+vector<string> allSeries;
 
 /* Function to read the data from the file and initialise the allRecipes array
     Creates a new Recipes object for each recipe and adds it to the allRecipes array
 */
 void setup(){
-// read file and initialise allRecipes
-    allRecipes[0] = Recipes("Pasta", "Italian", "A simple pasta recipe", "Pasta, Tomato Sauce, Cheese", "Boil pasta, add sauce, add cheese", 30, Easy);
-    allRecipes[1] = Recipes("Pizza", "Italian", "A simple pizza recipe", "Pizza Dough, Tomato Sauce, Cheese", "Roll dough, add sauce, add cheese", 45 , Medium);
-    allRecipes[2] = Recipes("Burger", "American", "A simple burger recipe", "Burger Patty, Bun, Lettuce, Tomato, Cheese", "Cook patty, assemble burger", 20 , Easy);
-    allRecipes[3] = Recipes("Sushi", "Japanese", "A simple sushi recipe", "Rice, Fish, Seaweed", "Cook rice, add fish, wrap in seaweed", 60 , Hard);
-    allRecipes[4] = Recipes("Curry", "Indian", "A simple curry recipe", "Curry Paste, Meat, Vegetables", "Cook meat, add vegetables, add paste", 45 , Medium);
-    allRecipes[5] = Recipes("Pizza-Bread", "NZ", "Pizza but with soft bread recipe", "Peperoni, Tomato Sauce, Cheese, Bread Dough", "Roll dough, add sauce, add cheese and pepeponi", 75, Medium);
+// // read file and initialise allRecipes
+    ifstream file("testdata.txt");
+    string line;
+    int i = 0;
+    while (getline(file, line)){
+        string name, series, description, ingredients, instructions;
+        int time;
+        enum Level difficulty;
 
-    series.push_back("Italian");
-    series.push_back("American");
-    series.push_back("Japanese");
-    series.push_back("Indian");
-    series.push_back("NZ");
+        //split the line into the different parts
+        vector<string> parts = split_string(line, "| ", false);
 
-    allRecipesVector.push_back(allRecipes[0]);
-    allRecipesVector.push_back(allRecipes[1]);
-    allRecipesVector.push_back(allRecipes[2]);
-    allRecipesVector.push_back(allRecipes[3]);
-    allRecipesVector.push_back(allRecipes[4]);
-    allRecipesVector.push_back(allRecipes[5]);
+        name = parts[0];
+        series = parts[1];
+        description = parts[2];
+        ingredients = parts[3];
+        instructions = parts[4];
+        time = stoi(parts[5]);
+        if (parts[6] == "Easy"){
+            difficulty = Easy;
+        }else if (parts[6] == "Medium"){
+            difficulty = Medium;
+        }else if (parts[6] == "Hard"){
+            difficulty = Hard;
+        }
+
+        Recipes newRecipe = Recipes(name, series, description, ingredients, instructions, time, difficulty);
+        allRecipes.push_back(newRecipe);
+        if (find(allSeries.begin(), allSeries.end(), series) == allSeries.end()){
+            allSeries.push_back(series);
+        }
+        i++;
+    }
 }
 
 /* Function to replace comma space to comma
@@ -205,7 +215,7 @@ string replaceAll(string str, string from, string to){
 /* Function to display recipes specified in the param
     @param array of recipes
  */
-void display(array<Recipes, numRecipes> recipes){
+void display(vector<Recipes> recipes){
     for (int i = 0; i < recipes.size(); i++){
         cout << recipes[i].toString() << endl;
     }
@@ -263,7 +273,7 @@ vector<Recipes> searchByName(){
     search.erase(search.find_last_not_of(" ") + 1);
 
     // Go through all the recipes and check if the search string is in the name
-    for (int i = 0; i < numRecipes; i++){
+    for (int i = 0; i < allRecipes.size(); i++){
         string name = allRecipes[i].getName();
 
         // lowercase the name of the recipes in the array
@@ -316,7 +326,7 @@ vector<Recipes> searchByIngredient(){
     }
 
     // Search for recipes that contain the all the ingredients
-    for (int i = 0; i < numRecipes; i++){
+    for (int i = 0; i < allRecipes.size(); i++){
         vector<string> ingredients = allRecipes[i].getIngredients();
         // use double pointer to check if all the search ingredients are in the recipe ingredients
         if (includes(ingredients.begin(), ingredients.end(), searchIngredients.begin(), searchIngredients.end())){
@@ -350,8 +360,8 @@ vector<Recipes> searchBySeries(){
     if (search == "all"){
         // print series
         cout << "Series: " << endl;
-        for (int i = 0; i < series.size(); i++){
-            cout << series[i] << endl;
+        for (int i = 0; i < allSeries.size(); i++){
+            cout << allSeries[i] << endl;
         }
         cout << "Enter the series you are looking for: " << endl;
         search = readLine(false);
@@ -362,7 +372,7 @@ vector<Recipes> searchBySeries(){
     search.erase(search.find_last_not_of(" ") + 1);
 
     // Go through all the recipes and check if the search string is in the name
-    for (int i = 0; i < numRecipes; i++){
+    for (int i = 0; i < allRecipes.size(); i++){
         string series = allRecipes[i].getSeries();
 
         // lowercase the name of the recipes in the array
@@ -533,7 +543,7 @@ vector<Recipes> setFilters(vector<Recipes> currentRecipes){
 /*Function that displays a random recipe within the allRecipes array
 */
 void random(){
-    int randomIndex = rand() % numRecipes;
+    int randomIndex = rand() % allRecipes.size();
     cout << allRecipes[randomIndex].toString() << endl;
 }
 
@@ -603,7 +613,7 @@ void options(){
         searchByIngredient();
     }
     else if (choice == 6){
-        vector<Recipes> r = setFilters(allRecipesVector);
+        vector<Recipes> r = setFilters(allRecipes);
         for (int i = 0; i < r.size(); i++){
             cout << r[i].toString() << endl;
         }
@@ -634,6 +644,6 @@ int main(){
     while (true){
         options();
     }
-    // 
+    
     return 0;
 }
