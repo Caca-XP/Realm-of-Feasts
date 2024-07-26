@@ -22,6 +22,8 @@ class Recipes {
 
     string getName();
 
+    string getSeries();
+
     string getDescription();
 
     vector<string> getIngredients();
