@@ -36,6 +36,8 @@ class Recipes {
 
     string toString();
 
+    string toStringShort();
+
     private:
     /*Private data fields*/
     string name;

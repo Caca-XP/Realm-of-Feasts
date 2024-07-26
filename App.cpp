@@ -139,6 +139,7 @@ vector<string> split_string(string str, string delimiter, bool lowercase = true)
         result += "Instructions: " + instructions + "\n";
         result += "Time: " + to_string(time) + " minutes\n";
         result += "Difficulty: ";
+
         if (difficulty == 1){
             result += "Easy\n";
         }
@@ -147,6 +148,23 @@ vector<string> split_string(string str, string delimiter, bool lowercase = true)
         }
         else if (difficulty == 3){
             result += "Hard\n";
+        }
+        return result;
+    }
+
+    /*Function to return a string of the recipe name, series, time, and difficulty
+        @return string of the recipe name, series, time, and difficulty
+    */
+    string Recipes::toStringShort() {
+        string result = name + " (" + series + ") - " + to_string(time) + " minutes - ";
+        if (difficulty == 1){
+            result += "Easy";
+        }
+        else if (difficulty == 2){
+            result += "Medium";
+        }
+        else if (difficulty == 3){
+            result += "Hard";
         }
         return result;
     }
@@ -220,7 +238,7 @@ string replaceAll(string str, string from, string to){
  */
 void display(vector<Recipes> recipes){
     for (int i = 0; i < recipes.size(); i++){
-        cout << recipes[i].toString() << endl;
+        cout << recipes[i].toStringShort() << endl;
     }
 }
 
