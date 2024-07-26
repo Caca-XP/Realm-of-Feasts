@@ -148,3 +148,67 @@ bool sortByDifficulty(Recipes a, Recipes b){
 bool sortByTime(Recipes a, Recipes b){
     return a.getTime() < b.getTime();
 }
+
+/**
+ * @test Test the sorting by difficulty functions using vector
+ */
+void testSortByDifficulty(){
+    // Create a vector of recipes
+    vector<Recipes> recipes;
+    // Create a recipe
+    Recipes recipe1("name1", "series1", "description1", "ing1", "ins1", 10, Medium);
+    // Add the recipe to the vector
+    recipes.push_back(recipe1);
+    // Create a recipe
+    Recipes recipe2("name2", "series2", "description2", "ing2", "ins2", 20, Easy);
+    // Add the recipe to the vector
+    recipes.push_back(recipe2);
+    // Create a recipe
+    Recipes recipe3("name3", "series3", "description3", "ing3", "ins3", 30, Hard);
+    // Add the recipe to the vector
+    recipes.push_back(recipe3);
+    // Sort the recipes by difficulty
+    sort(recipes.begin(), recipes.end(), sortByDifficulty);
+    // Check if the first recipe is the one with the lowest difficulty
+    assert(recipes[0].getName() == "name2");
+    // Check if the second recipe is the one with the medium difficulty
+    assert(recipes[1].getName() == "name1");
+    // Check if the third recipe is the one with the highest difficulty
+    assert(recipes[2].getName() == "name3");
+}
+
+/**
+ * @test Test the sorting by time functions using vector
+ */
+void testSortByTime(){
+    // Create a vector of recipes
+    vector<Recipes> recipes;
+    // Create a recipe
+    Recipes recipe1("name1", "series1", "description1", "ing1", "ins1", 30, Easy);
+    // Add the recipe to the vector
+    recipes.push_back(recipe1);
+    // Create a recipe
+    Recipes recipe2("name2", "series2", "description2", "ing2", "ins2", 20, Medium);
+    // Add the recipe to the vector
+    recipes.push_back(recipe2);
+    // Create a recipe
+    Recipes recipe3("name3", "series3", "description3", "ing3", "ins3", 10, Hard);
+    // Add the recipe to the vector
+    recipes.push_back(recipe3);
+    // Sort the recipes by time
+    sort(recipes.begin(), recipes.end(), sortByTime);
+    // Check if the first recipe is the one with the lowest time
+    assert(recipes[0].getName() == "name3");
+    // Check if the second recipe is the one with the medium time
+    assert(recipes[1].getName() == "name2");
+    // Check if the third recipe is the one with the highest time
+    assert(recipes[2].getName() == "name1");
+}
+
+int main(){
+    testSortByDifficulty();
+    cout << "testSortByDifficulty Passed" << endl;
+    testSortByTime();
+    cout << "testSortByTime Passed" << endl;
+    return 0;
+}
