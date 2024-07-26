@@ -7,8 +7,13 @@
 #include <assert.h>
 #include "Recipes.h"
 #include <algorithm>
+#include <iostream>
+
+using namespace std;
+
 
 enum Level {
+    None = 0,
     Easy = 1,
     Medium = 2,
     Hard = 3
@@ -17,6 +22,8 @@ enum Level {
     /**Implementation of Recipes functions */
     /*Default Constructor */
     Recipes::Recipes(){
+        time = 0;
+        difficulty = None;
     };
 
         // Function to split a string into a vector of strings
@@ -209,9 +216,13 @@ enum Level {
 
     int main(){
         testDefaultConstructor();
+        cout << "testDefaultConstructor Passed" << endl;
         testDefinedConstructor();
+        cout << "testDefinedConstructor Passed" << endl;
         testSplitString();
+        cout << "testSplitString Passed" << endl;
         testAccessors();
+        cout << "testAccessors Passed" << endl;
 
         return 0;
     }
