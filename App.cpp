@@ -81,6 +81,13 @@ vector<string> split_string(string str, string delimiter){
         return name;
     }
 
+    /* Accessor function to get the series of the recipe
+        @return series of the recipe
+    */
+    string Recipes::getSeries() {
+        return series;
+    }
+
     /* Accessor function to get the description of the recipe
         @return short description of the recipe
     */
@@ -147,6 +154,11 @@ vector<string> split_string(string str, string delimiter){
 */
 const int numRecipes = 6;
 array<Recipes, numRecipes> allRecipes;
+vector<Recipes> allRecipesVector;
+int timeFilter = 0;
+int difficultyFilter = 0;
+
+vector<string> series;
 
 /* Function to read the data from the file and initialise the allRecipes array
     Creates a new Recipes object for each recipe and adds it to the allRecipes array
@@ -159,6 +171,19 @@ void setup(){
     allRecipes[3] = Recipes("Sushi", "Japanese", "A simple sushi recipe", "Rice, Fish, Seaweed", "Cook rice, add fish, wrap in seaweed", 60 , Hard);
     allRecipes[4] = Recipes("Curry", "Indian", "A simple curry recipe", "Curry Paste, Meat, Vegetables", "Cook meat, add vegetables, add paste", 45 , Medium);
     allRecipes[5] = Recipes("Pizza-Bread", "NZ", "Pizza but with soft bread recipe", "Peperoni, Tomato Sauce, Cheese, Bread Dough", "Roll dough, add sauce, add cheese and pepeponi", 75, Medium);
+
+    series.push_back("Italian");
+    series.push_back("American");
+    series.push_back("Japanese");
+    series.push_back("Indian");
+    series.push_back("NZ");
+
+    allRecipesVector.push_back(allRecipes[0]);
+    allRecipesVector.push_back(allRecipes[1]);
+    allRecipesVector.push_back(allRecipes[2]);
+    allRecipesVector.push_back(allRecipes[3]);
+    allRecipesVector.push_back(allRecipes[4]);
+    allRecipesVector.push_back(allRecipes[5]);
 }
 
 /* Function to replace comma space to comma
@@ -213,9 +238,11 @@ bool sortByTime(Recipes a, Recipes b){
 
 /* Function to read the whole line of user input instead of just one word
  */
-string readLine(){
+string readLine(bool ignore = true){
     string s;
-    cin.ignore();
+    if (ignore){
+        cin.ignore();
+    }
     getline(cin, s);
     return s;
 }
@@ -310,6 +337,199 @@ vector<Recipes> searchByIngredient(){
     return results;
 }
 
+/* Function to filter the recipes by series
+    Displays recipes that are in the specified series
+    @return vector of recipes containing recipes that are in the specified series
+*/
+vector<Recipes> searchBySeries(){
+    vector<Recipes> results;
+    string search;
+    cout << "Enter the series you are looking for: " << endl;
+    cout << "To show all series, type 'all'." << endl;
+    search = readLine();
+    if (search == "all"){
+        // print series
+        cout << "Series: " << endl;
+        for (int i = 0; i < series.size(); i++){
+            cout << series[i] << endl;
+        }
+        cout << "Enter the series you are looking for: " << endl;
+        search = readLine(false);
+    }
+    // lowercase the search string and remove leading and trailing spaces
+    transform(search.begin(), search.end(), search.begin(), ::tolower);
+    search.erase(0, search.find_first_not_of(" "));
+    search.erase(search.find_last_not_of(" ") + 1);
+
+    // Go through all the recipes and check if the search string is in the name
+    for (int i = 0; i < numRecipes; i++){
+        string series = allRecipes[i].getSeries();
+
+        // lowercase the name of the recipes in the array
+        transform(series.begin(), series.end(), series.begin(), ::tolower);
+
+        // check if the search string is in the name of the recipe
+        // if it is, add the recipe to the results vector
+        if (series.find(search) != string::npos){
+            results.push_back(allRecipes[i]);
+        }
+    }
+    // Check that there are recipes based on the search input
+    if (results.size() == 0){
+        cout << endl << "No recipes found." << endl << endl;
+    }else{
+        cout << endl << "Results for recipes with \"" << search << "\": " << endl << endl;
+        for (int i = 0; i < results.size(); i++){
+            cout << results[i].toString() << endl;
+        }
+    }
+    return results;
+}
+
+
+/* Function to set filters for the recipes
+    Filters the recipes based on the user input
+    @return vector of recipes containing recipes that are filtered
+*/
+vector<Recipes> setFilters(vector<Recipes> currentRecipes){
+    vector<Recipes> results;
+    
+    while (true){
+        printf("Current filters: \n");
+        if (difficultyFilter != 0){
+            if (difficultyFilter == 1){
+                printf("Difficulty: Easy \n");
+            }
+            else if (difficultyFilter == 2){
+                printf("Difficulty: Medium \n");
+            }
+            else if (difficultyFilter == 3){
+                printf("Difficulty: Hard \n");
+            }
+        }
+        if (timeFilter != 0){
+            if (timeFilter == 1){
+                printf("Time: Less than 30 minutes \n");
+            }
+            else if (timeFilter == 2){
+                printf("Time: 30 to 60 minutes \n");
+            }
+            else if (timeFilter == 3){
+                printf("Time: More than 60 minutes \n");
+            }
+        }
+        if (difficultyFilter == 0 && timeFilter == 0){
+            printf("None \n");
+        }
+        printf("\n");
+
+        // display the filter options
+        printf("1. Filter by difficulty\n");
+        printf("2. Filter by time\n");
+        printf("3. Reset filters\n");
+        printf("4. Back\n");
+
+        // get the user choice
+        int filterChoice;
+        cin >> filterChoice;
+
+        // call the appropriate filter function based on the user choice
+        if (filterChoice == 1){
+            while (true){
+                // display the filter options
+                printf("1. Easy\n");
+                printf("2. Medium\n");
+                printf("3. Hard\n");
+                printf("4. Back\n");
+
+                // get the user choice
+                int difficultyChoice;
+                cin >> difficultyChoice;
+
+                // call the appropriate filter function based on the user choice
+                if (difficultyChoice == 1 || difficultyChoice == 2 || difficultyChoice == 3){
+                    difficultyFilter = difficultyChoice;
+                    break;
+                }
+                else if (difficultyChoice == 4){
+                    break;
+                }
+                else{
+                    // if invalid choice
+                    cout << "Invalid choice. Please try again." << endl;
+                    // reset the cin buffer
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+            }
+        }
+        else if (filterChoice == 2){
+            while (true){
+                // display the filter options
+                printf("1. Less than 30 minutes\n");
+                printf("2. 30 to 60 minutes\n");
+                printf("3. More than 60 minutes\n");
+                printf("4. Back\n");
+
+                // get the user choice
+                int timeChoice;
+                cin >> timeChoice;
+
+                // call the appropriate filter function based on the user choice
+                if (timeChoice == 1 || timeChoice == 2 || timeChoice == 3){
+                    timeFilter = timeChoice;
+                    break;
+                }
+                else if (timeChoice == 4){
+                    break;
+                }
+                else{
+                    // if invalid choice
+                    cout << "Invalid choice. Please try again." << endl;
+                    // reset the cin buffer
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+            }
+        }else if (filterChoice == 3){
+            timeFilter = 0;
+            difficultyFilter = 0;
+        }else if (filterChoice == 4){
+            break;
+        }else{
+            // if invalid choice
+            cout << "Invalid choice. Please try again." << endl;
+            // reset the cin buffer
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        
+
+    }
+    printf("Results after filtering: \n\n");
+    // filter the recipes based on the filters set
+    for (int i = 0; i < currentRecipes.size(); i++){
+        if (difficultyFilter != 0 && currentRecipes[i].getDifficulty() != difficultyFilter){
+            continue;
+        }
+        if (timeFilter == 1 && currentRecipes[i].getTime() >= 30){
+            continue;
+        }
+        if (timeFilter == 2 && (currentRecipes[i].getTime() < 30 || currentRecipes[i].getTime() > 60)){
+            continue;
+        }
+        if (timeFilter == 3 && currentRecipes[i].getTime() <= 60){
+            continue;
+        }
+        results.push_back(currentRecipes[i]);
+    }
+    if (results.size() == 0){
+        cout << endl << "No recipes found." << endl << endl;
+    }
+    return results;
+}
+
+
 /*Function that displays a random recipe within the allRecipes array
 */
 void random(){
@@ -325,10 +545,11 @@ void options(){
     printf("1. Display all recipes\n");
     printf("2. Search for a recipe\n");
     printf("3. Sort recipes\n");
-    printf("4. Filter recipes by series\n");
+    printf("4. Search recipes by series\n");
     printf("5. Search by ingredient\n");
-    printf("6. Random recipe\n");
-    printf("7. Quit\n");
+    printf("6. Set filters\n");
+    printf("7. Random recipe\n");
+    printf("8. Quit\n");
 
     // get the user choice
     int choice;
@@ -376,15 +597,21 @@ void options(){
         }
     }
     else if (choice == 4){
-        // filter();
+        searchBySeries();
     }
     else if (choice == 5){
         searchByIngredient();
     }
     else if (choice == 6){
-        random();
+        vector<Recipes> r = setFilters(allRecipesVector);
+        for (int i = 0; i < r.size(); i++){
+            cout << r[i].toString() << endl;
+        }
     }
     else if (choice == 7){
+        random();
+    }
+    else if (choice == 8){
         quit();
     }
     else{
