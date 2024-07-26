@@ -20,6 +20,7 @@ using namespace std;
 
 //Enum of values of the difficulty levels
 enum Level {
+    None = 0,
     Easy = 1,
     Medium = 2,
     Hard = 3
@@ -54,6 +55,8 @@ vector<string> split_string(string str, string delimiter, bool lowercase = true)
     /**Implementation of Recipes functions */
     /*Default Constructor */
     Recipes::Recipes(){
+        time = 0;
+        difficulty = None;
     };
 
     /*Defined Constructor*/
