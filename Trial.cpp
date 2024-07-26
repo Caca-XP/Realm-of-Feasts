@@ -45,7 +45,26 @@ int main() {
     
     string s = "right way, wrong way, correct way,     hello";
 
+    vector<string> vstrings;
+    vstrings.push_back("right way");
+    vstrings.push_back("wrong way");
 
+    for(int i = 0; i < vstrings.size(); i++){
+        cout << vstrings[i] << endl;
+    }
+    cout << "----------------" << endl;
+
+    // check if "right way" is in the vector
+    if(find(vstrings.begin(), vstrings.end(), "right way") != vstrings.end()){
+        cout << "found" << endl;
+    }else{
+        cout << "not found" << endl;
+        vstrings.push_back("right way");
+    }
+
+    for(int i = 0; i < vstrings.size(); i++){
+        cout << vstrings[i] << endl;
+    }
 
     // FakeClass fc = FakeClass(vstrings);
     // fc.display();
@@ -54,6 +73,12 @@ int main() {
     s.erase(0, s.find_first_not_of(" "));
 
     cout << s << endl;
+
+    s = "!@ 123 PieCe <>?_+{[]}";
+    // to lower case
+    transform(s.begin(), s.end(), s.begin(), ::tolower);
+    cout << s << endl;
+    
 
     return 0;
 }
