@@ -20,6 +20,7 @@ using namespace std;
 
 //Enum of values of the difficulty levels
 enum Level {
+    None = 0,
     Easy = 1,
     Medium = 2,
     Hard = 3
@@ -54,6 +55,8 @@ vector<string> split_string(string str, string delimiter, bool lowercase = true)
     /**Implementation of Recipes functions */
     /*Default Constructor */
     Recipes::Recipes(){
+        time = 0;
+        difficulty = None;
     };
 
     /*Defined Constructor*/
@@ -177,10 +180,11 @@ vector<string> allSeries;
 
 /* Function to read the data from the file and initialise the allRecipes array
     Creates a new Recipes object for each recipe and adds it to the allRecipes array
+    @param fileName the name of the file to read the data from
 */
-void setup(){
+void setup(string fileName){
 // // read file and initialise allRecipes
-    ifstream file("testdata.txt");
+    ifstream file(fileName);
     string line;
     int i = 0;
     while (getline(file, line)){
@@ -658,7 +662,7 @@ void options(){
 */
 int main(){
     // read and initialize the data for recipes
-    setup();
+    setup("testdata.txt");//change to database later
     while (true){
         options();
     }
