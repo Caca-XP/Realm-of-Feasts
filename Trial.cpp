@@ -1,84 +1,92 @@
-#include <string>
-#include <vector>
 #include <iostream>
+#include <fstream>
 #include <sstream>
-#include <iterator>
-#include <locale>
-#include <algorithm>
-#include <cstring>
-
+#include <vector>
+#include <string>
+# include <array>
+# include <iterator>
+# include <algorithm>
+# include <cstdlib>
 
 using namespace std;
 
 
-class FakeClass{
-    private:
-    vector<string> vec;
 
-    public:
-    FakeClass(){}
-
-    FakeClass(vector<string> v){
-        vec = v;
-    }
-
-    vector<string> getVec(){
-        return vec;
-    }
-
-    void display(){
-        for(int i = 0; i < vec.size(); i++){
-            cout << vec[i] << endl;
-        }
-    }
-
+//Enum of values of the difficulty levels
+enum Level {
+    None = 0,
+    Easy = 1,
+    Medium = 2,
+    Hard = 3
 };
 
-string readLine(){
-    string s;
-    getline(cin, s);
-    return s;
+// Function to split a string into a vector of strings
+vector<string> split_string(string str, string delimiter, bool lowercase = true){
+    // lowercase the string
+    if (lowercase){
+        transform(str.begin(), str.end(), str.begin(), ::tolower);
+    }
+    vector<string> result;
+    size_t pos = 0;
+    string token;
+    while ((pos = str.find(delimiter)) != string::npos){
+        token = str.substr(0, pos);
+        // remove leading and trailing spaces
+        token.erase(0, token.find_first_not_of(" "));
+        token.erase(token.find_last_not_of(" ") + 1);
+
+        result.push_back(token);
+        str.erase(0, pos + delimiter.length());
+    }
+    str.erase(0, str.find_first_not_of(" "));
+    str.erase(str.find_last_not_of(" ") + 1);
+    result.push_back(str);
+    return result;
+}
+
+void setup(string fileName){
+// // read file and initialise allRecipes
+    ifstream file(fileName);
+    string line;
+    int i = 0;
+
+    if (getline(file, line)) {
+        cout << "Header: " << line << endl; // Optionally print the header
+    }
+
+    while (getline(file, line)){
+        string name, series, description, ingredients, instructions;
+        int time;
+        enum Level difficulty;
+
+        //split the line into the different parts
+        vector<string> parts = split_string(line, "\t", false);
+
+        name = parts[0];
+        series = parts[1];
+        description = parts[2];
+        ingredients = parts[3];
+        instructions = parts[4];
+        time = stoi(parts[5]);
+        if (parts[6] == "Easy"){
+            difficulty = Easy;
+        }else if (parts[6] == "Medium"){
+            difficulty = Medium;
+        }else if (parts[6] == "Hard"){
+            difficulty = Hard;
+        }
+
+        printf("Name: %s\n, series: %s\n, description: %s\n, ingredients: %s\n, instructions: %s\n, time: %d\n, difficulty: %d\n\n", name.c_str(), series.c_str(), description.c_str(), ingredients.c_str(), instructions.c_str(), time, difficulty);
+
+        i++;
+    }
 }
 
 
 int main() {
-    
-    string s = "right way, wrong way, correct way,     hello";
 
-    vector<string> vstrings;
-    vstrings.push_back("right way");
-    vstrings.push_back("wrong way");
+    setup("RecipesTest.txt");
 
-    for(int i = 0; i < vstrings.size(); i++){
-        cout << vstrings[i] << endl;
-    }
-    cout << "----------------" << endl;
-
-    // check if "right way" is in the vector
-    if(find(vstrings.begin(), vstrings.end(), "right way") != vstrings.end()){
-        cout << "found" << endl;
-    }else{
-        cout << "not found" << endl;
-        vstrings.push_back("right way");
-    }
-
-    for(int i = 0; i < vstrings.size(); i++){
-        cout << vstrings[i] << endl;
-    }
-
-    // FakeClass fc = FakeClass(vstrings);
-    // fc.display();
-
-    s = readLine();
-    s.erase(0, s.find_first_not_of(" "));
-
-    cout << s << endl;
-
-    s = "!@ 123 PieCe <>?_+{[]}";
-    // to lower case
-    transform(s.begin(), s.end(), s.begin(), ::tolower);
-    cout << s << endl;
-    
 
     return 0;
 }
