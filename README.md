@@ -4,26 +4,22 @@ Realm of Feasts is a fantasy recipe discovery app that helps you find recipes ba
 
 ## Authors
 Natasha Prasetyo 
+
 Nadia Prasetyo
+
 Bernice Ishumi
 
-## Usage 
+# Usage 
 
 ## Test Cases 
 
-## Version History 
+# Version History 
 
-# Alpha
+## Alpha
 
-# Beta
+## Beta
 
-# Final Product 
-
-## Dependencies 
-
-## License
-
-## Manifest
+## Final Product 
 
 # Acknowledgments
 
@@ -36,6 +32,9 @@ Bernice Ishumi
 - [Right way to split an stdstring into a vector string](https://stackoverflow.com/questions/5607589/right-way-to-split-an-stdstring-into-a-vectorstring)
 
 - [How to reset stdcin when using it](https://stackoverflow.com/questions/39282953/how-to-reset-stdcin-when-using-it)
+
+## Dependencies
+## License
 
 - [Find if a vector is a subvector C](https://stackoverflow.com/questions/30584131/find-if-vector-is-subvector-c)
 
