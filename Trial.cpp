@@ -55,6 +55,13 @@ void setup(string fileName){
     }
 
     while (getline(file, line)){
+        // if line is empty, skip
+        if (line.empty() || line == "\t\t\t\t\t\t"){
+            printf("Empty line\n");
+            continue;
+        }
+
+
         string name, series, description, ingredients, instructions;
         int time;
         enum Level difficulty;
@@ -65,8 +72,18 @@ void setup(string fileName){
         name = parts[0];
         series = parts[1];
         description = parts[2];
-        ingredients = parts[3];
+        ingredients = parts[3].substr(1, parts[3].length() - 2);
+
+        printf("Ingredients: %s\n\n\n\n", ingredients.c_str());
+
+        // Ingredients are separated by commas, then separated into number, unit, and ingredient by *
+        vector<string> ingredients_parts = split_string(ingredients, ",", false);
+        for (string ingredient : ingredients_parts){
+            vector<string> ingredient_parts = split_string(ingredient, "*", false);
+            printf("Ingredient: %s, %s, %s\n", ingredient_parts[0].c_str(), ingredient_parts[1].c_str(), ingredient_parts[2].c_str());
+        }
         instructions = parts[4];
+        // Instructions are separated by slashes
         time = stoi(parts[5]);
         if (parts[6] == "Easy"){
             difficulty = Easy;
