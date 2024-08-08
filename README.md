@@ -41,3 +41,7 @@ Bernice Ishumi
 ## Dependencies
 ## License
 Making changes on laptop to see if it transfers via Onedrive to Lap computers ;
+
+Comment from Bernice for Bernice 
+
+Remember to ask about how the set filters function works 
