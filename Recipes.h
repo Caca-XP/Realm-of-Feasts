@@ -4,6 +4,7 @@
 // Include any necessary libraries or headers here
 #include <string>
 #include <vector>
+#include "Ingredients.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ class Recipes {
     Recipes();
 
     //defined constructor
-    Recipes(string nm, string ser, string desc, string ing, string ins, int t, enum Level lv);
+    Recipes(string nm, string ser, string desc, vector<Ingredients>, string ins, int t, enum Level lv);
 
     ~Recipes();
 
@@ -26,7 +27,9 @@ class Recipes {
 
     string getDescription();
 
-    vector<string> getIngredients();
+    vector<Ingredients> getIngredients();
+
+    vector<string> getIngredientsNames();
 
     string getInstructions();
 
@@ -43,8 +46,9 @@ class Recipes {
     string name;
     string series;
     string description;
-    vector<string> ingredients;
+    vector<Ingredients> ingredients;
     string ingredients_str;
+    vector<string> ingredient_names;
     string instructions;
     int time;
     enum Level difficulty;
