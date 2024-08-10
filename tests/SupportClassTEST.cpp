@@ -5,7 +5,7 @@
  * @author Mythical Cooks
  */
 #include <assert.h>
-#include "Recipes.h"
+#include "../Recipes.h"
 #include <algorithm>
 #include <iostream>
 

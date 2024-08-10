@@ -7,7 +7,7 @@
 # include <iostream>
 # include <string>
 # include <fstream>
-# include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
+# include "../Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
 # include <array>
 # include <algorithm>
 # include <vector>
@@ -346,8 +346,11 @@ void test_searchBySeries(){
 int main(){
     // Run the tests
     test_searchByName();
+    cout << "Search by name tests passed." << endl;
     test_searchByIngredient();
+    cout << "Search by ingredient tests passed." << endl;
     test_searchBySeries();
+    cout << "Search by series tests passed." << endl;
 
     return 0;
 }
