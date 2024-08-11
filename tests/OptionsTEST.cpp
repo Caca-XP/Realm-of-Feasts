@@ -159,6 +159,7 @@ void options(int specifiedOption, int specifiedSortChoice){
     int main(){
         testBaseOptions();
         cout << "testBaseOptions Passed" << endl;
+        abort();//see if this works?
         testSortOptions();
         cout << "testSortOptions Passed" << endl;
         return 0;
