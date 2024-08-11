@@ -50,6 +50,6 @@ jobs:
 
     - name: Test
       working-directory: ${{env.GITHUB_WORKSPACE}}tests/
-      run: msbuild Testing.vcxproj /t:ClCompile /p:SelectedFiles=OptionsTEST.cpp
+      run: msbuild /m /p:Configuration= Debug ${{env.SOLUTION_FILE_PATH}}
 
 
