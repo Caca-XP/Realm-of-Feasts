@@ -1,16 +1,25 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Realm-of-Feasts", "RealmOfFeasts.csproj", "{11FBC798-BAF5-4EE5-9511-BE6DB0592F99}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
+MinimumVisualStudioVersion = 10.0.40219.1Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RealmOfFeasts", "RealmOfFeasts.vbproj", "{8CDD8387-B905-44A8-B5D5-07BB50E05BEA}"
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{11FBC798-BAF5-4EE5-9511-BE6DB0592F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11FBC798-BAF5-4EE5-9511-BE6DB0592F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11FBC798-BAF5-4EE5-9511-BE6DB0592F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11FBC798-BAF5-4EE5-9511-BE6DB0592F99}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
+  GlobalSection(SolutionNotes) = postSolution
+  EndGlobalSection
+  GlobalSection(SolutionConfiguration) = preSolution
+       ConfigName.0 = Debug
+       ConfigName.1 = Release
+  EndGlobalSection
+  GlobalSection(ProjectDependencies) = postSolution
+  EndGlobalSection
+  GlobalSection(ProjectConfiguration) = postSolution
+   {8CDD8387-B905-44A8-B5D5-07BB50E05BEA}.Debug.ActiveCfg = Debug|x86
+   {8CDD8387-B905-44A8-B5D5-07BB50E05BEA}.Debug.Build.0 = Debug|x86
+   {8CDD8387-B905-44A8-B5D5-07BB50E05BEA}.Release.ActiveCfg = Release|x86
+   {8CDD8387-B905-44A8-B5D5-07BB50E05BEA}.Release.Build.0 = Release|x86
+  EndGlobalSection
+  GlobalSection(ExtensibilityGlobals) = postSolution
+  EndGlobalSection
+  GlobalSection(ExtensibilityAddIns) = postSolution
+  EndGlobalSection
 EndGlobal
