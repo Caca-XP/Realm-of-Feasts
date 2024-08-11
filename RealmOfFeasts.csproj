@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build">
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
         <Version>1.4.3</Version>
@@ -9,8 +9,28 @@
         <Authors>Mythical Cooks</Authors>
     </PropertyGroup>
     <ItemGroup>
+      <ProjectConfiguration Include="Debug|Win32">
+        <Configuration>Debug</Configuration>
+        <Platform>Win32</Platform>
+      </ProjectConfiguration>
+      <ProjectConfiguration Include="Release|Win32">
+        <Configuration>Release</Configuration>
+        <Platform>Win32</Platform>
+      </ProjectConfiguration>
+    </ItemGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.default.props" />
+    <PropertyGroup>
+      <ConfigurationType>Application</ConfigurationType>
+      <PlatformToolset>v142</PlatformToolset>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+    <ItemGroup>
         <Compile Include = "App.cpp" />
     </ItemGroup>
+    <ItemGroup>
+      <ClInclude Include="App.h" />
+    </ItemGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Targets" />
     <Target Name="Build">
         <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
         <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />    
