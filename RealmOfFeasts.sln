@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32505.173
-MinimumVisualStudioVersion = 10.0.40219.1Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RealmOfFeasts", "RealmOfFeasts.vbproj", "{8CDD8387-B905-44A8-B5D5-07BB50E05BEA}"
+MinimumVisualStudioVersion = 10.0.40219.1Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RealmOfFeasts", "RealmOfFeasts.vcxproj", "{8CDD8387-B905-44A8-B5D5-07BB50E05BEA}"
 EndProject
 Global
   GlobalSection(SolutionNotes) = postSolution
