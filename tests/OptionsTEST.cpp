@@ -145,6 +145,7 @@ void options(int specifiedOption, int specifiedSortChoice){
         // Test case 1
         options(3, 1);
         assert(option == "sorting by difficulty+ displaying");
+        assert(1 == 3);
 
         // Test case 2
         options(3, 2);
