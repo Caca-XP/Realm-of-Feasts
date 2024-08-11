@@ -1,9 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+      <AssemblyName>RealmOfFeasts</AssemblyName>
+      <OutputPath>Bin\</OutputPath>
+    </PropertyGroup>
     <ItemGroup>
         <Compile Include = "App.cpp" />
     </ItemGroup>
     <Target Name="Build">
-        <Csc Sources="@(Compile)"/>
+        <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+        <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />    
     </Target>
 </Project>
     
