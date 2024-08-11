@@ -8,6 +8,7 @@
         <Description>A Recipe displaying app containing Recipes from fantasy series</Description>
         <Authors>Mythical Cooks</Authors>
     </PropertyGroup>
+
     <ItemGroup>
       <ProjectConfiguration Include="Debug|Win32">
         <Configuration>Debug</Configuration>
@@ -31,10 +32,17 @@
       <ClInclude Include="App.h" />
     </ItemGroup>
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Targets" />
+
+    <ItemGroup>
+        <Compile Include = "./tests/*.cpp" />
+    </ItemGroup>
     <Target Name="Build">
         <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
         <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />    
     </Target>
+    <Target Name="Test" >
+        <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+        <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />    
     <Target Name="Clean" >
       <Delete Files="$(OutputPath)$(AssemblyName).exe" />
     </Target>
