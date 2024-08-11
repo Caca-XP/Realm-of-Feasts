@@ -1,7 +1,12 @@
 <Project DefaultTargets="Build">
     <PropertyGroup>
-      <AssemblyName>RealmOfFeasts</AssemblyName>
-      <OutputPath>Bin\</OutputPath>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Version>1.4.3</Version>
+        <AssemblyName>RealmOfFeasts</AssemblyName>
+        <OutputPath>Bin\</OutputPath>
+
+        <Description>A Recipe displaying app containing Recipes from fantasy series</Description>
+        <Authors>Mythical Cooks</Authors>
     </PropertyGroup>
     <ItemGroup>
         <Compile Include = "App.cpp" />
