@@ -50,6 +50,6 @@ jobs:
 
     - name: Test
       working-directory: ${{env.GITHUB_WORKSPACE}}tests/
-      run: msbuild /m /p:Configuration= Debug ${{env.SOLUTION_FILE_PATH}}
+      run: msbuild /m /p:Configuration= Debug ${{env.SOLUTION_FILE_PATH}}/tests
 
 
