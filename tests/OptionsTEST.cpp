@@ -159,7 +159,7 @@ void options(int specifiedOption, int specifiedSortChoice){
     int main(){
         testBaseOptions();
         cout << "testBaseOptions Passed" << endl;
-        abort();//see if this works?
+        throw std::invalid_argument( "received negative value" );
         testSortOptions();
         cout << "testSortOptions Passed" << endl;
         return 0;
