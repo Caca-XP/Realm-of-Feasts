@@ -33,9 +33,6 @@
     </ItemGroup>
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Targets" />
 
-    <ItemGroup>
-        <Compile Include = "./tests/*.cpp" />
-    </ItemGroup>
     <Target Name="Build">
         <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
         <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />    
