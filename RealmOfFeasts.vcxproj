@@ -27,6 +27,7 @@
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
     <ItemGroup>
         <Compile Include = "App.cpp" />
+        <Compile Include = "./tests/TEST" />
     </ItemGroup>
     <ItemGroup>
       <ClInclude Include="App.h" />
@@ -37,9 +38,10 @@
         <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
         <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />    
     </Target>
-    <Target Name="Test" >
-        <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
-        <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />    
+    <!-- <Target Name="Test">
+        <MakeDir Directories="$(OutputPath)/Test" Condition="!Exists('$(OutputPath)/Test')" />
+        
+    </Target> -->
     <Target Name="Clean" >
       <Delete Files="$(OutputPath)$(AssemblyName).exe" />
     </Target>
