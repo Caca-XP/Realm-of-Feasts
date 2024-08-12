@@ -7,7 +7,7 @@
 # include <iostream>
 # include <string>
 # include <fstream>
-# include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
+# include "../Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
 # include <array>
 # include <algorithm>
 # include <vector>
@@ -178,7 +178,7 @@ void setup(string fileName){
  * @test Test the setup function using the testdata.txt file
  */
 void testSetup(){
-    setup("testdata.txt");
+    setup("../testdata.txt");
     assert(allRecipes.size() == 6);
     assert(allSeries.size() == 5);
     assert(allRecipes[0].getName() == "Pasta");

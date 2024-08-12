@@ -1,0 +1,45 @@
+<Project DefaultTargets="Test" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Version>1.4.3</Version>
+        <AssemblyName>RealmOfFeasts</AssemblyName>
+        <OutputPath>Bin\</OutputPath>
+
+        <Description>A Recipe displaying app containing Recipes from fantasy series</Description>
+        <Authors>Mythical Cooks</Authors>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectConfiguration Include="Debug|Win32">
+        <Configuration>Debug</Configuration>
+        <Platform>Win32</Platform>
+      </ProjectConfiguration>
+      <ProjectConfiguration Include="Release|Win32">
+        <Configuration>Release</Configuration>
+        <Platform>Win32</Platform>
+      </ProjectConfiguration>
+    </ItemGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.default.props" />
+    <PropertyGroup>
+      <ConfigurationType>Application</ConfigurationType>
+      <PlatformToolset>v142</PlatformToolset>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+    <ItemGroup>
+        <Compile Include = "*TEST.cpp" />
+    </ItemGroup>
+    <ItemGroup>
+      <ClInclude Include="../App.h" />
+    </ItemGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Targets" />
+
+    <Target Name="Test">
+        <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+        <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />    
+    </Target>
+    <Target Name="Clean" >
+      <Delete Files="$(OutputPath)$(AssemblyName).exe" />
+    </Target>
+    <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+</Project>
+    

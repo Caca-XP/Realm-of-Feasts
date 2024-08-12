@@ -8,7 +8,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <array>
-#include "Recipes.h"
+#include "../Recipes.h"
 
 using namespace std;
 
@@ -145,6 +145,7 @@ void options(int specifiedOption, int specifiedSortChoice){
         // Test case 1
         options(3, 1);
         assert(option == "sorting by difficulty+ displaying");
+        assert(1 == 3);
 
         // Test case 2
         options(3, 2);
@@ -158,6 +159,7 @@ void options(int specifiedOption, int specifiedSortChoice){
     int main(){
         testBaseOptions();
         cout << "testBaseOptions Passed" << endl;
+        throw std::invalid_argument( "received negative value" );
         testSortOptions();
         cout << "testSortOptions Passed" << endl;
         return 0;
