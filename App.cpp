@@ -1,7 +1,9 @@
 # include <iostream>
 # include <string>
 # include <fstream>
-# include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
+# include "./src/Recipes.cpp" // Include the header file that contains the definition of the 'Recipes' class
+# include "./src/Ingredients.cpp" // Include the header file that contains the definition of the 'Ingredients' class
+# include "./src/Support.cpp" // Include the header file that contains the definition of the 'Ingredients' class
 # include <array>
 # include <sstream>
 # include <iterator>
@@ -18,156 +20,9 @@ using namespace std;
    @author Cooks 
 */
 
-//Enum of values of the difficulty levels
-enum Level {
-    None = 0,
-    Easy = 1,
-    Medium = 2,
-    Hard = 3
-};
-
-// Function to split a string into a vector of strings
-vector<string> split_string(string str, string delimiter, bool lowercase = true){
-    // lowercase the string
-    if (lowercase){
-        transform(str.begin(), str.end(), str.begin(), ::tolower);
-    }
-    vector<string> result;
-    size_t pos = 0;
-    string token;
-    while ((pos = str.find(delimiter)) != string::npos){
-        token = str.substr(0, pos);
-        // remove leading and trailing spaces
-        token.erase(0, token.find_first_not_of(" "));
-        token.erase(token.find_last_not_of(" ") + 1);
-
-        result.push_back(token);
-        str.erase(0, pos + delimiter.length());
-    }
-    str.erase(0, str.find_first_not_of(" "));
-    str.erase(str.find_last_not_of(" ") + 1);
-    result.push_back(str);
-    return result;
-}
-
-/// @todo maybe check if vector is better than array
-
-    /**Implementation of Recipes functions */
-    /*Default Constructor */
-    Recipes::Recipes(){
-        time = 0;
-        difficulty = None;
-    };
-
-    /*Defined Constructor*/
-    Recipes::Recipes(string nm, string ser, string desc, string ing, string ins, int t, enum Level lv) {
-        name = nm;
-        series = ser;
-        description = desc;
-        ingredients = split_string(ing, ", ");
-        sort(ingredients.begin(), ingredients.end());
-        ingredients_str = ing;
-        instructions = ins;
-        time = t;
-        difficulty = lv;
-
-        
-    }
-
-    /*Destructor code (idk what this is for)*/
-    Recipes::~Recipes() {
-        // Destructor code here
-    }
-
-    /* Accessor function to get the name of the recipe
-        @return name of the recipe
-    */
-    string Recipes::getName() {
-        return name;
-    }
-
-    /* Accessor function to get the series of the recipe
-        @return series of the recipe
-    */
-    string Recipes::getSeries() {
-        return series;
-    }
-
-    /* Accessor function to get the description of the recipe
-        @return short description of the recipe
-    */
-    string Recipes::getDescription() {
-        return description;
-    }
-
-    /* Accessor function to get the ingredients of the recipe
-        @return ingredients of the recipe (list)
-    */
-    vector<string> Recipes::getIngredients() {
-        return ingredients;
-    }
-
-    /* Accessor function to get the instructions of the recipe
-        @return instructions of the recipe
-    */
-    string Recipes::getInstructions() {
-        return instructions;
-    }
-
-    /* Accessor function to get the time of the recipe
-        @return time of the recipe in minutes
-    */
-    int Recipes::getTime() {
-        return time;
-    }
-
-    /* Accessor function to get the difficulty of the recipe
-        @return difficulty of the recipe as an int (1, 2, 3)
-    */
-    enum Level Recipes::getDifficulty() {
-        return difficulty;
-    }
-
-    /* Function to return a string representation of the recipe
-        @return string representation of the recipe
-    */
-    string Recipes::toString() {
-        string result = "Name: " + name + "\n";
-        result += "Series: " + series + "\n";
-        result += "Description: " + description + "\n";
-        result += "Ingredients: " + ingredients_str + "\n";
-        result += "Instructions: " + instructions + "\n";
-        result += "Time: " + to_string(time) + " minutes\n";
-        result += "Difficulty: ";
-
-        if (difficulty == 1){
-            result += "Easy\n";
-        }
-        else if (difficulty == 2){
-            result += "Medium\n";
-        }
-        else if (difficulty == 3){
-            result += "Hard\n";
-        }
-        return result;
-    }
-
-    /*Function to return a string of the recipe name, series, time, and difficulty
-        @return string of the recipe name, series, time, and difficulty
-    */
-    string Recipes::toStringShort() {
-        string result = name + " (" + series + ") - " + to_string(time) + " minutes - ";
-        if (difficulty == 1){
-            result += "Easy";
-        }
-        else if (difficulty == 2){
-            result += "Medium";
-        }
-        else if (difficulty == 3){
-            result += "Hard";
-        }
-        return result;
-    }
+/***************************************************************************************************************************************
+ *          Setup functions                                                                                                            *
+****************************************************************************************************************************************/
 
 
 /* Vector of the recipes, declared based on number of recipes in the database
@@ -178,6 +33,88 @@ int difficultyFilter = 0;
 
 vector<string> allSeries;
 
+
+vector<Ingredients> process_ingred(string ingred){
+    
+    string ingredients;
+    // if the start and end of the string are both " then remove them
+    if (ingred.front() == '"' && ingred.back() == '"'){
+        ingredients = ingred.substr(1, ingred.length() - 2);
+    }else{
+        ingredients = ingred;
+    }
+    vector<Ingredients> ingredients_list;
+    // Ingredients are separated by commas, then separated into number, unit, and ingredient by *
+    vector<string> ingredients_parts = split_string(ingredients, ",", false);
+        for (string ingredient : ingredients_parts){
+            try {
+                    vector<string> ingredient_units = split_string(ingredient, "*", false);
+                    if (ingredient_units.size() < 3) {
+                        throw out_of_range("Not enough parts in ingredient");
+                        continue;
+                    }
+                    ingredients_list.push_back(Ingredients(stod(ingredient_units[0]), ingredient_units[1], ingredient_units[2]));
+
+                } catch (const out_of_range& e) {
+                    cerr << "*******************************************************************************************************\nError accessing ingredient parts: " << ingredient << "\nException: " << e.what() << endl;
+                    continue; // Skip this ingredient and move to the next
+            }
+
+
+            // printf("Ingredient: %s, %s, %s\n", ingredient_parts[0].c_str(), ingredient_parts[1].c_str(), ingredient_parts[2].c_str());
+        }
+    return ingredients_list;
+}
+
+string process_instructions(string instruct){
+    string instructions;
+    // if the start and end of the string are both " then remove them
+    if (instruct.front() == '"' && instruct.back() == '"'){
+        try{
+            instructions = instruct.substr(1, instruct.length() - 2);
+        }catch(const out_of_range& e){
+            cerr << "*******************************************************************************************************\nError accessing instructions: " << instructions << "\nException: " << e.what() << endl;
+        }
+    }else{
+        instructions = instruct;
+    }
+
+    instructions = replaceAll(instructions, "||", "\n");
+
+    return instructions;
+
+}
+
+int process_time(string time_str){
+    int time;
+    try {
+            time = stoi(time_str);
+        } catch (const invalid_argument& e) {
+            cerr << "*******************************************************************************************************\nInvalid argument for time: " << time_str << "\nException: " << e.what() << endl;
+            return -1;
+        } catch (const out_of_range& e) {
+            cerr << "*******************************************************************************************************\nOut of range value for time: " << time_str << "\nException: " << e.what() << endl;
+            return -1;
+        }
+    return time;
+}
+
+enum Level process_difficulty(string difficulty_str){
+    enum Level difficulty;
+    if (difficulty_str == "Easy"){
+        difficulty = Easy;
+    }else if (difficulty_str == "Medium"){
+        difficulty = Medium;
+    }else if (difficulty_str == "Hard"){
+        difficulty = Hard;
+    }else{
+        cerr << "*******************************************************************************************************\nInvalid difficulty level: " << difficulty_str << endl;
+        return None;
+    }
+    return difficulty;
+}
+
+
 /* Function to read the data from the file and initialise the allRecipes array
     Creates a new Recipes object for each recipe and adds it to the allRecipes array
     @param fileName the name of the file to read the data from
@@ -187,29 +124,34 @@ void setup(string fileName){
     ifstream file(fileName);
     string line;
     int i = 0;
+
+    if (getline(file, line)) {
+        // cout << "Header: " << line << endl; // Optionally print the header
+        // skip the header
+    }
+    
     while (getline(file, line)){
-        string name, series, description, ingredients, instructions;
+        // if line is empty, skip
+        if (line.empty() || line == "\t\t\t\t\t\t"){
+            continue;
+        }
+
+        string name, series, description, instructions;
         int time;
         enum Level difficulty;
 
         //split the line into the different parts
-        vector<string> parts = split_string(line, "| ", false);
+        vector<string> parts = split_string(line, "\t", false);
 
         name = parts[0];
         series = parts[1];
         description = parts[2];
-        ingredients = parts[3];
-        instructions = parts[4];
-        time = stoi(parts[5]);
-        if (parts[6] == "Easy"){
-            difficulty = Easy;
-        }else if (parts[6] == "Medium"){
-            difficulty = Medium;
-        }else if (parts[6] == "Hard"){
-            difficulty = Hard;
-        }
+        vector<Ingredients> ingredients_parts = process_ingred(parts[3]);
+        instructions = process_instructions(parts[4]);
+        time = process_time(parts[5]);
+        difficulty = process_difficulty(parts[6]);
 
-        Recipes newRecipe = Recipes(name, series, description, ingredients, instructions, time, difficulty);
+        Recipes newRecipe = Recipes(name, series, description, ingredients_parts, instructions, time, difficulty);
         allRecipes.push_back(newRecipe);
         if (find(allSeries.begin(), allSeries.end(), series) == allSeries.end()){
             allSeries.push_back(series);
@@ -218,21 +160,9 @@ void setup(string fileName){
     }
 }
 
-/* Function to replace comma space to comma
-   Remove empty spaces
-*/
-string replaceAll(string str, string from, string to){
-    // check if from and to empty
-    if (from.empty() || to.empty()){
-        return str;
-    }
-    size_t start_pos = 0;
-    while ((start_pos = str.find(from, start_pos)) != string::npos){
-        str.replace(start_pos, from.length(), to);
-        start_pos += to.length();
-    }
-    return str;
-}
+/***************************************************************************************************************************************
+ *          Options functions                                                                                                          *
+****************************************************************************************************************************************/
 
 /* Function to display recipes specified in the param
     @param array of recipes
@@ -241,13 +171,6 @@ void display(vector<Recipes> recipes){
     for (int i = 0; i < recipes.size(); i++){
         cout << recipes[i].toStringShort() << endl;
     }
-}
-
-/* Function to quit the program
-*/
-void quit(){
-    cout << "Goodbye!" << endl;
-    exit(0);
 }
 
 /* Function to sort the recipes by difficulty
@@ -268,16 +191,10 @@ bool sortByTime(Recipes a, Recipes b){
     return a.getTime() < b.getTime();
 }
 
-/* Function to read the whole line of user input instead of just one word
- */
-string readLine(bool ignore = true){
-    string s;
-    if (ignore){
-        cin.ignore();
-    }
-    getline(cin, s);
-    return s;
-}
+
+/***************************************************************************************************************************************
+ *          Search functions                                                                                                           *
+****************************************************************************************************************************************/
 
 /* Function to search the recipes array by specific name
     Prints out recipes with the searched string in its name
@@ -332,8 +249,7 @@ vector<Recipes> searchByIngredient(){
     // remove leading and trailing spaces
     search.erase(0, search.find_first_not_of(" "));
     search.erase(search.find_last_not_of(" ") + 1);
-    // replace all ", " with ","
-    search = replaceAll(search, ", ", ",");
+
     vector<string> searchIngredients = split_string(search, ",");
     // sort the search ingredients
     sort(searchIngredients.begin(), searchIngredients.end());
@@ -349,7 +265,7 @@ vector<Recipes> searchByIngredient(){
 
     // Search for recipes that contain the all the ingredients
     for (int i = 0; i < allRecipes.size(); i++){
-        vector<string> ingredients = allRecipes[i].getIngredients();
+        vector<string> ingredients = allRecipes[i].getIngredientsNames();
         // use double pointer to check if all the search ingredients are in the recipe ingredients
         if (includes(ingredients.begin(), ingredients.end(), searchIngredients.begin(), searchIngredients.end())){
             results.push_back(allRecipes[i]);
@@ -418,6 +334,10 @@ vector<Recipes> searchBySeries(){
     return results;
 }
 
+
+/***************************************************************************************************************************************
+ *          Set filters and random                                                                                                     *
+****************************************************************************************************************************************/
 
 /* Function to set filters for the recipes
     Filters the recipes based on the user input
@@ -569,6 +489,10 @@ void random(){
     cout << allRecipes[randomIndex].toString() << endl;
 }
 
+/***************************************************************************************************************************************
+ *          Options and main                                                                                                           *
+****************************************************************************************************************************************/
+
 /* Function to display the options for the user
     Takes the user input and calls the appropriate function
 */
@@ -662,7 +586,7 @@ void options(){
 */
 int main(){
     // read and initialize the data for recipes
-    setup("testdata.txt");//change to database later
+    setup("RecipesTest.txt");//change to database later
     while (true){
         options();
     }
