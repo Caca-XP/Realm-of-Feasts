@@ -71,3 +71,7 @@ string readLine(bool ignore = true){
     getline(cin, s);
     return s;
 }
+
+int main(){
+        return 0;
+    }

@@ -75,3 +75,7 @@ using namespace std;
         result += name;
         return result;
     }
+
+    int main(){
+        return 0;
+    }
