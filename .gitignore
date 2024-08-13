@@ -4,3 +4,15 @@
 *.exe
 *.ilk
 vc140.pdb
+
+//Visual studio config files
+RealmOfFeasts.vcxproj.user
+.vs/RealmOfFeasts/copilot-chat/ab03f25c/sessions/b253c895-ab3b-4e95-8b85-57760aca5acb
+.vs/RealmOfFeasts/FileContentIndex/c250789b-97b6-44af-941a-1f57e82d511e.vsidx
+.vs/RealmOfFeasts/v17/Browse.VC.db
+.vs/RealmOfFeasts/v17/Browse.VC.db-shm
+.vs/RealmOfFeasts/v17/Browse.VC.db-wal
+.vs/RealmOfFeasts/v17/Browse.VC.opendb
+.vs/RealmOfFeasts/FileContentIndex/18b4ae42-f291-4adb-bca6-a13cdc409bf0.vsidx
+.vs/RealmOfFeasts/v17/ipch/a0a718348fbeee06.ipch
+RealmOfFeasts/Debug/RealmOfFeasts.log
