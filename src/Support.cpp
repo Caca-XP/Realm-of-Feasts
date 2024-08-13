@@ -72,6 +72,3 @@ string readLine(bool ignore = true){
     return s;
 }
 
-int main(){
-        return 0;
-    }
