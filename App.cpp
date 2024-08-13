@@ -79,7 +79,7 @@ string process_instructions(string instruct){
         instructions = instruct;
     }
 
-    instructions = replaceAll(instructions, "/", "\n");
+    instructions = replaceAll(instructions, "||", "\n");
 
     return instructions;
 
