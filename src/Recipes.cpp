@@ -29,7 +29,7 @@ enum Level {
     /*Default Constructor */
     Recipes::Recipes(){
         time = 0;
-        difficulty = None;
+        difficulty = Level(0);
     };
 
     /*Defined Constructor*/

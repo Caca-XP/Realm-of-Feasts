@@ -28,7 +28,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ItemGroup>
     <Compile Include="App.cpp" />
-    <Compile Include="./tests/TEST" />
+    <Compile Include="./src/Recipes.cpp" />
+    <Compile Include="./src/Ingredients.cpp" />
+    <Compile Include="./src/Support.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
