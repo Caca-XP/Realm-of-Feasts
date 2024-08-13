@@ -1,6 +1,0 @@
-Pasta| Italian| A simple pasta recipe| Pasta, Tomato Sauce, Cheese| Boil pasta, add sauce, add cheese| 30| Easy
-Pizza| Italian| A simple pizza recipe| Pizza Dough, Tomato Sauce, Cheese| Roll dough, add sauce, add cheese| 45 | Medium
-Burger| American| A simple burger recipe| Burger Patty, Bun, Lettuce, Tomato, Cheese| Cook patty, assemble burger| 20 | Easy
-Sushi| Japanese| A simple sushi recipe| Rice, Fish, Seaweed| Cook rice, add fish, wrap in seaweed| 60 | Hard
-Curry| Indian| A simple curry recipe| Curry Paste, Meat, Vegetables| Cook meat, add vegetables, add paste| 45 | Medium
-Pizza Bread| NZ| Pizza but with soft bread recipe| Peperoni, Tomato Sauce, Cheese, Bread Dough| Roll dough, add sauce, add cheese and pepeponi| 75| Medium
