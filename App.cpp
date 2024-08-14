@@ -28,8 +28,9 @@ using namespace std;
 /* Vector of the recipes, declared based on number of recipes in the database
 */
 vector<Recipes> allRecipes;
-int timeFilter = 0;
-int difficultyFilter = 0;
+int timeFilter = 0; // 0 for none, 1 for less than 30 minutes, 2 for 30 to 60 minutes, 3 for more than 60 minutes
+int difficultyFilter = 0; // 0 for none, 1 for easy, 2 for medium, 3 for hard
+int sortFilter = 0; // 0 for none, 1 for difficulty, 2 for reverse difficulty, 3 for time, 4 for reverse time
 
 vector<string> allSeries;
 
@@ -167,9 +168,15 @@ void setup(string fileName){
 /* Function to display recipes specified in the param
     @param array of recipes
  */
-void display(vector<Recipes> recipes){
-    for (int i = 0; i < recipes.size(); i++){
-        cout << recipes[i].toStringShort() << endl;
+void display(vector<Recipes> recipes, bool isShort = true){
+    if (isShort){
+        for (int i = 0; i < recipes.size(); i++){
+            cout << recipes[i].toStringShort() << endl;
+        }
+    }else{
+        for (int i = 0; i < recipes.size(); i++){
+            cout << recipes[i].toString() << endl;
+        }
     }
 }
 
@@ -339,12 +346,46 @@ vector<Recipes> searchBySeries(){
  *          Set filters and random                                                                                                     *
 ****************************************************************************************************************************************/
 
-/* Function to set filters for the recipes
-    Filters the recipes based on the user input
-    @return vector of recipes containing recipes that are filtered
+
+/* Function to apply the settings set by the user
+    Filters the recipes based on the filters set
+    @param currentRecipes the recipes to filter
+    @return vector of recipes containing the recipes that pass the filters
 */
-vector<Recipes> setFilters(vector<Recipes> currentRecipes){
+vector<Recipes> applySetting(vector<Recipes> currentRecipes){
+    
     vector<Recipes> results;
+    // 
+    
+    // filter the recipes based on the filters set
+    for (int i = 0; i < currentRecipes.size(); i++){
+        if (difficultyFilter != 0 && currentRecipes[i].getDifficulty() != difficultyFilter){
+            continue;
+        }
+        if (timeFilter == 1 && currentRecipes[i].getTime() >= 30){
+            continue;
+        }
+        if (timeFilter == 2 && (currentRecipes[i].getTime() < 30 || currentRecipes[i].getTime() > 60)){
+            continue;
+        }
+        if (timeFilter == 3 && currentRecipes[i].getTime() <= 60){
+            continue;
+        }
+        results.push_back(currentRecipes[i]);
+    }
+    if (results.size() == 0){
+        cout << endl << "No recipes found." << endl << endl;
+    }
+    return results;
+}
+
+
+
+/* Function to set settings for the recipes
+    User can set filters for difficulty and time
+    User can set sorting for the recipes
+*/
+void setSettings(){
     
     while (true){
         printf("Current filters: \n");
@@ -373,13 +414,33 @@ vector<Recipes> setFilters(vector<Recipes> currentRecipes){
         if (difficultyFilter == 0 && timeFilter == 0){
             printf("None \n");
         }
+        printf("Current sorting: \n");
+        if (sortFilter != 0){
+            if (sortFilter == 1){
+                printf("Sort by difficulty \n");
+            }
+            else if (sortFilter == 2){
+                printf("Sort by difficulty reverse \n");
+            }
+            else if (sortFilter == 3){
+                printf("Sort by time \n");
+            }
+            else if (sortFilter == 4){
+                printf("Sort by time reverse \n");
+            }
+        }else{
+            printf("None \n");
+        }
+
         printf("\n");
 
         // display the filter options
         printf("1. Filter by difficulty\n");
         printf("2. Filter by time\n");
         printf("3. Reset filters\n");
-        printf("4. Back\n");
+        printf("4. Set sort\n");
+        printf("5. Reset sort\n");
+        printf("6. Back\n");
 
         // get the user choice
         int filterChoice;
@@ -447,6 +508,51 @@ vector<Recipes> setFilters(vector<Recipes> currentRecipes){
             timeFilter = 0;
             difficultyFilter = 0;
         }else if (filterChoice == 4){
+            while (true){
+                // display the sort options
+                printf("1. Sort by difficulty\n");
+                printf("2. Sort by difficulty reverse\n");
+                printf("3. Sort by time\n");
+                printf("4. Sort by time reverse\n");
+                printf("5. Back\n");
+
+                // get the user choice
+                int sortChoice;
+                cin >> sortChoice;
+
+                // call the appropriate sort function based on the user choice
+                if (sortChoice == 1){
+                    sort(allRecipes.begin(), allRecipes.end(), sortByDifficulty);
+                    sortFilter = 1;
+                    break;
+                }else if (sortChoice == 2){
+                    sort(allRecipes.begin(), allRecipes.end(), sortByDifficulty);
+                    reverse(allRecipes.begin(), allRecipes.end());
+                    sortFilter = 2;
+                    break;
+                }else if (sortChoice == 3){
+                    sort(allRecipes.begin(), allRecipes.end(), sortByTime);
+                    sortFilter = 3;
+                    break;
+                }else if (sortChoice == 4){
+                    sort(allRecipes.begin(), allRecipes.end(), sortByTime);
+                    reverse(allRecipes.begin(), allRecipes.end());
+                    sortFilter = 4;
+                    break;
+                }else if (sortChoice == 5){
+                    break;
+                }else{
+                    // if invalid choice
+                    cout << "Invalid choice. Please try again." << endl;
+                    // reset the cin buffer
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+            }
+
+        }else if (filterChoice == 5){
+            sortFilter = 0;
+        }else if (filterChoice == 6){
             break;
         }else{
             // if invalid choice
@@ -456,29 +562,34 @@ vector<Recipes> setFilters(vector<Recipes> currentRecipes){
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         
+    }
+    // Ask the user whether to apply the filters and print the results
+    while (true){
+        printf("1. Save settings and print all recepies with settings applied\n");
+        printf("2. Save settings and back\n");
 
+        // get the user choice
+        int applyChoice;
+        cin >> applyChoice;
+
+        // call the appropriate function based on the user choice
+        if (applyChoice == 1){
+            vector<Recipes> applied = applySetting(allRecipes);
+            display(applied);
+            break;
+        }
+        else if (applyChoice == 2){
+            printf("Settings saved.\n\n");
+            break;
+        }
+        else{
+            // if invalid choice
+            cout << "Invalid choice. Please try again." << endl;
+            // reset the cin buffer
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
     }
-    printf("Results after filtering: \n\n");
-    // filter the recipes based on the filters set
-    for (int i = 0; i < currentRecipes.size(); i++){
-        if (difficultyFilter != 0 && currentRecipes[i].getDifficulty() != difficultyFilter){
-            continue;
-        }
-        if (timeFilter == 1 && currentRecipes[i].getTime() >= 30){
-            continue;
-        }
-        if (timeFilter == 2 && (currentRecipes[i].getTime() < 30 || currentRecipes[i].getTime() > 60)){
-            continue;
-        }
-        if (timeFilter == 3 && currentRecipes[i].getTime() <= 60){
-            continue;
-        }
-        results.push_back(currentRecipes[i]);
-    }
-    if (results.size() == 0){
-        cout << endl << "No recipes found." << endl << endl;
-    }
-    return results;
 }
 
 
@@ -559,10 +670,7 @@ void options(){
         searchByIngredient();
     }
     else if (choice == 6){
-        vector<Recipes> r = setFilters(allRecipes);
-        for (int i = 0; i < r.size(); i++){
-            cout << r[i].toString() << endl;
-        }
+        setSettings();
     }
     else if (choice == 7){
         random();
