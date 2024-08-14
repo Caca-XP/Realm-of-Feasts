@@ -34,7 +34,12 @@ int sortFilter = 0; // 0 for none, 1 for difficulty, 2 for reverse difficulty, 3
 
 vector<string> allSeries;
 
-
+/**
+ * Function to process the ingredients string
+ * Splits the ingredients string by commas and then by *
+ * @param ingred the ingredients string
+ * @return vector of Ingredients objects
+ */
 vector<Ingredients> process_ingred(string ingred){
     
     string ingredients;
@@ -67,6 +72,12 @@ vector<Ingredients> process_ingred(string ingred){
     return ingredients_list;
 }
 
+/**
+ * Function to process the instructions string
+ * Replaces || with new line
+ * @param instruct the instructions string
+ * @return the processed instructions string
+ */
 string process_instructions(string instruct){
     string instructions;
     // if the start and end of the string are both " then remove them
@@ -86,6 +97,12 @@ string process_instructions(string instruct){
 
 }
 
+/**
+ * Function to process the time string
+ * Converts the time string to an integer
+ * @param time_str the time string
+ * @return the time as an integer
+ */
 int process_time(string time_str){
     int time;
     try {
@@ -100,6 +117,12 @@ int process_time(string time_str){
     return time;
 }
 
+/**
+ * Function to process the difficulty string
+ * Converts the difficulty string to an enum Level
+ * @param difficulty_str the difficulty string
+ * @return the difficulty as an enum Level
+ */
 enum Level process_difficulty(string difficulty_str){
     enum Level difficulty;
     if (difficulty_str == "Easy"){
@@ -116,9 +139,10 @@ enum Level process_difficulty(string difficulty_str){
 }
 
 
-/* Function to read the data from the file and initialise the allRecipes array
-    Creates a new Recipes object for each recipe and adds it to the allRecipes array
-    @param fileName the name of the file to read the data from
+/**
+ * Function to read the data from the file and initialise the allRecipes array
+ * Creates a new Recipes object for each recipe and adds it to the allRecipes array
+ * @param fileName the name of the file to read the data from
 */
 void setup(string fileName){
 // // read file and initialise allRecipes
@@ -165,8 +189,9 @@ void setup(string fileName){
  *          Options functions                                                                                                          *
 ****************************************************************************************************************************************/
 
-/* Function to display recipes specified in the param
-    @param array of recipes
+/** 
+ * Function to display recipes specified in the param
+ * @param array of recipes
  */
 void display(vector<Recipes> recipes, bool isShort = true){
     if (isShort){
@@ -180,19 +205,21 @@ void display(vector<Recipes> recipes, bool isShort = true){
     }
 }
 
-/* Function to sort the recipes by difficulty
-    @param a recipe a
-    @param b recipe b
-    @return true if a is less difficult than b
+/** 
+ * Function to sort the recipes by difficulty
+ * @param a recipe a
+ * @param b recipe b
+ * @return true if a is less difficult than b
 */
 bool sortByDifficulty(Recipes a, Recipes b){
     return a.getDifficulty() < b.getDifficulty();
 }
 
-/* Function to sort the recipes by time
-    @param a recipe a
-    @param b recipe b
-    @return true if a takes less time than b
+/** 
+ * Function to sort the recipes by time
+ * @param a recipe a
+ * @param b recipe b
+ * @return true if a takes less time than b
 */
 bool sortByTime(Recipes a, Recipes b){
     return a.getTime() < b.getTime();
@@ -203,9 +230,10 @@ bool sortByTime(Recipes a, Recipes b){
  *          Search functions                                                                                                           *
 ****************************************************************************************************************************************/
 
-/* Function to search the recipes array by specific name
-    Prints out recipes with the searched string in its name
-    @return vector of recipes containing the instance of recipes that contain the searched string
+/**
+ * Function to search the recipes array by specific name
+ * Prints out recipes with the searched string in its name
+ * @return vector of recipes containing the instance of recipes that contain the searched string
 */
 vector<Recipes> searchByName(){
     vector<Recipes> results;
@@ -243,10 +271,11 @@ vector<Recipes> searchByName(){
     return results;
 }
 
-/* Function that searches the array of recipes by ingredient(s) separated by commas
-    ingredient(s) will be inputed by the user by typing
-    Displays recipes that contains all of the specified ingredient(s)
-    @return vector of recipes containing recipes that contain the ingredient(s)
+/** 
+ * Function that searches the array of recipes by ingredient(s) separated by commas
+ * ingredient(s) will be inputed by the user by typing
+ * Displays recipes that contains all of the specified ingredient(s)
+ * @return vector of recipes containing recipes that contain the ingredient(s)
 */
 vector<Recipes> searchByIngredient(){
     vector<Recipes> results;
@@ -292,9 +321,10 @@ vector<Recipes> searchByIngredient(){
     return results;
 }
 
-/* Function to filter the recipes by series
-    Displays recipes that are in the specified series
-    @return vector of recipes containing recipes that are in the specified series
+/** 
+ * Function to filter the recipes by series
+ * Displays recipes that are in the specified series
+ * @return vector of recipes containing recipes that are in the specified series
 */
 vector<Recipes> searchBySeries(){
     vector<Recipes> results;
@@ -347,15 +377,15 @@ vector<Recipes> searchBySeries(){
 ****************************************************************************************************************************************/
 
 
-/* Function to apply the settings set by the user
-    Filters the recipes based on the filters set
-    @param currentRecipes the recipes to filter
-    @return vector of recipes containing the recipes that pass the filters
+/** 
+ * Function to apply the settings set by the user
+ * Filters the recipes based on the filters set
+ * @param currentRecipes the recipes to filter
+ * @return vector of recipes containing the recipes that pass the filters
 */
 vector<Recipes> applySetting(vector<Recipes> currentRecipes){
     
     vector<Recipes> results;
-    // 
     
     // filter the recipes based on the filters set
     for (int i = 0; i < currentRecipes.size(); i++){
@@ -379,16 +409,11 @@ vector<Recipes> applySetting(vector<Recipes> currentRecipes){
     return results;
 }
 
-
-
-/* Function to set settings for the recipes
-    User can set filters for difficulty and time
-    User can set sorting for the recipes
+/**
+ * Function to print the settings set by the user
 */
-void setSettings(){
-    
-    while (true){
-        printf("Current filters: \n");
+void printSettings(){
+    printf("Current filters: \n");
         if (difficultyFilter != 0){
             if (difficultyFilter == 1){
                 printf("Difficulty: Easy \n");
@@ -433,6 +458,17 @@ void setSettings(){
         }
 
         printf("\n");
+}
+
+/**
+ * Function to set settings for the recipes
+ * User can set filters for difficulty and time
+ * User can set sorting for the recipes
+*/
+void setSettings(){
+    
+    while (true){
+        printSettings();
 
         // display the filter options
         printf("1. Filter by difficulty\n");
@@ -593,7 +629,8 @@ void setSettings(){
 }
 
 
-/*Function that displays a random recipe within the allRecipes array
+/**
+ * Function that displays a random recipe within the allRecipes array
 */
 void random(){
     int randomIndex = rand() % allRecipes.size();
@@ -604,8 +641,9 @@ void random(){
  *          Options and main                                                                                                           *
 ****************************************************************************************************************************************/
 
-/* Function to display the options for the user
-    Takes the user input and calls the appropriate function
+/**
+ * Function to display the options for the user
+ * Takes the user input and calls the appropriate function
 */
 void options(){
     // display the options
@@ -688,9 +726,9 @@ void options(){
 
 }
 
-/* Main function to run the program
-* Calls the setup function to initialise the data
-* Calls the options function to display the options for the user
+/** Main function to run the program
+ * Calls the setup function to initialise the data
+ * Calls the options function to display the options for the user
 */
 int main(){
     // read and initialize the data for recipes
