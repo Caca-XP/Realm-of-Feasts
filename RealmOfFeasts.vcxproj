@@ -1,37 +1,48 @@
 <Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>1.4.3</Version>
-    <AssemblyName>RealmOfFeasts</AssemblyName>
-    <OutputPath>Bin\</OutputPath>
-    <Description>A Recipe displaying app containing Recipes from fantasy series</Description>
-    <Authors>Mythical Cooks</Authors>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectConfiguration Include="Debug|Win32">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
+    <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.default.props" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{929F4BA1-24A0-402B-8AFC-120841D3EBAB}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>RealmOfFeast</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ItemGroup>
-    <Compile Include="App.cpp" />
+    <ClCompile Include="App.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="App.h" />
+    <None Include="RealmOfFeastsTask.cs" />
   </ItemGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Targets" />
-  <Target Name="Build">
-    <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
-    <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />
-  </Target>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Target Name="Clean">
-    <Delete Files="$(OutputPath)$(AssemblyName).exe" />
+    <Delete Files="$(OutDir)$(TargetName)$(TargetExt)" />
   </Target>
-  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+  <!-- Import the custom task assembly -->
+  <UsingTask TaskName="RealmOfFeasts.Tasks.RealmOfFeastsTask" AssemblyFile="path\to\RealmOfFeastsTask.dll" />
+  <Target Name="CustomTaskExample">
+    <!-- Use the custom task -->
+    <RealmOfFeastsTask Message="Hello from RealmOfFeastsTask!" OutputFilePath="output.txt" />
+  </Target>
 </Project>
