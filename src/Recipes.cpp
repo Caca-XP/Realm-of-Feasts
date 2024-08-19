@@ -132,12 +132,8 @@ enum Level {
     string Recipes::toString() {
         string result = "Name: " + name + "\n";
         result += "Series: " + series + "\n";
-        result += "Description: " + description + "\n";
-        result += "Ingredients: \n" + ingredients_str + "\n";
-        result += "Instructions: \n" + instructions + "\n";
         result += "Time: " + to_string(time) + " minutes\n";
         result += "Difficulty: ";
-
         if (difficulty == 1){
             result += "Easy\n";
         }
@@ -147,6 +143,11 @@ enum Level {
         else if (difficulty == 3){
             result += "Hard\n";
         }
+        
+        result += "Description: " + description + "\n";
+        result += "Ingredients: \n" + ingredients_str + "\n";
+        result += "Instructions: \n" + instructions + "\n";
+
         return result;
     }    
 
