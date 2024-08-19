@@ -157,7 +157,9 @@ void setup(string fileName){
     
     while (getline(file, line)){
         // if line is empty, skip
-        if (line.empty() || line == "\t\t\t\t\t\t"){
+        // if line is only tabs, skip
+        string alltabs = replaceAll(line, "\t", "");
+        if (line.empty() || alltabs == ""){
             continue;
         }
 
