@@ -130,5 +130,22 @@ namespace RealmOfFeastTest
 			//Test
 			Assert::AreEqual(actualString, expectedString);
 		}
+
+		//Test for the enum Level
+		TEST_METHOD(TestLevel)
+		{
+			Level testLevel = Level(Hard);
+			int expectedLevel = 3;
+			int actualLevel = testLevel.getLevel();
+
+			//Test
+			Assert::AreEqual(actualLevel, expectedLevel);
+
+			//change the expected level
+			expectedLevel = 4;
+
+			//test if the level is not equal to the expected value
+			Assert::AreNotEqual(actualLevel, expectedLevel);
+		}
 	};
 }
