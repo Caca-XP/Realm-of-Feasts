@@ -7,5 +7,15 @@ vc140.pdb
 
 //Visual studio config files
 RealmOfFeasts.vcxproj.user
-RealmOfFeasts/Debug/RealmOfFeasts.log
+*.log
 .vs*
+RealmOfFeasts/x64/Debug/RealmOfFeasts.log
+RealmOfFeasts/x64/Debug/vc143.idb
+RealmOfFeasts/x64/Debug/RealmOfFeasts.tlog/*.tlog
+RealmOfFeasts/x64/Debug/RealmOfFeasts.tlog/RealmOfFeasts.lastbuildstate
+tests/RealmOfFeastTest/x64/Debug/vc143.idb
+tests/RealmOfFeastTest/x64/Debug/RealmOfFeastTest.tlog/*.tlog
+tests/RealmOfFeastTest/x64/Debug/RealmOfFeastTest.tlog/RealmOfFeastTest.lastbuildstate
+x64/Debug/RealmOfFeastTest.dll
+x64/Debug/RealmOfFeastTest.exp
+x64/Debug/RealmOfFeastTest.lib

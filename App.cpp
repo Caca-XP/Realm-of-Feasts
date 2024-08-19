@@ -126,14 +126,14 @@ int process_time(string time_str){
 enum Level process_difficulty(string difficulty_str){
     enum Level difficulty;
     if (difficulty_str == "Easy"){
-        difficulty = Easy;
+        difficulty = Level(1);
     }else if (difficulty_str == "Medium"){
-        difficulty = Medium;
+        difficulty = Level(2);
     }else if (difficulty_str == "Hard"){
-        difficulty = Hard;
+        difficulty = Level(3);
     }else{
         cerr << "*******************************************************************************************************\nInvalid difficulty level: " << difficulty_str << endl;
-        return None;
+        return Level(0);
     }
     return difficulty;
 }
