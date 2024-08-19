@@ -12,8 +12,10 @@ on:
     branches: [ "main" ]
 
 env:
-  # Configuration type to build.
-  BUILD_CONFIGURATION: Release
+  # Configuration and platform settings
+  BUILD_CONFIGURATION: Debug
+  MAIN_PROJECT_PLATFORM: x64
+  TEST_PROJECT_PLATFORM: x86  # This will map to Win32 for the test project
 
 permissions:
   contents: read
@@ -29,8 +31,8 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: Build Solution
-      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}}
+    - name: Build Main Project
+      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.MAIN_PROJECT_PLATFORM}} RealmOfFeasts.vcxproj
 
   test:
     runs-on: windows-latest
@@ -43,8 +45,8 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: Build Tests
-      run: msbuild /m /p:Configuration=Debug tests/RealmOfFeastTest/RealmOfFeastTest.vcxproj
+    - name: Build Test Project
+      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=Win32 tests/RealmOfFeastTest/RealmOfFeastTest.vcxproj
 
     - name: Run Tests
       run: |
