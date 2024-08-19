@@ -134,7 +134,7 @@ namespace RealmOfFeastTest
 		//Test for the enum Level
 		TEST_METHOD(TestLevel)
 		{
-			Level testLevel = Level(Hard);
+			enum Level testLevel = Hard;
 			int expectedLevel = 3;
 			int actualLevel = testLevel.getLevel();
 
