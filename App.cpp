@@ -229,152 +229,6 @@ bool sortByTime(Recipes a, Recipes b){
 
 
 /***************************************************************************************************************************************
- *          Search functions                                                                                                           *
-****************************************************************************************************************************************/
-
-/**
- * Function to search the recipes array by specific name
- * Prints out recipes with the searched string in its name
- * @return vector of recipes containing the instance of recipes that contain the searched string
-*/
-vector<Recipes> searchByName(){
-    vector<Recipes> results;
-    string search;
-    // get the search string from the user
-    cout << "Enter the name of the recipe you are looking for: ";
-    search = readLine();
-    // lowercase the search string and remove leading and trailing spaces
-    transform(search.begin(), search.end(), search.begin(), ::tolower);
-    search.erase(0, search.find_first_not_of(" "));
-    search.erase(search.find_last_not_of(" ") + 1);
-
-    // Go through all the recipes and check if the search string is in the name
-    for (int i = 0; i < allRecipes.size(); i++){
-        string name = allRecipes[i].getName();
-
-        // lowercase the name of the recipes in the array
-        transform(name.begin(), name.end(), name.begin(), ::tolower);
-
-        // check if the search string is in the name of the recipe
-        // if it is, add the recipe to the results vector
-        if (name.find(search) != string::npos){
-            results.push_back(allRecipes[i]);
-        }
-    }
-    // Check that there are recipes based on the search input
-    if (results.size() == 0){
-        cout << endl << "No recipes found." << endl << endl;
-    }else{
-        cout << endl << "Results for recipes with \"" << search << "\": " << endl << endl;
-        for (int i = 0; i < results.size(); i++){
-            cout << results[i].toString() << endl;
-        }
-    }
-    return results;
-}
-
-/** 
- * Function that searches the array of recipes by ingredient(s) separated by commas
- * ingredient(s) will be inputed by the user by typing
- * Displays recipes that contains all of the specified ingredient(s)
- * @return vector of recipes containing recipes that contain the ingredient(s)
-*/
-vector<Recipes> searchByIngredient(){
-    vector<Recipes> results;
-    string search;
-    cout << "Enter the ingredient you are looking for (comma separated): ";
-    search = readLine();
-    // remove leading and trailing spaces
-    search.erase(0, search.find_first_not_of(" "));
-    search.erase(search.find_last_not_of(" ") + 1);
-
-    vector<string> searchIngredients = split_string(search, ",");
-    // sort the search ingredients
-    sort(searchIngredients.begin(), searchIngredients.end());
-
-    // change search to be the string with the ingredients separated by ", "
-    search = "";
-    for (int i = 0; i < searchIngredients.size(); i++){
-        search += searchIngredients[i];
-        if (i != searchIngredients.size() - 1){
-            search += ", ";
-        }
-    }
-
-    // Search for recipes that contain the all the ingredients
-    for (int i = 0; i < allRecipes.size(); i++){
-        vector<string> ingredients = allRecipes[i].getIngredientsNames();
-        // use double pointer to check if all the search ingredients are in the recipe ingredients
-        if (includes(ingredients.begin(), ingredients.end(), searchIngredients.begin(), searchIngredients.end())){
-            results.push_back(allRecipes[i]);
-        }
-
-    }
-    if (results.size() == 0){
-        cout << endl << "No recipes found." << endl << endl;
-    }else{
-        //Prints the recipes that contains the search string to the results vector
-        cout << endl << "Results for recipes with " << search << ": " << endl << endl;
-        for (int i = 0; i < results.size(); i++){
-            cout << results[i].toString() << endl;
-        }
-    }
-    // return the results
-    return results;
-}
-
-/** 
- * Function to filter the recipes by series
- * Displays recipes that are in the specified series
- * @return vector of recipes containing recipes that are in the specified series
-*/
-vector<Recipes> searchBySeries(){
-    vector<Recipes> results;
-    string search;
-    cout << "Enter the series you are looking for: " << endl;
-    cout << "To show all series, type 'all'." << endl;
-    search = readLine();
-    if (search == "all"){
-        // print series
-        cout << "Series: " << endl;
-        for (int i = 0; i < allSeries.size(); i++){
-            cout << allSeries[i] << endl;
-        }
-        cout << "Enter the series you are looking for: " << endl;
-        search = readLine(false);
-    }
-    // lowercase the search string and remove leading and trailing spaces
-    transform(search.begin(), search.end(), search.begin(), ::tolower);
-    search.erase(0, search.find_first_not_of(" "));
-    search.erase(search.find_last_not_of(" ") + 1);
-
-    // Go through all the recipes and check if the search string is in the name
-    for (int i = 0; i < allRecipes.size(); i++){
-        string series = allRecipes[i].getSeries();
-
-        // lowercase the name of the recipes in the array
-        transform(series.begin(), series.end(), series.begin(), ::tolower);
-
-        // check if the search string is in the name of the recipe
-        // if it is, add the recipe to the results vector
-        if (series.find(search) != string::npos){
-            results.push_back(allRecipes[i]);
-        }
-    }
-    // Check that there are recipes based on the search input
-    if (results.size() == 0){
-        cout << endl << "No recipes found." << endl << endl;
-    }else{
-        cout << endl << "Results for recipes with \"" << search << "\": " << endl << endl;
-        for (int i = 0; i < results.size(); i++){
-            cout << results[i].toString() << endl;
-        }
-    }
-    return results;
-}
-
-
-/***************************************************************************************************************************************
  *          Set filters and random                                                                                                     *
 ****************************************************************************************************************************************/
 
@@ -415,7 +269,7 @@ vector<Recipes> applySetting(vector<Recipes> currentRecipes){
  * Function to print the settings set by the user
 */
 void printSettings(){
-    printf("Current filters: \n");
+    printf("\nCurrent filters: \n");
         if (difficultyFilter != 0){
             if (difficultyFilter == 1){
                 printf("Difficulty: Easy \n");
@@ -635,9 +489,163 @@ void setSettings(){
  * Function that displays a random recipe within the allRecipes array
 */
 void random(){
-    int randomIndex = rand() % allRecipes.size();
-    cout << allRecipes[randomIndex].toString() << endl;
+    vector<Recipes> applied = applySetting(allRecipes);
+    int randomIndex = rand() % applied.size();
+    printSettings();
+    cout << applied[randomIndex].toString() << endl;
 }
+
+
+/***************************************************************************************************************************************
+ *          Search functions                                                                                                           *
+****************************************************************************************************************************************/
+
+/**
+ * Function to search the recipes array by specific name
+ * Prints out recipes with the searched string in its name
+ * @return vector of recipes containing the instance of recipes that contain the searched string
+*/
+vector<Recipes> searchByName(){
+    vector<Recipes> results;
+    string search;
+    // get the search string from the user
+    cout << "Enter the name of the recipe you are looking for: ";
+    search = readLine();
+    // lowercase the search string and remove leading and trailing spaces
+    transform(search.begin(), search.end(), search.begin(), ::tolower);
+    search.erase(0, search.find_first_not_of(" "));
+    search.erase(search.find_last_not_of(" ") + 1);
+
+    // Go through all the recipes and check if the search string is in the name
+    for (int i = 0; i < allRecipes.size(); i++){
+        string name = allRecipes[i].getName();
+
+        // lowercase the name of the recipes in the array
+        transform(name.begin(), name.end(), name.begin(), ::tolower);
+
+        // check if the search string is in the name of the recipe
+        // if it is, add the recipe to the results vector
+        if (name.find(search) != string::npos){
+            results.push_back(allRecipes[i]);
+        }
+    }
+    // Check that there are recipes based on the search input
+    if (results.size() == 0){
+        cout << endl << "No recipes found." << endl << endl;
+    }else{
+        cout << endl << "Results for recipes with \"" << search << "\": " << endl << endl;
+        for (int i = 0; i < results.size(); i++){
+            cout << results[i].toString() << endl;
+        }
+    }
+    return results;
+}
+
+/** 
+ * Function that searches the array of recipes by ingredient(s) separated by commas
+ * ingredient(s) will be inputed by the user by typing
+ * Displays recipes that contains all of the specified ingredient(s)
+ * @return vector of recipes containing recipes that contain the ingredient(s)
+*/
+vector<Recipes> searchByIngredient(){
+    vector<Recipes> results;
+    string search;
+    cout << "Enter the ingredient you are looking for (comma separated): ";
+    search = readLine();
+    // remove leading and trailing spaces
+    search.erase(0, search.find_first_not_of(" "));
+    search.erase(search.find_last_not_of(" ") + 1);
+
+    vector<string> searchIngredients = split_string(search, ",");
+    // sort the search ingredients
+    sort(searchIngredients.begin(), searchIngredients.end());
+
+    // change search to be the string with the ingredients separated by ", "
+    search = "";
+    for (int i = 0; i < searchIngredients.size(); i++){
+        search += searchIngredients[i];
+        if (i != searchIngredients.size() - 1){
+            search += ", ";
+        }
+    }
+
+    // Search for recipes that contain the all the ingredients
+    vector<Recipes> applied = applySetting(allRecipes);
+    for (int i = 0; i < applied.size(); i++){
+        vector<string> ingredients = applied[i].getIngredientsNames();
+        // use double pointer to check if all the search ingredients are in the recipe ingredients
+        if (includes(ingredients.begin(), ingredients.end(), searchIngredients.begin(), searchIngredients.end())){
+            results.push_back(applied[i]);
+        }
+
+    }
+    printSettings();
+    if (results.size() == 0){
+        cout << endl << "No recipes found." << endl << endl;
+    }else{
+        //Prints the recipes that contains the search string to the results vector
+        cout << endl << "Results for recipes with " << search << ": " << endl << endl;
+        for (int i = 0; i < results.size(); i++){
+            cout << results[i].toString() << endl;
+        }
+    }
+    // return the results
+    return results;
+}
+
+/** 
+ * Function to filter the recipes by series
+ * Displays recipes that are in the specified series
+ * @return vector of recipes containing recipes that are in the specified series
+*/
+vector<Recipes> searchBySeries(){
+    vector<Recipes> results;
+    string search;
+    cout << "Enter the series you are looking for: " << endl;
+    cout << "To show all series, type 'all'." << endl;
+    search = readLine();
+    if (search == "all"){
+        // print series
+        cout << "Series: " << endl;
+        for (int i = 0; i < allSeries.size(); i++){
+            cout << allSeries[i] << endl;
+        }
+        cout << "Enter the series you are looking for: " << endl;
+        search = readLine(false);
+    }
+    // lowercase the search string and remove leading and trailing spaces
+    transform(search.begin(), search.end(), search.begin(), ::tolower);
+    search.erase(0, search.find_first_not_of(" "));
+    search.erase(search.find_last_not_of(" ") + 1);
+
+    // Go through all the recipes and check if the search string is in the name
+    vector<Recipes> applied = applySetting(allRecipes);
+    for (int i = 0; i < applied.size(); i++){
+        string series = applied[i].getSeries();
+
+        // lowercase the name of the recipes in the array
+        transform(series.begin(), series.end(), series.begin(), ::tolower);
+
+        // check if the search string is in the name of the recipe
+        // if it is, add the recipe to the results vector
+        if (series.find(search) != string::npos){
+            results.push_back(applied[i]);
+        }
+    }
+    printSettings();
+    // Check that there are recipes based on the search input
+    if (results.size() == 0){
+        cout << endl << "No recipes found." << endl << endl;
+    }else{
+        cout << endl << "Results for recipes with \"" << search << "\": " << endl << endl;
+        for (int i = 0; i < results.size(); i++){
+            cout << results[i].toString() << endl;
+        }
+    }
+    return results;
+}
+
+
 
 /***************************************************************************************************************************************
  *          Options and main                                                                                                           *
@@ -651,12 +659,11 @@ void options(){
     // display the options
     printf("1. Display all recipes\n");
     printf("2. Search for a recipe\n");
-    printf("3. Sort recipes\n");
-    printf("4. Search recipes by series\n");
-    printf("5. Search by ingredient\n");
-    printf("6. Set filters\n");
-    printf("7. Random recipe\n");
-    printf("8. Quit\n");
+    printf("3. Search recipes by series\n");
+    printf("4. Search by ingredient\n");
+    printf("5. Set Settings\n");
+    printf("6. Random recipe\n");
+    printf("7. Quit\n");
 
     // get the user choice
     int choice;
@@ -670,52 +677,18 @@ void options(){
         searchByName();
     }
     else if (choice == 3){
-        while (true){
-            // display the sort options
-            printf("1. Sort by difficulty\n");
-            printf("2. Sort by time\n");
-            printf("3. Back\n");
-
-            // get the user choice
-            int sortChoice;
-            cin >> sortChoice;
-
-            // call the appropriate sort function based on the user choice
-            if (sortChoice == 1){
-                sort(allRecipes.begin(), allRecipes.end(), sortByDifficulty);
-                display(allRecipes);
-                break;
-            }
-            else if (sortChoice == 2){
-                sort(allRecipes.begin(), allRecipes.end(), sortByTime);
-                display(allRecipes);
-                break;
-            }
-            else if (sortChoice == 3){
-                break;
-            }
-            else{
-                // if invalid choice
-                cout << "Invalid choice. Please try again." << endl;
-                // reset the cin buffer
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        }
-    }
-    else if (choice == 4){
         searchBySeries();
     }
-    else if (choice == 5){
+    else if (choice == 4){
         searchByIngredient();
     }
-    else if (choice == 6){
+    else if (choice == 5){
         setSettings();
     }
-    else if (choice == 7){
+    else if (choice == 6){
         random();
     }
-    else if (choice == 8){
+    else if (choice == 7){
         quit();
     }
     else{
