@@ -82,7 +82,5 @@ jobs:
           export CODACY_ORGANIZATION_PROVIDER=${{ secrets.CODACY_ORGANIZATION_PROVIDER }}
           export CODACY_USERNAME=${{ secrets.CODACY_USERNAME }}
           export CODACY_PROJECT_NAME=${{ secrets.CODACY_PROJECT_NAME }}
-          # Assuming you have the Codacy coverage uploader installed or available in your pipeline
-          # You would run the coverage upload command here, for example:
           bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info
 
