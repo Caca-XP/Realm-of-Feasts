@@ -1,8 +1,18 @@
 {
-  "name": "Realm-of-Feasts",
+  "name": "realm-of-feasts",
   "version": "1.0.0",
   "scripts": {
     "test": "jest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "description": "Realm of Feasts is a fantasy recipe discovery app that helps you find recipes based on the ingredients you already have at home. Realm of Feast searches its database and suggests the recipes you can make. The unique aspect of the app is that all recipes are of foods not from “Earth”. The app database includes recipes from Harry Potter, The Hobbit, Spirited Away, and many other mythical fictional realms. Thus, the name \"Realm of Feasts.\" We have brought together all the different foods from different realms into one place so that others who enjoy fiction can feast upon it.",
+  "main": "jest.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
