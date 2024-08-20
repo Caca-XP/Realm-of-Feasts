@@ -10,12 +10,11 @@ namespace RealmOfFeastTest
 	{
 	public:
 		
-		/*TEST_METHOD(TestMethod1)
-		{
-			Assert::AreEqual(1, 1);
-		}*/
-
-		//Test for the default constructor of the Recipes class
+		/**
+		 * Test for the default constructor of the Recipes class
+		 * @see Recipes.cpp
+		 * @test
+		 */
 		TEST_METHOD(TestRecipesDefaultConstructor)
 		{
 			Recipes testRecipe = Recipes();
@@ -36,7 +35,11 @@ namespace RealmOfFeastTest
 			Assert::AreEqual(actualLevel, expectedLevel);
 		}
 
-		//Test for the parameterized constructor of the Recipes class
+		/**
+		 * Test for the parameterized constructor of the Recipes class
+		 * @see Recipes.cpp
+		 * @test
+		 */
 		TEST_METHOD(TestRecipesParameterizedConstructor)
 		{
 			vector<Ingredients> testIngredients = { Ingredients(10, "testUnit", "testIng")};
@@ -69,7 +72,11 @@ namespace RealmOfFeastTest
 			Assert::AreNotEqual(testRecipe.getDescription(), expectedDescription);
 		}
 
-		//Test for the default constructor of the Ingredients class
+		/**
+		 * Test for the default constructor of the Ingredients class
+		 * @see Ingredients.cpp
+		 * @test
+		 */
 		TEST_METHOD(TestIngredientsDefaultConstructor)
 		{
 			Ingredients testIngredient = Ingredients();
@@ -83,7 +90,11 @@ namespace RealmOfFeastTest
 			Assert::AreEqual(testIngredient.getQuantity(), expectedQuantity);
 		}
 
-		//Test for the parameterized constructor of the Ingredients class
+		/**
+		 * Test for the parameterized constructor of the Ingredients class
+		 * @see Ingredients.cpp
+		 * @test
+		 */
 		TEST_METHOD(TestIngredientsParameterizedConstructor)
 		{
 			std::string expectedName = "testName";
@@ -105,7 +116,12 @@ namespace RealmOfFeastTest
 			Assert::AreNotEqual(testIngredient.getQuantity(), expectedQuantity);
 		}
 
-		//test the support functions
+		/**
+		 * Test the methods of the Support.pp
+		 * split_string and replaceAll
+		 * @see Support.cpp
+		 * @test
+		 */
 		TEST_METHOD(TestSupportFunctions)
 		{
 			//test the split_string function
@@ -131,7 +147,11 @@ namespace RealmOfFeastTest
 			Assert::AreEqual(actualString, expectedString);
 		}
 
-		//Test for the enum Level
+		/**
+		 * Test the enum Level
+		 * @see Recipes.cpp
+		 * @test
+		 */
 		TEST_METHOD(TestLevel)
 		{
 			enum Level testLevel = Hard;
@@ -147,6 +167,23 @@ namespace RealmOfFeastTest
 			//test if the level is not equal to the expected value
 			Assert::AreNotEqual(actualLevel, expectedLevel);
 			Assert::AreEqual(actualLevel, 1);
+		}
+
+		/**
+		 * Test process ingredients function of the App
+		 * @see App.cpp
+		 * @test
+		 */
+		TEST_METHOD(TestProcessIngredients)
+		{
+			//test the processIngredients function
+			std::string testIngredient = "ingredient1*unit1*quantity1, ingredient2*unit2*quantity2, ingredient3*unit3*quantity3, ingredient4*unit4*quantity4, ingredient5*unit5*quantity5";
+			vector<Ingredients> expectedIngredients = { Ingredients(10, "unit1", "ingredient1"), Ingredients(20, "unit2", "ingredient2"), Ingredients(30, "unit3", "ingredient3"), Ingredients(40, "unit4", "ingredient4"), Ingredients(50, "unit5", "ingredient5") };
+			vector<Ingredients> actualIngredients = processIngredients(testIngredient);
+		
+
+			//Test
+			Assert::AreEqual(actualString, expectedString);
 		}
 	};
 }
