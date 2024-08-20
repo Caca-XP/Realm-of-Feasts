@@ -136,16 +136,17 @@ namespace RealmOfFeastTest
 		{
 			enum Level testLevel = Hard;
 			int expectedLevel = 3;
-			int actualLevel = testLevel.getLevel();
+			int actualLevel = testLevel;
 
 			//Test
 			Assert::AreEqual(actualLevel, expectedLevel);
 
-			//change the expected level
-			expectedLevel = 4;
+			//change the actual level
+			actualLevel = Easy;			
 
 			//test if the level is not equal to the expected value
 			Assert::AreNotEqual(actualLevel, expectedLevel);
+			Assert::AreEqual(actualLevel, 1);
 		}
 	};
 }
