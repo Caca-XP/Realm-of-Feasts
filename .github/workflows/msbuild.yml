@@ -49,3 +49,38 @@ jobs:
     - name: Run Tests from DLL
       run: |
         & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "tests\RealmOfFeastTest\x64\${{env.BUILD_CONFIGURATION}}\RealmOfFeastTest.dll"
+
+  codecov_test:
+    name: Run tests and collect coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+
+      - name: Make package json
+        run: npm init -y
+
+      - name: Install dependencies
+        run: npm install --save-dev jest
+
+      # - name: Run tests
+      #   run: npx jest --coverage
+
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          
+      - name: Upload results to Codacy
+        env:
+          CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
+          CODACY_ORGANIZATION_PROVIDER: ${{ secrets.CODACY_ORGANIZATION_PROVIDER }}
+          CODACY_USERNAME: ${{ secrets.CODACY_USERNAME }}
+          CODACY_PROJECT_NAME: ${{ secrets.CODACY_PROJECT_NAME }}
+        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info
+

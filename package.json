@@ -1,0 +1,8 @@
+{
+  "name": "Realm-of-Feasts",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {}
+}
