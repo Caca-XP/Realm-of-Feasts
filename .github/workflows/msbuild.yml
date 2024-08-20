@@ -62,8 +62,11 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
 
+      - name: Make package json
+        run: npm init -y
+
       - name: Install dependencies
-        run: npm install
+        run: npm install --save-dev jest
 
       - name: Run tests
         run: npx jest --coverage
