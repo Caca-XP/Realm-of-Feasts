@@ -76,3 +76,28 @@ using namespace std;
         return result;
     }
 
+/***************************************************************************************************************************************
+ *          ToString Specializations for Unit Testing                                                                                  *
+ ****************************************************************************************************************************************/
+
+// Specialization of ToString for Ingredients class
+template <>
+std::wstring Microsoft::VisualStudio::CppUnitTestFramework::ToString<Ingredients>(const Ingredients& ingredient) {
+    return std::wstring(ingredient.toString().begin(), ingredient.toString().end());
+}
+
+// Specialization of ToString for std::vector<Ingredients>
+template <>
+std::wstring Microsoft::VisualStudio::CppUnitTestFramework::ToString<std::vector<Ingredients>>(const std::vector<Ingredients>& ingredients) {
+    std::wstring result = L"[";
+    for (const auto& ingredient : ingredients) {
+        result += ToString(ingredient) + L", ";
+    }
+    if (!ingredients.empty()) {
+        result.pop_back();  // Remove last space
+        result.pop_back();  // Remove last comma
+    }
+    result += L"]";
+    return result;
+}
+

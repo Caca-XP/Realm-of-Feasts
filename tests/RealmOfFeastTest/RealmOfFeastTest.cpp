@@ -179,11 +179,11 @@ namespace RealmOfFeastTest
 			//test the processIngredients function
 			std::string testIngredient = "ingredient1*unit1*quantity1, ingredient2*unit2*quantity2, ingredient3*unit3*quantity3, ingredient4*unit4*quantity4, ingredient5*unit5*quantity5";
 			vector<Ingredients> expectedIngredients = { Ingredients(10, "unit1", "ingredient1"), Ingredients(20, "unit2", "ingredient2"), Ingredients(30, "unit3", "ingredient3"), Ingredients(40, "unit4", "ingredient4"), Ingredients(50, "unit5", "ingredient5") };
-			vector<Ingredients> actualIngredients = processIngredients(testIngredient);
+			vector<Ingredients> actualIngredients = process_ingred(testIngredient);
 		
 
 			//Test
-			Assert::AreEqual(actualString, expectedString);
+			Assert::AreEqual(actualIngredients, expectedIngredients);
 		}
 	};
 }
