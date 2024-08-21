@@ -46,32 +46,22 @@ jobs:
     - name: Build Test Project
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} tests/RealmOfFeastTest/RealmOfFeastTest.vcxproj
 
-    - name: Run Tests from DLL
+    - name: Install OpenCppCoverage
       run: |
-        & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "tests\RealmOfFeastTest\x64\${{env.BUILD_CONFIGURATION}}\RealmOfFeastTest.dll"
+        choco install OpenCppCoverage
+        echo "C:\Program Files\OpenCppCoverage" >> $env:GITHUB_PATH
 
-  codecov_test:
-    name: Run tests and collect coverage
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    - name: Generate Coverage Report
+      shell: cmd
+      run: OpenCppCoverage --modules Release --export_type cobertura:RealmOfFeasts.xml -- "vstest.console.exe" tests\RealmOfFeastTest\x64\${{env.BUILD_CONFIGURATION}}\RealmOfFeastTest.dll
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
+    # - name: Run Tests from DLL
+    #   run: |
+    #     & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "tests\RealmOfFeastTest\x64\${{env.BUILD_CONFIGURATION}}\RealmOfFeastTest.dll"
 
-      - name: Make package json
-        run: npm init -y
-
-      - name: Install dependencies
-        run: npm install --save-dev jest
-
-      - name: Run tests
-        run: npx jest --coverage
-
-      - name: Upload results to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+    - name: Upload Report to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        fail_ci_if_error: true
+        files: RealmOfFeasts.xml
+        token: ${{ secrets.CODECOV_TOKEN }}
