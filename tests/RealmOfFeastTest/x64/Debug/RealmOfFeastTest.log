@@ -1,19 +1,5 @@
 ﻿  RealmOfFeastTest.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\UnitTest\include\CppUnitTestAssert.h(67,81): error C2338: static_assert failed: 'Test writer must define specialization of ToString<const Q& q> for your class class std::basic_string<wchar_t,struct std::char_traits<wchar_t>,class std::allocator<wchar_t> > __cdecl Microsoft::VisualStudio::CppUnitTestFramework::ToString<class std::vector<class Ingredients,class std::allocator<class Ingredients> >>(const class std::vector<class Ingredients,class std::allocator<class Ingredients> > &).'
+C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\tests\RealmOfFeastTest\RealmOfFeastTest.cpp(188,33): warning C4101: 'ex': unreferenced local variable
   (compiling source file '/RealmOfFeastTest.cpp')
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\UnitTest\include\CppUnitTestAssert.h(67,81):
-      the template instantiation context (the oldest one first) is
-          C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\tests\RealmOfFeastTest\RealmOfFeastTest.cpp(186,12):
-          see reference to function template instantiation 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<std::vector<Ingredients,std::allocator<Ingredients>>>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' being compiled
-          with
-          [
-              T=std::vector<Ingredients,std::allocator<Ingredients>>
-          ]
-          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\UnitTest\include\CppUnitTestAssert.h(141,40):
-          see reference to function template instantiation 'std::wstring Microsoft::VisualStudio::CppUnitTestFramework::ToString<T>(const Q &)' being compiled
-          with
-          [
-              T=std::vector<Ingredients,std::allocator<Ingredients>>,
-              Q=std::vector<Ingredients,std::allocator<Ingredients>>
-          ]
   
+  RealmOfFeastTest.vcxproj -> C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\x64\Debug\RealmOfFeastTest.dll
