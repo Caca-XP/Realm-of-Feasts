@@ -66,3 +66,8 @@ jobs:
         fail_ci_if_error: true
         files: ${{env.CODECOV_REPORT}}
         token: ${{secrets.CODECOV_TOKEN}}
+
+    - name: Upload to Codacy
+      run: |
+        export CODACY_PROJECT_TOKEN=${{secrets.CODACY_PROJECT_TOKEN}}
+        bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ${{env.CODECOV_REPORT}}
