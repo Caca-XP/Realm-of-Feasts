@@ -68,6 +68,7 @@ jobs:
         token: ${{secrets.CODECOV_TOKEN}}
 
     - name: Upload to Codacy
+      shell: bash
       run: |
         export CODACY_PROJECT_TOKEN=${{secrets.CODACY_PROJECT_TOKEN}}
         bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ${{env.CODECOV_REPORT}}
