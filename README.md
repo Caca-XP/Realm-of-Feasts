@@ -1,5 +1,10 @@
 # Realm-of-Feasts
 
+![GitHub Actions Badge](https://github.com/Caca-XP/Realm-of-Feasts/actions/workflows/msbuild.yml/badge.svg)
+[![Codecov](https://codecov.io/gh/Caca-XP/Realm-of-Feasts/graph/badge.svg?token=B2GNPQ8KT2)](https://codecov.io/gh/Caca-XP/Realm-of-Feasts)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/cc26c221b65748a4854ee6630a3794f9)](https://app.codacy.com/gh/Caca-XP/Realm-of-Feasts/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
+
 ## Description 
 Realm of Feasts is a fantasy recipe discovery app that helps you find recipes based on the ingredients you already have at home. Realm of Feast searches its database and suggests the recipes you can make. The unique aspect of the app is that all recipes are of foods not from “Earth”. The app database includes recipes from Harry Potter, The Hobbit, Spirited Away, and many other mythical fictional realms. Thus, the name "Realm of Feasts." We have brought together all the different foods from different realms into one place so that others who enjoy fiction can feast upon it.
 
