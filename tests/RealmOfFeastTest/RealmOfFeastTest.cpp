@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../../src/Recipes.cpp"
-#include "../../src/Ingredients.cpp"
-#include "../../src/Support.cpp"
-#include "../../App.cpp"
+#include "../../src/Recipes.h"
+#include "../../src/Ingredients.h"
+#include "../../src/Support.h"
+#include "../../App.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

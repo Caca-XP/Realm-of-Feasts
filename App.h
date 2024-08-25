@@ -1,16 +1,5 @@
-# include <iostream>
-# include <string>
-# include <fstream>
-# include "./src/Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
-# include "./src/Ingredients.h" // Include the header file that contains the definition of the 'Ingredients' class
-# include "./src/Support.h" // Include the header file that contains the definition of the 'Ingredients' class
-# include "./App.h" // Include the header file that contains the definition of the 'App' class
-# include <array>
-# include <sstream>
-# include <iterator>
-# include <algorithm>
-# include <cstdlib>
-# include <vector>
+#ifndef APP_H
+#define APP_H
 
 using namespace std;
 
