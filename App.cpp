@@ -26,14 +26,6 @@ using namespace std;
 ****************************************************************************************************************************************/
 
 
-/* Vector of the recipes, declared based on number of recipes in the database
-*/
-vector<Recipes> allRecipes;
-int timeFilter = 0; // 0 for none, 1 for less than 30 minutes, 2 for 30 to 60 minutes, 3 for more than 60 minutes
-int difficultyFilter = 0; // 0 for none, 1 for easy, 2 for medium, 3 for hard
-int sortFilter = 0; // 0 for none, 1 for difficulty, 2 for reverse difficulty, 3 for time, 4 for reverse time
-
-vector<string> allSeries;
 
 /**
  * Function to process the ingredients string
@@ -41,7 +33,7 @@ vector<string> allSeries;
  * @param ingred the ingredients string
  * @return vector of Ingredients objects
  */
-static vector<Ingredients> process_ingred(string ingred){
+vector<Ingredients> process_ingred(string ingred){
     
     string ingredients;
     // if the start and end of the string are both " then remove them

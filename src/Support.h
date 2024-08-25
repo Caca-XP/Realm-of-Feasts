@@ -1,3 +1,6 @@
+#ifndef SUPPORT_H
+#define SUPPORT_H
+
 //Header file for Support.cpp
 # include <iostream>
 # include <string>
@@ -31,3 +34,4 @@ string replaceAll(string str, string from, string to);
  */
 string readLine(bool ignore);
 
+#endif // SUPPORT_H
