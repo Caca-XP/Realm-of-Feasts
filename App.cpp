@@ -1,9 +1,9 @@
 # include <iostream>
 # include <string>
 # include <fstream>
-# include "./src/Recipes.cpp" // Include the header file that contains the definition of the 'Recipes' class
-# include "./src/Ingredients.cpp" // Include the header file that contains the definition of the 'Ingredients' class
-# include "./src/Support.cpp" // Include the header file that contains the definition of the 'Ingredients' class
+# include "./src/Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
+# include "./src/Ingredients.h" // Include the header file that contains the definition of the 'Ingredients' class
+# include "./src/Support.h" // Include the header file that contains the definition of the 'Ingredients' class
 # include <array>
 # include <sstream>
 # include <iterator>

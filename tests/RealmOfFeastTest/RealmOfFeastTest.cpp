@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include "../../src/Recipes.h"
+#include "../../src/Ingredients.h"
+#include "../../src/Support.h"
 #include "../../App.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
