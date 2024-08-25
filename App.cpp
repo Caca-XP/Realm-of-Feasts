@@ -123,17 +123,23 @@ static int process_time(string time_str){
  * @param difficulty_str the difficulty string
  * @return the difficulty as an enum Level
  */
-static enum Level process_difficulty(string difficulty_str){
-    enum Level difficulty;
+enum Level {
+    EASY,
+    MEDIUM,
+    HARD
+};
+
+Level process_difficulty(string difficulty_str){
+    Level difficulty;
     if (difficulty_str == "Easy"){
-        difficulty = Level(1);
+        difficulty = EASY;
     }else if (difficulty_str == "Medium"){
-        difficulty = Level(2);
+        difficulty = MEDIUM;
     }else if (difficulty_str == "Hard"){
-        difficulty = Level(3);
+        difficulty = HARD;
     }else{
         cerr << "*******************************************************************************************************\nInvalid difficulty level: " << difficulty_str << endl;
-        return Level(0);
+        return EASY;
     }
     return difficulty;
 }
