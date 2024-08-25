@@ -15,7 +15,7 @@ using namespace std;
 
 
 // Function to split a string into a vector of strings
-vector<string> split_string(string str, string delimiter, bool lowercase = true);
+vector<string> split_string(string str, string delimiter, bool lowercase);
 
 /* Function to quit the program
 */
@@ -29,5 +29,5 @@ string replaceAll(string str, string from, string to);
 
 /* Function to read the whole line of user input instead of just one word
  */
-string readLine(bool ignore = true);
+string readLine(bool ignore);
 

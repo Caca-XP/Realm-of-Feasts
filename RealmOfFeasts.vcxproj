@@ -41,6 +41,7 @@
   <ItemGroup>
     <ClInclude Include="src\Ingredients.h" />
     <ClInclude Include="src\Recipes.h" />
+    <ClInclude Include="src\Support.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Target Name="Clean">

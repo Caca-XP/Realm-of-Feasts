@@ -40,7 +40,7 @@ vector<string> allSeries;
  * @param ingred the ingredients string
  * @return vector of Ingredients objects
  */
-vector<Ingredients> process_ingred(string ingred){
+static vector<Ingredients> process_ingred(string ingred){
     
     string ingredients;
     // if the start and end of the string are both " then remove them
@@ -78,7 +78,7 @@ vector<Ingredients> process_ingred(string ingred){
  * @param instruct the instructions string
  * @return the processed instructions string
  */
-string process_instructions(string instruct){
+static string process_instructions(string instruct){
     string instructions;
     // if the start and end of the string are both " then remove them
     if (instruct.front() == '"' && instruct.back() == '"'){
@@ -103,7 +103,7 @@ string process_instructions(string instruct){
  * @param time_str the time string
  * @return the time as an integer
  */
-int process_time(string time_str){
+static int process_time(string time_str){
     int time;
     try {
             time = stoi(time_str);
@@ -123,7 +123,7 @@ int process_time(string time_str){
  * @param difficulty_str the difficulty string
  * @return the difficulty as an enum Level
  */
-enum Level process_difficulty(string difficulty_str){
+static enum Level process_difficulty(string difficulty_str){
     enum Level difficulty;
     if (difficulty_str == "Easy"){
         difficulty = Level(1);
@@ -144,7 +144,7 @@ enum Level process_difficulty(string difficulty_str){
  * Creates a new Recipes object for each recipe and adds it to the allRecipes array
  * @param fileName the name of the file to read the data from
 */
-void setup(string fileName){
+static void setup(string fileName){
 // // read file and initialise allRecipes
     ifstream file(fileName);
     string line;
@@ -195,7 +195,7 @@ void setup(string fileName){
  * Function to display recipes specified in the param
  * @param array of recipes
  */
-void display(vector<Recipes> recipes, bool isShort = true){
+static void display(vector<Recipes> recipes, bool isShort = true){
     if (isShort){
         for (int i = 0; i < recipes.size(); i++){
             cout << recipes[i].toStringShort() << endl;
@@ -213,7 +213,7 @@ void display(vector<Recipes> recipes, bool isShort = true){
  * @param b recipe b
  * @return true if a is less difficult than b
 */
-bool sortByDifficulty(Recipes a, Recipes b){
+static bool sortByDifficulty(Recipes a, Recipes b){
     return a.getDifficulty() < b.getDifficulty();
 }
 
@@ -223,7 +223,7 @@ bool sortByDifficulty(Recipes a, Recipes b){
  * @param b recipe b
  * @return true if a takes less time than b
 */
-bool sortByTime(Recipes a, Recipes b){
+static bool sortByTime(Recipes a, Recipes b){
     return a.getTime() < b.getTime();
 }
 
@@ -239,7 +239,7 @@ bool sortByTime(Recipes a, Recipes b){
  * @param currentRecipes the recipes to filter
  * @return vector of recipes containing the recipes that pass the filters
 */
-vector<Recipes> applySetting(vector<Recipes> currentRecipes){
+static vector<Recipes> applySetting(vector<Recipes> currentRecipes){
     
     vector<Recipes> results;
     
@@ -268,7 +268,7 @@ vector<Recipes> applySetting(vector<Recipes> currentRecipes){
 /**
  * Function to print the settings set by the user
 */
-void printSettings(){
+static void printSettings(){
     printf("\nCurrent filters: \n");
         if (difficultyFilter != 0){
             if (difficultyFilter == 1){
@@ -321,7 +321,7 @@ void printSettings(){
  * User can set filters for difficulty and time
  * User can set sorting for the recipes
 */
-void setSettings(){
+static void setSettings(){
     
     while (true){
         printSettings();
@@ -488,7 +488,7 @@ void setSettings(){
 /**
  * Function that displays a random recipe within the allRecipes array
 */
-void random(){
+static void random(){
     vector<Recipes> applied = applySetting(allRecipes);
     int randomIndex = rand() % applied.size();
     printSettings();
@@ -505,12 +505,12 @@ void random(){
  * Prints out recipes with the searched string in its name
  * @return vector of recipes containing the instance of recipes that contain the searched string
 */
-vector<Recipes> searchByName(){
+static vector<Recipes> searchByName(){
     vector<Recipes> results;
     string search;
     // get the search string from the user
     cout << "Enter the name of the recipe you are looking for: ";
-    search = readLine();
+    search = readLine(true);
     // lowercase the search string and remove leading and trailing spaces
     transform(search.begin(), search.end(), search.begin(), ::tolower);
     search.erase(0, search.find_first_not_of(" "));
@@ -547,16 +547,16 @@ vector<Recipes> searchByName(){
  * Displays recipes that contains all of the specified ingredient(s)
  * @return vector of recipes containing recipes that contain the ingredient(s)
 */
-vector<Recipes> searchByIngredient(){
+static vector<Recipes> searchByIngredient(){
     vector<Recipes> results;
     string search;
     cout << "Enter the ingredient you are looking for (comma separated): ";
-    search = readLine();
+    search = readLine(true);
     // remove leading and trailing spaces
     search.erase(0, search.find_first_not_of(" "));
     search.erase(search.find_last_not_of(" ") + 1);
 
-    vector<string> searchIngredients = split_string(search, ",");
+    vector<string> searchIngredients = split_string(search, ",", true);
     // sort the search ingredients
     sort(searchIngredients.begin(), searchIngredients.end());
 
@@ -598,12 +598,12 @@ vector<Recipes> searchByIngredient(){
  * Displays recipes that are in the specified series
  * @return vector of recipes containing recipes that are in the specified series
 */
-vector<Recipes> searchBySeries(){
+static vector<Recipes> searchBySeries(){
     vector<Recipes> results;
     string search;
     cout << "Enter the series you are looking for: " << endl;
     cout << "To show all series, type 'all'." << endl;
-    search = readLine();
+    search = readLine(true);
     if (search == "all"){
         // print series
         cout << "Series: " << endl;
@@ -655,7 +655,7 @@ vector<Recipes> searchBySeries(){
  * Function to display the options for the user
  * Takes the user input and calls the appropriate function
 */
-void options(){
+static void options(){
     // display the options
     printf("1. Display all recipes\n");
     printf("2. Search for a recipe\n");

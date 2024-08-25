@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../../src/Recipes.h"
-#include "../../src/Ingredients.h"
-#include "../../src/Support.h"
+#include "../../src/Recipes.cpp"
+#include "../../src/Ingredients.cpp"
+#include "../../src/Support.cpp"
 #include "../../App.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -131,7 +131,7 @@ namespace RealmOfFeastTest
 			std::string testString = "test1, test2, test3";
 			std::string delimiter = ", ";
 			vector<string> expectedVector = { "test1", "test2", "test3" };
-			vector<string> actualVector = split_string(testString, delimiter);
+			vector<string> actualVector = split_string(testString, delimiter, true);
 
 			//Test
 			Assert::AreEqual(actualVector.at(0), expectedVector.at(0));
@@ -165,7 +165,7 @@ namespace RealmOfFeastTest
 			Assert::AreEqual(actualLevel, expectedLevel);
 
 			//change the actual level
-			actualLevel = Easy;			
+			actualLevel = Easy;
 
 			//test if the level is not equal to the expected value
 			Assert::AreNotEqual(actualLevel, expectedLevel);
