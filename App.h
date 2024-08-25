@@ -1,6 +1,5 @@
 #ifndef APP_H
 #define APP_H
-#endif
 
 //necessary libraries
 # include <iostream>
@@ -14,7 +13,6 @@
 # include <vector>
 
 using namespace std;
-
 
 /* Vector of the recipes, declared based on number of recipes in the database
 */
@@ -146,3 +144,5 @@ static void options();
  * Calls the options function to display the options for the user
 */
 int main();
+
+#endif // APP_H
