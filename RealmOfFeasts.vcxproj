@@ -39,6 +39,7 @@
     <None Include="RealmOfFeastsTask.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="App.h" />
     <ClInclude Include="src\Ingredients.h" />
     <ClInclude Include="src\Recipes.h" />
     <ClInclude Include="src\Support.h" />
