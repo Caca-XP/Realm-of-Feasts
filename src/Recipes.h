@@ -9,6 +9,13 @@
 using namespace std;
 
 // Declare any global constants or types here
+//Enum of values of the difficulty levels
+enum Level {
+    None = 0,
+    Easy = 1,
+    Medium = 2,
+    Hard = 3
+};
 
 // Declare function prototypes here
 class Recipes {

@@ -1,6 +1,1 @@
-﻿  RealmOfFeastTest.cpp
-C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\tests\RealmOfFeastTest\RealmOfFeastTest.cpp(191,33): warning C4101: 'ex': unreferenced local variable
-  (compiling source file '/RealmOfFeastTest.cpp')
-  
-     Creating library C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\x64\Debug\RealmOfFeastTest.lib and object C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\x64\Debug\RealmOfFeastTest.exp
-  RealmOfFeastTest.vcxproj -> C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\x64\Debug\RealmOfFeastTest.dll
+﻿  RealmOfFeastTest.vcxproj -> C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\x64\Debug\RealmOfFeastTest.dll

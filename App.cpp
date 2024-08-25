@@ -117,29 +117,18 @@ static int process_time(string time_str){
     return time;
 }
 
-/**
- * Function to process the difficulty string
- * Converts the difficulty string to an enum Level
- * @param difficulty_str the difficulty string
- * @return the difficulty as an enum Level
- */
-enum Level {
-    EASY,
-    MEDIUM,
-    HARD
-};
-
+//Enum of values of the difficulty levels
 Level process_difficulty(string difficulty_str){
     Level difficulty;
     if (difficulty_str == "Easy"){
-        difficulty = EASY;
+        difficulty = Easy;
     }else if (difficulty_str == "Medium"){
-        difficulty = MEDIUM;
+        difficulty = Medium;
     }else if (difficulty_str == "Hard"){
-        difficulty = HARD;
+        difficulty = Hard;
     }else{
         cerr << "*******************************************************************************************************\nInvalid difficulty level: " << difficulty_str << endl;
-        return EASY;
+        return None;
     }
     return difficulty;
 }
@@ -171,7 +160,7 @@ static void setup(string fileName){
 
         string name, series, description, instructions;
         int time;
-        enum Level difficulty;
+        Level difficulty;
 
         //split the line into the different parts
         vector<string> parts = split_string(line, "\t", false);
