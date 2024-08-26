@@ -1,17 +1,4 @@
-# include <iostream>
-# include <string>
-# include <fstream>
-# include <array>
-# include <sstream>
-# include <iterator>
-# include <algorithm>
-# include <cstdlib>
-# include <vector>
-
-using namespace std;
-
-
-
+#include "Support.h"
 
 // Function to split a string into a vector of strings
 vector<string> split_string(string str, string delimiter, bool lowercase = true){

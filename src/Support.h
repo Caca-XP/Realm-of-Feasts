@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SUPPORT_H
 #define SUPPORT_H
 
@@ -11,6 +12,7 @@
 # include <algorithm>
 # include <cstdlib>
 # include <vector>
+
 
 using namespace std;
 

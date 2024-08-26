@@ -1,17 +1,6 @@
-# include <iostream>
-# include <string>
-# include <fstream>
-# include "Ingredients.h" // Include the header file that contains the definition of the 'Ingredients' class
-# include <array>
-# include <sstream>
-# include <iterator>
-# include <algorithm>
-# include <cstdlib>
-# include <vector>
 
-using namespace std;
-
-    /***************************************************************************************************************************************
+#include "Ingredients.h"
+/***************************************************************************************************************************************
      *          Ingredients Class                                                                                                          *
     ****************************************************************************************************************************************/
 

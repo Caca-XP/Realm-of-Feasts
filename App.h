@@ -1,3 +1,4 @@
+#pragma once
 #ifndef APP_H
 #define APP_H
 
@@ -11,6 +12,12 @@
 # include <algorithm>
 # include <cstdlib>
 # include <vector>
+
+
+# include "./src/Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
+# include "./src/Ingredients.h" // Include the header file that contains the definition of the 'Ingredients' class
+# include "./src/Support.h" // Include the header file that contains the definition of the 'Ingredients' class
+
 
 using namespace std;
 
