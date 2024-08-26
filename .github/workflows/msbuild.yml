@@ -15,6 +15,7 @@ env:
   # Configuration and platform settings
   BUILD_CONFIGURATION: Debug
   BUILD_PLATFORM: x64
+  CODECOV_REPORT: RealmOfFeasts.xml
 
 permissions:
   contents: read
