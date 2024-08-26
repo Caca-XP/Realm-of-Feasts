@@ -44,6 +44,9 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
 
+      - name: Build Main Project
+      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} RealmOfFeasts.vcxproj
+
     - name: Build Test Project
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} RealmOfFeastTest/RealmOfFeastTest.vcxproj
 
@@ -56,10 +59,6 @@ jobs:
       shell: cmd
       run: OpenCppCoverage --modules Release --export_type cobertura:${{env.CODECOV_REPORT}} -- "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" RealmOfFeastTest\x64\${{env.BUILD_CONFIGURATION}}\RealmOfFeastTest.dll
 
-    # - name: Run Tests from DLL
-    #   run: |
-    #     & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "RealmOfFeastTest\x64\${{env.BUILD_CONFIGURATION}}\RealmOfFeastTest.dll"
-    
     - name: Upload Report to Codecov
       uses: codecov/codecov-action@v4
       with:
