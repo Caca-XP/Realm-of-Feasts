@@ -6,26 +6,65 @@
 
 using namespace std;
 
-// Declare any global constants or types here
 
-// Declare function prototypes here
+/*!
+*@class Ingredients
+*@brief Represents an ingredient in a recipe with a name, unit, and quantity
+*@author Nadia
+*/
+
 class Ingredients {
     public:
-    //default constructor
+    /*!
+    *@brief Default constructor
+    *@details Initializes the name, unit, and quantity of the ingredient with the default values
+    */
     Ingredients();
 
-    //defined constructor
+    /*!
+    *@brief Parameterized constructor
+    *@details Initializes the name, unit, and quantity of the ingredient with the given values
+    *@param q The quantity of the ingredient
+    *@param un The unit of the ingredient
+    *@param nm The name of the ingredient
+    */
     Ingredients(double q, string un, string nm);
 
+    /*!
+    *@brief Destructor
+    *@details Destroys the ingredient object
+    */
     ~Ingredients();
 
+    /*!
+    *@brief Gets the name of the ingredient
+    *
+    *@return The name of the ingredient
+    */
     string getName();
 
+    /*!
+    *@brief Gets the unit of the ingredient
+    *
+    * @return The unit of the ingredient
+    */
     string getUnit();
 
+    /*!
+    *@brief Gets the quantity of the ingredient
+    *
+    * @return The quantity of the ingredient
+    */
     double getQuantity();
 
+
+    /*!
+    *@brief The string representation of the ingredient
+    *
+    * @return The string representation of the ingredient
+    */
     string toString();
+
 
     private:
     /*Private data fields*/

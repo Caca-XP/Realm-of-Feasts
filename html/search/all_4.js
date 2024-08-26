@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['acknowledgments_0',['Acknowledgments',['../md__r_e_a_d_m_e.html#autotoc_md21',1,'']]],
-  ['alpha_1',['Alpha',['../md__r_e_a_d_m_e.html#autotoc_md18',1,'']]],
-  ['attribution_2',['Attribution',['../md__c_o_d_e___o_f___c_o_n_d_u_c_t.html#autotoc_md11',1,'']]],
-  ['authors_3',['Authors',['../md__r_e_a_d_m_e.html#autotoc_md14',1,'']]]
+  ['ingredients_0',['Ingredients',['../class_ingredients.html',1,'Ingredients'],['../class_ingredients.html#a9b089f54a3616a238b3fbd49b582fe8f',1,'Ingredients::Ingredients()'],['../class_ingredients.html#a739aa5ce89c230598f4e704bae38adfc',1,'Ingredients::Ingredients(double q, string un, string nm)']]],
+  ['introduction_1',['Introduction',['../index.html#intro_sec',1,'']]]
 ];

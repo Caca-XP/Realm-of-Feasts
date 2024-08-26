@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['cases_0',['Test Cases',['../md__r_e_a_d_m_e.html#autotoc_md16',1,'']]],
-  ['code_20of_20conduct_1',['Contributor Covenant Code of Conduct',['../md__c_o_d_e___o_f___c_o_n_d_u_c_t.html',1,'']]],
-  ['conduct_2',['Contributor Covenant Code of Conduct',['../md__c_o_d_e___o_f___c_o_n_d_u_c_t.html',1,'']]],
-  ['contributor_20covenant_20code_20of_20conduct_3',['Contributor Covenant Code of Conduct',['../md__c_o_d_e___o_f___c_o_n_d_u_c_t.html',1,'']]],
-  ['correction_4',['1. Correction',['../md__c_o_d_e___o_f___c_o_n_d_u_c_t.html#autotoc_md7',1,'']]],
-  ['covenant_20code_20of_20conduct_5',['Contributor Covenant Code of Conduct',['../md__c_o_d_e___o_f___c_o_n_d_u_c_t.html',1,'']]]
+  ['realm_20of_20feasts_0',['Realm of Feasts',['../index.html#usage',1,'How to Use Realm of Feasts'],['../index.html',1,'Realm of Feasts']]],
+  ['recipes_1',['Recipes',['../class_recipes.html',1,'Recipes'],['../class_recipes.html#a28deb87056a113032a00e492aed65cc2',1,'Recipes::Recipes()'],['../class_recipes.html#aca0cb392261557135ae836c57899c9da',1,'Recipes::Recipes(string nm, string ser, string desc, vector&lt; Ingredients &gt;, string ins, int t, enum Level lv)']]]
 ];

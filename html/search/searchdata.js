@@ -1,16 +1,16 @@
 var indexSectionsWithContent =
 {
-  0: "1234abcdefghloprstuvw",
-  1: "r",
-  2: "r",
-  3: "cfor"
+  0: "1fghiorstu~",
+  1: "ir",
+  2: "girt~",
+  3: "for"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "namespaces",
+  2: "functions",
   3: "pages"
 };
 
@@ -18,7 +18,7 @@ var indexSectionLabels =
 {
   0: "All",
   1: "Classes",
-  2: "Namespaces",
+  2: "Functions",
   3: "Pages"
 };
 
