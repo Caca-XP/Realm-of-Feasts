@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RealmOfFeast_CookBook", "RealmOfFeast_CookBook.vcxproj", "{C342BF73-AA25-47E9-B232-BC86210D6F4F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RealmOfFeasts", "RealmOfFeasts.vcxproj", "{C342BF73-AA25-47E9-B232-BC86210D6F4F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RealmOfFeastTest", "RealmOfFeastTest\RealmOfFeastTest.vcxproj", "{F7149CB1-CD3E-4919-BD07-7AECC594DC0D}"
 EndProject
