@@ -1,6 +1,5 @@
 # include "./App.h" // Include the header file that contains the definition of the 'App' class
 
-using namespace std;
 
 /* App class for the realm of feast Recipe finder app
    Contains the implementation of the functions of Recipes Class (Recipes.h)
