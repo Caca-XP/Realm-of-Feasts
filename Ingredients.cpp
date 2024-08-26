@@ -11,11 +11,8 @@ Ingredients::Ingredients() {
 };
 
 /*Defined Constructor*/
-Ingredients::Ingredients(double q, string un, string nm) {
-    name = nm;
-    quantity = q;
-    unit = un;
-}
+Ingredients::Ingredients(double q, string un, string nm) 
+    : name(nm), quantity(q), unit(un){}
 
 /*Destructor code (idk what this is for) */
 Ingredients::~Ingredients() {

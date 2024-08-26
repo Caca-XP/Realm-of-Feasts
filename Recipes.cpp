@@ -14,12 +14,9 @@ Recipes::Recipes() {
 };
 
 /*Defined Constructor*/
-Recipes::Recipes(string nm, string ser, string desc, vector<Ingredients> ing, string ins, int t, enum Level lv) {
-    name = nm;
-    series = ser;
-    description = desc;
-    ingredients = ing;
-
+Recipes::Recipes(string nm, string ser, string desc, vector<Ingredients> ing, string ins, int t, enum Level lv) 
+    :name(nm), series(ser), description(desc), ingredients(ing), instructions(ins), time(t), difficulty(lv)
+{
     ingredients_str = "";
     for (int i = 0; i < ingredients.size(); i++) {
         ingredients_str += "- " + ingredients[i].toString();
@@ -38,10 +35,6 @@ Recipes::Recipes(string nm, string ser, string desc, vector<Ingredients> ing, st
         ingredient_names.push_back(ingredient_name);
     }
     sort(ingredient_names.begin(), ingredient_names.end());
-
-    instructions = ins;
-    time = t;
-    difficulty = lv;
 
 
 }
