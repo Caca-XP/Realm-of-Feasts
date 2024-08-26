@@ -1,0 +1,67 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.41.34120.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/nadia/downloads/uni-work/cosc345/realm-of-feasts/app.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "226c83b1bedd1106a8b9ca41c8ebd165460db8251eff4dd06ccf49460ed8e60c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/nadia/downloads/uni-work/cosc345/realm-of-feasts/app.h"
+          },
+          "hashes": {
+            "sha-256": "676ab08028d89941d3cc81f8fbcd068472a53321dfe30509cfb4cf5e5ffc9aa4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/nadia/downloads/uni-work/cosc345/realm-of-feasts/src/recipes.h"
+          },
+          "hashes": {
+            "sha-256": "6f5bc37188651a67330118e81776e3e391fc77219bcba571438cf15f77f8352a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/nadia/downloads/uni-work/cosc345/realm-of-feasts/src/ingredients.h"
+          },
+          "hashes": {
+            "sha-256": "9554aaa21971376729635eae7d1827012ac11d7ba7ff601460001cf71bb8b801"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/nadia/downloads/uni-work/cosc345/realm-of-feasts/src/support.h"
+          },
+          "hashes": {
+            "sha-256": "bb3892d53a43c6fe6be3af3b41481b1093d528eabeef941165b8bc3591886caf"
+          }
+        }
+      ]
+    }
+  ]
+}

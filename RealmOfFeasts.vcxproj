@@ -36,6 +36,7 @@
     <ClCompile Include="src\Support.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="RealmOfFeasts.vxcproj.filters" />
     <None Include="RealmOfFeastsTask.cs" />
   </ItemGroup>
   <ItemGroup>
