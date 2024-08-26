@@ -14,9 +14,9 @@
 # include <vector>
 
 
-# include "./src/Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
-# include "./src/Ingredients.h" // Include the header file that contains the definition of the 'Ingredients' class
-# include "./src/Support.h" // Include the header file that contains the definition of the 'Ingredients' class
+# include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
+# include "Ingredients.h" // Include the header file that contains the definition of the 'Ingredients' class
+# include "Support.h" // Include the header file that contains the definition of the 'Ingredients' class
 
 
 using namespace std;
@@ -64,13 +64,13 @@ Level process_difficulty(string difficulty_str);
 */
 static void setup(string fileName);
 
-/** 
+/**
  * Function to display recipes specified in the param
  * @param array of recipes
  */
 static void display(vector<Recipes> recipes, bool isShort);
 
-/** 
+/**
  * Function to sort the recipes by difficulty
  * @param a recipe a
  * @param b recipe b
@@ -78,7 +78,7 @@ static void display(vector<Recipes> recipes, bool isShort);
 */
 static bool sortByDifficulty(Recipes a, Recipes b);
 
-/** 
+/**
  * Function to sort the recipes by time
  * @param a recipe a
  * @param b recipe b
@@ -86,7 +86,7 @@ static bool sortByDifficulty(Recipes a, Recipes b);
 */
 static bool sortByTime(Recipes a, Recipes b);
 
-/** 
+/**
  * Function to apply the settings set by the user
  * Filters the recipes based on the filters set
  * @param currentRecipes the recipes to filter
@@ -119,7 +119,7 @@ static void random();
 */
 static vector<Recipes> searchByName();
 
-/** 
+/**
  * Function that searches the array of recipes by ingredient(s) separated by commas
  * ingredient(s) will be inputed by the user by typing
  * Displays recipes that contains all of the specified ingredient(s)
@@ -127,7 +127,7 @@ static vector<Recipes> searchByName();
 */
 static vector<Recipes> searchByIngredient();
 
-/** 
+/**
  * Function to filter the recipes by series
  * Displays recipes that are in the specified series
  * @return vector of recipes containing recipes that are in the specified series
