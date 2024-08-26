@@ -60,7 +60,7 @@ vector<Ingredients> process_ingred(string ingred) {
  * @param instruct the instructions string
  * @return the processed instructions string
  */
-static string process_instructions(string instruct) {
+static string process_instructions(const string& instruct) {
     string instructions;
     // if the start and end of the string are both " then remove them
     if (instruct.front() == '"' && instruct.back() == '"') {
@@ -87,7 +87,7 @@ static string process_instructions(string instruct) {
  * @param time_str the time string
  * @return the time as an integer
  */
-static int process_time(string time_str) {
+static int process_time(const string& time_str) {
     int time;
     try {
         time = stoi(time_str);
@@ -104,7 +104,7 @@ static int process_time(string time_str) {
 }
 
 //Enum of values of the difficulty levels
-Level process_difficulty(string difficulty_str) {
+Level process_difficulty(const string& difficulty_str) {
     Level difficulty;
     if (difficulty_str == "Easy") {
         difficulty = Easy;

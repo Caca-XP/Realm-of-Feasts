@@ -43,7 +43,7 @@ vector<Ingredients> process_ingred(string ingred);
  * @param instruct the instructions string
  * @return the processed instructions string
  */
-static string process_instructions(string instruct);
+static string process_instructions(const string& instruct);
 
 /**
  * Function to process the time string
@@ -51,10 +51,10 @@ static string process_instructions(string instruct);
  * @param time_str the time string
  * @return the time as an integer
  */
-static int process_time(string time_str);
+static int process_time(const string& time_str);
 
 //Enum of values of the difficulty levels
-Level process_difficulty(string difficulty_str);
+Level process_difficulty(const string& difficulty_str);
 
 
 /**
