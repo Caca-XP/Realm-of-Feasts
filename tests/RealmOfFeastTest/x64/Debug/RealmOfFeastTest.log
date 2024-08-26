@@ -1,3 +1,8 @@
-﻿  RealmOfFeastTest.cpp
+﻿  pch.cpp
+  IngredientsTest.cpp
+  RealmOfFeastTest.cpp
+  RecipeTest.cpp
+  SupportTest.cpp
+  Generating Code...
      Creating library C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\x64\Debug\RealmOfFeastTest.lib and object C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\x64\Debug\RealmOfFeastTest.exp
   RealmOfFeastTest.vcxproj -> C:\Users\nadia\Downloads\UNI-work\COSC345\Realm-of-Feasts\x64\Debug\RealmOfFeastTest.dll
