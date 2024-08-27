@@ -25,22 +25,22 @@ Recipes::Recipes(string nm, string ser, string desc, vector<Ingredients> ing, st
         }
     }
     return result;
-        }())
-{
-    ingredient_names = {};
-    for (int i = 0; i < ingredients.size(); i++) {
-        string ingredient_name = ingredients[i].getName();
+        }()),
+    ingredient_names([&ing]() {
+    vector<string> names;
+    for (int i = 0; i < ing.size(); i++) {
+        string ingredient_name = ing[i].getName();
         // make lowercase and remove leading and trailing spaces
         transform(ingredient_name.begin(), ingredient_name.end(), ingredient_name.begin(), ::tolower);
         ingredient_name.erase(0, ingredient_name.find_first_not_of(" "));
         ingredient_name.erase(ingredient_name.find_last_not_of(" ") + 1);
 
-        ingredient_names.push_back(ingredient_name);
+        names.push_back(ingredient_name);
     }
-    sort(ingredient_names.begin(), ingredient_names.end());
-
-
-}
+    sort(names.begin(), names.end());
+    return names;
+        }())
+{}
 
 /*Destructor code (idk what this is for)*/
 Recipes::~Recipes() {
