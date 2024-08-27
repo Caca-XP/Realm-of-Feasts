@@ -4,13 +4,15 @@
 /* App class for the realm of feast Recipe finder app
    Contains the implementation of the functions of Recipes Class (Recipes.h)
 
+
    @version 1.0
+   @author Cooks
    @author Cooks
 */
 
 /***************************************************************************************************************************************
  *          Setup functions                                                                                                            *
-****************************************************************************************************************************************/
+ ****************************************************************************************************************************************/
 
 
 
@@ -51,6 +53,8 @@ vector<Ingredients> process_ingred(string ingred) {
 
         // printf("Ingredient: %s, %s, %s\n", ingredient_parts[0].c_str(), ingredient_parts[1].c_str(), ingredient_parts[2].c_str());
     }
+        // printf("Ingredient: %s, %s, %s\n", ingredient_parts[0].c_str(), ingredient_parts[1].c_str(), ingredient_parts[2].c_str());
+    }
     return ingredients_list;
 }
 
@@ -78,7 +82,6 @@ static string process_instructions(const string& instruct) {
     instructions = replaceAll(instructions, "||", "\n");
 
     return instructions;
-
 }
 
 /**
@@ -122,7 +125,6 @@ Level process_difficulty(const string& difficulty_str) {
     return difficulty;
 }
 
-
 /**
  * Function to read the data from the file and initialise the allRecipes array
  * Creates a new Recipes object for each recipe and adds it to the allRecipes array
@@ -134,7 +136,7 @@ static void setup(string fileName) {
     string line;
     int i = 0;
 
-    if (getline(file, line)) {
+    if (getline(file, line)){
         // cout << "Header: " << line << endl; // Optionally print the header
         // skip the header
     }
@@ -151,7 +153,7 @@ static void setup(string fileName) {
         int time;
         Level difficulty;
 
-        //split the line into the different parts
+        // split the line into the different parts
         vector<string> parts = split_string(line, "\t", false);
 
         name = parts[0];
@@ -173,8 +175,9 @@ static void setup(string fileName) {
 
 /***************************************************************************************************************************************
  *          Options functions                                                                                                          *
-****************************************************************************************************************************************/
+ ****************************************************************************************************************************************/
 
+/**
 /**
  * Function to display recipes specified in the param
  * @param array of recipes
@@ -193,6 +196,7 @@ static void display(vector<Recipes> recipes, bool isShort = true) {
 }
 
 /**
+/**
  * Function to sort the recipes by difficulty
  * @param a recipe a
  * @param b recipe b
@@ -203,6 +207,7 @@ static bool sortByDifficulty(Recipes a, Recipes b) {
 }
 
 /**
+/**
  * Function to sort the recipes by time
  * @param a recipe a
  * @param b recipe b
@@ -212,10 +217,9 @@ static bool sortByTime(Recipes a, Recipes b) {
     return a.getTime() < b.getTime();
 }
 
-
 /***************************************************************************************************************************************
  *          Set filters and random                                                                                                     *
-****************************************************************************************************************************************/
+ ****************************************************************************************************************************************/
 
 
 /**
@@ -227,6 +231,7 @@ static bool sortByTime(Recipes a, Recipes b) {
 static vector<Recipes> applySetting(vector<Recipes> currentRecipes) {
 
     vector<Recipes> results;
+
 
     // filter the recipes based on the filters set
     for (int i = 0; i < currentRecipes.size(); i++) {
@@ -299,6 +304,7 @@ static void printSettings() {
         printf("None \n");
     }
 
+    printf("\n");
     printf("\n");
 }
 
@@ -480,7 +486,6 @@ static void setSettings() {
     }
 }
 
-
 /**
  * Function that displays a random recipe within the allRecipes array
 */
@@ -491,10 +496,9 @@ static void random() {
     cout << applied[randomIndex].toString() << endl;
 }
 
-
 /***************************************************************************************************************************************
  *          Search functions                                                                                                           *
-****************************************************************************************************************************************/
+ ****************************************************************************************************************************************/
 
 /**
  * Function to search the recipes array by specific name
@@ -539,6 +543,7 @@ static vector<Recipes> searchByName() {
 }
 
 /**
+/**
  * Function that searches the array of recipes by ingredient(s) separated by commas
  * ingredient(s) will be inputed by the user by typing
  * Displays recipes that contains all of the specified ingredient(s)
@@ -574,7 +579,6 @@ static vector<Recipes> searchByIngredient() {
         if (includes(ingredients.begin(), ingredients.end(), searchIngredients.begin(), searchIngredients.end())) {
             results.push_back(applied[i]);
         }
-
     }
     printSettings();
     if (results.size() == 0) {
@@ -591,6 +595,7 @@ static vector<Recipes> searchByIngredient() {
     return results;
 }
 
+/**
 /**
  * Function to filter the recipes by series
  * Displays recipes that are in the specified series
@@ -644,11 +649,9 @@ static vector<Recipes> searchBySeries() {
     return results;
 }
 
-
-
 /***************************************************************************************************************************************
  *          Options and main                                                                                                           *
-****************************************************************************************************************************************/
+ ****************************************************************************************************************************************/
 
 /**
  * Function to display the options for the user
@@ -660,7 +663,7 @@ static void options() {
     printf("2. Search for a recipe\n");
     printf("3. Search recipes by series\n");
     printf("4. Search by ingredient\n");
-    printf("5. Set Settings\n");
+    printf("5. Change Settings\n");
     printf("6. Random recipe\n");
     printf("7. Quit\n");
 
@@ -697,7 +700,6 @@ static void options() {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-
 }
 
 /** Main function to run the program
@@ -710,6 +712,7 @@ int main() {
     while (true) {
         options();
     }
+
 
     return 0;
 }

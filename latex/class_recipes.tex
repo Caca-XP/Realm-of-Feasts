@@ -1,0 +1,239 @@
+\doxysection{Recipes Class Reference}
+\hypertarget{class_recipes}{}\label{class_recipes}\index{Recipes@{Recipes}}
+
+
+Represents a recipe in a recipe with a name, series, description, ingredients, instructions, time, and difficulty level.  
+
+
+
+
+{\ttfamily \#include $<$Recipes.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_recipes_a28deb87056a113032a00e492aed65cc2}{Recipes}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxylink{class_recipes}{Recipes} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_recipes_aca0cb392261557135ae836c57899c9da}{Recipes}} (string nm, string ser, string desc, vector$<$ \mbox{\hyperlink{class_ingredients}{Ingredients}} $>$, string ins, int t, enum Level lv)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor for \doxylink{class_recipes}{Recipes} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_recipes_ae3e392e1249c8c9c9d4c940b50fd1a5f}{\texorpdfstring{$\sim$}{\string~}\+Recipes}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_recipes}{Recipes} class. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_recipes_a18b2a51540bbabc34552593296f4c315}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the recipe. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_recipes_ad1a76bbcd1ba253591d98ca1aa27e504}{get\+Series}} ()
+\begin{DoxyCompactList}\small\item\em Gets the series of the recipe. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_recipes_a65e7f4125f3e5e2dfd2fd0857708df69}{get\+Description}} ()
+\begin{DoxyCompactList}\small\item\em Gets the description of the recipe. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_ingredients}{Ingredients}} $>$ \mbox{\hyperlink{class_recipes_a0cd0cb03b2d2948df1b2a3f661a130ff}{get\+Ingredients}} ()
+\begin{DoxyCompactList}\small\item\em Gets the ingredients of the recipe. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{class_recipes_a157ebc94083092c076a3ecb0f87afcf5}{get\+Ingredients\+Names}} ()
+\begin{DoxyCompactList}\small\item\em Gets the names of the ingredients of the recipe. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_recipes_a7bf11501aa1b6044f497ce61b8d975f6}{get\+Instructions}} ()
+\begin{DoxyCompactList}\small\item\em Gets the instructions of the recipe. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_recipes_a795d884f9c45b47c7a50846dfeaf206e}{get\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Gets the time of the recipe. \end{DoxyCompactList}\item 
+enum Level \mbox{\hyperlink{class_recipes_a70500abd244a4ae029247066e8340624}{get\+Difficulty}} ()
+\begin{DoxyCompactList}\small\item\em Gets the difficulty level of the recipe. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_recipes_a556aa1c4a112ade53de061d7a6b4130b}{to\+String}} ()
+\begin{DoxyCompactList}\small\item\em The string representation of the recipe. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_recipes_adef9ed059f8c8db4bdc6d0e6a0572d29}{to\+String\+Short}} ()
+\begin{DoxyCompactList}\small\item\em The short string representation of the recipe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a recipe in a recipe with a name, series, description, ingredients, instructions, time, and difficulty level. 
+
+\begin{DoxyAuthor}{Author}
+Nadia 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_recipes_a28deb87056a113032a00e492aed65cc2}\index{Recipes@{Recipes}!Recipes@{Recipes}}
+\index{Recipes@{Recipes}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{Recipes()}{Recipes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_recipes_a28deb87056a113032a00e492aed65cc2} 
+Recipes\+::\+Recipes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor for \doxylink{class_recipes}{Recipes} class. 
+
+Initializes a recipe with the default values
+
+Implementation of \doxylink{class_recipes}{Recipes} functions \Hypertarget{class_recipes_aca0cb392261557135ae836c57899c9da}\index{Recipes@{Recipes}!Recipes@{Recipes}}
+\index{Recipes@{Recipes}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{Recipes()}{Recipes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_recipes_aca0cb392261557135ae836c57899c9da} 
+Recipes\+::\+Recipes (\begin{DoxyParamCaption}\item[{string}]{nm}{, }\item[{string}]{ser}{, }\item[{string}]{desc}{, }\item[{vector$<$ \mbox{\hyperlink{class_ingredients}{Ingredients}} $>$}]{ing}{, }\item[{string}]{ins}{, }\item[{int}]{t}{, }\item[{enum Level}]{lv}{}\end{DoxyParamCaption})}
+
+
+
+Parameterized constructor for \doxylink{class_recipes}{Recipes} class. 
+
+Initializes a recipe with the given values 
+\begin{DoxyParams}{Parameters}
+{\em nm} & The name of the recipe \\
+\hline
+{\em ser} & The series of the recipe \\
+\hline
+{\em desc} & The description of the recipe \\
+\hline
+{\em ing} & List of ingredients for the recipe \\
+\hline
+{\em ins} & The instructions of the recipe \\
+\hline
+{\em t} & The time of the recipe \\
+\hline
+{\em lv} & The difficulty level of the recipe \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_recipes_ae3e392e1249c8c9c9d4c940b50fd1a5f}\index{Recipes@{Recipes}!````~Recipes@{\texorpdfstring{$\sim$}{\string~}Recipes}}
+\index{````~Recipes@{\texorpdfstring{$\sim$}{\string~}Recipes}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Recipes()}{\string~Recipes()}}
+{\footnotesize\ttfamily \label{class_recipes_ae3e392e1249c8c9c9d4c940b50fd1a5f} 
+Recipes\+::\texorpdfstring{$\sim$}{\string~}\+Recipes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor for \doxylink{class_recipes}{Recipes} class. 
+
+Destroys the recipe object 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_recipes_a65e7f4125f3e5e2dfd2fd0857708df69}\index{Recipes@{Recipes}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily \label{class_recipes_a65e7f4125f3e5e2dfd2fd0857708df69} 
+string Recipes\+::get\+Description (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the description of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The description of the recipe 
+\end{DoxyReturn}
+\Hypertarget{class_recipes_a70500abd244a4ae029247066e8340624}\index{Recipes@{Recipes}!getDifficulty@{getDifficulty}}
+\index{getDifficulty@{getDifficulty}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{getDifficulty()}{getDifficulty()}}
+{\footnotesize\ttfamily \label{class_recipes_a70500abd244a4ae029247066e8340624} 
+enum Level Recipes\+::get\+Difficulty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the difficulty level of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The difficulty level of the recipe 
+\end{DoxyReturn}
+\Hypertarget{class_recipes_a0cd0cb03b2d2948df1b2a3f661a130ff}\index{Recipes@{Recipes}!getIngredients@{getIngredients}}
+\index{getIngredients@{getIngredients}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{getIngredients()}{getIngredients()}}
+{\footnotesize\ttfamily \label{class_recipes_a0cd0cb03b2d2948df1b2a3f661a130ff} 
+vector$<$ \mbox{\hyperlink{class_ingredients}{Ingredients}} $>$ Recipes\+::get\+Ingredients (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the ingredients of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The ingredients of the recipe 
+\end{DoxyReturn}
+\Hypertarget{class_recipes_a157ebc94083092c076a3ecb0f87afcf5}\index{Recipes@{Recipes}!getIngredientsNames@{getIngredientsNames}}
+\index{getIngredientsNames@{getIngredientsNames}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{getIngredientsNames()}{getIngredientsNames()}}
+{\footnotesize\ttfamily \label{class_recipes_a157ebc94083092c076a3ecb0f87afcf5} 
+vector$<$ string $>$ Recipes\+::get\+Ingredients\+Names (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the names of the ingredients of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The names of the ingredients of the recipe 
+\end{DoxyReturn}
+\Hypertarget{class_recipes_a7bf11501aa1b6044f497ce61b8d975f6}\index{Recipes@{Recipes}!getInstructions@{getInstructions}}
+\index{getInstructions@{getInstructions}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{getInstructions()}{getInstructions()}}
+{\footnotesize\ttfamily \label{class_recipes_a7bf11501aa1b6044f497ce61b8d975f6} 
+string Recipes\+::get\+Instructions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the instructions of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The instructions of the recipe 
+\end{DoxyReturn}
+\Hypertarget{class_recipes_a18b2a51540bbabc34552593296f4c315}\index{Recipes@{Recipes}!getName@{getName}}
+\index{getName@{getName}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{class_recipes_a18b2a51540bbabc34552593296f4c315} 
+string Recipes\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the name of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The name of the recipe 
+\end{DoxyReturn}
+\Hypertarget{class_recipes_ad1a76bbcd1ba253591d98ca1aa27e504}\index{Recipes@{Recipes}!getSeries@{getSeries}}
+\index{getSeries@{getSeries}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{getSeries()}{getSeries()}}
+{\footnotesize\ttfamily \label{class_recipes_ad1a76bbcd1ba253591d98ca1aa27e504} 
+string Recipes\+::get\+Series (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the series of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The series of the recipe 
+\end{DoxyReturn}
+\Hypertarget{class_recipes_a795d884f9c45b47c7a50846dfeaf206e}\index{Recipes@{Recipes}!getTime@{getTime}}
+\index{getTime@{getTime}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{getTime()}{getTime()}}
+{\footnotesize\ttfamily \label{class_recipes_a795d884f9c45b47c7a50846dfeaf206e} 
+int Recipes\+::get\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the time of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The time of the recipe 
+\end{DoxyReturn}
+\Hypertarget{class_recipes_a556aa1c4a112ade53de061d7a6b4130b}\index{Recipes@{Recipes}!toString@{toString}}
+\index{toString@{toString}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily \label{class_recipes_a556aa1c4a112ade53de061d7a6b4130b} 
+string Recipes\+::to\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+The string representation of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The string representation of the recipe 
+\end{DoxyReturn}
+\Hypertarget{class_recipes_adef9ed059f8c8db4bdc6d0e6a0572d29}\index{Recipes@{Recipes}!toStringShort@{toStringShort}}
+\index{toStringShort@{toStringShort}!Recipes@{Recipes}}
+\doxysubsubsection{\texorpdfstring{toStringShort()}{toStringShort()}}
+{\footnotesize\ttfamily \label{class_recipes_adef9ed059f8c8db4bdc6d0e6a0572d29} 
+string Recipes\+::to\+String\+Short (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+The short string representation of the recipe. 
+
+The short string representation of the recipe without the instructions \begin{DoxyReturn}{Returns}
+The short string representation of the recipe 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Recipes.\+h\item 
+src/Recipes.\+cpp\end{DoxyCompactItemize}

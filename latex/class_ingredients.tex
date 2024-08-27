@@ -1,0 +1,141 @@
+\doxysection{Ingredients Class Reference}
+\hypertarget{class_ingredients}{}\label{class_ingredients}\index{Ingredients@{Ingredients}}
+
+
+Represents an ingredient in a recipe with a name, unit, and quantity.  
+
+
+
+
+{\ttfamily \#include $<$Ingredients.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ingredients_a9b089f54a3616a238b3fbd49b582fe8f}{Ingredients}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ingredients_a739aa5ce89c230598f4e704bae38adfc}{Ingredients}} (double q, string un, string nm)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ingredients_a76dc6794479ffb600d38fd9045218bf1}{\texorpdfstring{$\sim$}{\string~}\+Ingredients}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_ingredients_a595dba154ff5e4a97c45f46812ce4bd6}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the ingredient. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_ingredients_afa51300bc90c4250808aa02fc3437781}{get\+Unit}} ()
+\begin{DoxyCompactList}\small\item\em Gets the unit of the ingredient. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_ingredients_afa0fe45221a458dae13174a59406a4ed}{get\+Quantity}} ()
+\begin{DoxyCompactList}\small\item\em Gets the quantity of the ingredient. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_ingredients_a7aa784335b945fea7b9c4830bdb8c07a}{to\+String}} ()
+\begin{DoxyCompactList}\small\item\em The string representation of the ingredient. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an ingredient in a recipe with a name, unit, and quantity. 
+
+\begin{DoxyAuthor}{Author}
+Nadia 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ingredients_a9b089f54a3616a238b3fbd49b582fe8f}\index{Ingredients@{Ingredients}!Ingredients@{Ingredients}}
+\index{Ingredients@{Ingredients}!Ingredients@{Ingredients}}
+\doxysubsubsection{\texorpdfstring{Ingredients()}{Ingredients()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_ingredients_a9b089f54a3616a238b3fbd49b582fe8f} 
+Ingredients\+::\+Ingredients (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+Initializes the name, unit, and quantity of the ingredient with the default values
+
+Implementation of \doxylink{class_ingredients}{Ingredients} functions \Hypertarget{class_ingredients_a739aa5ce89c230598f4e704bae38adfc}\index{Ingredients@{Ingredients}!Ingredients@{Ingredients}}
+\index{Ingredients@{Ingredients}!Ingredients@{Ingredients}}
+\doxysubsubsection{\texorpdfstring{Ingredients()}{Ingredients()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_ingredients_a739aa5ce89c230598f4e704bae38adfc} 
+Ingredients\+::\+Ingredients (\begin{DoxyParamCaption}\item[{double}]{q}{, }\item[{string}]{un}{, }\item[{string}]{nm}{}\end{DoxyParamCaption})}
+
+
+
+Parameterized constructor. 
+
+Initializes the name, unit, and quantity of the ingredient with the given values 
+\begin{DoxyParams}{Parameters}
+{\em q} & The quantity of the ingredient \\
+\hline
+{\em un} & The unit of the ingredient \\
+\hline
+{\em nm} & The name of the ingredient \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ingredients_a76dc6794479ffb600d38fd9045218bf1}\index{Ingredients@{Ingredients}!````~Ingredients@{\texorpdfstring{$\sim$}{\string~}Ingredients}}
+\index{````~Ingredients@{\texorpdfstring{$\sim$}{\string~}Ingredients}!Ingredients@{Ingredients}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Ingredients()}{\string~Ingredients()}}
+{\footnotesize\ttfamily \label{class_ingredients_a76dc6794479ffb600d38fd9045218bf1} 
+Ingredients\+::\texorpdfstring{$\sim$}{\string~}\+Ingredients (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Destroys the ingredient object 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ingredients_a595dba154ff5e4a97c45f46812ce4bd6}\index{Ingredients@{Ingredients}!getName@{getName}}
+\index{getName@{getName}!Ingredients@{Ingredients}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{class_ingredients_a595dba154ff5e4a97c45f46812ce4bd6} 
+string Ingredients\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the name of the ingredient. 
+
+\begin{DoxyReturn}{Returns}
+The name of the ingredient 
+\end{DoxyReturn}
+\Hypertarget{class_ingredients_afa0fe45221a458dae13174a59406a4ed}\index{Ingredients@{Ingredients}!getQuantity@{getQuantity}}
+\index{getQuantity@{getQuantity}!Ingredients@{Ingredients}}
+\doxysubsubsection{\texorpdfstring{getQuantity()}{getQuantity()}}
+{\footnotesize\ttfamily \label{class_ingredients_afa0fe45221a458dae13174a59406a4ed} 
+double Ingredients\+::get\+Quantity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the quantity of the ingredient. 
+
+\begin{DoxyReturn}{Returns}
+The quantity of the ingredient 
+\end{DoxyReturn}
+\Hypertarget{class_ingredients_afa51300bc90c4250808aa02fc3437781}\index{Ingredients@{Ingredients}!getUnit@{getUnit}}
+\index{getUnit@{getUnit}!Ingredients@{Ingredients}}
+\doxysubsubsection{\texorpdfstring{getUnit()}{getUnit()}}
+{\footnotesize\ttfamily \label{class_ingredients_afa51300bc90c4250808aa02fc3437781} 
+string Ingredients\+::get\+Unit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the unit of the ingredient. 
+
+\begin{DoxyReturn}{Returns}
+The unit of the ingredient 
+\end{DoxyReturn}
+\Hypertarget{class_ingredients_a7aa784335b945fea7b9c4830bdb8c07a}\index{Ingredients@{Ingredients}!toString@{toString}}
+\index{toString@{toString}!Ingredients@{Ingredients}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily \label{class_ingredients_a7aa784335b945fea7b9c4830bdb8c07a} 
+string Ingredients\+::to\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+The string representation of the ingredient. 
+
+\begin{DoxyReturn}{Returns}
+The string representation of the ingredient 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Ingredients.\+h\item 
+src/Ingredients.\+cpp\end{DoxyCompactItemize}
