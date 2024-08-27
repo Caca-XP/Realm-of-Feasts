@@ -1,3 +1,8 @@
+/*! @file
+*@brief creates the home page of the doxygen documentation
+*@authors Bernice
+*/
+
 /*! \mainpage Realm of Feasts
 *
 *

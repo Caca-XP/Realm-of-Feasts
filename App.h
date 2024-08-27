@@ -1,5 +1,5 @@
 /*! @file
-*@brief App.h contains the declarations of the functions used in the main program
+*@brief contains the declarations of the functions used in the main program
 *@authors Natasha, Nadia and Bernice
 */
 

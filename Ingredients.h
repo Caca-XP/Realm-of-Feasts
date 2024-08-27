@@ -1,3 +1,7 @@
+/*! @file
+*@brief supports the implementation of the Ingredients class
+*@authors Natasha, Nadia and Bernice
+*/
 #pragma once
 #ifndef Ingredients_H
 #define Ingredients_H

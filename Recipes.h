@@ -1,3 +1,7 @@
+/*! @file
+*@brief  file supports the implementation of the Recipes class
+*@authors Natasha, Nadia and Bernice
+*/
 #pragma once
 #ifndef RECIPES_H
 #define RECIPES_H
