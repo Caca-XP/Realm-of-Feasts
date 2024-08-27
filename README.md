@@ -21,6 +21,11 @@ Bernice Ishumi
 # Usage 
 - A C/C++ compiler is required to run this Application.
 ## Running the App
+1. Compile and run App.cpp
+2. Read the instructions displayed 
+3. Read the options displayed
+4. Choose one of the options to begin interacting with the application.
+5. Iteract with app to enjoy the quest of finding a fantastical recipe 
 
 ## Testing
  The application was tested using Unit Tests.The tests can be found in the RealmOfFeastsTest folder in the tests directory.
@@ -91,5 +96,4 @@ Ensure that these packages and libraries are available in you C/C++ environment.
 
 
 
-Natasha (add description to the rep in settings)
 
