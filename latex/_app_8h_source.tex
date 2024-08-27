@@ -1,82 +1,84 @@
 \doxysection{App.\+h}
-\hypertarget{_app_8h_source}{}\label{_app_8h_source}
+\hypertarget{_app_8h_source}{}\label{_app_8h_source}\mbox{\hyperlink{_app_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ APP\_H}}
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ APP\_H}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{comment}{//necessary\ libraries}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#\ include\ <iostream>}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#\ include\ <string>}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#\ include\ <fstream>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#\ include\ <array>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#\ include\ <sstream>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#\ include\ <iterator>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#\ include\ <algorithm>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#\ include\ <cstdlib>}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#\ include\ <vector>}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <chrono>}\ \textcolor{comment}{//\ Required\ for\ std::chrono::seconds}}
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <thread>}\ \textcolor{comment}{//\ Required\ for\ std::this\_thread::sleep\_for}}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#\ include\ "{}Recipes.h"{}}\ \textcolor{comment}{//\ Include\ the\ header\ file\ that\ contains\ the\ definition\ of\ the\ 'Recipes'\ class}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#\ include\ "{}Ingredients.h"{}}\ \textcolor{comment}{//\ Include\ the\ header\ file\ that\ contains\ the\ definition\ of\ the\ 'Ingredients'\ class}}
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#\ include\ "{}Support.h"{}}\ \textcolor{comment}{//\ Include\ the\ header\ file\ that\ contains\ the\ definition\ of\ the\ 'Ingredients'\ class}}
-\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ APP\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ APP\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//necessary\ libraries}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#\ include\ <iostream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#\ include\ <string>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#\ include\ <fstream>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ include\ <array>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#\ include\ <sstream>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#\ include\ <iterator>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#\ include\ <algorithm>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#\ include\ <cstdlib>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#\ include\ <vector>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <chrono>}\ \textcolor{comment}{//\ Required\ for\ std::chrono::seconds}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <thread>}\ \textcolor{comment}{//\ Required\ for\ std::this\_thread::sleep\_for}}
 \DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \textcolor{keyword}{using\ namespace\ }std;}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{comment}{/*\ Vector\ of\ the\ recipes,\ declared\ based\ on\ number\ of\ recipes\ in\ the\ database}}
-\DoxyCodeLine{00027\ \textcolor{comment}{*/}}
-\DoxyCodeLine{00028\ vector<Recipes>\ allRecipes;}
-\DoxyCodeLine{00029\ \textcolor{keywordtype}{int}\ timeFilter\ =\ 0;\ \textcolor{comment}{//\ 0\ for\ none,\ 1\ for\ less\ than\ 30\ minutes,\ 2\ for\ 30\ to\ 60\ minutes,\ 3\ for\ more\ than\ 60\ minutes}}
-\DoxyCodeLine{00030\ \textcolor{keywordtype}{int}\ difficultyFilter\ =\ 0;\ \textcolor{comment}{//\ 0\ for\ none,\ 1\ for\ easy,\ 2\ for\ medium,\ 3\ for\ hard}}
-\DoxyCodeLine{00031\ \textcolor{keywordtype}{int}\ sortFilter\ =\ 0;\ \textcolor{comment}{//\ 0\ for\ none,\ 1\ for\ difficulty,\ 2\ for\ reverse\ difficulty,\ 3\ for\ time,\ 4\ for\ reverse\ time}}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ vector<string>\ allSeries;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ include\ "{}Recipes.h"{}}\ \textcolor{comment}{//\ Include\ the\ header\ file\ that\ contains\ the\ definition\ of\ the\ 'Recipes'\ class}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ include\ "{}Ingredients.h"{}}\ \textcolor{comment}{//\ Include\ the\ header\ file\ that\ contains\ the\ definition\ of\ the\ 'Ingredients'\ class}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ include\ "{}\mbox{\hyperlink{_support_8h}{Support.h}}"{}}\ \textcolor{comment}{//\ Include\ the\ header\ file\ that\ contains\ the\ definition\ of\ the\ 'Ingredients'\ class}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <chrono>}\ \textcolor{comment}{//\ Required\ for\ std::chrono::seconds}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <thread>}\ \textcolor{comment}{//\ Required\ for\ std::this\_thread::sleep\_for}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00033\ }
 \DoxyCodeLine{00034\ }
-\DoxyCodeLine{00041\ vector<Ingredients>\ process\_ingred(\textcolor{keywordtype}{string}\ ingred);}
-\DoxyCodeLine{00048\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{string}\ process\_instructions(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ instruct);}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00056\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ process\_time(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ time\_str);}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \textcolor{comment}{//Enum\ of\ values\ of\ the\ difficulty\ levels}}
-\DoxyCodeLine{00059\ Level\ process\_difficulty(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ difficulty\_str);}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00067\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setup(\textcolor{keywordtype}{string}\ fileName);}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00073\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ display(vector<Recipes>\ recipes,\ \textcolor{keywordtype}{bool}\ isShort);}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00081\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ sortByDifficulty(\mbox{\hyperlink{class_recipes}{Recipes}}\ a,\ \mbox{\hyperlink{class_recipes}{Recipes}}\ b);}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00089\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ sortByTime(\mbox{\hyperlink{class_recipes}{Recipes}}\ a,\ \mbox{\hyperlink{class_recipes}{Recipes}}\ b);}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00097\ \textcolor{keyword}{static}\ vector<Recipes>\ applySetting(vector<Recipes>\ currentRecipes);}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00102\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ printSettings();}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00109\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setSettings();}
-\DoxyCodeLine{00110\ }
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00115\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ random();}
-\DoxyCodeLine{00116\ }
-\DoxyCodeLine{00122\ \textcolor{keyword}{static}\ vector<Recipes>\ searchByName();}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00130\ \textcolor{keyword}{static}\ vector<Recipes>\ searchByIngredient();}
-\DoxyCodeLine{00131\ }
-\DoxyCodeLine{00137\ \textcolor{keyword}{static}\ vector<Recipes>\ searchBySeries();}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00141\ \textcolor{comment}{/***************************************************************************************************************************************}}
-\DoxyCodeLine{00142\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ Options\ and\ main\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
-\DoxyCodeLine{00143\ \textcolor{comment}{****************************************************************************************************************************************/}}
-\DoxyCodeLine{00144\ }
-\DoxyCodeLine{00149\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ options();}
+\DoxyCodeLine{00035\ vector<Recipes>\ allRecipes;}
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{int}\ timeFilter\ =\ 0;\ \textcolor{comment}{//\ 0\ for\ none,\ 1\ for\ less\ than\ 30\ minutes,\ 2\ for\ 30\ to\ 60\ minutes,\ 3\ for\ more\ than\ 60\ minutes}}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{int}\ difficultyFilter\ =\ 0;\ \textcolor{comment}{//\ 0\ for\ none,\ 1\ for\ easy,\ 2\ for\ medium,\ 3\ for\ hard}}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{int}\ sortFilter\ =\ 0;\ \textcolor{comment}{//\ 0\ for\ none,\ 1\ for\ difficulty,\ 2\ for\ reverse\ difficulty,\ 3\ for\ time,\ 4\ for\ reverse\ time}}
+\DoxyCodeLine{00039\ vector<string>\ allSeries;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00047\ vector<Ingredients>\ \mbox{\hyperlink{_app_8h_a587b282046f73ead8cf80fa60be92a92}{process\_ingred}}(\textcolor{keywordtype}{string}\ ingred);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{string}\ process\_instructions(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ instruct);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ process\_time(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ time\_str);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ Level\ \mbox{\hyperlink{_app_8h_a6f8cfb8f721ecffd9abcde412b9b41ca}{process\_difficulty}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ difficulty\_str);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setup(\textcolor{keywordtype}{string}\ fileName);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ display(vector<Recipes>\ recipes,\ \textcolor{keywordtype}{bool}\ isShort);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ sortByDifficulty(\mbox{\hyperlink{class_recipes}{Recipes}}\ a,\ \mbox{\hyperlink{class_recipes}{Recipes}}\ b);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ sortByTime(\mbox{\hyperlink{class_recipes}{Recipes}}\ a,\ \mbox{\hyperlink{class_recipes}{Recipes}}\ b);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{static}\ vector<Recipes>\ applySetting(vector<Recipes>\ currentRecipes);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ printSettings();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setSettings();}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ random();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{static}\ vector<Recipes>\ searchByName();}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{static}\ vector<Recipes>\ searchByIngredient();}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{static}\ vector<Recipes>\ searchBySeries();}
+\DoxyCodeLine{00149\ }
 \DoxyCodeLine{00150\ }
-\DoxyCodeLine{00155\ \textcolor{keywordtype}{int}\ main();}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ APP\_H}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{comment}{/***************************************************************************************************************************************}}
+\DoxyCodeLine{00153\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ Options\ and\ main\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00154\ \textcolor{comment}{****************************************************************************************************************************************/}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00160\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ options();}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00167\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_app_8h_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}();}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ APP\_H}}
 
 \end{DoxyCode}

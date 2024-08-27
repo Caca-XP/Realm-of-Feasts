@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tostring_0',['toString',['../class_ingredients.html#a7aa784335b945fea7b9c4830bdb8c07a',1,'Ingredients::toString()'],['../class_recipes.html#a556aa1c4a112ade53de061d7a6b4130b',1,'Recipes::toString()']]],
-  ['tostringshort_1',['toStringShort',['../class_recipes.html#adef9ed059f8c8db4bdc6d0e6a0572d29',1,'Recipes']]]
+  ['process_5fdifficulty_0',['process_difficulty',['../_app_8h.html#a6f8cfb8f721ecffd9abcde412b9b41ca',1,'App.cpp']]],
+  ['process_5fingred_1',['process_ingred',['../_app_8h.html#a587b282046f73ead8cf80fa60be92a92',1,'App.cpp']]]
 ];

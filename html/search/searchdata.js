@@ -1,24 +1,27 @@
 var indexSectionsWithContent =
 {
-  0: "abdfghioprtuv~",
+  0: "abdfghimopqrstuv~",
   1: "ir",
-  2: "girt~",
-  3: "for"
+  2: "as",
+  3: "gimpqrst~",
+  4: "for"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "functions",
-  3: "pages"
+  2: "files",
+  3: "functions",
+  4: "pages"
 };
 
 var indexSectionLabels =
 {
   0: "All",
   1: "Classes",
-  2: "Functions",
-  3: "Pages"
+  2: "Files",
+  3: "Functions",
+  4: "Pages"
 };
 

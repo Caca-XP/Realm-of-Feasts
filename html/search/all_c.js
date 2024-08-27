@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['version_20history_0',['Version History',['../index.html#verhistory',1,'Version History'],['../md__r_e_a_d_m_e.html#autotoc_md6',1,'Version History']]]
+  ['split_5fstring_0',['split_string',['../_support_8h.html#a95a73531f3f5e52a492eefb23921e7bc',1,'Support.cpp']]],
+  ['support_2eh_1',['Support.h',['../_support_8h.html',1,'']]]
 ];

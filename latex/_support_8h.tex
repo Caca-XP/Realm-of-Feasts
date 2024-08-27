@@ -1,0 +1,112 @@
+\doxysection{Support.\+h File Reference}
+\hypertarget{_support_8h}{}\label{_support_8h}\index{Support.h@{Support.h}}
+
+
+Header file for Support.\+cpp.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ string $>$ \mbox{\hyperlink{_support_8h_a95a73531f3f5e52a492eefb23921e7bc}{split\+\_\+string}} (string str, string delimiter, bool lowercase)
+\begin{DoxyCompactList}\small\item\em Function to split a string into a vector of strings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_support_8h_a2463a3acef2df4c951ce942a3229e44e}{quit}} ()
+\begin{DoxyCompactList}\small\item\em Function to quit the program. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_support_8h_a1c1e3c0ee46becf76e2dce73e65e18d1}{replace\+All}} (string str, string from, string to)
+\begin{DoxyCompactList}\small\item\em Function to replace comma space to comma. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{_support_8h_a7fabf8d9d5025e6e31de6a5cfca48651}{read\+Line}} (bool ignore)
+\begin{DoxyCompactList}\small\item\em Function to read the whole line of user input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for Support.\+cpp. 
+
+\begin{DoxyAuthor}{Author}
+Natasha and Nadia 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_support_8h_a2463a3acef2df4c951ce942a3229e44e}\index{Support.h@{Support.h}!quit@{quit}}
+\index{quit@{quit}!Support.h@{Support.h}}
+\doxysubsubsection{\texorpdfstring{quit()}{quit()}}
+{\footnotesize\ttfamily \label{_support_8h_a2463a3acef2df4c951ce942a3229e44e} 
+void quit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Function to quit the program. 
+
+Terminates the program\textquotesingle{}s execution \Hypertarget{_support_8h_a7fabf8d9d5025e6e31de6a5cfca48651}\index{Support.h@{Support.h}!readLine@{readLine}}
+\index{readLine@{readLine}!Support.h@{Support.h}}
+\doxysubsubsection{\texorpdfstring{readLine()}{readLine()}}
+{\footnotesize\ttfamily \label{_support_8h_a7fabf8d9d5025e6e31de6a5cfca48651} 
+string read\+Line (\begin{DoxyParamCaption}\item[{bool}]{ignore}{}\end{DoxyParamCaption})}
+
+
+
+Function to read the whole line of user input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ignore} & If true, ignores the newline character left in the input stream from previous input. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the user input (the whole line of input as string) 
+\end{DoxyReturn}
+\Hypertarget{_support_8h_a1c1e3c0ee46becf76e2dce73e65e18d1}\index{Support.h@{Support.h}!replaceAll@{replaceAll}}
+\index{replaceAll@{replaceAll}!Support.h@{Support.h}}
+\doxysubsubsection{\texorpdfstring{replaceAll()}{replaceAll()}}
+{\footnotesize\ttfamily \label{_support_8h_a1c1e3c0ee46becf76e2dce73e65e18d1} 
+string replace\+All (\begin{DoxyParamCaption}\item[{string}]{str}{, }\item[{string}]{from}{, }\item[{string}]{to}{}\end{DoxyParamCaption})}
+
+
+
+Function to replace comma space to comma. 
+
+Remove empty spaces 
+\begin{DoxyParams}{Parameters}
+{\em str} & the string to replace \\
+\hline
+{\em from} & the string to replace \\
+\hline
+{\em to} & the substring to replace with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the modified string with replacement made 
+\end{DoxyReturn}
+\Hypertarget{_support_8h_a95a73531f3f5e52a492eefb23921e7bc}\index{Support.h@{Support.h}!split\_string@{split\_string}}
+\index{split\_string@{split\_string}!Support.h@{Support.h}}
+\doxysubsubsection{\texorpdfstring{split\_string()}{split\_string()}}
+{\footnotesize\ttfamily \label{_support_8h_a95a73531f3f5e52a492eefb23921e7bc} 
+vector$<$ string $>$ split\+\_\+string (\begin{DoxyParamCaption}\item[{string}]{str}{, }\item[{string}]{delimiter}{, }\item[{bool}]{lowercase}{}\end{DoxyParamCaption})}
+
+
+
+Function to split a string into a vector of strings. 
+
+Splits the string by the delimiter
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & the string to split \\
+\hline
+{\em delimiter} & the delimiter to split the string by \\
+\hline
+{\em lowercase} & whether to convert the string to lowercase \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of strings 
+\end{DoxyReturn}
