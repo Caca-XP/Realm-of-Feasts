@@ -34,8 +34,8 @@ jobs:
     - name: Build Main Project
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} RealmOfFeasts.vcxproj
 
-    - name: Doxygen as Action
-      uses: dreygur/doxygen@1.0.1
+    - name: Doxygen Github Pages Deploy Action
+      uses: DenverCoder1/doxygen-github-pages-action@v2.0.0
   
 
   test:
