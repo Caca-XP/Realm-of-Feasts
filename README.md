@@ -23,16 +23,17 @@ Bernice Ishumi
 1. Compile and run App.cpp
 2. 
 ## Testing
- The application was tested using Unit Testing. 
- 
- The tests can be found in the RealmOfFeastsTest folder in the tests directory.
+ The application was tested using Unit Tests.The tests can be found in the RealmOfFeastsTest folder in the tests directory.
 
 # Version History 
 
 ## Alpha
 Basic functionality of the App.
+
 Released on:
+
 Tag:
+
 Release:
 
 ## Beta 
@@ -59,23 +60,36 @@ Currently Unreleased
 
 ## Dependencies
 The software relies on the following C/C++ packages:
+
 -- `<iostream>`
+
 -- `<string>`
+
 -- `<fstream>`
+
 -- `<array>`
+
 -- `<sstream>`
+
 -- `<iterator>`
+
 -- `<algorithm>`
+
 -- `<chrono>` 
+
 -- `<thread>`
+
 -- `<cstdlib>`
+
 -- `<vector>`
+
 -- `pch.h`
+
 -- `CppUnitTest.h`
 
 Ensure that these packages and libraries are available in you C/C++ environment.
 
 
 
-Natasha 
+Natasha (add description to the rep in settings)
 
