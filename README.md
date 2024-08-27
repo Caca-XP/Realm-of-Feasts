@@ -1,4 +1,4 @@
-# Realm-of-Feasts
+# Realm of Feasts
 
 ![GitHub Actions Badge](https://github.com/Caca-XP/Realm-of-Feasts/actions/workflows/msbuild.yml/badge.svg)
 [![Codecov](https://codecov.io/gh/Caca-XP/Realm-of-Feasts/graph/badge.svg?token=B2GNPQ8KT2)](https://codecov.io/gh/Caca-XP/Realm-of-Feasts)
@@ -6,7 +6,9 @@
 
 
 ## Description 
-Realm of Feasts is a fantasy recipe discovery app that helps you find recipes based on the ingredients you already have at home. Realm of Feast searches its database and suggests the recipes you can make. The unique aspect of the app is that all recipes are of foods not from “Earth”. The app database includes recipes from Harry Potter, The Hobbit, Spirited Away, and many other mythical fictional realms. Thus, the name "Realm of Feasts." We have brought together all the different foods from different realms into one place so that others who enjoy fiction can feast upon it.
+Realm of Feasts is a fantasy recipe discovery app that helps you find recipes based on the ingredients you already have at home. Realm of Feast searches its database and suggests the recipes you can make. The unique aspect of the app is that all recipes are of foods not from “Earth”. The app database includes recipes from Harry Potter, The Hobbit, Spirited Away, and many other mythical fictional realms. Thus, the name "Realm of Feasts." Fans of these realms can now prepare and enjoy the meals they've read about or seen on screen. upon it.
+
+The app allows users to filter recipes by difficulty, preparation time, and even sort them according to their preferences. Whether you're in the mood for a quick snack from "The Shire" or a challenging dish from "Hogwarts," Realm of Feasts has something for every fantasy food enthusiast.
 
 ## Authors
 Natasha Prasetyo 
@@ -16,16 +18,28 @@ Nadia Prasetyo
 Bernice Ishumi
 
 # Usage 
-
-## Test Cases 
+- A C/C++ compiler is required to run this Application.
+## Running the App
+1. Compile and run App.cpp
+2. 
+## Testing
+ The application was tested using Unit Testing. 
+ 
+ The tests can be found in the RealmOfFeastsTest folder in the tests directory.
 
 # Version History 
 
 ## Alpha
+Basic functionality of the App.
+Released on:
+Tag:
+Release:
 
-## Beta
+## Beta 
+Currently Unreleased
 
 ## Final Product 
+Currently Unreleased 
 
 # Acknowledgments
 
@@ -43,9 +57,24 @@ Bernice Ishumi
 - [Find and replace all occurrences of a substring in string in C++](https://www.geeksforgeeks.org/find-and-replace-all-occurrences-of-a-substring-in-string-in-cpp/)
 
 
-
 ## Dependencies
-## License
+The software relies on the following C/C++ packages:
+-- `<iostream>`
+-- `<string>`
+-- `<fstream>`
+-- `<array>`
+-- `<sstream>`
+-- `<iterator>`
+-- `<algorithm>`
+-- `<chrono>` 
+-- `<thread>`
+-- `<cstdlib>`
+-- `<vector>`
+-- `pch.h`
+-- `CppUnitTest.h`
+
+Ensure that these packages and libraries are available in you C/C++ environment.
+
 
 
 
