@@ -1,4 +1,4 @@
-# Realm-of-Feasts
+# Realm of Feasts
 
 ![GitHub Actions Badge](https://github.com/Caca-XP/Realm-of-Feasts/actions/workflows/msbuild.yml/badge.svg)
 [![Codecov](https://codecov.io/gh/Caca-XP/Realm-of-Feasts/graph/badge.svg?token=B2GNPQ8KT2)](https://codecov.io/gh/Caca-XP/Realm-of-Feasts)
