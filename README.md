@@ -3,7 +3,6 @@
 ![GitHub Actions Badge](https://github.com/Caca-XP/Realm-of-Feasts/actions/workflows/msbuild.yml/badge.svg)
 [![Codecov](https://codecov.io/gh/Caca-XP/Realm-of-Feasts/graph/badge.svg?token=B2GNPQ8KT2)](https://codecov.io/gh/Caca-XP/Realm-of-Feasts)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/cc26c221b65748a4854ee6630a3794f9)](https://app.codacy.com/gh/Caca-XP/Realm-of-Feasts/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
