@@ -1,6 +1,12 @@
+/*! @file
+*@brief App.h contains the declarations of the functions used in the main program
+*@authors Natasha, Nadia and Bernice
+*/
+
 #pragma once
 #ifndef APP_H
 #define APP_H
+
 
 //necessary libraries
 # include <iostream>
@@ -25,7 +31,7 @@
 
 using namespace std;
 
-/* Vector of the recipes, declared based on number of recipes in the database
+/*! Vector of the recipes, declared based on number of recipes in the database
 */
 vector<Recipes> allRecipes;
 int timeFilter = 0; // 0 for none, 1 for less than 30 minutes, 2 for 30 to 60 minutes, 3 for more than 60 minutes
