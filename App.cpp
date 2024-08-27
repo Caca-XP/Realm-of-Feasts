@@ -712,19 +712,19 @@ int main() {
     std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Delay for 500 milliseconds
 
     std::cout << "A recipe finder app to fix your fictional food craving." << std::endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(700)); 
-
-    std::cout << "Using the options below, go on a quest to find the perfect recipe for your feast." << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(900)); 
 
-    std::cout << "All recipes shall be from the wondrous fictional worlds of Harry Potter, Studio Ghibli, and many more!" << std::endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
+    std::cout << "Using the options below, go on a quest to find the perfect recipe for your feast." << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1100)); 
 
-    std::cout << "All you have to do is enter a number to interact with the App" << std::endl;
+    std::cout << "All recipes shall be from the wondrous fictional worlds of Harry Potter, Studio Ghibli, and many more!" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1200)); 
 
-    std::cout << "Good luck!" << std::endl << std::endl;
+    std::cout << "All you have to do is enter a number to interact with the App" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1400)); 
+
+    std::cout << "Good luck!" << std::endl << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1600)); 
     
     while (true) {
         options();
