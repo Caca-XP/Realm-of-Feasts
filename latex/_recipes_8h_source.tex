@@ -1,60 +1,72 @@
 \doxysection{Recipes.\+h}
-\hypertarget{_recipes_8h_source}{}\label{_recipes_8h_source}\index{src/Recipes.h@{src/Recipes.h}}
-
+\hypertarget{_recipes_8h_source}{}\label{_recipes_8h_source}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RECIPES\_H}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RECIPES\_H}}
-\DoxyCodeLine{00003\ }
-\DoxyCodeLine{00004\ \textcolor{comment}{//\ Include\ any\ necessary\ libraries\ or\ headers\ here}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Ingredients.h"{}}}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }std;}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_recipes}{Recipes}}\ \{}
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_recipes_a28deb87056a113032a00e492aed65cc2}{Recipes}}();}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ RECIPES\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ RECIPES\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Include\ any\ necessary\ libraries\ or\ headers\ here}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#\ include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#\ include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#\ include\ <fstream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Ingredients.h"{}}\textcolor{comment}{//\ Include\ the\ header\ file\ that\ contains\ the\ definition\ of\ the\ 'Ingredients'\ class}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#\ include\ <array>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#\ include\ <sstream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#\ include\ <iterator>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#\ include\ <algorithm>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ include\ <cstdlib>}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//Enum\ of\ values\ of\ the\ difficulty\ levels}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{enum}\ Level\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ None\ =\ 0,}
+\DoxyCodeLine{00021\ \ \ \ \ Easy\ =\ 1,}
+\DoxyCodeLine{00022\ \ \ \ \ Medium\ =\ 2,}
+\DoxyCodeLine{00023\ \ \ \ \ Hard\ =\ 3}
+\DoxyCodeLine{00024\ \};}
 \DoxyCodeLine{00025\ }
-\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_recipes_a28deb87056a113032a00e492aed65cc2}{Recipes}}(\textcolor{keywordtype}{string}\ nm,\ \textcolor{keywordtype}{string}\ ser,\ \textcolor{keywordtype}{string}\ desc,\ vector<Ingredients>,\ \textcolor{keywordtype}{string}\ ins,\ \textcolor{keywordtype}{int}\ t,\ \textcolor{keyword}{enum}\ Level\ lv);}
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_recipes}{Recipes}}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_recipes_a28deb87056a113032a00e492aed65cc2}{Recipes}}();}
 \DoxyCodeLine{00038\ }
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_recipes_ae3e392e1249c8c9c9d4c940b50fd1a5f}{\string~Recipes}}();}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_a18b2a51540bbabc34552593296f4c315}{getName}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_recipes_a28deb87056a113032a00e492aed65cc2}{Recipes}}(\textcolor{keywordtype}{string}\ nm,\ \textcolor{keywordtype}{string}\ ser,\ \textcolor{keywordtype}{string}\ desc,\ vector<Ingredients>,\ \textcolor{keywordtype}{string}\ ins,\ \textcolor{keywordtype}{int}\ t,\ \textcolor{keyword}{enum}\ Level\ lv);}
 \DoxyCodeLine{00051\ }
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_ad1a76bbcd1ba253591d98ca1aa27e504}{getSeries}}();}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_a65e7f4125f3e5e2dfd2fd0857708df69}{getDescription}}();}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00071\ \ \ \ \ vector<Ingredients>\ \mbox{\hyperlink{class_recipes_a0cd0cb03b2d2948df1b2a3f661a130ff}{getIngredients}}();}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00078\ \ \ \ \ vector<string>\ \mbox{\hyperlink{class_recipes_a157ebc94083092c076a3ecb0f87afcf5}{getIngredientsNames}}();}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_a7bf11501aa1b6044f497ce61b8d975f6}{getInstructions}}();}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_recipes_a795d884f9c45b47c7a50846dfeaf206e}{getTime}}();}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{enum}\ Level\ \mbox{\hyperlink{class_recipes_a70500abd244a4ae029247066e8340624}{getDifficulty}}();}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_a556aa1c4a112ade53de061d7a6b4130b}{toString}}();}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_adef9ed059f8c8db4bdc6d0e6a0572d29}{toStringShort}}();}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{/*Private\ data\ fields*/}}
-\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{string}\ name;}
-\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{string}\ series;}
-\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{string}\ description;}
-\DoxyCodeLine{00120\ \ \ \ \ vector<Ingredients>\ ingredients;}
-\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{string}\ ingredients\_str;}
-\DoxyCodeLine{00122\ \ \ \ \ vector<string>\ ingredient\_names;}
-\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{string}\ instructions;}
-\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{int}\ time;}
-\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{enum}\ Level\ difficulty;}
-\DoxyCodeLine{00126\ \};}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_recipes_ae3e392e1249c8c9c9d4c940b50fd1a5f}{\string~Recipes}}();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_a18b2a51540bbabc34552593296f4c315}{getName}}();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_ad1a76bbcd1ba253591d98ca1aa27e504}{getSeries}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_a65e7f4125f3e5e2dfd2fd0857708df69}{getDescription}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00084\ \ \ \ \ vector<Ingredients>\ \mbox{\hyperlink{class_recipes_a0cd0cb03b2d2948df1b2a3f661a130ff}{getIngredients}}();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \ \ vector<string>\ \mbox{\hyperlink{class_recipes_a157ebc94083092c076a3ecb0f87afcf5}{getIngredientsNames}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_a7bf11501aa1b6044f497ce61b8d975f6}{getInstructions}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_recipes_a795d884f9c45b47c7a50846dfeaf206e}{getTime}}();}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{enum}\ Level\ \mbox{\hyperlink{class_recipes_a70500abd244a4ae029247066e8340624}{getDifficulty}}();}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_a556aa1c4a112ade53de061d7a6b4130b}{toString}}();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_recipes_adef9ed059f8c8db4bdc6d0e6a0572d29}{toStringShort}}();}
 \DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RECIPES\_H}}
+\DoxyCodeLine{00128\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{/*Private\ data\ fields*/}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{string}\ name;}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{string}\ series;}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{string}\ description;}
+\DoxyCodeLine{00133\ \ \ \ \ vector<Ingredients>\ ingredients;}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{string}\ ingredients\_str;}
+\DoxyCodeLine{00135\ \ \ \ \ vector<string>\ ingredient\_names;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{string}\ instructions;}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{int}\ time;}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{enum}\ Level\ difficulty;}
+\DoxyCodeLine{00139\ \};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RECIPES\_H}}
 
 \end{DoxyCode}

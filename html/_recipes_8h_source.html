@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Realm of Feasts: src/Recipes.h Source File</title>
+<title>Realm of Feasts: Recipes.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -55,6 +55,8 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function(){ initResizable(false); });
@@ -81,85 +83,92 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
-</div>
-</div><!-- top -->
-<div id="doc-content">
 <div class="header">
   <div class="headertitle"><div class="title">Recipes.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef RECIPES_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define RECIPES_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// Include any necessary libraries or headers here</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;Ingredients.h&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span>std;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_recipes.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="class_recipes.html">Recipes</a> {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_function" href="class_recipes.html#a28deb87056a113032a00e492aed65cc2">Recipes</a>();</div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef RECIPES_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#define RECIPES_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// Include any necessary libraries or headers here</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor"># include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor"># include &lt;string&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor"># include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;Ingredients.h&quot;</span><span class="comment">// Include the header file that contains the definition of the &#39;Ingredients&#39; class</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor"># include &lt;array&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor"># include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor"># include &lt;iterator&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor"># include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor"># include &lt;cstdlib&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//Enum of values of the difficulty levels</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">enum</span> Level {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    None = 0,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    Easy = 1,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    Medium = 2,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    Hard = 3</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>};</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_function" href="class_recipes.html#a28deb87056a113032a00e492aed65cc2">Recipes</a>(<span class="keywordtype">string</span> nm, <span class="keywordtype">string</span> ser, <span class="keywordtype">string</span> desc, vector&lt;Ingredients&gt;, <span class="keywordtype">string</span> ins, <span class="keywordtype">int</span> t, <span class="keyword">enum</span> Level lv);</div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_recipes.html">   31</a></span><span class="keyword">class </span><a class="code hl_class" href="class_recipes.html">Recipes</a> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_function" href="class_recipes.html#a28deb87056a113032a00e492aed65cc2">Recipes</a>();</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_function" href="class_recipes.html#ae3e392e1249c8c9c9d4c940b50fd1a5f">~Recipes</a>();</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#a18b2a51540bbabc34552593296f4c315">getName</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_function" href="class_recipes.html#a28deb87056a113032a00e492aed65cc2">Recipes</a>(<span class="keywordtype">string</span> nm, <span class="keywordtype">string</span> ser, <span class="keywordtype">string</span> desc, vector&lt;Ingredients&gt;, <span class="keywordtype">string</span> ins, <span class="keywordtype">int</span> t, <span class="keyword">enum</span> Level lv);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#ad1a76bbcd1ba253591d98ca1aa27e504">getSeries</a>();</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#a65e7f4125f3e5e2dfd2fd0857708df69">getDescription</a>();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    vector&lt;Ingredients&gt; <a class="code hl_function" href="class_recipes.html#a0cd0cb03b2d2948df1b2a3f661a130ff">getIngredients</a>();</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    vector&lt;string&gt; <a class="code hl_function" href="class_recipes.html#a157ebc94083092c076a3ecb0f87afcf5">getIngredientsNames</a>();</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#a7bf11501aa1b6044f497ce61b8d975f6">getInstructions</a>();</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_recipes.html#a795d884f9c45b47c7a50846dfeaf206e">getTime</a>();</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">enum</span> Level <a class="code hl_function" href="class_recipes.html#a70500abd244a4ae029247066e8340624">getDifficulty</a>();</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#a556aa1c4a112ade53de061d7a6b4130b">toString</a>();</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#adef9ed059f8c8db4bdc6d0e6a0572d29">toStringShort</a>();</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">/*Private data fields*/</span></div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordtype">string</span> name;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordtype">string</span> series;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">string</span> description;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    vector&lt;Ingredients&gt; ingredients;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordtype">string</span> ingredients_str;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    vector&lt;string&gt; ingredient_names;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordtype">string</span> instructions;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">int</span> time;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keyword">enum</span> Level difficulty;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>};</div>
-</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_function" href="class_recipes.html#ae3e392e1249c8c9c9d4c940b50fd1a5f">~Recipes</a>();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#a18b2a51540bbabc34552593296f4c315">getName</a>();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#ad1a76bbcd1ba253591d98ca1aa27e504">getSeries</a>();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#a65e7f4125f3e5e2dfd2fd0857708df69">getDescription</a>();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    vector&lt;Ingredients&gt; <a class="code hl_function" href="class_recipes.html#a0cd0cb03b2d2948df1b2a3f661a130ff">getIngredients</a>();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    vector&lt;string&gt; <a class="code hl_function" href="class_recipes.html#a157ebc94083092c076a3ecb0f87afcf5">getIngredientsNames</a>();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#a7bf11501aa1b6044f497ce61b8d975f6">getInstructions</a>();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_recipes.html#a795d884f9c45b47c7a50846dfeaf206e">getTime</a>();</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">enum</span> Level <a class="code hl_function" href="class_recipes.html#a70500abd244a4ae029247066e8340624">getDifficulty</a>();</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#a556aa1c4a112ade53de061d7a6b4130b">toString</a>();</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_recipes.html#adef9ed059f8c8db4bdc6d0e6a0572d29">toStringShort</a>();</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">#endif </span><span class="comment">// RECIPES_H</span></div>
-<div class="ttc" id="aclass_recipes_html"><div class="ttname"><a href="class_recipes.html">Recipes</a></div><div class="ttdoc">Represents a recipe in a recipe with a name, series, description, ingredients, instructions,...</div><div class="ttdef"><b>Definition</b> Recipes.h:18</div></div>
-<div class="ttc" id="aclass_recipes_html_a0cd0cb03b2d2948df1b2a3f661a130ff"><div class="ttname"><a href="class_recipes.html#a0cd0cb03b2d2948df1b2a3f661a130ff">Recipes::getIngredients</a></div><div class="ttdeci">vector&lt; Ingredients &gt; getIngredients()</div><div class="ttdoc">Gets the ingredients of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:97</div></div>
-<div class="ttc" id="aclass_recipes_html_a157ebc94083092c076a3ecb0f87afcf5"><div class="ttname"><a href="class_recipes.html#a157ebc94083092c076a3ecb0f87afcf5">Recipes::getIngredientsNames</a></div><div class="ttdeci">vector&lt; string &gt; getIngredientsNames()</div><div class="ttdoc">Gets the names of the ingredients of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:104</div></div>
-<div class="ttc" id="aclass_recipes_html_a18b2a51540bbabc34552593296f4c315"><div class="ttname"><a href="class_recipes.html#a18b2a51540bbabc34552593296f4c315">Recipes::getName</a></div><div class="ttdeci">string getName()</div><div class="ttdoc">Gets the name of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:76</div></div>
-<div class="ttc" id="aclass_recipes_html_a28deb87056a113032a00e492aed65cc2"><div class="ttname"><a href="class_recipes.html#a28deb87056a113032a00e492aed65cc2">Recipes::Recipes</a></div><div class="ttdeci">Recipes()</div><div class="ttdoc">Default constructor for Recipes class.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:30</div></div>
-<div class="ttc" id="aclass_recipes_html_a556aa1c4a112ade53de061d7a6b4130b"><div class="ttname"><a href="class_recipes.html#a556aa1c4a112ade53de061d7a6b4130b">Recipes::toString</a></div><div class="ttdeci">string toString()</div><div class="ttdoc">The string representation of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:132</div></div>
-<div class="ttc" id="aclass_recipes_html_a65e7f4125f3e5e2dfd2fd0857708df69"><div class="ttname"><a href="class_recipes.html#a65e7f4125f3e5e2dfd2fd0857708df69">Recipes::getDescription</a></div><div class="ttdeci">string getDescription()</div><div class="ttdoc">Gets the description of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:90</div></div>
-<div class="ttc" id="aclass_recipes_html_a70500abd244a4ae029247066e8340624"><div class="ttname"><a href="class_recipes.html#a70500abd244a4ae029247066e8340624">Recipes::getDifficulty</a></div><div class="ttdeci">enum Level getDifficulty()</div><div class="ttdoc">Gets the difficulty level of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:125</div></div>
-<div class="ttc" id="aclass_recipes_html_a795d884f9c45b47c7a50846dfeaf206e"><div class="ttname"><a href="class_recipes.html#a795d884f9c45b47c7a50846dfeaf206e">Recipes::getTime</a></div><div class="ttdeci">int getTime()</div><div class="ttdoc">Gets the time of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:118</div></div>
-<div class="ttc" id="aclass_recipes_html_a7bf11501aa1b6044f497ce61b8d975f6"><div class="ttname"><a href="class_recipes.html#a7bf11501aa1b6044f497ce61b8d975f6">Recipes::getInstructions</a></div><div class="ttdeci">string getInstructions()</div><div class="ttdoc">Gets the instructions of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:111</div></div>
-<div class="ttc" id="aclass_recipes_html_ad1a76bbcd1ba253591d98ca1aa27e504"><div class="ttname"><a href="class_recipes.html#ad1a76bbcd1ba253591d98ca1aa27e504">Recipes::getSeries</a></div><div class="ttdeci">string getSeries()</div><div class="ttdoc">Gets the series of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:83</div></div>
-<div class="ttc" id="aclass_recipes_html_adef9ed059f8c8db4bdc6d0e6a0572d29"><div class="ttname"><a href="class_recipes.html#adef9ed059f8c8db4bdc6d0e6a0572d29">Recipes::toStringShort</a></div><div class="ttdeci">string toStringShort()</div><div class="ttdoc">The short string representation of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:157</div></div>
-<div class="ttc" id="aclass_recipes_html_ae3e392e1249c8c9c9d4c940b50fd1a5f"><div class="ttname"><a href="class_recipes.html#ae3e392e1249c8c9c9d4c940b50fd1a5f">Recipes::~Recipes</a></div><div class="ttdeci">~Recipes()</div><div class="ttdoc">Destructor for Recipes class.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:69</div></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">/*Private data fields*/</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">string</span> name;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">string</span> series;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">string</span> description;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    vector&lt;Ingredients&gt; ingredients;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">string</span> ingredients_str;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    vector&lt;string&gt; ingredient_names;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">string</span> instructions;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">int</span> time;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keyword">enum</span> Level difficulty;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>};</div>
+</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#endif </span><span class="comment">// RECIPES_H</span></div>
+<div class="ttc" id="aclass_recipes_html"><div class="ttname"><a href="class_recipes.html">Recipes</a></div><div class="ttdoc">Represents a recipe in a recipe with a name, series, description, ingredients, instructions,...</div><div class="ttdef"><b>Definition</b> Recipes.h:31</div></div>
+<div class="ttc" id="aclass_recipes_html_a0cd0cb03b2d2948df1b2a3f661a130ff"><div class="ttname"><a href="class_recipes.html#a0cd0cb03b2d2948df1b2a3f661a130ff">Recipes::getIngredients</a></div><div class="ttdeci">vector&lt; Ingredients &gt; getIngredients()</div><div class="ttdoc">Gets the ingredients of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:74</div></div>
+<div class="ttc" id="aclass_recipes_html_a157ebc94083092c076a3ecb0f87afcf5"><div class="ttname"><a href="class_recipes.html#a157ebc94083092c076a3ecb0f87afcf5">Recipes::getIngredientsNames</a></div><div class="ttdeci">vector&lt; string &gt; getIngredientsNames()</div><div class="ttdoc">Gets the names of the ingredients of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:81</div></div>
+<div class="ttc" id="aclass_recipes_html_a18b2a51540bbabc34552593296f4c315"><div class="ttname"><a href="class_recipes.html#a18b2a51540bbabc34552593296f4c315">Recipes::getName</a></div><div class="ttdeci">string getName()</div><div class="ttdoc">Gets the name of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:53</div></div>
+<div class="ttc" id="aclass_recipes_html_a28deb87056a113032a00e492aed65cc2"><div class="ttname"><a href="class_recipes.html#a28deb87056a113032a00e492aed65cc2">Recipes::Recipes</a></div><div class="ttdeci">Recipes()</div><div class="ttdoc">Default constructor for Recipes class.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:11</div></div>
+<div class="ttc" id="aclass_recipes_html_a556aa1c4a112ade53de061d7a6b4130b"><div class="ttname"><a href="class_recipes.html#a556aa1c4a112ade53de061d7a6b4130b">Recipes::toString</a></div><div class="ttdeci">string toString()</div><div class="ttdoc">The string representation of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:109</div></div>
+<div class="ttc" id="aclass_recipes_html_a65e7f4125f3e5e2dfd2fd0857708df69"><div class="ttname"><a href="class_recipes.html#a65e7f4125f3e5e2dfd2fd0857708df69">Recipes::getDescription</a></div><div class="ttdeci">string getDescription()</div><div class="ttdoc">Gets the description of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:67</div></div>
+<div class="ttc" id="aclass_recipes_html_a70500abd244a4ae029247066e8340624"><div class="ttname"><a href="class_recipes.html#a70500abd244a4ae029247066e8340624">Recipes::getDifficulty</a></div><div class="ttdeci">enum Level getDifficulty()</div><div class="ttdoc">Gets the difficulty level of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:102</div></div>
+<div class="ttc" id="aclass_recipes_html_a795d884f9c45b47c7a50846dfeaf206e"><div class="ttname"><a href="class_recipes.html#a795d884f9c45b47c7a50846dfeaf206e">Recipes::getTime</a></div><div class="ttdeci">int getTime()</div><div class="ttdoc">Gets the time of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:95</div></div>
+<div class="ttc" id="aclass_recipes_html_a7bf11501aa1b6044f497ce61b8d975f6"><div class="ttname"><a href="class_recipes.html#a7bf11501aa1b6044f497ce61b8d975f6">Recipes::getInstructions</a></div><div class="ttdeci">string getInstructions()</div><div class="ttdoc">Gets the instructions of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:88</div></div>
+<div class="ttc" id="aclass_recipes_html_ad1a76bbcd1ba253591d98ca1aa27e504"><div class="ttname"><a href="class_recipes.html#ad1a76bbcd1ba253591d98ca1aa27e504">Recipes::getSeries</a></div><div class="ttdeci">string getSeries()</div><div class="ttdoc">Gets the series of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:60</div></div>
+<div class="ttc" id="aclass_recipes_html_adef9ed059f8c8db4bdc6d0e6a0572d29"><div class="ttname"><a href="class_recipes.html#adef9ed059f8c8db4bdc6d0e6a0572d29">Recipes::toStringShort</a></div><div class="ttdeci">string toStringShort()</div><div class="ttdoc">The short string representation of the recipe.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:134</div></div>
+<div class="ttc" id="aclass_recipes_html_ae3e392e1249c8c9c9d4c940b50fd1a5f"><div class="ttname"><a href="class_recipes.html#ae3e392e1249c8c9c9d4c940b50fd1a5f">Recipes::~Recipes</a></div><div class="ttdeci">~Recipes()</div><div class="ttdoc">Destructor for Recipes class.</div><div class="ttdef"><b>Definition</b> Recipes.cpp:46</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
