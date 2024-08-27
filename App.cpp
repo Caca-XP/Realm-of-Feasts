@@ -720,8 +720,11 @@ int main() {
     std::cout << "All recipes shall be from the wondrous fictional worlds of Harry Potter, Studio Ghibli, and many more!" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
 
-    std::cout << "Good luck!" << std::endl << std::endl;
+    std::cout << "All you have to do is enter a number to interact with the App" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1200)); 
+
+    std::cout << "Good luck!" << std::endl << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1400)); 
     
     while (true) {
         options();

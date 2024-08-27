@@ -1,3 +1,8 @@
+/*!
+   @file
+   @brief Header file for Support.cpp
+   @author Natasha and Nadia 
+*/
 #pragma once
 #ifndef SUPPORT_H
 #define SUPPORT_H
@@ -19,20 +24,38 @@ using namespace std;
 
 
 
-// Function to split a string into a vector of strings
+/*!
+ *@brief Function to split a string into a vector of strings
+ *@brief Splits the string by the delimiter
+ *
+ * @param str the string to split
+ * @param delimiter the delimiter to split the string by
+ * @param lowercase whether to convert the string to lowercase
+ * @return vector of strings
+ */
 vector<string> split_string(string str, string delimiter, bool lowercase);
 
-/* Function to quit the program
+/*!
+*@brief Function to quit the program
+*@details Terminates the program's execution
 */
 void quit();
 
 
-/* Function to replace comma space to comma
-   Remove empty spaces
+/*!
+*@brief Function to replace comma space to comma
+*@details Remove empty spaces
+*@param str the string to replace
+*@param from the string to replace
+*@param to the substring to replace with
+*@return the modified string with replacement made 
 */
 string replaceAll(string str, string from, string to);
 
-/* Function to read the whole line of user input instead of just one word
+/*!
+*@brief Function to read the whole line of user input
+*@param ignore If true, ignores the newline character left in the input stream from previous input.
+*@return the user input (the whole line of input as string)
  */
 string readLine(bool ignore);
 
