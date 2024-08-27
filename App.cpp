@@ -707,6 +707,22 @@ static void options() {
 int main() {
     // read and initialize the data for recipes
     setup("RecipesTest.txt");//change to database later
+    
+    std::cout << "Welcome to the Realm of Feasts!" << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Delay for 500 milliseconds
+
+    std::cout << "A recipe finder app to fix your fictional food craving." << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(700)); 
+
+    std::cout << "Using the options below, go on a quest to find the perfect recipe for your feast." << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(900)); 
+
+    std::cout << "All recipes shall be from the wondrous fictional worlds of Harry Potter, Studio Ghibli, and many more!" << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
+
+    std::cout << "Good luck!" << std::endl << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1200)); 
+    
     while (true) {
         options();
     }

@@ -19,6 +19,8 @@
 # include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
 # include "Ingredients.h" // Include the header file that contains the definition of the 'Ingredients' class
 # include "Support.h" // Include the header file that contains the definition of the 'Ingredients' class
+#include <chrono> // Required for std::chrono::seconds
+#include <thread> // Required for std::this_thread::sleep_for
 
 
 using namespace std;
