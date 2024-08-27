@@ -106,7 +106,12 @@ static int process_time(const string& time_str) {
     return time;
 }
 
-//Enum of values of the difficulty levels
+/**
+ * Function to process the difficulty string
+ * Converts the difficulty string to an enum Level
+ * @param difficulty_str the difficulty string
+ * @return the difficulty as an enum Level
+ */
 Level process_difficulty(const string& difficulty_str) {
     Level difficulty;
     if (difficulty_str == "Easy") {

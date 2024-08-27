@@ -12,6 +12,8 @@
 # include <algorithm>
 # include <cstdlib>
 # include <vector>
+#include <chrono> // Required for std::chrono::seconds
+#include <thread> // Required for std::this_thread::sleep_for
 
 
 # include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class

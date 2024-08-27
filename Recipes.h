@@ -15,7 +15,13 @@
 # include <cstdlib>
 using namespace std;
 
-
+//Enum of values of the difficulty levels
+enum Level {
+    None = 0,
+    Easy = 1,
+    Medium = 2,
+    Hard = 3
+};
 
 /*!
 *@class Recipes
