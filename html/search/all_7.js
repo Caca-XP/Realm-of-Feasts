@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['step_201_3a_0',['Step 1:',['../index.html#step1',1,'']]]
+  ['use_20realm_20of_20feasts_0',['How to Use Realm of Feasts',['../index.html#usage',1,'']]]
 ];

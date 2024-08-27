@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['realm_20of_20feasts_0',['Realm of Feasts',['../index.html#usage',1,'How to Use Realm of Feasts'],['../index.html',1,'Realm of Feasts']]],
-  ['recipes_1',['Recipes',['../class_recipes.html',1,'Recipes'],['../class_recipes.html#a28deb87056a113032a00e492aed65cc2',1,'Recipes::Recipes()'],['../class_recipes.html#aca0cb392261557135ae836c57899c9da',1,'Recipes::Recipes(string nm, string ser, string desc, vector&lt; Ingredients &gt;, string ins, int t, enum Level lv)']]]
+  ['to_20use_20realm_20of_20feasts_0',['How to Use Realm of Feasts',['../index.html#usage',1,'']]],
+  ['tostring_1',['toString',['../class_ingredients.html#a7aa784335b945fea7b9c4830bdb8c07a',1,'Ingredients::toString()'],['../class_recipes.html#a556aa1c4a112ade53de061d7a6b4130b',1,'Recipes::toString()']]],
+  ['tostringshort_2',['toStringShort',['../class_recipes.html#adef9ed059f8c8db4bdc6d0e6a0572d29',1,'Recipes']]]
 ];

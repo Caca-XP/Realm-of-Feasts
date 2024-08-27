@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['1_3a_0',['Step 1:',['../index.html#step1',1,'']]]
+  ['feasts_0',['Feasts',['../index.html#usage',1,'How to Use Realm of Feasts'],['../index.html',1,'Realm of Feasts']]]
 ];

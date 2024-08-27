@@ -12,10 +12,9 @@
  *
  * \section Authors
  * Natasha Prasetyo
+ *
  * Nadia Prasetyo
+ *
  * Bernice Ishumi
  *\section usage How to Use Realm of Feasts
- * \subsection step1 Step 1:
- *
- * etc...
- */
+*/
