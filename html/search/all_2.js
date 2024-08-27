@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['dependencies_0',['Dependencies',['../index.html#depen',1,'Dependencies'],['../md__r_e_a_d_m_e.html#autotoc_md11',1,'Dependencies']]],
-  ['description_1',['Description',['../md__r_e_a_d_m_e.html#autotoc_md1',1,'']]]
+  ['3_20temporary_20ban_0',['3. Temporary Ban',['../md_extras_2_c_o_d_e___o_f___c_o_n_d_u_c_t.html#autotoc_md9',1,'']]]
 ];

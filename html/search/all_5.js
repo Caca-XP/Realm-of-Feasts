@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['history_0',['History',['../index.html#verhistory',1,'Version History'],['../md__r_e_a_d_m_e.html#autotoc_md6',1,'Version History']]],
-  ['how_20to_20use_20realm_20of_20feasts_1',['How to Use Realm of Feasts',['../index.html#usage',1,'']]]
+  ['ban_0',['Ban',['../md_extras_2_c_o_d_e___o_f___c_o_n_d_u_c_t.html#autotoc_md9',1,'3. Temporary Ban'],['../md_extras_2_c_o_d_e___o_f___c_o_n_d_u_c_t.html#autotoc_md10',1,'4. Permanent Ban']]],
+  ['beta_1',['Beta',['../index.html#beta',1,'']]]
 ];

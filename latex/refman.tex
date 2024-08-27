@@ -163,28 +163,6 @@
   \doxynewunicodechar{³}{${}^{3}$}% Superscript three
 \fi
   % Hyperlinks
-    % Hyperlinks (required, but should be loaded last)
-    \ifPDFTeX
-      \usepackage[pdftex,pagebackref=true]{hyperref}
-    \else
-      \ifXeTeX
-        \usepackage[xetex,pagebackref=true]{hyperref}
-      \else
-        \ifLuaTeX
-          \usepackage[luatex,pagebackref=true]{hyperref}
-        \else
-          \usepackage[ps2pdf,pagebackref=true]{hyperref}
-        \fi
-      \fi
-    \fi
-    \hypersetup{%
-      colorlinks=true,%
-      linkcolor=blue,%
-      citecolor=blue,%
-      unicode,%
-      pdftitle={Realm of Feasts},%
-      pdfsubject={}%
-    }
   % Custom commands used by the header
   % Custom commands
   \newcommand{\clearemptydoublepage}{%
@@ -209,12 +187,6 @@
 \begin{document}
   \raggedbottom
   % Titlepage & ToC
-    % To avoid duplicate page anchors due to reuse of same numbers for
-    % the index (be it as roman numbers)
-    \hypersetup{pageanchor=false,
-                bookmarksnumbered=true,
-                pdfencoding=unicode
-               }
   \pagenumbering{alph}
   \begin{titlepage}
   \vspace*{7cm}
@@ -229,11 +201,9 @@
   \tableofcontents
   \clearemptydoublepage
   \pagenumbering{arabic}
-  % re-enable anchors again
-  \hypersetup{pageanchor=true}
 %--- Begin generated contents ---
 \input{index}
-\input{md__r_e_a_d_m_e}
+\input{md_extras_2_c_o_d_e___o_f___c_o_n_d_u_c_t}
 \chapter{Class Index}
 \input{annotated}
 \chapter{File Index}
@@ -248,6 +218,7 @@
 \input{_ingredients_8h_source}
 \input{_mainpage_8h}
 \input{_mainpage_8h_source}
+\input{pch_8h_source}
 \input{_recipes_8h}
 \input{_recipes_8h_source}
 \input{_support_8h}

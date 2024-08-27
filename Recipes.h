@@ -19,7 +19,10 @@
 # include <cstdlib>
 using namespace std;
 
-//Enum of values of the difficulty levels
+/*! 
+* @enum Level
+* @brief Enum of values of the difficulty levels
+*/
 enum Level {
     None = 0,
     Easy = 1,
@@ -131,15 +134,15 @@ class Recipes {
 
 private:
     /*Private data fields*/
-    string name;
-    string series;
-    string description;
-    vector<Ingredients> ingredients;
-    string ingredients_str;
-    vector<string> ingredient_names;
-    string instructions;
-    int time;
-    enum Level difficulty;
+    string name; /*! @brief The name of the recipe  */
+    string series;  /*! @memberof series of the recipe  */ 
+    string description;/*!< @variable The description of the recipe  */
+    vector<Ingredients> ingredients;/*!< The list of ingredients of the recipe  */
+    string ingredients_str;/*!< The string representation of the list of ingredients for the recipe  */
+    vector<string> ingredient_names;/*!< The names of the ingredients needed for recipe  */
+    string instructions;/*!< The instructions for preparing the recipe  */
+    int time;/*!< The time required for the recipe  */
+    enum Level difficulty;/*!< The difficulty of the recipe  */
 };
 
 #endif // RECIPES_H
