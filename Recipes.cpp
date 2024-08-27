@@ -15,15 +15,18 @@ Recipes::Recipes() {
 
 /*Defined Constructor*/
 Recipes::Recipes(string nm, string ser, string desc, vector<Ingredients> ing, string ins, int t, enum Level lv) 
-    :name(nm), series(ser), description(desc), ingredients(ing), instructions(ins), time(t), difficulty(lv)
-{
-    ingredients_str = "";
-    for (int i = 0; i < ingredients.size(); i++) {
-        ingredients_str += "- " + ingredients[i].toString();
-        if (i != ingredients.size() - 1) {
-            ingredients_str += "\n";
+    :name(nm), series(ser), description(desc), ingredients(ing), instructions(ins), time(t), difficulty(lv), 
+    ingredients_str([&ing]() {
+    string result;
+    for (int i = 0; i < ing.size(); i++) {
+        result += "- " + ing[i].toString();
+        if (i != ing.size() - 1) {
+            result += "\n";
         }
     }
+    return result;
+        }())
+{
     ingredient_names = {};
     for (int i = 0; i < ingredients.size(); i++) {
         string ingredient_name = ingredients[i].getName();

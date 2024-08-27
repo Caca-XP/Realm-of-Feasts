@@ -26,7 +26,7 @@ public:
     Ingredients();
 
     //defined constructor
-    Ingredients(double q, string un, string nm);
+    Ingredients(double q, const string& un, string nm);
 
     ~Ingredients();
 
