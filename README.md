@@ -7,9 +7,9 @@
 
 
 ## Description 
-Realm of Feasts is a fantasy recipe discovery app that helps you find recipes based on the ingredients you already have at home. Realm of Feast searches its database and suggests the recipes you can make. The unique aspect of the app is that all recipes are of foods not from “Earth”. The app database includes recipes from Harry Potter, The Hobbit, Spirited Away, and many other mythical fictional realms. Thus, the name "Realm of Feasts." Fans of these realms can now prepare and enjoy the meals they've read about or seen on screen. upon it.
+Realm of Feasts is a fantasy recipe discovery app that helps you find recipes based on the ingredients you already have at home. Realm of Feast searches its database and suggests the recipes you can make. The unique aspect of the app is that all recipes are of foods not from “Earth”. The app database includes recipes from Harry Potter, The Hobbit, Spirited Away, and many other mythical fictional realms. Thus, the name "Realm of Feasts." Fans of these realms can now prepare and enjoy the meals they've read about or seen on screen, upon it.
 
-The app allows users to filter recipes by difficulty, preparation time, and even sort them according to their preferences. Whether you're in the mood for a quick snack from "The Shire" or a challenging dish from "Hogwarts," Realm of Feasts has something for every fantasy food enthusiast.
+The app allows users to filter recipes by difficulty, and preparation time, and even sort them according to their preferences. Whether you're in the mood for a quick snack from "The Shire" or a challenging dish from "Hogwarts," Realm of Feasts has something for every fantasy food enthusiast.
 
 ## Authors
 Natasha Prasetyo 
@@ -25,21 +25,21 @@ Bernice Ishumi
 2. Read the instructions displayed 
 3. Read the options displayed
 4. Choose one of the options to begin interacting with the application.
-5. Iteract with app to enjoy the quest of finding a fantastical recipe 
+5. Interact with the app to enjoy the quest of finding a fantastical recipe 
 
 ## Testing
- The application was tested using Unit Tests.The tests can be found in the RealmOfFeastsTest folder in the tests directory.
+ The application was tested using Unit Tests. The tests can be found in the RealmOfFeastsTest folder in the tests directory.
 
 # Version History 
 
 ## Alpha
 Basic functionality of the App.
 
-Released on:
+Released on: 29.08.2024
 
-Tag:
+Tag: Alpha.2
 
-Release:
+Release: Alpha Version
 
 ## Beta 
 Currently Unreleased
