@@ -173,7 +173,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RealmOfFeasts.vcxproj">
+    <ProjectReference Include="..\RealmOfFeasts.vcxproj">
       <Project>{929f4ba1-24a0-402b-8afc-120841d3ebab}</Project>
     </ProjectReference>
   </ItemGroup>
