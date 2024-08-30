@@ -5,7 +5,7 @@
    Contains the implementation of the functions of Recipes Class (Recipes.h)
 
    @version 1.0
-   @author Cooks
+   @author Cooks Hello
 */
 
 /***************************************************************************************************************************************
