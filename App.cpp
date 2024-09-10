@@ -246,7 +246,7 @@ static vector<Recipes> applySetting(vector<Recipes> currentRecipes) {
     }
     if (results.size() == 0) {
 		// set colour to red
-		setColor(12);
+		setColor(4);
 
         cout << endl << "No recipes found." << endl << endl;
     }
@@ -258,7 +258,7 @@ static vector<Recipes> applySetting(vector<Recipes> currentRecipes) {
 */
 static void printSettings() {
 	// set colour to light yellow
-	setColor(2);
+	setColor(14);
 
     printf("\nCurrent filters: \n");
     if (difficultyFilter != 0) {
@@ -274,7 +274,7 @@ static void printSettings() {
         }
         else if (difficultyFilter == 3) {
 			//set colour to red
-			setColor(4);
+			setColor(12);
             printf("Difficulty: Hard \n");
         }
     }
@@ -291,7 +291,7 @@ static void printSettings() {
         }
         else if (timeFilter == 3) {
 			//set colour to red
-			setColor(4);
+			setColor(12);
             printf("Time: More than 60 minutes \n");
         }
     }
@@ -301,7 +301,7 @@ static void printSettings() {
         printf("None \n");
     }
 	// set colour to light yellow
-	setColor(2);
+	setColor(14);
     printf("Current sorting: \n");
     if (sortFilter != 0) {
         if (sortFilter == 1) {
@@ -311,7 +311,7 @@ static void printSettings() {
         }
         else if (sortFilter == 2) {
 			//set colour to blue
-			setColor(9);
+			setColor(11);
             printf("Sort by difficulty reverse \n");
         }
         else if (sortFilter == 3) {
@@ -321,7 +321,7 @@ static void printSettings() {
         }
         else if (sortFilter == 4) {
 			//set colour to magenta
-			setColor(5);
+			setColor(13);
             printf("Sort by time reverse \n");
         }
     }
@@ -345,7 +345,7 @@ static void setSettings() {
         printSettings();
 
         // set colour to blue
-		setColor(1);
+		setColor(3);
 
         // display the filter options
         printf("1. Filter by difficulty\n");
@@ -355,8 +355,8 @@ static void setSettings() {
         printf("5. Reset sort\n");
         printf("6. Back\n");
 
-		// get the user choice (colour to white 7)
-		setColor(7);
+		// get the user choice (colour to grey 8)
+		setColor(8);
         int filterChoice;
         cin >> filterChoice;
 
@@ -373,15 +373,15 @@ static void setSettings() {
                 printf("2. Medium\n");
 
 				// set colour to red
-				setColor(4);
+				setColor(12);
                 printf("3. Hard\n");
 
 				// set colour to white
 				setColor(15);
                 printf("4. Back\n");
 
-				// get the user choice (colour to white 7)
-				setColor(7);
+				// get the user choice (colour to grey 8)
+				setColor(8);
                 int difficultyChoice;
                 cin >> difficultyChoice;
 
@@ -412,14 +412,14 @@ static void setSettings() {
 				setColor(6);
                 printf("2. 30 to 60 minutes\n");
 				// set colour to red
-				setColor(4);
+				setColor(12);
                 printf("3. More than 60 minutes\n");
 				// set colour to white
 				setColor(15);
                 printf("4. Back\n");
 
-				// get the user choice (colour to white 7)
-				setColor(7);
+				// get the user choice (colour to grey 8)
+				setColor(8);
                 int timeChoice;
                 cin >> timeChoice;
 
@@ -434,7 +434,7 @@ static void setSettings() {
                 else {
                     // if invalid choice
 					// set colour to red
-					setColor(12);
+					setColor(4);
                     cout << "Invalid choice. Please try again." << endl;
                     // reset the cin buffer
                     cin.clear();
@@ -453,22 +453,22 @@ static void setSettings() {
 				setColor(11);
                 printf("1. Sort by difficulty\n");
 				// set colour to blue
-				setColor(9);
+				setColor(11);
                 printf("2. Sort by difficulty reverse\n");
 
 				// set colour to light magenta
 				setColor(13);
                 printf("3. Sort by time\n");
 				// set colour to magenta
-				setColor(5);
+				setColor(13);
                 printf("4. Sort by time reverse\n");
 
 				// set colour to white
 				setColor(15);
                 printf("5. Back\n");
 
-				// get the user choice (colour to white 7)
-				setColor(7);
+				// get the user choice (colour to grey 8)
+				setColor(8);
                 int sortChoice;
                 cin >> sortChoice;
 
@@ -501,7 +501,7 @@ static void setSettings() {
                 else {
                     // if invalid choice
 					// set colour to red
-					setColor(12);
+					setColor(4);
                     cout << "Invalid choice. Please try again." << endl;
                     // reset the cin buffer
                     cin.clear();
@@ -519,7 +519,7 @@ static void setSettings() {
         else {
             // if invalid choice
 			// set colour to red
-			setColor(12);
+			setColor(4);
             cout << "Invalid choice. Please try again." << endl;
             // reset the cin buffer
             cin.clear();
@@ -530,19 +530,22 @@ static void setSettings() {
     // Ask the user whether to apply the filters and print the results
     while (true) {
 		// display the apply options
-		// set colour to blue 1
-		setColor(1);
+		// set colour to blue
+		setColor(3);
         printf("1. Save settings and print all recepies with settings applied\n");
         printf("2. Save settings and back\n");
 
-		// get the user choice (colour to white 7)
-		setColor(7);
+		// get the user choice (colour to grey 8)
+		setColor(8);
         int applyChoice;
         cin >> applyChoice;
 
         // call the appropriate function based on the user choice
         if (applyChoice == 1) {
             vector<Recipes> applied = applySetting(allRecipes);
+			// display the recipes with the settings applied
+			// set colour to white 7
+			setColor(7);
             display(applied);
             break;
         }
@@ -555,7 +558,7 @@ static void setSettings() {
         else {
             // if invalid choice
 			// set colour to red
-			setColor(12);
+			setColor(4);
             cout << "Invalid choice. Please try again." << endl;
             // reset the cin buffer
             cin.clear();
@@ -572,8 +575,8 @@ static void random() {
     vector<Recipes> applied = applySetting(allRecipes);
     int randomIndex = rand() % applied.size();
     printSettings();
-    // set colour to blue
-	setColor(9);
+	// set colour to white 7
+	setColor(7);
     cout << applied[randomIndex].toString() << endl;
 }
 
@@ -591,7 +594,12 @@ static vector<Recipes> searchByName() {
     vector<Recipes> results;
     string search;
     // get the search string from the user
+	// set colour to blue 9
+	setColor(9);
     cout << "Enter the name of the recipe you are looking for: ";
+
+	// get user input (colour to grey 8)
+	setColor(8);
     search = readLine(true);
     // lowercase the search string and remove leading and trailing spaces
     transform(search.begin(), search.end(), search.begin(), ::tolower);
@@ -613,9 +621,14 @@ static vector<Recipes> searchByName() {
     }
     // Check that there are recipes based on the search input
     if (results.size() == 0) {
+		// set colour to red
+		setColor(4);
         cout << endl << "No recipes found." << endl << endl;
     }
     else {
+		//Prints the recipes that contains the search string to the results vector
+		// set colour to white 7
+		setColor(7);
         cout << endl << "Results for recipes with \"" << search << "\": " << endl << endl;
         for (int i = 0; i < results.size(); i++) {
             cout << results[i].toString() << endl;
@@ -633,7 +646,14 @@ static vector<Recipes> searchByName() {
 static vector<Recipes> searchByIngredient() {
     vector<Recipes> results;
     string search;
+
+	// get the search string from the user
+	// set colour to blue 9
+	setColor(9);
     cout << "Enter the ingredient you are looking for (comma separated): ";
+
+	// get user input (colour to grey 8)
+	setColor(8);
     search = readLine(true);
     // remove leading and trailing spaces
     search.erase(0, search.find_first_not_of(" "));
@@ -664,10 +684,14 @@ static vector<Recipes> searchByIngredient() {
     }
     printSettings();
     if (results.size() == 0) {
+		// set colour to red
+		setColor(4);
         cout << endl << "No recipes found." << endl << endl;
     }
     else {
         //Prints the recipes that contains the search string to the results vector
+		// set colour to white 7
+		setColor(7);
         cout << endl << "Results for recipes with " << search << ": " << endl << endl;
         for (int i = 0; i < results.size(); i++) {
             cout << results[i].toString() << endl;
@@ -685,16 +709,30 @@ static vector<Recipes> searchByIngredient() {
 static vector<Recipes> searchBySeries() {
     vector<Recipes> results;
     string search;
+	// get the search string from the user
+	// set colour to blue 9
+	setColor(9);
     cout << "Enter the series you are looking for: " << endl;
     cout << "To show all series, type 'all'." << endl;
+
+	// get user input (colour to grey 8)
+	setColor(8);
     search = readLine(true);
     if (search == "all") {
         // print series
+		// set colour to white 7
+		setColor(7);
         cout << "Series: " << endl;
         for (int i = 0; i < allSeries.size(); i++) {
             cout << allSeries[i] << endl;
         }
+		// get the search string from the user
+		// set colour to blue 9
+		setColor(9);
         cout << "Enter the series you are looking for: " << endl;
+
+		// get user input (colour to grey 8)
+		setColor(8);
         search = readLine(false);
     }
     // lowercase the search string and remove leading and trailing spaces
@@ -719,9 +757,14 @@ static vector<Recipes> searchBySeries() {
     printSettings();
     // Check that there are recipes based on the search input
     if (results.size() == 0) {
+		// set colour to red
+		setColor(4);
         cout << endl << "No recipes found." << endl << endl;
     }
     else {
+		//Prints the recipes that contains the search string to the results vector
+		// set colour to white 7
+		setColor(7);
         cout << endl << "Results for recipes with \"" << search << "\": " << endl << endl;
         for (int i = 0; i < results.size(); i++) {
             cout << results[i].toString() << endl;
@@ -743,7 +786,7 @@ static vector<Recipes> searchBySeries() {
 static void options() {
 
     //set colour to blue
-	setColor(1);
+	setColor(3);
 
     // display the options
     printf("1. Display all recipes\n");
@@ -754,14 +797,16 @@ static void options() {
     printf("6. Random recipe\n");
     printf("7. Quit\n");
 
-	// get the user choice (colour to white 7)
-	setColor(7);
+	// get the user choice (colour to grey 8)
+	setColor(8);
 
     int choice;
     cin >> choice;
 
     // call the appropriate function based on the user choice
     if (choice == 1) {
+		// display all recipes (white 7)
+		setColor(7);
         display(allRecipes);
     }
     else if (choice == 2) {
@@ -780,12 +825,14 @@ static void options() {
         random();
     }
     else if (choice == 7) {
+		// set colour to magenta
+		setColor(5);
         quit();
     }
     else {
         // if invalid choice
 		//set colour to red
-		setColor(12);
+		setColor(4);
         cout << "Invalid choice. Please try again." << endl;
         // reset the cin buffer
         cin.clear();
@@ -801,12 +848,12 @@ static void options() {
 int main() {
     // read and initialize the data for recipes
     setup("RecipesTest.txt");//change to database later
-    
-    // set colour to purple
-	setColor(5);
 
     std::cout << "Welcome to the Realm of Feasts!" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Delay for 500 milliseconds
+
+    // set colour to purple
+	setColor(5);
 
     std::cout << "A recipe finder app to fix your fictional food craving." << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(900)); 
@@ -822,7 +869,7 @@ int main() {
 
     std::cout << "Good luck!" << std::endl << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1600)); 
-    
+
     while (true) {
         options();
     }
