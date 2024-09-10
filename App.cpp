@@ -257,8 +257,8 @@ static vector<Recipes> applySetting(vector<Recipes> currentRecipes) {
  * Function to print the settings set by the user
 */
 static void printSettings() {
-	// set colour to yellow
-	setColor(6);
+	// set colour to light yellow
+	setColor(2);
 
     printf("\nCurrent filters: \n");
     if (difficultyFilter != 0) {
@@ -269,7 +269,7 @@ static void printSettings() {
         }
         else if (difficultyFilter == 2) {
 			//set colour to yellow
-			setColor(14);
+			setColor(6);
             printf("Difficulty: Medium \n");
         }
         else if (difficultyFilter == 3) {
@@ -286,7 +286,7 @@ static void printSettings() {
         }
         else if (timeFilter == 2) {
 			//set colour to yellow
-			setColor(14);
+			setColor(6);
             printf("Time: 30 to 60 minutes \n");
         }
         else if (timeFilter == 3) {
@@ -300,8 +300,8 @@ static void printSettings() {
 		setColor(15);
         printf("None \n");
     }
-	// set colour to yellow
-	setColor(6);
+	// set colour to light yellow
+	setColor(2);
     printf("Current sorting: \n");
     if (sortFilter != 0) {
         if (sortFilter == 1) {
@@ -327,6 +327,7 @@ static void printSettings() {
     }
     else {
 		//set colour to white
+		setColor(15);
         printf("None \n");
     }
 
@@ -368,7 +369,7 @@ static void setSettings() {
                 printf("1. Easy\n");
 
 				// set colour to yellow
-				setColor(14);
+				setColor(6);
                 printf("2. Medium\n");
 
 				// set colour to red
@@ -408,7 +409,7 @@ static void setSettings() {
 				setColor(10);
                 printf("1. Less than 30 minutes\n");
 				// set colour to yellow
-				setColor(14);
+				setColor(6);
                 printf("2. 30 to 60 minutes\n");
 				// set colour to red
 				setColor(4);
@@ -754,7 +755,7 @@ static void options() {
     printf("7. Quit\n");
 
 	// get the user choice (colour to white 7)
-	setColor(15);
+	setColor(7);
 
     int choice;
     cin >> choice;

@@ -17,6 +17,8 @@
 # include <algorithm>
 # include <cstdlib>
 # include <vector>
+
+# define NOMINMAX
 # include <windows.h>
 
 
