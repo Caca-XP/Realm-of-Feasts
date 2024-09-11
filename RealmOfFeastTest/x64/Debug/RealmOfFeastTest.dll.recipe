@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\natas\Downloads\Realm-of-Feasts\x64\Debug\RealmOfFeasts.exe</FullPath>
+      <FullPath>C:\Users\natas\Downloads\COSC345\Realm-of-Feasts\x64\Debug\RealmOfFeasts.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Users\natas\Downloads\Realm-of-Feasts\x64\Debug\RealmOfFeastTest.dll</FullPath>
+      <FullPath>C:\Users\natas\Downloads\COSC345\Realm-of-Feasts\x64\Debug\RealmOfFeastTest.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

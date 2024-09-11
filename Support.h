@@ -18,6 +18,9 @@
 # include <cstdlib>
 # include <vector>
 
+# define NOMINMAX
+# include <windows.h>
+
 
 using namespace std;
 
@@ -58,5 +61,17 @@ string replaceAll(string str, string from, string to);
 *@return the user input (the whole line of input as string)
  */
 string readLine(bool ignore);
+
+/*!
+ * @brief Function to set the color of the text in the console
+ * @param color the color to set
+ */
+void setColor(int color);
+
+/*!
+ * @brief Function to get the current color of the text in the console
+ * @return the current color of the text in the console as an integer
+ */
+int getCurrentColor();
 
 #endif // SUPPORT_H

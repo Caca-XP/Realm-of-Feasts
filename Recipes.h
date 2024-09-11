@@ -132,6 +132,13 @@ class Recipes {
     */
     string toStringShort();
 
+	/*!
+	* @brief The string representation of the time
+	* @details The string representation of the time in minutes
+	* @return The string representation of the time
+    */
+    string getTimeString();
+
 private:
     /*Private data fields*/
     string name; /*! @brief The name of the recipe  */
