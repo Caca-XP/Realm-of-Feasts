@@ -103,22 +103,34 @@ enum Level Recipes::getDifficulty() {
     return difficulty;
 }
 
+string Recipes::getTimeString() {
+    if (time < 30) {
+        return "\033[92m" + to_string(time) + " minutes\033[0m";
+	}
+	else if (time <= 60) {
+		return "\033[33m" + to_string(time) + " minutes\033[0m";
+	}
+	else {
+		return "\033[91m" + to_string(time) + " minutes\033[0m";
+	}
+}
+
 /* Function to return a string representation of the recipe
     @return string representation of the recipe
 */
 string Recipes::toString() {
     string result = "Name: " + name + "\n";
     result += "Series: " + series + "\n";
-    result += "Time: " + to_string(time) + " minutes\n";
+    result += "Time: " + getTimeString() + "\n";
     result += "Difficulty: ";
     if (difficulty == 1) {
-        result += "Easy\n";
+        result += "\033[92mEasy\033[0m\n";
     }
     else if (difficulty == 2) {
-        result += "Medium\n";
+        result += "\033[33mMedium\033[0m\n";
     }
     else if (difficulty == 3) {
-        result += "Hard\n";
+        result += "\033[91mHard\033[0m\n";
     }
 
     result += "Description: " + description + "\n";
@@ -132,15 +144,15 @@ string Recipes::toString() {
     @return string of the recipe name, series, time, and difficulty
 */
 string Recipes::toStringShort() {
-    string result = name + " (" + series + ") - " + to_string(time) + " minutes - ";
+    string result = name + " (" + series + ") - " + getTimeString() + " - ";
     if (difficulty == 1) {
-        result += "Easy";
+        result += "\033[92mEasy\033[0m";
     }
     else if (difficulty == 2) {
-        result += "Medium";
+        result += "\033[33mMedium\033[0m";
     }
     else if (difficulty == 3) {
-        result += "Hard";
+        result += "\033[91mHard\033[0m";
     }
     return result;
 }

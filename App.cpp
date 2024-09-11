@@ -870,6 +870,23 @@ int main() {
     std::cout << "Good luck!" << std::endl << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1600)); 
 
+    std::cout << "\033[31m" << "This text is red! 033[31m" << "\033[0m" << std::endl;  // Red text
+    std::cout << "\033[32m" << "This text is green! 033[32m" << "\033[0m" << std::endl;  // Green text
+    std::cout << "\033[33m" << "This text is yellow! 033[33m" << "\033[0m" << std::endl;  // Yellow text
+    std::cout << "\033[34m" << "This text is blue! 033[34m" << "\033[0m" << std::endl;  // Blue text
+    std::cout << "\033[35m" << "This text is magenta! 033[35m" << "\033[0m" << std::endl;  // Magenta text
+    std::cout << "\033[36m" << "This text is cyan! 033[36m" << "\033[0m" << std::endl;  // Cyan text
+    std::cout << "\033[37m" << "This text is white! 033[37m" << "\033[0m" << std::endl;  // White text
+
+    // Bright colors
+    std::cout << "\033[91m" << "This text is bright red! 033[91m" << "\033[0m" << std::endl;
+    std::cout << "\033[92m" << "This text is bright green! 033[92m" << "\033[0m" << std::endl;
+    std::cout << "\033[93m" << "This text is bright yellow! 033[93m" << "\033[0m" << std::endl;
+    std::cout << "\033[94m" << "This text is bright blue! 033[94m" << "\033[0m" << std::endl;
+    std::cout << "\033[95m" << "This text is bright magenta! 033[95m" << "\033[0m" << std::endl;
+    std::cout << "\033[96m" << "This text is bright cyan! 033[96m" << "\033[0m" << std::endl;
+    std::cout << "\033[97m" << "This text is bright white! 033[97m" << "\033[0m" << std::endl;
+
     while (true) {
         options();
     }
