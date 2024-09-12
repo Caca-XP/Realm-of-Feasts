@@ -1,5 +1,6 @@
 #include "Support.h"
 
+
 // Function to split a string into a vector of strings
 vector<string> split_string(string str, string delimiter, bool lowercase = true) {
     // lowercase the string
@@ -204,7 +205,7 @@ Level process_difficulty(const string& difficulty_str) {
  * Creates a new Recipes object for each recipe and adds it to the allRecipes array
  * @param fileName the name of the file to read the data from
 */
- void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries) {
+void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries) {
     // // read file and initialise allRecipes
     ifstream file(fileName);
     string line;
@@ -244,6 +245,8 @@ Level process_difficulty(const string& difficulty_str) {
             allSeries.push_back(series);
         }
         i++;
+
+
     }
 }
 

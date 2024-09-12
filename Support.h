@@ -107,7 +107,6 @@ vector<Ingredients> process_ingred(string ingred);
 */
 Level process_difficulty(const string& difficulty_str);
 
-
 /*!
  * @brief Function to read the data from the file and initialise the allRecipes array
  * @details Creates a new Recipes object for each recipe and adds it to the allRecipes array

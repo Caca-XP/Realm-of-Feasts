@@ -9,13 +9,45 @@
 */
 
 
+/**
+ */
+void updateAllRecipes(vector<Recipes> allRecipes){
+    app_allRecipes = allRecipes;
+}
+
+/**
+ */
+void updateTimeFilter(int timeFilter){
+    app_timeFilter = timeFilter;
+}
+
+
+/**
+ */
+void updateDifficultyFilter(int difficultyFilter){
+    app_difficultyFilter = difficultyFilter;
+}
+
+/**
+ */
+void updateSortFilter(int sortFilter){
+    app_sortFilter = sortFilter;
+}
+
+/**
+ */
+void updateAllSeries(vector<string> allSeries){
+    app_allSeries = allSeries;
+}
+
+
 /** Main function to run the program
  * Calls the setup function to initialise the data
  * Calls the options function to display the options for the user
 */
 int main() {
     // read and initialize the data for recipes
-    setup("RecipesTest.txt", allRecipes, allSeries);//change to database later
+    setup("RecipesTest.txt", app_allRecipes, app_allSeries);//change to database later
 
     std::cout << "Welcome to the Realm of Feasts!" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Delay for 500 milliseconds
@@ -39,7 +71,7 @@ int main() {
     std::this_thread::sleep_for(std::chrono::milliseconds(1600)); 
     
     while (true) {
-        options(allRecipes, allSeries, timeFilter, difficultyFilter, sortFilter);
+        options(app_allRecipes, app_allSeries, app_timeFilter, app_difficultyFilter, app_sortFilter);
     }
 
     return 0;
