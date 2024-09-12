@@ -20,6 +20,7 @@
 
 # include "Recipes.h" // Include the header file that contains the definition of the 'Recipes' class
 # include "Ingredients.h" // Include the header file that contains the definition of the 'Ingredients' class
+# include "RealmOfRecipes.h" // Include the header file that contains the definition of the 'RealmOfRecipes' class
 # define NOMINMAX
 # include <windows.h>
 
