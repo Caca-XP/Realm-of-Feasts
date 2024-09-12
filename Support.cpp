@@ -136,7 +136,7 @@ vector<Ingredients> process_ingred(string ingred) {
  * @param instruct the instructions string
  * @return the processed instructions string
  */
-static string process_instructions(const string& instruct) {
+ string process_instructions(const string& instruct) {
     string instructions;
     // if the start and end of the string are both " then remove them
     if (instruct.front() == '"' && instruct.back() == '"') {
@@ -163,7 +163,7 @@ static string process_instructions(const string& instruct) {
  * @param time_str the time string
  * @return the time as an integer
  */
-static int process_time(const string& time_str) {
+ int process_time(const string& time_str) {
     int time;
     try {
         time = stoi(time_str);
@@ -204,7 +204,7 @@ Level process_difficulty(const string& difficulty_str) {
  * Creates a new Recipes object for each recipe and adds it to the allRecipes array
  * @param fileName the name of the file to read the data from
 */
-static void setup(string fileName) {
+ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries) {
     // // read file and initialise allRecipes
     ifstream file(fileName);
     string line;
@@ -255,7 +255,7 @@ static void setup(string fileName) {
  * Function to display recipes specified in the param
  * @param array of recipes
  */
-static void display(vector<Recipes> recipes, bool isShort = true) {
+ void display(vector<Recipes> recipes, bool isShort = true) {
     if (isShort) {
         for (int i = 0; i < recipes.size(); i++) {
             cout << recipes[i].toStringShort() << endl;
@@ -274,7 +274,7 @@ static void display(vector<Recipes> recipes, bool isShort = true) {
  * @param b recipe b
  * @return true if a is less difficult than b
 */
-static bool sortByDifficulty(Recipes a, Recipes b) {
+ bool sortByDifficulty(Recipes a, Recipes b) {
     return a.getDifficulty() < b.getDifficulty();
 }
 
@@ -284,7 +284,7 @@ static bool sortByDifficulty(Recipes a, Recipes b) {
  * @param b recipe b
  * @return true if a takes less time than b
 */
-static bool sortByTime(Recipes a, Recipes b) {
+ bool sortByTime(Recipes a, Recipes b) {
     return a.getTime() < b.getTime();
 }
 
@@ -300,7 +300,7 @@ static bool sortByTime(Recipes a, Recipes b) {
  * @param currentRecipes the recipes to filter
  * @return vector of recipes containing the recipes that pass the filters
 */
-static vector<Recipes> applySetting(vector<Recipes> currentRecipes) {
+ vector<Recipes> applySetting(vector<Recipes> currentRecipes, int timeFilter, int difficultyFilter) {
 
     vector<Recipes> results;
 
@@ -332,7 +332,7 @@ static vector<Recipes> applySetting(vector<Recipes> currentRecipes) {
 /**
  * Function to print the settings set by the user
 */
-static void printSettings() {
+ void printSettings(int timeFilter, int difficultyFilter, int sortFilter) {
 	// set colour to light yellow
 	setColor(14);
 
@@ -415,10 +415,10 @@ static void printSettings() {
  * User can set filters for difficulty and time
  * User can set sorting for the recipes
 */
-static void setSettings() {
+ void setSettings(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
 
     while (true) {
-        printSettings();
+        printSettings(timeFilter, difficultyFilter, sortFilter);
 
         // set colour to blue
 		setColor(3);
@@ -618,7 +618,7 @@ static void setSettings() {
 
         // call the appropriate function based on the user choice
         if (applyChoice == 1) {
-            vector<Recipes> applied = applySetting(allRecipes);
+            vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter);
 			// display the recipes with the settings applied
 			// set colour to white 7
 			setColor(7);
@@ -647,10 +647,10 @@ static void setSettings() {
 /**
  * Function that displays a random recipe within the allRecipes array
 */
-static void random() {
-    vector<Recipes> applied = applySetting(allRecipes);
+ void random(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
+    vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter);
     int randomIndex = rand() % applied.size();
-    printSettings();
+    printSettings(timeFilter, difficultyFilter, sortFilter);
 	// set colour to white 7
 	setColor(7);
     cout << applied[randomIndex].toString() << endl;
@@ -666,7 +666,7 @@ static void random() {
  * Prints out recipes with the searched string in its name
  * @return vector of recipes containing the instance of recipes that contain the searched string
 */
-static vector<Recipes> searchByName() {
+ vector<Recipes> searchByName(vector<Recipes> allRecipes) {
     vector<Recipes> results;
     string search;
     // get the search string from the user
@@ -719,7 +719,7 @@ static vector<Recipes> searchByName() {
  * Displays recipes that contains all of the specified ingredient(s)
  * @return vector of recipes containing recipes that contain the ingredient(s)
 */
-static vector<Recipes> searchByIngredient() {
+ vector<Recipes> searchByIngredient(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
     vector<Recipes> results;
     string search;
 
@@ -749,7 +749,7 @@ static vector<Recipes> searchByIngredient() {
     }
 
     // Search for recipes that contain the all the ingredients
-    vector<Recipes> applied = applySetting(allRecipes);
+    vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter);
     for (int i = 0; i < applied.size(); i++) {
         vector<string> ingredients = applied[i].getIngredientsNames();
         // use double pointer to check if all the search ingredients are in the recipe ingredients
@@ -758,7 +758,7 @@ static vector<Recipes> searchByIngredient() {
         }
 
     }
-    printSettings();
+    printSettings(timeFilter, difficultyFilter, sortFilter);
     if (results.size() == 0) {
 		// set colour to red
 		setColor(4);
@@ -782,7 +782,7 @@ static vector<Recipes> searchByIngredient() {
  * Displays recipes that are in the specified series
  * @return vector of recipes containing recipes that are in the specified series
 */
-static vector<Recipes> searchBySeries() {
+ vector<Recipes> searchBySeries(vector<Recipes> allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) {
     vector<Recipes> results;
     string search;
 	// get the search string from the user
@@ -817,7 +817,7 @@ static vector<Recipes> searchBySeries() {
     search.erase(search.find_last_not_of(" ") + 1);
 
     // Go through all the recipes and check if the search string is in the name
-    vector<Recipes> applied = applySetting(allRecipes);
+    vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter);
     for (int i = 0; i < applied.size(); i++) {
         string series = applied[i].getSeries();
 
@@ -830,7 +830,7 @@ static vector<Recipes> searchBySeries() {
             results.push_back(applied[i]);
         }
     }
-    printSettings();
+    printSettings(timeFilter, difficultyFilter, sortFilter);
     // Check that there are recipes based on the search input
     if (results.size() == 0) {
 		// set colour to red
@@ -859,7 +859,7 @@ static vector<Recipes> searchBySeries() {
  * Function to display the options for the user
  * Takes the user input and calls the appropriate function
 */
-static void options() {
+ void options(vector<Recipes> allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) {
 
     //set colour to blue
 	setColor(3);
@@ -886,19 +886,19 @@ static void options() {
         display(allRecipes);
     }
     else if (choice == 2) {
-        searchByName();
+        searchByName(allRecipes);
     }
     else if (choice == 3) {
-        searchBySeries();
+        searchBySeries(allRecipes, allSeries, timeFilter,difficultyFilter, sortFilter);
     }
     else if (choice == 4) {
-        searchByIngredient();
+        searchByIngredient(allRecipes, timeFilter, difficultyFilter, sortFilter);
     }
     else if (choice == 5) {
-        setSettings();
+        setSettings(allRecipes,timeFilter, difficultyFilter, sortFilter);
     }
     else if (choice == 6) {
-        random();
+        random(allRecipes, timeFilter, difficultyFilter, sortFilter);
     }
     else if (choice == 7) {
 		// set colour to magenta

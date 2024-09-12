@@ -76,32 +76,6 @@ void setColor(int color);
  */
 int getCurrentColor();
 
-
-/*! @memberof 
-*@brief Vector containing all recipes
-*/
-vector<Recipes> allRecipes;
-
-/*! @memberof 
-*@brief Time filter for recipes
-*/
-int timeFilter = 0; // 0 for none, 1 for less than 30 minutes, 2 for 30 to 60 minutes, 3 for more than 60 minutes
-
-/*! @memberof 
-*@brief difficulty filter of all recipes
-*/
-int difficultyFilter = 0; // 0 for none, 1 for easy, 2 for medium, 3 for hard
-
-/*! @memberof 
-*@brief sort filter for all recipes
-*/
-int sortFilter = 0; // 0 for none, 1 for difficulty, 2 for reverse difficulty, 3 for time, 4 for reverse time
-
-/*! @memberof 
-*@brief Vector containing all the series names of recipes
-*/
-vector<string> allSeries;
-
 /*!
  * @brief Function to process the ingredients string
  * @details Splits the ingredients string by commas and then by *
@@ -116,7 +90,7 @@ vector<Ingredients> process_ingred(string ingred);
  * @param instruct the instructions string
  * @return the processed instructions string
  */
-static string process_instructions(const string& instruct);
+ string process_instructions(const string& instruct);
 
 /*!
  * @brief Function to process the time string
@@ -124,7 +98,7 @@ static string process_instructions(const string& instruct);
  * @param time_str the time string
  * @return the time as an integer
  */
-static int process_time(const string& time_str);
+ int process_time(const string& time_str);
 
 /*!
 *@brief Converts a difficulty string into its corresponding enum Level value.
@@ -139,13 +113,13 @@ Level process_difficulty(const string& difficulty_str);
  * @details Creates a new Recipes object for each recipe and adds it to the allRecipes array
  * @param fileName the name of the file to read the data from
 */
-static void setup(string fileName);
+ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries);
 
 /*!
  * @brief Function to display recipes specified in the param
  * @param array of recipes
  */
-static void display(vector<Recipes> recipes, bool isShort);
+ void display(vector<Recipes> recipes, bool isShort);
 
 /*!
  * @brief Function to sort the recipes by difficulty
@@ -153,7 +127,7 @@ static void display(vector<Recipes> recipes, bool isShort);
  * @param b recipe b
  * @return true if a is less difficult than b
 */
-static bool sortByDifficulty(Recipes a, Recipes b);
+ bool sortByDifficulty(Recipes a, Recipes b);
 
 /*!
  *@brief Function to sort the recipes by time
@@ -161,7 +135,7 @@ static bool sortByDifficulty(Recipes a, Recipes b);
  * @param b recipe b
  * @return true if a takes less time than b
 */
-static bool sortByTime(Recipes a, Recipes b);
+ bool sortByTime(Recipes a, Recipes b);
 
 /*!
  *@brief Function to apply the settings set by the user
@@ -169,32 +143,32 @@ static bool sortByTime(Recipes a, Recipes b);
  * @param currentRecipes the recipes to filter
  * @return vector of recipes containing the recipes that pass the filters
 */
-static vector<Recipes> applySetting(vector<Recipes> currentRecipes);
+ vector<Recipes> applySetting(vector<Recipes> currentRecipes, int timeFilter, int difficultyFilter);
 
 /*!
  *@brief Function to print the settings set by the user
 */
-static void printSettings();
+ void printSettings(int timeFilter, int difficultyFilter, int sortFilter);
 
 /*!
  * @brief Function to set settings for the recipes
  * @details User can set filters for difficulty and time
  * User can set sorting for the recipes
 */
-static void setSettings();
+ void setSettings(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter);
 
 
 /*!
  * @brief Function that displays a random recipe within the allRecipes array
 */
-static void random();
+ void random(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) ;
 
 /*!
  * @brief Function to search the recipes array by specific name
  * @details Prints out recipes with the searched string in its name
  * @return vector of recipes containing the instance of recipes that contain the searched string
 */
-static vector<Recipes> searchByName();
+ vector<Recipes> searchByName(vector<Recipes> allRecipes) ;
 
 /*!
  * @brief Function that searches the array of recipes by ingredient(s) separated by commas
@@ -202,14 +176,14 @@ static vector<Recipes> searchByName();
  * @details Displays recipes that contains all of the specified ingredient(s)
  * @return vector of recipes containing recipes that contain the ingredient(s)
 */
-static vector<Recipes> searchByIngredient();
-
-/*!
+ vector<Recipes> searchByIngredient(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter);
+ 
+ /*!
  * @brief Function to filter the recipes by series
  * @details Displays recipes that are in the specified series
  * @return vector of recipes containing recipes that are in the specified series
 */
-static vector<Recipes> searchBySeries();
+ vector<Recipes> searchBySeries(vector<Recipes> allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) ;
 
 
 
@@ -221,6 +195,6 @@ static vector<Recipes> searchBySeries();
  *@brief Function to display the options for the user
  *@details Takes the user input and calls the appropriate function
 */
-static void options();
+ void options(vector<Recipes> allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) ;
 
 #endif // SUPPORT_H

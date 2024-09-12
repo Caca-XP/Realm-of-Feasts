@@ -15,7 +15,7 @@
 */
 int main() {
     // read and initialize the data for recipes
-    setup("RecipesTest.txt");//change to database later
+    setup("RecipesTest.txt", allRecipes, allSeries);//change to database later
 
     std::cout << "Welcome to the Realm of Feasts!" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Delay for 500 milliseconds
@@ -39,7 +39,7 @@ int main() {
     std::this_thread::sleep_for(std::chrono::milliseconds(1600)); 
     
     while (true) {
-        options();
+        options(allRecipes, allSeries, timeFilter, difficultyFilter, sortFilter);
     }
 
     return 0;
