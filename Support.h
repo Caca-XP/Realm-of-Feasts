@@ -113,7 +113,7 @@ Level process_difficulty(const string& difficulty_str);
  * @details Creates a new Recipes object for each recipe and adds it to the allRecipes array
  * @param fileName the name of the file to read the data from
 */
- void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries);
+ void setup(string fileName, RealmOfRecipes& app);
 
 /*!
  * @brief Function to display recipes specified in the param
@@ -155,7 +155,7 @@ Level process_difficulty(const string& difficulty_str);
  * @details User can set filters for difficulty and time
  * User can set sorting for the recipes
 */
- void setSettings(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter);
+ void setSettings(RealmOfRecipes& app);
 
 
 /*!
@@ -195,6 +195,6 @@ Level process_difficulty(const string& difficulty_str);
  *@brief Function to display the options for the user
  *@details Takes the user input and calls the appropriate function
 */
- void options(vector<Recipes> allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) ;
+ void options(RealmOfRecipes& app) ;
 
 #endif // SUPPORT_H

@@ -24,8 +24,8 @@ using namespace std;
 
 
 /*!
-*@class Ingredients
-*@brief Represents an ingredient in a recipe with a name, unit, and quantity
+*@class RealmOfRecipes
+*@brief Represents a realm of recipes with a vector of recipes, time filter, difficulty filter, sort filter, and series filter
 *@author Nadia
 */
 
@@ -33,19 +33,15 @@ class RealmOfRecipes {
 public:
     /*!
     *@brief Default constructor
-    *@details Initializes the name, unit, and quantity of the ingredient with the default values
+    *@details Initializes a realm of recipes with the default values
     */
     RealmOfRecipes();
 
     /*!
     *@brief Parameterized constructor
-    *@details Initializes the name, unit, and quantity of the ingredient with the given values
-    *@param q The quantity of the ingredient
-    *@param un The unit of the ingredient
-    *@param nm The name of the ingredient
+    *@details Initializes a realm of recipes with the given values
     */
-    RealmOfRecipes(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter, vector<string> allSeries);
-
+    RealmOfRecipes(vector<Recipes> recipes, int time, int difficulty, int sort, vector<string> series);
     /*!
     *@brief Destructor
     *@details Destroys the ingredient object
@@ -57,63 +53,28 @@ public:
     /*! @memberof 
     *@brief Vector containing all recipes
     */
-    vector<Recipes> app_allRecipes;
-
-    /**
-     * @brief Function to update all recipes
-     * @details Updates the vector of all recipes
-     * @param allRecipes the vector of all recipes
-     */
-    void updateAllRecipes(vector<Recipes> allRecipes);
+    vector<Recipes> allRecipes;
 
     /*! @memberof 
     *@brief Time filter for recipes
     */
-    int app_timeFilter = 0; // 0 for none, 1 for less than 30 minutes, 2 for 30 to 60 minutes, 3 for more than 60 minutes
-
-    /**
-     * @brief Function to update the time filter
-     * @details Updates the time filter for recipes
-     * @param timeFilter the time filter for recipes
-     */
-    void updateTimeFilter(int timeFilter);
+    int timeFilter = 0; // 0 for none, 1 for less than 30 minutes, 2 for 30 to 60 minutes, 3 for more than 60 minutes
 
     /*! @memberof 
     *@brief difficulty filter of all recipes
     */
-    int app_difficultyFilter = 0; // 0 for none, 1 for easy, 2 for medium, 3 for hard
-
-    /**
-     * @brief Function to update the difficulty filter
-     * @details Updates the difficulty filter for recipes
-     * @param difficultyFilter the difficulty filter for recipes
-     */
-    void updateDifficultyFilter(int difficultyFilter);
+    int difficultyFilter = 0; // 0 for none, 1 for easy, 2 for medium, 3 for hard
 
 
     /*! @memberof 
     *@brief sort filter for all recipes
     */
-    int app_sortFilter = 0; // 0 for none, 1 for difficulty, 2 for reverse difficulty, 3 for time, 4 for reverse time
-
-    /**
-     * @brief Function to update the sort filter
-     * @details Updates the sort filter for recipes
-     * @param sortFilter the sort filter for recipes
-     */
-    void updateSortFilter(int sortFilter);
+    int sortFilter = 0; // 0 for none, 1 for difficulty, 2 for reverse difficulty, 3 for time, 4 for reverse time
 
     /*! @memberof 
     *@brief Vector containing all the series names of recipes
     */
-    vector<string> app_allSeries;
-
-    /**
-     * @brief Function to update all series
-     * @details Updates the vector of all series
-     * @param allSeries the vector of all series
-     */
-    void updateAllSeries(vector<string> allSeries);
+    vector<string> allSeries;
 
 
 };

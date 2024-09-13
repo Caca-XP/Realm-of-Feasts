@@ -17,7 +17,7 @@ int main() {
     RealmOfRecipes app = RealmOfRecipes();
     
     // read and initialize the data for recipes
-    setup("RecipesTest.txt", app.app_allRecipes, app.app_allSeries);//change to database later
+    setup("RecipesTest.txt", app);//change to database later
 
     std::cout << "Welcome to the Realm of Feasts!" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Delay for 500 milliseconds
@@ -41,7 +41,7 @@ int main() {
     std::this_thread::sleep_for(std::chrono::milliseconds(1600)); 
     
     while (true) {
-        options(app.app_allRecipes, app.app_allSeries, app.app_timeFilter, app.app_difficultyFilter, app.app_sortFilter);
+        options(app);
     }
 
     return 0;

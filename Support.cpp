@@ -205,7 +205,7 @@ Level process_difficulty(const string& difficulty_str) {
  * Creates a new Recipes object for each recipe and adds it to the allRecipes array
  * @param fileName the name of the file to read the data from
 */
-void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries) {
+void setup(string fileName, RealmOfRecipes& app) {
     // // read file and initialise allRecipes
     ifstream file(fileName);
     string line;
@@ -240,9 +240,9 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
         difficulty = process_difficulty(parts[6]);
 
         Recipes newRecipe = Recipes(name, series, description, ingredients_parts, instructions, time, difficulty);
-        allRecipes.push_back(newRecipe);
-        if (find(allSeries.begin(), allSeries.end(), series) == allSeries.end()) {
-            allSeries.push_back(series);
+        app.allRecipes.push_back(newRecipe);
+        if (find(app.allSeries.begin(), app.allSeries.end(), series) == app.allSeries.end()) {
+            app.allSeries.push_back(series);
         }
         i++;
 
@@ -418,10 +418,10 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
  * User can set filters for difficulty and time
  * User can set sorting for the recipes
 */
- void setSettings(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
+ void setSettings(RealmOfRecipes& app){
 
     while (true) {
-        printSettings(timeFilter, difficultyFilter, sortFilter);
+        printSettings(app.timeFilter, app.difficultyFilter, app.sortFilter);
 
         // set colour to blue
 		setColor(3);
@@ -466,7 +466,7 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
 
                 // call the appropriate filter function based on the user choice
                 if (difficultyChoice == 1 || difficultyChoice == 2 || difficultyChoice == 3) {
-                    difficultyFilter = difficultyChoice;
+                    app.difficultyFilter = difficultyChoice;
                     break;
                 }
                 else if (difficultyChoice == 4) {
@@ -504,7 +504,7 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
 
                 // call the appropriate filter function based on the user choice
                 if (timeChoice == 1 || timeChoice == 2 || timeChoice == 3) {
-                    timeFilter = timeChoice;
+                    app.timeFilter = timeChoice;
                     break;
                 }
                 else if (timeChoice == 4) {
@@ -522,8 +522,8 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
             }
         }
         else if (filterChoice == 3) {
-            timeFilter = 0;
-            difficultyFilter = 0;
+            app.timeFilter = 0;
+            app.difficultyFilter = 0;
         }
         else if (filterChoice == 4) {
             while (true) {
@@ -553,25 +553,25 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
 
                 // call the appropriate sort function based on the user choice
                 if (sortChoice == 1) {
-                    sort(allRecipes.begin(), allRecipes.end(), sortByDifficulty);
-                    sortFilter = 1;
+                    sort(app.allRecipes.begin(), app.allRecipes.end(), sortByDifficulty);
+                    app.sortFilter = 1;
                     break;
                 }
                 else if (sortChoice == 2) {
-                    sort(allRecipes.begin(), allRecipes.end(), sortByDifficulty);
-                    reverse(allRecipes.begin(), allRecipes.end());
-                    sortFilter = 2;
+                    sort(app.allRecipes.begin(), app.allRecipes.end(), sortByDifficulty);
+                    reverse(app.allRecipes.begin(), app.allRecipes.end());
+                    app.sortFilter = 2;
                     break;
                 }
                 else if (sortChoice == 3) {
-                    sort(allRecipes.begin(), allRecipes.end(), sortByTime);
-                    sortFilter = 3;
+                    sort(app.allRecipes.begin(), app.allRecipes.end(), sortByTime);
+                    app.sortFilter = 3;
                     break;
                 }
                 else if (sortChoice == 4) {
-                    sort(allRecipes.begin(), allRecipes.end(), sortByTime);
-                    reverse(allRecipes.begin(), allRecipes.end());
-                    sortFilter = 4;
+                    sort(app.allRecipes.begin(), app.allRecipes.end(), sortByTime);
+                    reverse(app.allRecipes.begin(), app.allRecipes.end());
+                    app.sortFilter = 4;
                     break;
                 }
                 else if (sortChoice == 5) {
@@ -590,7 +590,7 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
 
         }
         else if (filterChoice == 5) {
-            sortFilter = 0;
+            app.sortFilter = 0;
         }
         else if (filterChoice == 6) {
             break;
@@ -621,7 +621,7 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
 
         // call the appropriate function based on the user choice
         if (applyChoice == 1) {
-            vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter);
+            vector<Recipes> applied = applySetting(app.allRecipes, app.timeFilter, app.difficultyFilter);
 			// display the recipes with the settings applied
 			// set colour to white 7
 			setColor(7);
@@ -643,6 +643,7 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
+        
     }
 }
 
@@ -862,7 +863,7 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
  * Function to display the options for the user
  * Takes the user input and calls the appropriate function
 */
- void options(vector<Recipes> allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) {
+ void options(RealmOfRecipes& app) {
 
     //set colour to blue
 	setColor(3);
@@ -886,22 +887,22 @@ void setup(string fileName, vector<Recipes> allRecipes, vector<string> allSeries
     if (choice == 1) {
 		// display all recipes (white 7)
 		setColor(7);
-        display(allRecipes);
+        display(app.allRecipes);
     }
     else if (choice == 2) {
-        searchByName(allRecipes);
+        searchByName(app.allRecipes);
     }
     else if (choice == 3) {
-        searchBySeries(allRecipes, allSeries, timeFilter,difficultyFilter, sortFilter);
+        searchBySeries(app.allRecipes, app.allSeries, app.timeFilter,app.difficultyFilter, app.sortFilter);
     }
     else if (choice == 4) {
-        searchByIngredient(allRecipes, timeFilter, difficultyFilter, sortFilter);
+        searchByIngredient(app.allRecipes, app.timeFilter, app.difficultyFilter, app.sortFilter);
     }
     else if (choice == 5) {
-        setSettings(allRecipes,timeFilter, difficultyFilter, sortFilter);
+        setSettings(app);
     }
     else if (choice == 6) {
-        random(allRecipes, timeFilter, difficultyFilter, sortFilter);
+        random(app.allRecipes, app.timeFilter, app.difficultyFilter, app.sortFilter);
     }
     else if (choice == 7) {
 		// set colour to magenta
