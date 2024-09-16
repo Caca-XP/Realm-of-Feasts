@@ -1,0 +1,51 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.41.34120.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/bkish/downloads/realm-of-feasts/recipes.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "dd63c5bec1b02676906638bb42e3f5bff1349f0758c44ca4ee1d2fbfe4b9094e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/bkish/downloads/realm-of-feasts/recipes.h"
+          },
+          "hashes": {
+            "sha-256": "5e38360aee335dfbfe96e16e7e972f05d2525d62893878752f7d91fd73837a47"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/bkish/downloads/realm-of-feasts/ingredients.h"
+          },
+          "hashes": {
+            "sha-256": "fd4186eecef5e69eb043bd612ff0068eee739d3af42505c2beaa7f0198c07421"
+          }
+        }
+      ]
+    }
+  ]
+}

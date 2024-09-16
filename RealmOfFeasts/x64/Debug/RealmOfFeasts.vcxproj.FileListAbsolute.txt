@@ -1,0 +1,2 @@
+C:\Users\bkish\Downloads\Realm-of-Feasts\x64\Debug\RealmOfFeasts.exe.lastcodeanalysissucceeded
+C:\Users\bkish\Downloads\Realm-of-Feasts\RealmOfFeasts\x64\Debug\NativeCodeAnalysis.read.1.tlog
