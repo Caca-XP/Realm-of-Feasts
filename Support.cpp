@@ -25,10 +25,16 @@ vector<string> split_string(string str, string delimiter, bool lowercase = true)
     return result;
 }
 
+
+/* Function to print goodbye
+*/
+void printGoodbye() {
+    cout << "Goodbye!" << endl;
+}
+
 /* Function to quit the program
 */
 void quit() {
-    cout << "Goodbye!" << endl;
     exit(0);
 }
 
@@ -50,6 +56,8 @@ string replaceAll(string str, string from, string to) {
 }
 
 /* Function to read the whole line of user input instead of just one word
+    If ignore is true, ignores the newline character left in the input stream from previous input.
+    Returns the user input (the whole line of input as string)
  */
 string readLine(bool ignore = true) {
     string s;
@@ -64,6 +72,10 @@ string readLine(bool ignore = true) {
 /* Function to set the color of the text in the console
 */
 void setColor(int color) {
+	if (color < 0 || color > 15) {
+		cerr << "Invalid color code: " << color << endl;
+		return;
+	}
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
@@ -101,7 +113,7 @@ vector<Ingredients> process_ingred(string ingred) {
 
     string ingredients;
     // if the start and end of the string are both " then remove them
-    if (ingred.front() == '"' && ingred.back() == '"') {
+    if (ingred.length() > 0 && ingred.front() == '"' && ingred.back() == '"') {
         ingredients = ingred.substr(1, ingred.length() - 2);
     }
     else {
@@ -138,20 +150,14 @@ vector<Ingredients> process_ingred(string ingred) {
  * @return the processed instructions string
  */
  string process_instructions(const string& instruct) {
-    string instructions;
-    // if the start and end of the string are both " then remove them
-    if (instruct.front() == '"' && instruct.back() == '"') {
-        try {
-            instructions = instruct.substr(1, instruct.length() - 2);
-        }
-        catch (const out_of_range& e) {
-            cerr << "*******************************************************************************************************\nError accessing instructions: " << instructions << "\nException: " << e.what() << endl;
-        }
-    }
-    else {
-        instructions = instruct;
+    string instructions = instruct;
+
+    // Only attempt to trim quotes if the string is long enough
+    if (instruct.length() > 1 && instruct.front() == '"' && instruct.back() == '"') {
+        instructions = instruct.substr(1, instruct.length() - 2);
     }
 
+    // Replace all occurrences of "||" with newline characters
     instructions = replaceAll(instructions, "||", "\n");
 
     return instructions;
@@ -181,15 +187,21 @@ vector<Ingredients> process_ingred(string ingred) {
 }
 
 //Enum of values of the difficulty levels
-Level process_difficulty(const string& difficulty_str) {
+Level process_difficulty(string difficulty_str) {
     Level difficulty;
-    if (difficulty_str == "Easy") {
+	// clean the string
+	difficulty_str.erase(0, difficulty_str.find_first_not_of(" "));
+	difficulty_str.erase(difficulty_str.find_last_not_of(" ") + 1);
+	// lowercase the string
+	transform(difficulty_str.begin(), difficulty_str.end(), difficulty_str.begin(), ::tolower);
+
+    if (difficulty_str == "easy") {
         difficulty = Easy;
     }
-    else if (difficulty_str == "Medium") {
+    else if (difficulty_str == "medium") {
         difficulty = Medium;
     }
-    else if (difficulty_str == "Hard") {
+    else if (difficulty_str == "hard") {
         difficulty = Hard;
     }
     else {
@@ -339,320 +351,246 @@ void setup(string fileName, RealmOfRecipes& app) {
 	// set colour to light yellow
 	setColor(14);
 
-    printf("\nCurrent filters: \n");
+    cout << "\nCurrent filters: \n";
     if (difficultyFilter != 0) {
         if (difficultyFilter == 1) {
 			//set colour to green
 			setColor(10);
-            printf("Difficulty: Easy \n");
+            cout << "Difficulty: Easy \n";
         }
         else if (difficultyFilter == 2) {
 			//set colour to yellow
 			setColor(6);
-            printf("Difficulty: Medium \n");
+            cout << "Difficulty: Medium \n";
         }
         else if (difficultyFilter == 3) {
 			//set colour to red
 			setColor(12);
-            printf("Difficulty: Hard \n");
+            cout << "Difficulty: Hard \n";
         }
     }
     if (timeFilter != 0) {
         if (timeFilter == 1) {
 			//set colour to green
 			setColor(10);
-            printf("Time: Less than 30 minutes \n");
+            cout << "Time: Less than 30 minutes \n";
         }
         else if (timeFilter == 2) {
 			//set colour to yellow
 			setColor(6);
-            printf("Time: 30 to 60 minutes \n");
+            cout << "Time: 30 to 60 minutes \n";
         }
         else if (timeFilter == 3) {
 			//set colour to red
 			setColor(12);
-            printf("Time: More than 60 minutes \n");
+            cout << "Time: More than 60 minutes \n";
         }
     }
     if (difficultyFilter == 0 && timeFilter == 0) {
 		// set colour to white
 		setColor(15);
-        printf("None \n");
+        cout << "None \n";
     }
 	// set colour to light yellow
 	setColor(14);
-    printf("Current sorting: \n");
+    cout << "Current sorting: \n";
     if (sortFilter != 0) {
         if (sortFilter == 1) {
 			//set colour to light blue
 			setColor(11);
-            printf("Sort by difficulty \n");
+            cout << "Sort by difficulty \n";
         }
         else if (sortFilter == 2) {
 			//set colour to blue
 			setColor(11);
-            printf("Sort by difficulty reverse \n");
+            cout << "Sort by difficulty reverse \n";
         }
         else if (sortFilter == 3) {
 			//set colour to light magenta
 			setColor(13);
-            printf("Sort by time \n");
+            cout << "Sort by time \n";
         }
         else if (sortFilter == 4) {
 			//set colour to magenta
 			setColor(13);
-            printf("Sort by time reverse \n");
+            cout << "Sort by time reverse \n";
         }
     }
     else {
 		//set colour to white
 		setColor(15);
-        printf("None \n");
+        cout << "None \n";
     }
 
-    printf("\n");
+    cout << "\n";
 }
+
+ /*
+ * Function to set the difficulty filter
+  * @param app the RealmOfRecipes object
+ */
+ void handleDifficultyFilter(RealmOfRecipes& app) {
+     while (true) {
+         setColor(10); printf("1. Easy\n");
+         setColor(6); printf("2. Medium\n");
+         setColor(12); printf("3. Hard\n");
+         setColor(15); printf("4. Back\n");
+
+         int difficultyChoice;
+         cin >> difficultyChoice;
+
+         if (difficultyChoice >= 1 && difficultyChoice <= 3) {
+             app.difficultyFilter = difficultyChoice;
+             break;
+         }
+         else if (difficultyChoice == 4) break;
+         else showInvalidChoiceMessage();
+     }
+ }
+
+ /**
+  * Function to handle the time filter
+  * @param app the RealmOfRecipes object
+  */
+ void handleTimeFilter(RealmOfRecipes& app) {
+     while (true) {
+         setColor(10); printf("1. Less than 30 minutes\n");
+         setColor(6); printf("2. 30 to 60 minutes\n");
+         setColor(12); printf("3. More than 60 minutes\n");
+         setColor(15); printf("4. Back\n");
+
+         int timeChoice;
+         cin >> timeChoice;
+
+         if (timeChoice >= 1 && timeChoice <= 3) {
+             app.timeFilter = timeChoice;
+             break;
+         }
+         else if (timeChoice == 4) break;
+         else showInvalidChoiceMessage();
+     }
+ }
+
+ /**
+  * Function to handle the sort
+  * @param app the RealmOfRecipes object
+  */
+ void handleSort(RealmOfRecipes& app) {
+     while (true) {
+         setColor(11); printf("1. Sort by difficulty\n");
+         setColor(11); printf("2. Sort by difficulty reverse\n");
+         setColor(13); printf("3. Sort by time\n");
+         setColor(13); printf("4. Sort by time reverse\n");
+         setColor(15); printf("5. Back\n");
+
+         int sortChoice;
+         cin >> sortChoice;
+
+         if (sortChoice == 1 || sortChoice == 2) {
+             sort(app.allRecipes.begin(), app.allRecipes.end(), sortByDifficulty);
+             if (sortChoice == 2) reverse(app.allRecipes.begin(), app.allRecipes.end());
+             app.sortFilter = sortChoice;
+             break;
+         }
+         else if (sortChoice == 3 || sortChoice == 4) {
+             sort(app.allRecipes.begin(), app.allRecipes.end(), sortByTime);
+             if (sortChoice == 4) reverse(app.allRecipes.begin(), app.allRecipes.end());
+             app.sortFilter = sortChoice;
+             break;
+         }
+         else if (sortChoice == 5) break;
+         else showInvalidChoiceMessage();
+     }
+ }
+
+ /**
+  * Function to display an invalid choice message
+  */
+ void showInvalidChoiceMessage() {
+     setColor(4);
+     cout << "Invalid choice. Please try again." << endl;
+     cin.clear();
+     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+ }
 
 /**
  * Function to set settings for the recipes
  * User can set filters for difficulty and time
  * User can set sorting for the recipes
 */
- void setSettings(RealmOfRecipes& app){
+ void setSettings(RealmOfRecipes& app) {
+	 bool exitMenu = false;
 
-    while (true) {
-        printSettings(app.timeFilter, app.difficultyFilter, app.sortFilter);
+     while (!exitMenu) {
+         printSettings(app.timeFilter, app.difficultyFilter, app.sortFilter);
+         
+         setColor(3);
+         printf("1. Filter by difficulty\n");
+         printf("2. Filter by time\n");
+         printf("3. Reset filters\n");
+         printf("4. Set sort\n");
+         printf("5. Reset sort\n");
+         printf("6. Back\n");
 
-        // set colour to blue
-		setColor(3);
+         int filterChoice;
+         cin >> filterChoice;
 
-        // display the filter options
-        printf("1. Filter by difficulty\n");
-        printf("2. Filter by time\n");
-        printf("3. Reset filters\n");
-        printf("4. Set sort\n");
-        printf("5. Reset sort\n");
-        printf("6. Back\n");
+         switch (filterChoice) {
+             case 1: handleDifficultyFilter(app); break;
+             case 2: handleTimeFilter(app); break;
+             case 3: app.timeFilter = 0; app.difficultyFilter = 0; break;
+             case 4: handleSort(app); break;
+             case 5: app.sortFilter = 0; break;
+			 case 6: exitMenu = true; break;
+             default: showInvalidChoiceMessage(); break;
+         }
+     }
 
-		// get the user choice (colour to grey 8)
-		setColor(8);
-        int filterChoice;
-        cin >> filterChoice;
+     while (true) {
+         setColor(3);
+         printf("1. Save settings and print all recipes with settings applied\n");
+         printf("2. Save settings and back\n");
 
-        // call the appropriate filter function based on the user choice
-        if (filterChoice == 1) {
-            while (true) {
-                // display the filter options
-				// set colour to green
-				setColor(10);
-                printf("1. Easy\n");
+         int applyChoice;
+         cin >> applyChoice;
 
-				// set colour to yellow
-				setColor(6);
-                printf("2. Medium\n");
+         if (applyChoice == 1) {
+             vector<Recipes> applied = applySetting(app.allRecipes, app.timeFilter, app.difficultyFilter);
+             setColor(7);
+             display(applied);
+             break;
+         }
+         else if (applyChoice == 2) {
+             setColor(2);
+             printf("Settings saved.\n\n");
+             break;
+         }
+         else {
+             showInvalidChoiceMessage();
+         }
+     }
+ }
 
-				// set colour to red
-				setColor(12);
-                printf("3. Hard\n");
-
-				// set colour to white
-				setColor(15);
-                printf("4. Back\n");
-
-				// get the user choice (colour to grey 8)
-				setColor(8);
-                int difficultyChoice;
-                cin >> difficultyChoice;
-
-                // call the appropriate filter function based on the user choice
-                if (difficultyChoice == 1 || difficultyChoice == 2 || difficultyChoice == 3) {
-                    app.difficultyFilter = difficultyChoice;
-                    break;
-                }
-                else if (difficultyChoice == 4) {
-                    break;
-                }
-                else {
-                    // if invalid choice
-                    cout << "Invalid choice. Please try again." << endl;
-                    // reset the cin buffer
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
-            }
-        }
-        else if (filterChoice == 2) {
-            while (true) {
-                // display the filter options
-				// set colour to green
-				setColor(10);
-                printf("1. Less than 30 minutes\n");
-				// set colour to yellow
-				setColor(6);
-                printf("2. 30 to 60 minutes\n");
-				// set colour to red
-				setColor(12);
-                printf("3. More than 60 minutes\n");
-				// set colour to white
-				setColor(15);
-                printf("4. Back\n");
-
-				// get the user choice (colour to grey 8)
-				setColor(8);
-                int timeChoice;
-                cin >> timeChoice;
-
-                // call the appropriate filter function based on the user choice
-                if (timeChoice == 1 || timeChoice == 2 || timeChoice == 3) {
-                    app.timeFilter = timeChoice;
-                    break;
-                }
-                else if (timeChoice == 4) {
-                    break;
-                }
-                else {
-                    // if invalid choice
-					// set colour to red
-					setColor(4);
-                    cout << "Invalid choice. Please try again." << endl;
-                    // reset the cin buffer
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
-            }
-        }
-        else if (filterChoice == 3) {
-            app.timeFilter = 0;
-            app.difficultyFilter = 0;
-        }
-        else if (filterChoice == 4) {
-            while (true) {
-                // display the sort options
-				// set colour to light blue
-				setColor(11);
-                printf("1. Sort by difficulty\n");
-				// set colour to blue
-				setColor(11);
-                printf("2. Sort by difficulty reverse\n");
-
-				// set colour to light magenta
-				setColor(13);
-                printf("3. Sort by time\n");
-				// set colour to magenta
-				setColor(13);
-                printf("4. Sort by time reverse\n");
-
-				// set colour to white
-				setColor(15);
-                printf("5. Back\n");
-
-				// get the user choice (colour to grey 8)
-				setColor(8);
-                int sortChoice;
-                cin >> sortChoice;
-
-                // call the appropriate sort function based on the user choice
-                if (sortChoice == 1) {
-                    sort(app.allRecipes.begin(), app.allRecipes.end(), sortByDifficulty);
-                    app.sortFilter = 1;
-                    break;
-                }
-                else if (sortChoice == 2) {
-                    sort(app.allRecipes.begin(), app.allRecipes.end(), sortByDifficulty);
-                    reverse(app.allRecipes.begin(), app.allRecipes.end());
-                    app.sortFilter = 2;
-                    break;
-                }
-                else if (sortChoice == 3) {
-                    sort(app.allRecipes.begin(), app.allRecipes.end(), sortByTime);
-                    app.sortFilter = 3;
-                    break;
-                }
-                else if (sortChoice == 4) {
-                    sort(app.allRecipes.begin(), app.allRecipes.end(), sortByTime);
-                    reverse(app.allRecipes.begin(), app.allRecipes.end());
-                    app.sortFilter = 4;
-                    break;
-                }
-                else if (sortChoice == 5) {
-                    break;
-                }
-                else {
-                    // if invalid choice
-					// set colour to red
-					setColor(4);
-                    cout << "Invalid choice. Please try again." << endl;
-                    // reset the cin buffer
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
-            }
-
-        }
-        else if (filterChoice == 5) {
-            app.sortFilter = 0;
-        }
-        else if (filterChoice == 6) {
-            break;
-        }
-        else {
-            // if invalid choice
-			// set colour to red
-			setColor(4);
-            cout << "Invalid choice. Please try again." << endl;
-            // reset the cin buffer
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
-
-    }
-    // Ask the user whether to apply the filters and print the results
-    while (true) {
-		// display the apply options
-		// set colour to blue
-		setColor(3);
-        printf("1. Save settings and print all recepies with settings applied\n");
-        printf("2. Save settings and back\n");
-
-		// get the user choice (colour to grey 8)
-		setColor(8);
-        int applyChoice;
-        cin >> applyChoice;
-
-        // call the appropriate function based on the user choice
-        if (applyChoice == 1) {
-            vector<Recipes> applied = applySetting(app.allRecipes, app.timeFilter, app.difficultyFilter);
-			// display the recipes with the settings applied
-			// set colour to white 7
-			setColor(7);
-            display(applied);
-            break;
-        }
-        else if (applyChoice == 2) {
-			// set colour to green
-			setColor(2);
-            printf("Settings saved.\n\n");
-            break;
-        }
-        else {
-            // if invalid choice
-			// set colour to red
-			setColor(4);
-            cout << "Invalid choice. Please try again." << endl;
-            // reset the cin buffer
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
-        
-    }
-}
 
 
 /**
  * Function that displays a random recipe within the allRecipes array
 */
  void random(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
+    // Check if recipes vector is empty
+    if (allRecipes.empty()) {
+        // set colour to red for the message
+        setColor(4);
+        cout << "No matching recipes found." << endl;
+        return; // Exit the function
+    }
+
     vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter);
+
+	if (applied.size() == 0) {
+        return;
+	}
+
     int randomIndex = rand() % applied.size();
     printSettings(timeFilter, difficultyFilter, sortFilter);
 	// set colour to white 7
