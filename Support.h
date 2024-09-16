@@ -47,6 +47,9 @@ vector<string> split_string(string str, string delimiter, bool lowercase);
 */
 void quit();
 
+/*! Function to print goodbye
+*/
+void printGoodbye();
 
 /*!
 *@brief Function to replace comma space to comma
@@ -106,7 +109,7 @@ vector<Ingredients> process_ingred(string ingred);
 *@param difficulty_str The string to convert.
 *@return The corresponding enum Level value.
 */
-Level process_difficulty(const string& difficulty_str);
+Level process_difficulty(string difficulty_str);
 
 /*!
  * @brief Function to read the data from the file and initialise the allRecipes array
@@ -152,11 +155,32 @@ Level process_difficulty(const string& difficulty_str);
 
 /*!
  * @brief Function to set settings for the recipes
- * @details User can set filters for difficulty and time
- * User can set sorting for the recipes
+ * @details User can set filters for difficulty and time and sort
+ * @param app the RealmOfRecipes object
 */
  void setSettings(RealmOfRecipes& app);
 
+/*!
+ * @brief Function to set difficulty filter
+*/
+ void handleDifficultyFilter(RealmOfRecipes& app);
+
+/*!
+ * @brief Function to handle the time filter
+ * @param app the RealmOfRecipes object
+ */
+void handleTimeFilter(RealmOfRecipes& app);
+
+/*!
+ * @brief Function to handle the sort
+ * @param app the RealmOfRecipes object
+ */
+void handleSort(RealmOfRecipes& app);
+
+/*!
+ * @brief Function to display an invalid choice message
+ */
+void showInvalidChoiceMessage();
 
 /*!
  * @brief Function that displays a random recipe within the allRecipes array
