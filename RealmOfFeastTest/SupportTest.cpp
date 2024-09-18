@@ -712,7 +712,7 @@ namespace RealmOfFeastTest
 
 
 			showInvalidChoiceMessage();
-			Assert::AreEqual("Invalid choice. Please try again.\n", buffer.str().c_str());
+			Assert::AreEqual("An unwise choice has been made. Seek another path.\n", buffer.str().c_str());
 
 			// Restore original cout and cin buffers
 			std::cout.rdbuf(oldCoutBuffer);
@@ -784,7 +784,7 @@ namespace RealmOfFeastTest
 			random(emptyRecipes, timeFilter, difficultyFilter, sortFilter);
 
 			// Check if the output is No matching recipes found
-			Assert::AreEqual("No matching recipes found.\n", buffer.str().c_str());
+			Assert::AreEqual("No recipes align with your search.\n", buffer.str().c_str());
 
 			// clear the buffer for the next test
 			buffer.str(""); buffer.clear();
@@ -793,7 +793,7 @@ namespace RealmOfFeastTest
 			random(allRecipes, 3, 1, 0);
 
 			// Check if the output is No matching recipes found
-			Assert::AreEqual("\nNo recipes found.\n\n", buffer.str().c_str());
+			Assert::AreEqual("\nNo such recipe exist within the forgotten archives.\n\n", buffer.str().c_str());
 
 			// Restore original cout buffer
 			std::cout.rdbuf(oldCoutBuffer);

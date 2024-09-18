@@ -94,5 +94,28 @@ namespace RealmOfFeastTest
 			Assert::AreEqual(actualLevel, 1);
 		}
 
+		/**
+		 * Test the getIngredientsNames method of Recipes class
+		 * @see Recipes.cpp
+		 * @test
+		 */
+		TEST_METHOD(TestGetIngredientsNames)
+		{
+			vector<Ingredients> testIngredients = { Ingredients(10, "testUnit", "testIng") };
+			Level testLevel = Level(3);
+			Recipes testRecipe = Recipes("testName", "testSeries", "testDescription", testIngredients, "testInstructions", 10, testLevel);
+			std::string expectedName = "testIng";
+			std::string actualName = testRecipe.getIngredientsNames().at(0);
+
+			//Test
+			Assert::AreEqual(actualName, expectedName);
+
+			//change the expected name
+			expectedName = "testIng2";
+
+			//test if the name is not equal to the expected value
+			Assert::AreNotEqual(actualName, expectedName);
+		}
+
 	};
 }
