@@ -84,7 +84,7 @@ namespace RealmOfFeastTest
 
 			// Instead of calling quit(), call printGoodbye() so the test doesn't exit the program
 			printGoodbye();
-            Assert::AreEqual(std::string("Farewell traveler, may our paths cross once again.\n"), output.str());  // Stop execution if this fails
+            Assert::AreEqual(std::string("Farewell traveler, may our paths cross once more.\n"), output.str());  // Stop execution if this fails
 
 			// Restore std::cout
 			std::cout.rdbuf(oldCoutStreamBuf);
@@ -101,7 +101,7 @@ namespace RealmOfFeastTest
 			setColor(-1);
 
 			// Check the cerr output for error message
-			Assert::IsTrue(error_output.str().find("Invalid color") != string::npos);
+			Assert::IsTrue(error_output.str().find("The color code you have entered is forbidden: ") != string::npos);
 
 			// Restore cerr
 			std::cerr.rdbuf(old_cerr);

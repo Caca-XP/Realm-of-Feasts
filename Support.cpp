@@ -29,7 +29,7 @@ vector<string> split_string(string str, string delimiter, bool lowercase = true)
 /* Function to print goodbye
 */
 void printGoodbye() {
-    cout << "Farewell traveler, may our paths cross once again." << endl;
+    cout << "Farewell traveler, may our paths cross once more." << endl;
 }
 
 /* Function to quit the program
@@ -73,7 +73,7 @@ string readLine(bool ignore = true) {
 */
 void setColor(int color) {
 	if (color < 0 || color > 15) {
-		cerr << "Invalid color code: " << color << endl;
+		cerr << "The color code you have entered is forbidden: " << color << endl;
 		return;
 	}
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
