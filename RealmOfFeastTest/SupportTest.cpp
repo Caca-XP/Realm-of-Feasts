@@ -106,6 +106,8 @@ namespace RealmOfFeastTest
 			// Restore cerr
 			std::cerr.rdbuf(old_cerr);
 
+			setColor(1);
+
 			// Test getCurrentColor
 			// Check if it's possible to get the current color
 			if (getCurrentColor()!=-1) {
@@ -171,7 +173,7 @@ namespace RealmOfFeastTest
 			vector<Ingredients> result3 = process_ingred(invalid_ingred);
 
 			// Check if the correct error message was printed to std::cerr
-			Assert::IsTrue(error_output.str().find("Error accessing ingredient parts") != string::npos);
+			Assert::IsTrue(error_output.str().find("An unseen force blocks access to the ingredient parts") != string::npos);
 
 			// Restore std::cerr
 			std::cerr.rdbuf(old_cerr);
@@ -507,35 +509,35 @@ namespace RealmOfFeastTest
 
 			// Case 1: All filters set (timeFilter = 2, difficultyFilter = 1, sortFilter = 3)
 			printSettings(2, 1, 3);
-			Assert::AreEqual("\nCurrent filters: \nDifficulty: Easy \nTime: 30 to 60 minutes \nCurrent sorting: \nSort by time \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nDifficulty: Easy \nTime: 30 to 60 minutes \nCurrent sorting: \nSort by time \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 2: No filters set (timeFilter = 0, difficultyFilter = 0, sortFilter = 0)
 			printSettings(0, 0, 0);
-			Assert::AreEqual("\nCurrent filters: \nNone \nCurrent sorting: \nNone \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nNaught \nCurrent sorting: \nNaught \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 3: Only time filter set (timeFilter = 3, difficultyFilter = 0, sortFilter = 0)
 			printSettings(3, 0, 0);
-			Assert::AreEqual("\nCurrent filters: \nTime: More than 60 minutes \nCurrent sorting: \nNone \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nTime: More than 60 minutes \nCurrent sorting: \nNaught \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 4: Only difficulty and sorting set (timeFilter = 0, difficultyFilter = 2, sortFilter = 1)
 			printSettings(0, 2, 1);
-			Assert::AreEqual("\nCurrent filters: \nDifficulty: Medium \nCurrent sorting: \nSort by difficulty \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nDifficulty: Medium \nCurrent sorting: \nSort by difficulty \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 5: Sorting only (timeFilter = 0, difficultyFilter = 0, sortFilter = 4)
 			printSettings(0, 0, 4);
-			Assert::AreEqual("\nCurrent filters: \nNone \nCurrent sorting: \nSort by time reverse \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nNaught \nCurrent sorting: \nSort by time reverse \n\n", buffer.str().c_str());
 
 			// Restore original cout buffer
 			std::cout.rdbuf(oldCoutBuffer);
