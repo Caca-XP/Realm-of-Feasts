@@ -19,25 +19,25 @@ int main() {
     // read and initialize the data for recipes
     setup("RecipesTest.txt", app);//change to database later
 
-    std::cout << "Welcome to the Realm of Feasts!" << std::endl;
+    std::cout << "Welcome, brave traveler, to the Realm of Feasts!" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Delay for 500 milliseconds
 
     // set colour to purple
 	setColor(5);
 
-    std::cout << "A recipe finder app to fix your fictional food craving." << std::endl;
+    std::cout << "A magical recipe quest awaits you, where only the finest dishes from legendary lands can satisfy your craving for the extraordinary." << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(900)); 
 
-    std::cout << "Using the options below, go on a quest to find the perfect recipe for your feast." << std::endl;
+    std::cout << "With the enchanted choices before you, embark on a journey to discover the perfect recipe for your grand feast." << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1100)); 
 
-    std::cout << "All recipes shall be from the wondrous fictional worlds of Harry Potter, Studio Ghibli, and many more!" << std::endl;
+    std::cout << "Unearth mystical recipes from the fabled worlds of Harry Potter, the enchanted realms of Studio Ghibli, and countless other tales of wonder!" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1200)); 
 
-    std::cout << "All you have to do is enter a number to interact with the App" << std::endl;
+    std::cout << "Simply invoke the magic of numbers to interact with this wondrous App and begin your culinary adventure." << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1400)); 
 
-    std::cout << "Good luck!" << std::endl << std::endl;
+    std::cout << "May fortune guide your quest!" << std::endl << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1600)); 
     
     while (true) {

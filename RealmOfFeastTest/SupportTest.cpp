@@ -84,7 +84,7 @@ namespace RealmOfFeastTest
 
 			// Instead of calling quit(), call printGoodbye() so the test doesn't exit the program
 			printGoodbye();
-            Assert::AreEqual(std::string("Goodbye!\n"), output.str());  // Stop execution if this fails
+            Assert::AreEqual(std::string("Farewell traveler, may our paths cross once again.\n"), output.str());  // Stop execution if this fails
 
 			// Restore std::cout
 			std::cout.rdbuf(oldCoutStreamBuf);
