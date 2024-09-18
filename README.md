@@ -5,13 +5,14 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/cc26c221b65748a4854ee6630a3794f9)](https://app.codacy.com/gh/Caca-XP/Realm-of-Feasts/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Description
 
-## Description 
 Realm of Feasts is a fantasy recipe discovery app that helps you find recipes based on the ingredients you already have at home. Realm of Feast searches its database and suggests the recipes you can make. The unique aspect of the app is that all recipes are of foods not from “Earth”. The app database includes recipes from Harry Potter, The Hobbit, Spirited Away, and many other mythical fictional realms. Thus, the name "Realm of Feasts." Fans of these realms can now prepare and enjoy the meals they've read about or seen on screen, upon it.
 
 The app allows users to filter recipes by difficulty, and preparation time, and even sort them according to their preferences. Whether you're in the mood for a quick snack from "The Shire" or a challenging dish from "Hogwarts," Realm of Feasts has something for every fantasy food enthusiast.
 
 ## Authors
+
 Natasha Prasetyo 
 
 Nadia Prasetyo
@@ -19,8 +20,11 @@ Nadia Prasetyo
 Bernice Ishumi
 
 # Usage 
+
 - A C/C++ compiler is required to run this Application.
+
 ## Running the App
+
 1. Compile and run App.cpp
 2. Read the instructions displayed 
 3. Read the options displayed
@@ -28,11 +32,13 @@ Bernice Ishumi
 5. Interact with the app to enjoy the quest of finding a fantastical recipe 
 
 ## Testing
+
  The application was tested using Unit Tests. The tests can be found in the RealmOfFeastsTest folder in the tests directory.
 
 # Version History 
 
 ## Alpha
+
 Basic functionality of the App.
 
 Released on: 29.08.2024
@@ -42,9 +48,11 @@ Tag: Alpha.2
 Release: Alpha Version
 
 ## Beta 
+
 Currently Unreleased
 
 ## Final Product 
+
 Currently Unreleased 
 
 # Acknowledgments
@@ -64,6 +72,7 @@ Currently Unreleased
 
 
 ## Dependencies
+
 The software relies on the following C/C++ packages:
 
 -- `<iostream>`
