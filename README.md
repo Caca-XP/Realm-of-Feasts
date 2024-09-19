@@ -67,7 +67,7 @@ Currently Unreleased
 
 - [How to reset stdcin when using it](https://stackoverflow.com/questions/39282953/how-to-reset-stdcin-when-using-it)
 
- - [Find if a vector is a subvector C](https://stackoverflow.com/questions/30584131/find-if-vector-is-subvector-c)
+- [Find if a vector is a subvector C](https://stackoverflow.com/questions/30584131/find-if-vector-is-subvector-c)
 
 - [Find and replace all occurrences of a substring in string in C++](https://www.geeksforgeeks.org/find-and-replace-all-occurrences-of-a-substring-in-string-in-cpp/)
 
