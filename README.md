@@ -31,6 +31,9 @@ Bernice Ishumi
 4. Choose one of the options to begin interacting with the application.
 5. Interact with the app to enjoy the quest of finding a fantastical recipe 
 
+Click the survey below to tell us your experience with the App: 
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfi1kbsVHPZIAPxhnr8aFv-GUTaYyVzZm81CQlXaoaQD8GEyg/viewform?embedded=true" width="640" height="3589" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
 ## Testing
 
  The application was tested using Unit Tests. The tests can be found in the RealmOfFeastsTest folder in the tests directory.
