@@ -42,7 +42,7 @@ namespace RealmOfFeastTest
 		 */
 		TEST_METHOD(TestRecipesParameterizedConstructor)
 		{
-			vector<Ingredients> testIngredients = { Ingredients(10, "testUnit", "testIng") };
+			vector<Ingredients> testIngredients = { Ingredients(10, "testUnit", "testIngred") };
 			Level testLevel = Level(3);
 			std::string expectedName = "testName";
 			std::string expectedSeries = "testSeries";
@@ -52,6 +52,7 @@ namespace RealmOfFeastTest
 			int expectedLevel = 3;
 			Recipes testRecipe = Recipes("testName", "testSeries", "testDescription", testIngredients, "testInstructions", 10, testLevel);
 			int actualLevel = testRecipe.getDifficulty();
+			vector<std::string> expectedIngNames = { "testingred" };//lowercased
 
 
 			//Test
@@ -62,6 +63,7 @@ namespace RealmOfFeastTest
 			Assert::AreEqual(testRecipe.getInstructions(), expectedInstructions);
 			Assert::AreEqual(testRecipe.getTime(), expectedTime);
 			Assert::AreEqual(actualLevel, expectedLevel);
+			Assert::AreEqual(testRecipe.getIngredientsNames().at(0), expectedIngNames.at(0));
 
 			//change the expected name and description
 			expectedName = "testName2";
@@ -93,6 +95,7 @@ namespace RealmOfFeastTest
 			Assert::AreNotEqual(actualLevel, expectedLevel);
 			Assert::AreEqual(actualLevel, 1);
 		}
+
 
 	};
 }
