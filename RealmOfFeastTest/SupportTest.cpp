@@ -509,35 +509,35 @@ namespace RealmOfFeastTest
 
 			// Case 1: All filters set (timeFilter = 2, difficultyFilter = 1, sortFilter = 3)
 			printSettings(2, 1, 3);
-			Assert::AreEqual("\nActive selections: \nDifficulty: Easy \nTime: 30 to 60 minutes \nCurrent sorting: \nSort by time \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nDifficulty: Easy \nTime: 30 to 60 minutes \nActive arrangement: \nSort by time \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 2: No filters set (timeFilter = 0, difficultyFilter = 0, sortFilter = 0)
 			printSettings(0, 0, 0);
-			Assert::AreEqual("\nActive selections: \nNaught \nCurrent sorting: \nNaught \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nNaught \nActive arrangement: \nNaught \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 3: Only time filter set (timeFilter = 3, difficultyFilter = 0, sortFilter = 0)
 			printSettings(3, 0, 0);
-			Assert::AreEqual("\nActive selections: \nTime: More than 60 minutes \nCurrent sorting: \nNaught \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nTime: More than 60 minutes \nActive arrangement: \nNaught \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 4: Only difficulty and sorting set (timeFilter = 0, difficultyFilter = 2, sortFilter = 1)
 			printSettings(0, 2, 1);
-			Assert::AreEqual("\nActive selections: \nDifficulty: Medium \nCurrent sorting: \nSort by difficulty \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nDifficulty: Medium \nActive arrangement: \nSort by difficulty \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 5: Sorting only (timeFilter = 0, difficultyFilter = 0, sortFilter = 4)
 			printSettings(0, 0, 4);
-			Assert::AreEqual("\nActive selections: \nNaught \nCurrent sorting: \nSort by time reverse \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nNaught \nActive arrangement: \nSort by time reverse \n\n", buffer.str().c_str());
 
 			// Restore original cout buffer
 			std::cout.rdbuf(oldCoutBuffer);
@@ -793,7 +793,7 @@ namespace RealmOfFeastTest
 			random(allRecipes, 3, 1, 0);
 
 			// Check if the output is No matching recipes found
-			Assert::AreEqual("\nNo such recipe exist within the forgotten archives.\n\n", buffer.str().c_str());
+			Assert::AreEqual("\nNo such recipe exists within the forgotten archives.\n\n", buffer.str().c_str());
 
 			// Restore original cout buffer
 			std::cout.rdbuf(oldCoutBuffer);
