@@ -869,58 +869,46 @@ namespace RealmOfFeastTest
 			std::vector<Recipes> results = searchByIngredient(allRecipes, 0, 0, 0);
 			Assert::IsTrue(results.empty());
 
-			//// Test for a single ingredient (banana)
-			//Recipes recipe1 = Recipes("Apple Pie", "", "", { Ingredients(1, "", "apple") }, "", 0, Easy);
-			//Recipes recipe2 = Recipes("Banana Bread", "", "", { Ingredients(1, "", "banana") }, "", 0, Easy);
-			//allRecipes = { recipe1, recipe2 };
+			// Test for a single ingredient (banana)
+			Recipes recipe1 = Recipes("Apple Pie", "", "", { Ingredients(1, "", "apple") }, "", 0, Easy);
+			Recipes recipe2 = Recipes("Banana Bread", "", "", { Ingredients(1, "", "banana") }, "", 0, Easy);
+			allRecipes = { recipe1, recipe2 };
 
-			//// Mock user input for "banana"
-			//std::istringstream input2("banana"); 
-			//std::cin.rdbuf(input2.rdbuf());
-			////print input
-			//std::cout << input2.str() << std::endl;
+			// Mock user input for "banana"
+			std::istringstream input2(" banana\n"); 
+			std::cin.rdbuf(input2.rdbuf());
 
-			//results = searchByIngredient(allRecipes, 0, 0, 0);
+			results = searchByIngredient(allRecipes, 0, 0, 0);
 
-			////print allRecipes
-			//for (auto& recipe : allRecipes) {
-			//	std::cout << recipe.getName() << std::endl;
-			//}
+			// Check if the function finds exactly one recipe, and it's the correct one
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Banana Bread"), results[0].getName());
 
-			////print result
-			//for (auto& recipe : results) {
-			//	std::cout << recipe.getName() << std::endl;
-			//}
+			//Test for multiple results
+			Recipes recipe3 = Recipes("Apple Crumble", "", "", { Ingredients(1, "apple", "apple"), Ingredients(1, "cup", "sugar") }, "", 0, Easy);
+			Recipes recipe4 = Recipes("Lemon Juice", "", "", { Ingredients(1, "lemon", "lemon"), Ingredients(1, "cup", "sugar") }, "", 0, Easy);
+			allRecipes = { recipe1, recipe2, recipe3, recipe4 };
 
-			//// Check if the function finds exactly one recipe, and it's the correct one
-			//Assert::AreEqual(size_t(1), results.size());
-			//Assert::AreEqual(std::string("Banana Bread"), results[0].getName());
+			//Mock user input
+			std::istringstream input3(" sugar\n");
+			std::cin.rdbuf(input3.rdbuf());
 
-			////Test for multiple results
-			//Recipes recipe3 = Recipes("Apple Crumble", "", "", { Ingredients(1, "apple", "apple"), Ingredients(1, "sugar", "cup") }, "", 0, Easy);
-			//Recipes recipe4 = Recipes("Lemon Juice", "", "", { Ingredients(1, "lemon", "lemon"), Ingredients(1, "sugar", "cup") }, "", 0, Easy);
-			//allRecipes = { recipe1, recipe2, recipe3, recipe4 };
+			results = searchByIngredient(allRecipes, 0, 0, 0);
 
-			////Mock user input
-			//std::istringstream input3("sugar\n");
-			//std::cin.rdbuf(input3.rdbuf());
+			Assert::AreEqual(size_t(2), results.size());
+			Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
+			Assert::AreEqual(std::string("Lemon Juice"), results[1].getName());
 
-			//results = searchByIngredient(allRecipes, 0, 0, 0);
+			//Test for multiple ingredients
+			
+			//Mock user input
+			std::istringstream input4(" apple, sugar\n");
+			std::cin.rdbuf(input4.rdbuf());
 
-			//Assert::AreEqual(size_t(2), results.size());
-			//Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
-			//Assert::AreEqual(std::string("Lemon Juice"), results[1].getName());
+			results = searchByIngredient(allRecipes, 0, 0, 0);
 
-			////Test for multiple ingredients
-			//
-			////Mock user input
-			//std::istringstream input4("apple\nsugar\n");
-			//std::cin.rdbuf(input4.rdbuf());
-
-			//results = searchByIngredient(allRecipes, 0, 0, 0);
-
-			//Assert::AreEqual(size_t(1), results.size());
-			//Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
 		}
 
 		/** Testing Search by series function
@@ -984,8 +972,6 @@ namespace RealmOfFeastTest
 
 			Assert::IsTrue(results.empty());
 		}
-
-
-
 	};
+
 }
