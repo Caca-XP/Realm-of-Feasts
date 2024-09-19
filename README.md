@@ -31,7 +31,7 @@ Bernice Ishumi
 4. Choose one of the options to begin interacting with the application.
 5. Interact with the app to enjoy the quest of finding a fantastical recipe 
 
-Click the survey below to tell us your experience with the App:[Survey](https://forms.gle/r95YtPtUNcKDYVTXA)
+Tell us your experience with the App:[User Survey](https://forms.gle/r95YtPtUNcKDYVTXA)
 
 ## Testing
 
