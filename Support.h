@@ -86,7 +86,7 @@ int getCurrentColor();
  * @param ingred the ingredients string
  * @return vector of Ingredients objects
  */
-vector<Ingredients> process_ingred(string ingred);
+vector<Ingredients> process_ingred(const string& ingred);
 
 /*!
  * @brief Function to process the instructions string
@@ -185,7 +185,7 @@ void showInvalidChoiceMessage();
 /*!
  * @brief Function that displays a random recipe within the allRecipes array
 */
- void random(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) ;
+ void random(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter) ;
 
 /*!
  * @brief Function to search the recipes array by specific name
@@ -200,14 +200,14 @@ void showInvalidChoiceMessage();
  * @details Displays recipes that contains all of the specified ingredient(s)
  * @return vector of recipes containing recipes that contain the ingredient(s)
 */
- vector<Recipes> searchByIngredient(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter);
+ vector<Recipes> searchByIngredient(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter);
  
  /*!
  * @brief Function to filter the recipes by series
  * @details Displays recipes that are in the specified series
  * @return vector of recipes containing recipes that are in the specified series
 */
- vector<Recipes> searchBySeries(vector<Recipes> allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) ;
+ vector<Recipes> searchBySeries(const vector<Recipes>& allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) ;
 
 
 

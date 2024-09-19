@@ -9,9 +9,8 @@ vector<string> split_string(string str, string delimiter, bool lowercase = true)
     }
     vector<string> result;
     size_t pos = 0;
-    string token;
     while ((pos = str.find(delimiter)) != string::npos) {
-        token = str.substr(0, pos);
+        string token = str.substr(0, pos);
         // remove leading and trailing spaces
         token.erase(0, token.find_first_not_of(" "));
         token.erase(token.find_last_not_of(" ") + 1);
@@ -109,7 +108,7 @@ int getCurrentColor() {
  * @param ingred the ingredients string
  * @return vector of Ingredients objects
  */
-vector<Ingredients> process_ingred(string ingred) {
+vector<Ingredients> process_ingred(const string& ingred) {
 
     string ingredients;
     // if the start and end of the string are both " then remove them
@@ -127,14 +126,13 @@ vector<Ingredients> process_ingred(string ingred) {
             vector<string> ingredient_units = split_string(ingredient, "*", false);
             if (ingredient_units.size() < 3) {
                 throw out_of_range("The ingredient lacks the necessary magical components.");
-                continue;
+            } else {
+                ingredients_list.push_back(Ingredients(stod(ingredient_units[0]), ingredient_units[1], ingredient_units[2]));
             }
-            ingredients_list.push_back(Ingredients(stod(ingredient_units[0]), ingredient_units[1], ingredient_units[2]));
 
         }
         catch (const out_of_range& e) {
             cerr << "*******************************************************************************************************\nAn unseen force blocks access to the ingredient parts: " << ingredient << "\nException: " << e.what() << endl;
-            continue; // Skip this ingredient and move to the next
         }
 
 
@@ -576,7 +574,7 @@ void setup(string fileName, RealmOfRecipes& app) {
 /**
  * Function that displays a random recipe within the allRecipes array
 */
- void random(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
+ void random(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
     // Check if recipes vector is empty
     if (allRecipes.empty()) {
         // set colour to red for the message
@@ -661,7 +659,7 @@ void setup(string fileName, RealmOfRecipes& app) {
  * Displays recipes that contains all of the specified ingredient(s)
  * @return vector of recipes containing recipes that contain the ingredient(s)
 */
- vector<Recipes> searchByIngredient(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
+ vector<Recipes> searchByIngredient(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
     vector<Recipes> results;
     string search;
 
@@ -724,7 +722,7 @@ void setup(string fileName, RealmOfRecipes& app) {
  * Displays recipes that are in the specified series
  * @return vector of recipes containing recipes that are in the specified series
 */
- vector<Recipes> searchBySeries(vector<Recipes> allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) {
+ vector<Recipes> searchBySeries(const vector<Recipes>& allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) {
     vector<Recipes> results;
     string search;
 	// get the search string from the user
