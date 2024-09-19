@@ -51,7 +51,13 @@ Release: Alpha Version
 
 ### Beta 
 
-Currently Unreleased
+Better functionality of the App.
+
+Released on: 20.09.2024
+
+Tag: Beta.1
+
+Release: Beta Version
 
 ### Final Product 
 
@@ -102,4 +108,6 @@ The software relies on the following C/C++ packages:
 -- `pch.h`
 
 -- `CppUnitTest.h`
+
 Ensure that these packages and libraries are available in you C/C++ environment.
+
