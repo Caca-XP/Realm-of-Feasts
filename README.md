@@ -52,7 +52,13 @@ Release: Alpha Version
 
 ## Beta 
 
-Currently Unreleased
+Better functionality of the App.
+
+Released on: 20.09.2024
+
+Tag: Beta.1
+
+Release: Beta Version
 
 ## Final Product 
 
