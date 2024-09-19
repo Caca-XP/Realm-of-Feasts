@@ -24,4 +24,4 @@ diff --git a/extras/CODE_OF_CONDUCT.md b/extras/CODE_OF_CONDUCT.md
 +++ b/extras/CODE_OF_CONDUCT.md
 @@ -63,1 +63,1 @@
 -<prana445@student.otago.ac.nz.>
-+<<prana445@student.otago.ac.nz>.>
++<prana445@student.otago.ac.nz>

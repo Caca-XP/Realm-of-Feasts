@@ -69,7 +69,7 @@ Currently Unreleased
 - [Right way to split an stdstring into a vector string](https://stackoverflow.com/questions/5607589/right-way-to-split-an-stdstring-into-a-vectorstring)
 
 - [How to reset stdcin when using it](https://stackoverflow.com/questions/39282953/how-to-reset-stdcin-when-using-it)
-- [Find if a vector is a subvector C](https://stackoverflow.com/questions/30584131/find-if-vector-is-subvector-c)
+ - [Find if a vector is a subvector C](https://stackoverflow.com/questions/30584131/find-if-vector-is-subvector-c)
 
 - [Find and replace all occurrences of a substring in string in C++](https://www.geeksforgeeks.org/find-and-replace-all-occurrences-of-a-substring-in-string-in-cpp/)
 
@@ -106,6 +106,6 @@ The software relies on the following C/C++ packages:
 
 
 
-
+Ensure that these packages and libraries are available in you C/C++ environment.
 
 
