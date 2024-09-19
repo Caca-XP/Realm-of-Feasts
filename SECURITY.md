@@ -34,6 +34,6 @@ To report a security vulnerability in "Realm of Feasts," please follow these gui
 - Documentation: Maintain up-to-date documentation on security protocols and practices for developers and contributors.
 
 ## Conclusion
-
+-The security of "Realm of Feasts" is a top priority. By following this policy, we aim to create a safer environment for our users and contributors.
 
 
