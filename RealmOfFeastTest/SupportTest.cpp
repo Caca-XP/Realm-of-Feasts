@@ -921,12 +921,76 @@ namespace RealmOfFeastTest
 
 			//Assert::AreEqual(size_t(1), results.size());
 			//Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
+		}
 
+		/** Testing Search by series function
+		* @see Support.cpp
+		* @test
+		*/
+		TEST_METHOD(TestSearchBySeries)
+		{
+			std::vector<Recipes> allRecipes;
+			std::vector<std::string> allSeries;
 
+			//Mock user input
+			std::istringstream input("cakes\n");
+			std::cin.rdbuf(input.rdbuf());
 
+			std::vector<Recipes> results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+			Assert::IsTrue(results.empty());
+
+			Recipes recipe1("Apple Pie", "Desserts", "", {}, "", 0, Easy);
+			Recipes recipe2("Banana Bread", "Bread", "", {}, "", 0, Easy);
+			allRecipes = { recipe1, recipe2 };
+			allSeries = { "Desserts", "Cakes", "Bread"};
+
+			//Mock user input
+			std::istringstream input2("desserts\n");
+			std::cin.rdbuf(input2.rdbuf());
+
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
+
+			Recipes recipe3("Apple Crumble", "Desserts", "", {}, "", 0, Easy);
+			allRecipes = { recipe1, recipe2, recipe3 };
+
+			// Mock user input
+			std::istringstream input3("desserts\n");
+			std::cin.rdbuf(input3.rdbuf());
+
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+
+			Assert::AreEqual(size_t(2), results.size());
+			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
+			Assert::AreEqual(std::string("Apple Crumble"), results[1].getName());
+
+			////testing checking all series
+			////Mock user input
+			//std::istringstream input4("all\n");
+			//std::cin.rdbuf(input4.rdbuf());
+
+			//results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+
+			//Assert::AreEqual(size_t(3), results.size());
+			//Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
+			//Assert::AreEqual(std::string("Banana Bread"), results[1].getName());
+			//Assert::AreEqual(std::string("Apple Crumble"), results[2].getName());
+
+			//test no results
+			//Mock user input
+			std::istringstream input5("orange\n");
+			std::cin.rdbuf(input5.rdbuf());
+
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+
+			Assert::IsTrue(results.empty());
 
 
 		}
+
+
 
 	};
 }
