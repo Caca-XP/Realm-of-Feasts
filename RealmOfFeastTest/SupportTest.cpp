@@ -835,7 +835,7 @@ namespace RealmOfFeastTest
 			allRecipes = { recipe1, recipe2, recipe3 };
 
 			// Mock user input
-			std::istringstream input3("apple");
+			std::istringstream input3("apple\n");
 			std::cin.rdbuf(input3.rdbuf());
 
 			results = searchByName(allRecipes);
@@ -846,12 +846,86 @@ namespace RealmOfFeastTest
 			
 			//test no results
 			// Mock user input
-			std::istringstream input4("orange");
+			std::istringstream input4("orange\n");
 			std::cin.rdbuf(input4.rdbuf());
 
 			results = searchByName(allRecipes);
 
 			Assert::IsTrue(results.empty());		
+		}
+
+		/** Testing Search by ingredients function
+		* @see Support.cpp
+		* @test
+		*/
+		TEST_METHOD(TestSearchByIngredients)
+		{
+			std::vector<Recipes> allRecipes;
+
+			//Mock user input
+			std::istringstream input("apple\n");
+			std::cin.rdbuf(input.rdbuf());
+
+			std::vector<Recipes> results = searchByIngredient(allRecipes, 0, 0, 0);
+			Assert::IsTrue(results.empty());
+
+			//// Test for a single ingredient (banana)
+			//Recipes recipe1 = Recipes("Apple Pie", "", "", { Ingredients(1, "", "apple") }, "", 0, Easy);
+			//Recipes recipe2 = Recipes("Banana Bread", "", "", { Ingredients(1, "", "banana") }, "", 0, Easy);
+			//allRecipes = { recipe1, recipe2 };
+
+			//// Mock user input for "banana"
+			//std::istringstream input2("banana"); 
+			//std::cin.rdbuf(input2.rdbuf());
+			////print input
+			//std::cout << input2.str() << std::endl;
+
+			//results = searchByIngredient(allRecipes, 0, 0, 0);
+
+			////print allRecipes
+			//for (auto& recipe : allRecipes) {
+			//	std::cout << recipe.getName() << std::endl;
+			//}
+
+			////print result
+			//for (auto& recipe : results) {
+			//	std::cout << recipe.getName() << std::endl;
+			//}
+
+			//// Check if the function finds exactly one recipe, and it's the correct one
+			//Assert::AreEqual(size_t(1), results.size());
+			//Assert::AreEqual(std::string("Banana Bread"), results[0].getName());
+
+			////Test for multiple results
+			//Recipes recipe3 = Recipes("Apple Crumble", "", "", { Ingredients(1, "apple", "apple"), Ingredients(1, "sugar", "cup") }, "", 0, Easy);
+			//Recipes recipe4 = Recipes("Lemon Juice", "", "", { Ingredients(1, "lemon", "lemon"), Ingredients(1, "sugar", "cup") }, "", 0, Easy);
+			//allRecipes = { recipe1, recipe2, recipe3, recipe4 };
+
+			////Mock user input
+			//std::istringstream input3("sugar\n");
+			//std::cin.rdbuf(input3.rdbuf());
+
+			//results = searchByIngredient(allRecipes, 0, 0, 0);
+
+			//Assert::AreEqual(size_t(2), results.size());
+			//Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
+			//Assert::AreEqual(std::string("Lemon Juice"), results[1].getName());
+
+			////Test for multiple ingredients
+			//
+			////Mock user input
+			//std::istringstream input4("apple\nsugar\n");
+			//std::cin.rdbuf(input4.rdbuf());
+
+			//results = searchByIngredient(allRecipes, 0, 0, 0);
+
+			//Assert::AreEqual(size_t(1), results.size());
+			//Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
+
+
+
+
+
 		}
 
 	};
