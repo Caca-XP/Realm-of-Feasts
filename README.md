@@ -11,7 +11,7 @@ Realm of Feasts is a fantasy recipe discovery app that helps you find recipes ba
 
 The app allows users to filter recipes by difficulty, and preparation time, and even sort them according to their preferences. Whether you're in the mood for a quick snack from "The Shire" or a challenging dish from "Hogwarts," Realm of Feasts has something for every fantasy food enthusiast.
 
-## Authors
+### Authors
 
 Natasha Prasetyo 
 
@@ -19,11 +19,11 @@ Nadia Prasetyo
 
 Bernice Ishumi
 
-# Usage 
+## Usage 
 
 - A C/C++ compiler is required to run this Application.
 
-## Running the App
+### Running the App
 
 1. Compile and run App.cpp
 2. Read the instructions displayed 
@@ -33,13 +33,13 @@ Bernice Ishumi
 
 Tell us your experience with the App:[User Survey](https://forms.gle/r95YtPtUNcKDYVTXA)
 
-## Testing
+### Testing
 
- The application was tested using Unit Tests. The tests can be found in the RealmOfFeastsTest folder in the tests directory.
+The application was tested using Unit Tests. The tests can be found in the RealmOfFeastsTest folder in the tests directory.
 
-# Version History 
+## Version History 
 
-## Alpha
+### Alpha
 
 Basic functionality of the App.
 
@@ -49,15 +49,15 @@ Tag: Alpha.2
 
 Release: Alpha Version
 
-## Beta 
+### Beta 
 
 Currently Unreleased
 
-## Final Product 
+### Final Product 
 
 Currently Unreleased 
 
-# Acknowledgments
+## Acknowledgments
 
 - [rand() and srand() in C++](https://www.geeksforgeeks.org/rand-and-srand-in-ccpp/)
 
@@ -68,12 +68,12 @@ Currently Unreleased
 - [Right way to split an stdstring into a vector string](https://stackoverflow.com/questions/5607589/right-way-to-split-an-stdstring-into-a-vectorstring)
 
 - [How to reset stdcin when using it](https://stackoverflow.com/questions/39282953/how-to-reset-stdcin-when-using-it)
+
 - [Find if a vector is a subvector C](https://stackoverflow.com/questions/30584131/find-if-vector-is-subvector-c)
 
 - [Find and replace all occurrences of a substring in string in C++](https://www.geeksforgeeks.org/find-and-replace-all-occurrences-of-a-substring-in-string-in-cpp/)
 
-
-## Dependencies
+### Dependencies
 
 The software relies on the following C/C++ packages:
 
@@ -102,3 +102,4 @@ The software relies on the following C/C++ packages:
 -- `pch.h`
 
 -- `CppUnitTest.h`
+Ensure that these packages and libraries are available in you C/C++ environment.
