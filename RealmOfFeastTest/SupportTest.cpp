@@ -956,12 +956,14 @@ namespace RealmOfFeastTest
 
 			//testing checking all series
 			//Mock user input
-			std::istringstream input4("all\n");
+			//check all series and then do bread : one result
+			std::istringstream input4(" all\n bread\n");
 			std::cin.rdbuf(input4.rdbuf());
 
 			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
-			Assert::IsTrue(results.empty());
 
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Banana Bread"), results[0].getName());
 
 			//test no results
 			//Mock user input
