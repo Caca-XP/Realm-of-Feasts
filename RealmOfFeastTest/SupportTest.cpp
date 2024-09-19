@@ -805,44 +805,54 @@ namespace RealmOfFeastTest
 		/** Testing Search by name function 
 		* 
 		*/
-		TEST_METHOD(TestSearchBYName)
-		{	//No Recipes found
-				std::vector<Recipes> allRecipes;
-				std::vector<Recipes> results = searchByName(allRecipes);
-				Assert::IsTrue(results.empty());
+		TEST_METHOD(TestSearchByName)
+		{
+			std::vector<Recipes> allRecipes;
 
-			//test search recipes by name
-				Recipes recipe1("Apple Pie", "", "", {}, "", 0, Easy);
-				Recipes recipe2("Banana Bread", "", "", {}, "", 0, Easy);
-				std::vector<Recipes> allRecipes2 = { recipe1, recipe2 };
+			//Mock user input
+			std::istringstream input("apple\n");
+			std::cin.rdbuf(input.rdbuf());
 
-				// Mock user input
-				std::istringstream input2("apple");
-				std::cin.rdbuf(input2.rdbuf());
+			std::vector<Recipes> results = searchByName(allRecipes);		
+			Assert::IsTrue(results.empty());
 
-				std::vector<Recipes> results2 = searchByName(allRecipes);
-
-				Assert::AreEqual(size_t(1), results2.size());
-				Assert::AreEqual(std::string("Apple Pie"), results2[0].getName());
 			
-			//Test when multiple recipes are found
-				Recipes recipe3("Apple Pie", "", "", {}, "", 0, Easy);
-				Recipes recipe4("Apple Crumble", "", "", {}, "", 0, Easy);
-				Recipes recipe5("Banana Bread", "", "", {}, "", 0, Easy);
-				std::vector<Recipes> allRecipes3 = { recipe3, recipe4, recipe5 };
+			Recipes recipe1("Apple Pie", "", "", {}, "", 0, Easy);
+			Recipes recipe2("Banana Bread", "", "", {}, "", 0, Easy);
+			allRecipes = { recipe1, recipe2 };
 
-				// Mock user input
-				std::istringstream input3("apple");
-				std::cin.rdbuf(input3.rdbuf());
+			//Mock user input
+			std::istringstream input2("apple\n");
+			std::cin.rdbuf(input2.rdbuf());
 
-				std::vector<Recipes> results3 = searchByName(allRecipes);
+			results = searchByName(allRecipes);
 
-				Assert::AreEqual(size_t(2), results3.size());
-				Assert::AreEqual(std::string("Apple Pie"), results3[0].getName());
-				Assert::AreEqual(std::string("Apple Crumble"), results3[1].getName());
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
 			
+
+			Recipes recipe3("Apple Crumble", "", "", {}, "", 0, Easy);
+			allRecipes = { recipe1, recipe2, recipe3 };
+
+			// Mock user input
+			std::istringstream input3("apple");
+			std::cin.rdbuf(input3.rdbuf());
+
+			results = searchByName(allRecipes);
+
+			Assert::AreEqual(size_t(2), results.size());
+			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
+			Assert::AreEqual(std::string("Apple Crumble"), results[1].getName());
+			
+			//test no results
+			// Mock user input
+			std::istringstream input4("orange");
+			std::cin.rdbuf(input4.rdbuf());
+
+			results = searchByName(allRecipes);
+
+			Assert::IsTrue(results.empty());		
 		}
-
 
 	};
 }
