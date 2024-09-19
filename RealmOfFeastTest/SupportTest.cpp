@@ -748,6 +748,8 @@ namespace RealmOfFeastTest
 			setSettings(app);
 			Assert::AreEqual(0, app.sortFilter);  // Check if the sort filter was reset
 
+			//THE OTHER OPTIONS FOR THIS JUST LEADS TO CALLING OTHER FUNCTIONS THAT ARE TESTED IN SEPARATE TESTS
+
 
 			// Restore std::cin
 			std::cin.rdbuf(originalCinBuffer);
@@ -798,6 +800,49 @@ namespace RealmOfFeastTest
 			// Restore original cout buffer
 			std::cout.rdbuf(oldCoutBuffer);
 		}
+
+
+		/** Testing Search by name function 
+		* 
+		*/
+		TEST_METHOD(TestSearchBYName)
+		{	//No Recipes found
+				std::vector<Recipes> allRecipes;
+				std::vector<Recipes> results = searchByName(allRecipes);
+				Assert::IsTrue(results.empty());
+
+			//test search recipes by name
+				Recipes recipe1("Apple Pie", "", "", {}, "", 0, Easy);
+				Recipes recipe2("Banana Bread", "", "", {}, "", 0, Easy);
+				std::vector<Recipes> allRecipes2 = { recipe1, recipe2 };
+
+				// Mock user input
+				std::istringstream input2("apple");
+				std::cin.rdbuf(input2.rdbuf());
+
+				std::vector<Recipes> results2 = searchByName(allRecipes);
+
+				Assert::AreEqual(size_t(1), results2.size());
+				Assert::AreEqual(std::string("Apple Pie"), results2[0].getName());
+			
+			//Test when multiple recipes are found
+				Recipes recipe3("Apple Pie", "", "", {}, "", 0, Easy);
+				Recipes recipe4("Apple Crumble", "", "", {}, "", 0, Easy);
+				Recipes recipe5("Banana Bread", "", "", {}, "", 0, Easy);
+				std::vector<Recipes> allRecipes3 = { recipe3, recipe4, recipe5 };
+
+				// Mock user input
+				std::istringstream input3("apple");
+				std::cin.rdbuf(input3.rdbuf());
+
+				std::vector<Recipes> results3 = searchByName(allRecipes);
+
+				Assert::AreEqual(size_t(2), results3.size());
+				Assert::AreEqual(std::string("Apple Pie"), results3[0].getName());
+				Assert::AreEqual(std::string("Apple Crumble"), results3[1].getName());
+			
+		}
+
 
 	};
 }
