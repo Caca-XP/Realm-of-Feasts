@@ -966,17 +966,14 @@ namespace RealmOfFeastTest
 			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
 			Assert::AreEqual(std::string("Apple Crumble"), results[1].getName());
 
-			////testing checking all series
-			////Mock user input
-			//std::istringstream input4("all\n");
-			//std::cin.rdbuf(input4.rdbuf());
+			//testing checking all series
+			//Mock user input
+			std::istringstream input4("all\n");
+			std::cin.rdbuf(input4.rdbuf());
 
-			//results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+			Assert::IsTrue(results.empty());
 
-			//Assert::AreEqual(size_t(3), results.size());
-			//Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
-			//Assert::AreEqual(std::string("Banana Bread"), results[1].getName());
-			//Assert::AreEqual(std::string("Apple Crumble"), results[2].getName());
 
 			//test no results
 			//Mock user input
@@ -986,8 +983,6 @@ namespace RealmOfFeastTest
 			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
 
 			Assert::IsTrue(results.empty());
-
-
 		}
 
 
