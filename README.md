@@ -33,7 +33,6 @@ Bernice Ishumi
 
 Tell us your experience with the App:[User Survey](https://forms.gle/r95YtPtUNcKDYVTXA)
 
-
 ### Testing
 
 The application was tested using Unit Tests. The tests can be found in the RealmOfFeastsTest folder in the tests directory.
