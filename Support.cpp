@@ -9,9 +9,8 @@ vector<string> split_string(string str, string delimiter, bool lowercase = true)
     }
     vector<string> result;
     size_t pos = 0;
-    string token;
     while ((pos = str.find(delimiter)) != string::npos) {
-        token = str.substr(0, pos);
+        string token = str.substr(0, pos);
         // remove leading and trailing spaces
         token.erase(0, token.find_first_not_of(" "));
         token.erase(token.find_last_not_of(" ") + 1);
@@ -29,7 +28,7 @@ vector<string> split_string(string str, string delimiter, bool lowercase = true)
 /* Function to print goodbye
 */
 void printGoodbye() {
-    cout << "Goodbye!" << endl;
+    cout << "Farewell traveler, may our paths cross once more." << endl;
 }
 
 /* Function to quit the program
@@ -73,7 +72,7 @@ string readLine(bool ignore = true) {
 */
 void setColor(int color) {
 	if (color < 0 || color > 15) {
-		cerr << "Invalid color code: " << color << endl;
+		cerr << "The color code you have entered is forbidden: " << color << endl;
 		return;
 	}
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
@@ -109,7 +108,7 @@ int getCurrentColor() {
  * @param ingred the ingredients string
  * @return vector of Ingredients objects
  */
-vector<Ingredients> process_ingred(string ingred) {
+vector<Ingredients> process_ingred(const string& ingred) {
 
     string ingredients;
     // if the start and end of the string are both " then remove them
@@ -126,15 +125,14 @@ vector<Ingredients> process_ingred(string ingred) {
         try {
             vector<string> ingredient_units = split_string(ingredient, "*", false);
             if (ingredient_units.size() < 3) {
-                throw out_of_range("Not enough parts in ingredient");
-                continue;
+                throw out_of_range("The ingredient lacks the necessary magical components.");
+            } else {
+                ingredients_list.push_back(Ingredients(stod(ingredient_units[0]), ingredient_units[1], ingredient_units[2]));
             }
-            ingredients_list.push_back(Ingredients(stod(ingredient_units[0]), ingredient_units[1], ingredient_units[2]));
 
         }
         catch (const out_of_range& e) {
-            cerr << "*******************************************************************************************************\nError accessing ingredient parts: " << ingredient << "\nException: " << e.what() << endl;
-            continue; // Skip this ingredient and move to the next
+            cerr << "*******************************************************************************************************\nAn unseen force blocks access to the ingredient parts: " << ingredient << "\nException: " << e.what() << endl;
         }
 
 
@@ -176,11 +174,11 @@ vector<Ingredients> process_ingred(string ingred) {
         time = stoi(time_str);
     }
     catch (const invalid_argument& e) {
-        cerr << "*******************************************************************************************************\nInvalid argument for time: " << time_str << "\nException: " << e.what() << endl;
+        cerr << "*******************************************************************************************************\nThe time you have entered does not align with the flow of the realms: " << time_str << "\nException: " << e.what() << endl;
         return -1;
     }
     catch (const out_of_range& e) {
-        cerr << "*******************************************************************************************************\nOut of range value for time: " << time_str << "\nException: " << e.what() << endl;
+        cerr << "*******************************************************************************************************\nThe time you've entered strays beyond the boundaries of the known realms: " << time_str << "\nException: " << e.what() << endl;
         return -1;
     }
     return time;
@@ -205,7 +203,7 @@ Level process_difficulty(string difficulty_str) {
         difficulty = Hard;
     }
     else {
-        cerr << "*******************************************************************************************************\nInvalid difficulty level: " << difficulty_str << endl;
+        cerr << "*******************************************************************************************************\nThe chosen difficulty level does not exist within the realm's trials: " << difficulty_str << endl;
         return None;
     }
     return difficulty;
@@ -339,7 +337,7 @@ void setup(string fileName, RealmOfRecipes& app) {
 		// set colour to red
 		setColor(4);
 
-        cout << endl << "No recipes found." << endl << endl;
+        cout << endl << "No such recipe exists within the forgotten archives." << endl << endl;
     }
     return results;
 }
@@ -351,7 +349,7 @@ void setup(string fileName, RealmOfRecipes& app) {
 	// set colour to light yellow
 	setColor(14);
 
-    cout << "\nCurrent filters: \n";
+    cout << "\nActive selections: \n";
     if (difficultyFilter != 0) {
         if (difficultyFilter == 1) {
 			//set colour to green
@@ -389,11 +387,11 @@ void setup(string fileName, RealmOfRecipes& app) {
     if (difficultyFilter == 0 && timeFilter == 0) {
 		// set colour to white
 		setColor(15);
-        cout << "None \n";
+        cout << "Naught \n";
     }
 	// set colour to light yellow
 	setColor(14);
-    cout << "Current sorting: \n";
+    cout << "Active arrangement: \n";
     if (sortFilter != 0) {
         if (sortFilter == 1) {
 			//set colour to light blue
@@ -419,7 +417,7 @@ void setup(string fileName, RealmOfRecipes& app) {
     else {
 		//set colour to white
 		setColor(15);
-        cout << "None \n";
+        cout << "Naught \n";
     }
 
     cout << "\n";
@@ -434,7 +432,7 @@ void setup(string fileName, RealmOfRecipes& app) {
          setColor(10); printf("1. Easy\n");
          setColor(6); printf("2. Medium\n");
          setColor(12); printf("3. Hard\n");
-         setColor(15); printf("4. Back\n");
+         setColor(15); printf("4. Return to the previous chapter\n");
 
          int difficultyChoice;
          cin >> difficultyChoice;
@@ -457,7 +455,7 @@ void setup(string fileName, RealmOfRecipes& app) {
          setColor(10); printf("1. Less than 30 minutes\n");
          setColor(6); printf("2. 30 to 60 minutes\n");
          setColor(12); printf("3. More than 60 minutes\n");
-         setColor(15); printf("4. Back\n");
+         setColor(15); printf("4. Return to the previous chapter\n");
 
          int timeChoice;
          cin >> timeChoice;
@@ -481,7 +479,7 @@ void setup(string fileName, RealmOfRecipes& app) {
          setColor(11); printf("2. Sort by difficulty reverse\n");
          setColor(13); printf("3. Sort by time\n");
          setColor(13); printf("4. Sort by time reverse\n");
-         setColor(15); printf("5. Back\n");
+         setColor(15); printf("5. Return to the previous chapter\n");
 
          int sortChoice;
          cin >> sortChoice;
@@ -508,7 +506,7 @@ void setup(string fileName, RealmOfRecipes& app) {
   */
  void showInvalidChoiceMessage() {
      setColor(4);
-     cout << "Invalid choice. Please try again." << endl;
+     cout << "An unwise choice has been made. Seek another path." << endl;
      cin.clear();
      cin.ignore(numeric_limits<streamsize>::max(), '\n');
  }
@@ -530,7 +528,7 @@ void setup(string fileName, RealmOfRecipes& app) {
          printf("3. Reset filters\n");
          printf("4. Set sort\n");
          printf("5. Reset sort\n");
-         printf("6. Back\n");
+         printf("6. Return to the previous chapter\n");
 
          int filterChoice;
          cin >> filterChoice;
@@ -548,8 +546,8 @@ void setup(string fileName, RealmOfRecipes& app) {
 
      while (true) {
          setColor(3);
-         printf("1. Save settings and print all recipes with settings applied\n");
-         printf("2. Save settings and back\n");
+         printf("1. Record settings and unveil all recipes with the chosen enchantments\n");
+         printf("2. Record settings and return to the previous chapter\n");
 
          int applyChoice;
          cin >> applyChoice;
@@ -562,7 +560,7 @@ void setup(string fileName, RealmOfRecipes& app) {
          }
          else if (applyChoice == 2) {
              setColor(2);
-             printf("Settings saved.\n\n");
+             printf("Settings recorded.\n\n");
              break;
          }
          else {
@@ -576,12 +574,12 @@ void setup(string fileName, RealmOfRecipes& app) {
 /**
  * Function that displays a random recipe within the allRecipes array
 */
- void random(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
+ void random(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
     // Check if recipes vector is empty
     if (allRecipes.empty()) {
         // set colour to red for the message
         setColor(4);
-        cout << "No matching recipes found." << endl;
+        cout << "No recipes align with your search." << endl;
         return; // Exit the function
     }
 
@@ -614,7 +612,7 @@ void setup(string fileName, RealmOfRecipes& app) {
     // get the search string from the user
 	// set colour to blue 9
 	setColor(9);
-    cout << "Enter the name of the recipe you are looking for: ";
+    cout << "Speak of the name of the recipe you seek: ";
 
 	// get user input (colour to grey 8)
 	setColor(8);
@@ -641,13 +639,13 @@ void setup(string fileName, RealmOfRecipes& app) {
     if (results.size() == 0) {
 		// set colour to red
 		setColor(4);
-        cout << endl << "No recipes found." << endl << endl;
+        cout << endl << "Oh woe, no recipes of such name dwell within these scrolls." << endl << endl;
     }
     else {
 		//Prints the recipes that contains the search string to the results vector
 		// set colour to white 7
 		setColor(7);
-        cout << endl << "Results for recipes with \"" << search << "\": " << endl << endl;
+        cout << endl << "Behold the recipes with \"" << search << "\": " << endl << endl;
         for (int i = 0; i < results.size(); i++) {
             cout << results[i].toString() << endl;
         }
@@ -661,14 +659,14 @@ void setup(string fileName, RealmOfRecipes& app) {
  * Displays recipes that contains all of the specified ingredient(s)
  * @return vector of recipes containing recipes that contain the ingredient(s)
 */
- vector<Recipes> searchByIngredient(vector<Recipes> allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
+ vector<Recipes> searchByIngredient(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
     vector<Recipes> results;
     string search;
 
 	// get the search string from the user
 	// set colour to blue 9
 	setColor(9);
-    cout << "Enter the ingredient you are looking for (comma separated): ";
+    cout << "State the magical ingredients you seek (separate them by commas): ";
 
 	// get user input (colour to grey 8)
 	setColor(8);
@@ -704,13 +702,13 @@ void setup(string fileName, RealmOfRecipes& app) {
     if (results.size() == 0) {
 		// set colour to red
 		setColor(4);
-        cout << endl << "No recipes found." << endl << endl;
+        cout << endl << "Regrettably, no recipes could be conjured with those ingredients." << endl << endl;
     }
     else {
         //Prints the recipes that contains the search string to the results vector
 		// set colour to white 7
 		setColor(7);
-        cout << endl << "Results for recipes with " << search << ": " << endl << endl;
+        cout << endl << "Behold the recipes containing the ingredients '" << search << "': " << endl << endl;
         for (int i = 0; i < results.size(); i++) {
             cout << results[i].toString() << endl;
         }
@@ -724,14 +722,14 @@ void setup(string fileName, RealmOfRecipes& app) {
  * Displays recipes that are in the specified series
  * @return vector of recipes containing recipes that are in the specified series
 */
- vector<Recipes> searchBySeries(vector<Recipes> allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) {
+ vector<Recipes> searchBySeries(const vector<Recipes>& allRecipes, const vector<string>& allSeries, int timeFilter, int difficultyFilter, int sortFilter) {
     vector<Recipes> results;
     string search;
 	// get the search string from the user
 	// set colour to blue 9
 	setColor(9);
-    cout << "Enter the series you are looking for: " << endl;
-    cout << "To show all series, type 'all'." << endl;
+    cout << "Name the fable you seek: " << endl;
+    cout << "To unveil all fables (series), simply utter 'all'." << endl;
 
 	// get user input (colour to grey 8)
 	setColor(8);
@@ -740,14 +738,14 @@ void setup(string fileName, RealmOfRecipes& app) {
         // print series
 		// set colour to white 7
 		setColor(7);
-        cout << "Series: " << endl;
+        cout << "Fables of legend:" << endl;
         for (int i = 0; i < allSeries.size(); i++) {
             cout << allSeries[i] << endl;
         }
 		// get the search string from the user
 		// set colour to blue 9
 		setColor(9);
-        cout << "Enter the series you are looking for: " << endl;
+        cout << "Speak the name of the fable you wish to explore: " << endl;
 
 		// get user input (colour to grey 8)
 		setColor(8);
@@ -777,13 +775,13 @@ void setup(string fileName, RealmOfRecipes& app) {
     if (results.size() == 0) {
 		// set colour to red
 		setColor(4);
-        cout << endl << "No recipes found." << endl << endl;
+        cout << endl << "Alas, no recipes were discovered in this fable." << endl << endl;
     }
     else {
 		//Prints the recipes that contains the search string to the results vector
 		// set colour to white 7
 		setColor(7);
-        cout << endl << "Results for recipes with \"" << search << "\": " << endl << endl;
+        cout << endl << "Behold the recipes found for your search of \"" << search << "\": " << endl << endl;
         for (int i = 0; i < results.size(); i++) {
             cout << results[i].toString() << endl;
         }
@@ -807,13 +805,13 @@ void setup(string fileName, RealmOfRecipes& app) {
 	setColor(3);
 
     // display the options
-    printf("1. Display all recipes\n");
-    printf("2. Search for a recipe\n");
-    printf("3. Search recipes by series\n");
-    printf("4. Search by ingredient\n");
-    printf("5. Set Settings\n");
-    printf("6. Random recipe\n");
-    printf("7. Quit\n");
+    printf("1. Reveal the entire archive of recipes\n");
+    printf("2. Seek out a recipe by name\n");
+    printf("3. Search through the chronicles of a specific fable (series)\n");
+    printf("4. Hunt for recipes by mystical ingredients\n");
+    printf("5. Tinker with the magical settings\n");
+    printf("6. Let fate decide - summon a random recipe\n");
+    printf("7. End your quest\n");
 
 	// get the user choice (colour to grey 8)
 	setColor(8);
@@ -849,12 +847,7 @@ void setup(string fileName, RealmOfRecipes& app) {
     }
     else {
         // if invalid choice
-		//set colour to red
-		setColor(4);
-        cout << "Invalid choice. Please try again." << endl;
-        // reset the cin buffer
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        showInvalidChoiceMessage();
     }
 
 }

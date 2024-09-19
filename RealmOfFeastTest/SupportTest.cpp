@@ -84,7 +84,7 @@ namespace RealmOfFeastTest
 
 			// Instead of calling quit(), call printGoodbye() so the test doesn't exit the program
 			printGoodbye();
-            Assert::AreEqual(std::string("Goodbye!\n"), output.str());  // Stop execution if this fails
+            Assert::AreEqual(std::string("Farewell traveler, may our paths cross once more.\n"), output.str());  // Stop execution if this fails
 
 			// Restore std::cout
 			std::cout.rdbuf(oldCoutStreamBuf);
@@ -101,10 +101,12 @@ namespace RealmOfFeastTest
 			setColor(-1);
 
 			// Check the cerr output for error message
-			Assert::IsTrue(error_output.str().find("Invalid color") != string::npos);
+			Assert::IsTrue(error_output.str().find("The color code you have entered is forbidden: ") != string::npos);
 
 			// Restore cerr
 			std::cerr.rdbuf(old_cerr);
+
+			setColor(1);
 
 			// Test getCurrentColor
 			// Check if it's possible to get the current color
@@ -171,7 +173,7 @@ namespace RealmOfFeastTest
 			vector<Ingredients> result3 = process_ingred(invalid_ingred);
 
 			// Check if the correct error message was printed to std::cerr
-			Assert::IsTrue(error_output.str().find("Error accessing ingredient parts") != string::npos);
+			Assert::IsTrue(error_output.str().find("An unseen force blocks access to the ingredient parts") != string::npos);
 
 			// Restore std::cerr
 			std::cerr.rdbuf(old_cerr);
@@ -507,35 +509,35 @@ namespace RealmOfFeastTest
 
 			// Case 1: All filters set (timeFilter = 2, difficultyFilter = 1, sortFilter = 3)
 			printSettings(2, 1, 3);
-			Assert::AreEqual("\nCurrent filters: \nDifficulty: Easy \nTime: 30 to 60 minutes \nCurrent sorting: \nSort by time \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nDifficulty: Easy \nTime: 30 to 60 minutes \nActive arrangement: \nSort by time \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 2: No filters set (timeFilter = 0, difficultyFilter = 0, sortFilter = 0)
 			printSettings(0, 0, 0);
-			Assert::AreEqual("\nCurrent filters: \nNone \nCurrent sorting: \nNone \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nNaught \nActive arrangement: \nNaught \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 3: Only time filter set (timeFilter = 3, difficultyFilter = 0, sortFilter = 0)
 			printSettings(3, 0, 0);
-			Assert::AreEqual("\nCurrent filters: \nTime: More than 60 minutes \nCurrent sorting: \nNone \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nTime: More than 60 minutes \nActive arrangement: \nNaught \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 4: Only difficulty and sorting set (timeFilter = 0, difficultyFilter = 2, sortFilter = 1)
 			printSettings(0, 2, 1);
-			Assert::AreEqual("\nCurrent filters: \nDifficulty: Medium \nCurrent sorting: \nSort by difficulty \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nDifficulty: Medium \nActive arrangement: \nSort by difficulty \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 5: Sorting only (timeFilter = 0, difficultyFilter = 0, sortFilter = 4)
 			printSettings(0, 0, 4);
-			Assert::AreEqual("\nCurrent filters: \nNone \nCurrent sorting: \nSort by time reverse \n\n", buffer.str().c_str());
+			Assert::AreEqual("\nActive selections: \nNaught \nActive arrangement: \nSort by time reverse \n\n", buffer.str().c_str());
 
 			// Restore original cout buffer
 			std::cout.rdbuf(oldCoutBuffer);
@@ -710,7 +712,7 @@ namespace RealmOfFeastTest
 
 
 			showInvalidChoiceMessage();
-			Assert::AreEqual("Invalid choice. Please try again.\n", buffer.str().c_str());
+			Assert::AreEqual("An unwise choice has been made. Seek another path.\n", buffer.str().c_str());
 
 			// Restore original cout and cin buffers
 			std::cout.rdbuf(oldCoutBuffer);
@@ -745,6 +747,8 @@ namespace RealmOfFeastTest
 
 			setSettings(app);
 			Assert::AreEqual(0, app.sortFilter);  // Check if the sort filter was reset
+
+			//THE OTHER OPTIONS FOR THIS JUST LEADS TO CALLING OTHER FUNCTIONS THAT ARE TESTED IN SEPARATE TESTS
 
 
 			// Restore std::cin
@@ -782,7 +786,7 @@ namespace RealmOfFeastTest
 			random(emptyRecipes, timeFilter, difficultyFilter, sortFilter);
 
 			// Check if the output is No matching recipes found
-			Assert::AreEqual("No matching recipes found.\n", buffer.str().c_str());
+			Assert::AreEqual("No recipes align with your search.\n", buffer.str().c_str());
 
 			// clear the buffer for the next test
 			buffer.str(""); buffer.clear();
@@ -791,11 +795,187 @@ namespace RealmOfFeastTest
 			random(allRecipes, 3, 1, 0);
 
 			// Check if the output is No matching recipes found
-			Assert::AreEqual("\nNo recipes found.\n\n", buffer.str().c_str());
+			Assert::AreEqual("\nNo such recipe exists within the forgotten archives.\n\n", buffer.str().c_str());
 
 			// Restore original cout buffer
 			std::cout.rdbuf(oldCoutBuffer);
 		}
 
+
+		/** Testing Search by name function 
+		* 
+		*/
+		TEST_METHOD(TestSearchByName)
+		{
+			std::vector<Recipes> allRecipes;
+
+			//Mock user input
+			std::istringstream input("apple\n");
+			std::cin.rdbuf(input.rdbuf());
+
+			std::vector<Recipes> results = searchByName(allRecipes);		
+			Assert::IsTrue(results.empty());
+
+			
+			Recipes recipe1("Apple Pie", "", "", {}, "", 0, Easy);
+			Recipes recipe2("Banana Bread", "", "", {}, "", 0, Easy);
+			allRecipes = { recipe1, recipe2 };
+
+			//Mock user input
+			std::istringstream input2("apple\n");
+			std::cin.rdbuf(input2.rdbuf());
+
+			results = searchByName(allRecipes);
+
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
+			
+
+			Recipes recipe3("Apple Crumble", "", "", {}, "", 0, Easy);
+			allRecipes = { recipe1, recipe2, recipe3 };
+
+			// Mock user input
+			std::istringstream input3("apple\n");
+			std::cin.rdbuf(input3.rdbuf());
+
+			results = searchByName(allRecipes);
+
+			Assert::AreEqual(size_t(2), results.size());
+			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
+			Assert::AreEqual(std::string("Apple Crumble"), results[1].getName());
+			
+			//test no results
+			// Mock user input
+			std::istringstream input4("orange\n");
+			std::cin.rdbuf(input4.rdbuf());
+
+			results = searchByName(allRecipes);
+
+			Assert::IsTrue(results.empty());		
+		}
+
+		/** Testing Search by ingredients function
+		* @see Support.cpp
+		* @test
+		*/
+		TEST_METHOD(TestSearchByIngredients)
+		{
+			std::vector<Recipes> allRecipes;
+
+			//Mock user input
+			std::istringstream input("apple\n");
+			std::cin.rdbuf(input.rdbuf());
+
+			std::vector<Recipes> results = searchByIngredient(allRecipes, 0, 0, 0);
+			Assert::IsTrue(results.empty());
+
+			// Test for a single ingredient (banana)
+			Recipes recipe1 = Recipes("Apple Pie", "", "", { Ingredients(1, "", "apple") }, "", 0, Easy);
+			Recipes recipe2 = Recipes("Banana Bread", "", "", { Ingredients(1, "", "banana") }, "", 0, Easy);
+			allRecipes = { recipe1, recipe2 };
+
+			// Mock user input for "banana"
+			std::istringstream input2(" banana\n"); 
+			std::cin.rdbuf(input2.rdbuf());
+
+			results = searchByIngredient(allRecipes, 0, 0, 0);
+
+			// Check if the function finds exactly one recipe, and it's the correct one
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Banana Bread"), results[0].getName());
+
+			//Test for multiple results
+			Recipes recipe3 = Recipes("Apple Crumble", "", "", { Ingredients(1, "apple", "apple"), Ingredients(1, "cup", "sugar") }, "", 0, Easy);
+			Recipes recipe4 = Recipes("Lemon Juice", "", "", { Ingredients(1, "lemon", "lemon"), Ingredients(1, "cup", "sugar") }, "", 0, Easy);
+			allRecipes = { recipe1, recipe2, recipe3, recipe4 };
+
+			//Mock user input
+			std::istringstream input3(" sugar\n");
+			std::cin.rdbuf(input3.rdbuf());
+
+			results = searchByIngredient(allRecipes, 0, 0, 0);
+
+			Assert::AreEqual(size_t(2), results.size());
+			Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
+			Assert::AreEqual(std::string("Lemon Juice"), results[1].getName());
+
+			//Test for multiple ingredients
+			
+			//Mock user input
+			std::istringstream input4(" apple, sugar\n");
+			std::cin.rdbuf(input4.rdbuf());
+
+			results = searchByIngredient(allRecipes, 0, 0, 0);
+
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
+		}
+
+		/** Testing Search by series function
+		* @see Support.cpp
+		* @test
+		*/
+		TEST_METHOD(TestSearchBySeries)
+		{
+			std::vector<Recipes> allRecipes;
+			std::vector<std::string> allSeries;
+
+			//Mock user input
+			std::istringstream input("cakes\n");
+			std::cin.rdbuf(input.rdbuf());
+
+			std::vector<Recipes> results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+			Assert::IsTrue(results.empty());
+
+			Recipes recipe1("Apple Pie", "Desserts", "", {}, "", 0, Easy);
+			Recipes recipe2("Banana Bread", "Bread", "", {}, "", 0, Easy);
+			allRecipes = { recipe1, recipe2 };
+			allSeries = { "Desserts", "Cakes", "Bread"};
+
+			//Mock user input
+			std::istringstream input2("desserts\n");
+			std::cin.rdbuf(input2.rdbuf());
+
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
+
+			Recipes recipe3("Apple Crumble", "Desserts", "", {}, "", 0, Easy);
+			allRecipes = { recipe1, recipe2, recipe3 };
+
+			// Mock user input
+			std::istringstream input3("desserts\n");
+			std::cin.rdbuf(input3.rdbuf());
+
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+
+			Assert::AreEqual(size_t(2), results.size());
+			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
+			Assert::AreEqual(std::string("Apple Crumble"), results[1].getName());
+
+			//testing checking all series
+			//Mock user input
+			//check all series and then do bread : one result
+			std::istringstream input4(" all\n bread\n");
+			std::cin.rdbuf(input4.rdbuf());
+
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Banana Bread"), results[0].getName());
+
+			//test no results
+			//Mock user input
+			std::istringstream input5("orange\n");
+			std::cin.rdbuf(input5.rdbuf());
+
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+
+			Assert::IsTrue(results.empty());
+		}
+
+		//OPTIONS ONLY CALL OTHER METHODS, NO TESTS
 	};
+
 }
