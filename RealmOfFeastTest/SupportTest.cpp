@@ -972,6 +972,8 @@ namespace RealmOfFeastTest
 
 			Assert::IsTrue(results.empty());
 		}
+
+		//OPTIONS ONLY CALL OTHER METHODS, NO TESTS
 	};
 
 }
