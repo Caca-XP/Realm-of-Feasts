@@ -41,7 +41,7 @@ public:
     *@brief Parameterized constructor
     *@details Initializes a realm of recipes with the given values
     */
-    RealmOfRecipes(const vector<Recipes>& recipes, int time, int difficulty, int sort, vector<string> series);
+    RealmOfRecipes(const vector<Recipes>& recipes, int time, int difficulty, int sort, const vector<string>& series);
     /*!
     *@brief Destructor
     *@details Destroys the ingredient object

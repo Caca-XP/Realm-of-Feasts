@@ -10,7 +10,7 @@ RealmOfRecipes::RealmOfRecipes()
 /**
  * Parameterized constructor
  */
-RealmOfRecipes::RealmOfRecipes(const vector<Recipes>& recipes, int time, int difficulty, int sort, vector<string> series)
+RealmOfRecipes::RealmOfRecipes(const vector<Recipes>& recipes, int time, int difficulty, int sort, const vector<string>& series)
     : timeFilter(time), difficultyFilter(difficulty), sortFilter(sort), allRecipes(recipes), allSeries(series) {}
 
 /**

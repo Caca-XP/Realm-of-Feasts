@@ -207,7 +207,7 @@ void showInvalidChoiceMessage();
  * @details Displays recipes that are in the specified series
  * @return vector of recipes containing recipes that are in the specified series
 */
- vector<Recipes> searchBySeries(const vector<Recipes>& allRecipes, vector<string> allSeries, int timeFilter, int difficultyFilter, int sortFilter) ;
+ vector<Recipes> searchBySeries(const vector<Recipes>& allRecipes, const vector<string>& allSeries, int timeFilter, int difficultyFilter, int sortFilter) ;
 
 
 
