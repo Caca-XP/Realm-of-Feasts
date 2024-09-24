@@ -11,6 +11,8 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -24,7 +26,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="Realm of Feast V2 Logo .png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="66ce39610cbb3_download.jpg"/></td>
   <td id="projectalign">
    <div id="projectname">Realm of Feasts
    </div>
@@ -50,17 +52,29 @@ $(function() { codefold.init(0); });
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Search',false);
+  initMenu('',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){ initResizable(false); });
+$(function(){initNavTree('_support_8h.html',''); initResizable(true); });
 /* @license-end */
 </script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,8 +96,6 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
-</div><!-- top -->
-<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
@@ -103,10 +115,6 @@ $(function(){ initResizable(false); });
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &quot;<a class="el" href="_recipes_8h_source.html">Recipes.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_ingredients_8h_source.html">Ingredients.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_realm_of_recipes_8h_source.html">RealmOfRecipes.h</a>&quot;</code><br />
-<code>#include &lt;windows.h&gt;</code><br />
 </div>
 <p><a href="_support_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -118,438 +126,17 @@ Functions</h2></td></tr>
 <tr class="memitem:a2463a3acef2df4c951ce942a3229e44e" id="r_a2463a3acef2df4c951ce942a3229e44e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2463a3acef2df4c951ce942a3229e44e">quit</a> ()</td></tr>
 <tr class="memdesc:a2463a3acef2df4c951ce942a3229e44e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to quit the program.  <br /></td></tr>
 <tr class="separator:a2463a3acef2df4c951ce942a3229e44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4cb332bcfb39d2ca0a01305817fb959" id="r_ab4cb332bcfb39d2ca0a01305817fb959"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4cb332bcfb39d2ca0a01305817fb959">printGoodbye</a> ()</td></tr>
-<tr class="separator:ab4cb332bcfb39d2ca0a01305817fb959"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c1e3c0ee46becf76e2dce73e65e18d1" id="r_a1c1e3c0ee46becf76e2dce73e65e18d1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c1e3c0ee46becf76e2dce73e65e18d1">replaceAll</a> (string str, string from, string to)</td></tr>
 <tr class="memdesc:a1c1e3c0ee46becf76e2dce73e65e18d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to replace comma space to comma.  <br /></td></tr>
 <tr class="separator:a1c1e3c0ee46becf76e2dce73e65e18d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fabf8d9d5025e6e31de6a5cfca48651" id="r_a7fabf8d9d5025e6e31de6a5cfca48651"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fabf8d9d5025e6e31de6a5cfca48651">readLine</a> (bool ignore)</td></tr>
 <tr class="memdesc:a7fabf8d9d5025e6e31de6a5cfca48651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read the whole line of user input.  <br /></td></tr>
 <tr class="separator:a7fabf8d9d5025e6e31de6a5cfca48651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75b9cb32ff80bf061791beb01a8433d0" id="r_a75b9cb32ff80bf061791beb01a8433d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75b9cb32ff80bf061791beb01a8433d0">setColor</a> (int color)</td></tr>
-<tr class="memdesc:a75b9cb32ff80bf061791beb01a8433d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set the color of the text in the console.  <br /></td></tr>
-<tr class="separator:a75b9cb32ff80bf061791beb01a8433d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88a3f2cc5383c1730d5e9f838aa952a9" id="r_a88a3f2cc5383c1730d5e9f838aa952a9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88a3f2cc5383c1730d5e9f838aa952a9">getCurrentColor</a> ()</td></tr>
-<tr class="memdesc:a88a3f2cc5383c1730d5e9f838aa952a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to get the current color of the text in the console.  <br /></td></tr>
-<tr class="separator:a88a3f2cc5383c1730d5e9f838aa952a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a738d8542a9b8fde75d94e6722ee8c221" id="r_a738d8542a9b8fde75d94e6722ee8c221"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_ingredients.html">Ingredients</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a738d8542a9b8fde75d94e6722ee8c221">process_ingred</a> (const string &amp;ingred)</td></tr>
-<tr class="memdesc:a738d8542a9b8fde75d94e6722ee8c221"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to process the ingredients string.  <br /></td></tr>
-<tr class="separator:a738d8542a9b8fde75d94e6722ee8c221"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9c43f170a38aa8aede964ecd84c5430" id="r_aa9c43f170a38aa8aede964ecd84c5430"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9c43f170a38aa8aede964ecd84c5430">process_instructions</a> (const string &amp;instruct)</td></tr>
-<tr class="memdesc:aa9c43f170a38aa8aede964ecd84c5430"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to process the instructions string.  <br /></td></tr>
-<tr class="separator:aa9c43f170a38aa8aede964ecd84c5430"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11fab33b1b6656f431c601dd308de4bc" id="r_a11fab33b1b6656f431c601dd308de4bc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11fab33b1b6656f431c601dd308de4bc">process_time</a> (const string &amp;time_str)</td></tr>
-<tr class="memdesc:a11fab33b1b6656f431c601dd308de4bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to process the time string.  <br /></td></tr>
-<tr class="separator:a11fab33b1b6656f431c601dd308de4bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70e30bd8f5a977fb75df62c764b44978" id="r_a70e30bd8f5a977fb75df62c764b44978"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recipes_8h.html#a221b779e6bb7b8d40677d7642bfefac5">Level</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70e30bd8f5a977fb75df62c764b44978">process_difficulty</a> (string difficulty_str)</td></tr>
-<tr class="memdesc:a70e30bd8f5a977fb75df62c764b44978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a difficulty string into its corresponding enum Level value.  <br /></td></tr>
-<tr class="separator:a70e30bd8f5a977fb75df62c764b44978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb61613f4aec044add16bd24c30d9972" id="r_afb61613f4aec044add16bd24c30d9972"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb61613f4aec044add16bd24c30d9972">setup</a> (string fileName, <a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;app)</td></tr>
-<tr class="memdesc:afb61613f4aec044add16bd24c30d9972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read the data from the file and initialise the allRecipes array.  <br /></td></tr>
-<tr class="separator:afb61613f4aec044add16bd24c30d9972"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab77b01a7fb2d26067d84587f3ae354f8" id="r_ab77b01a7fb2d26067d84587f3ae354f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab77b01a7fb2d26067d84587f3ae354f8">display</a> (vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; recipes, bool isShort)</td></tr>
-<tr class="memdesc:ab77b01a7fb2d26067d84587f3ae354f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to display recipes specified in the param.  <br /></td></tr>
-<tr class="separator:ab77b01a7fb2d26067d84587f3ae354f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16b921dd5065040cc58307e8d0cae132" id="r_a16b921dd5065040cc58307e8d0cae132"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16b921dd5065040cc58307e8d0cae132">sortByDifficulty</a> (<a class="el" href="class_recipes.html">Recipes</a> a, <a class="el" href="class_recipes.html">Recipes</a> b)</td></tr>
-<tr class="memdesc:a16b921dd5065040cc58307e8d0cae132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to sort the recipes by difficulty.  <br /></td></tr>
-<tr class="separator:a16b921dd5065040cc58307e8d0cae132"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a503d163ba2f18ec3d91ced775fdc6ec7" id="r_a503d163ba2f18ec3d91ced775fdc6ec7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a503d163ba2f18ec3d91ced775fdc6ec7">sortByTime</a> (<a class="el" href="class_recipes.html">Recipes</a> a, <a class="el" href="class_recipes.html">Recipes</a> b)</td></tr>
-<tr class="memdesc:a503d163ba2f18ec3d91ced775fdc6ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to sort the recipes by time.  <br /></td></tr>
-<tr class="separator:a503d163ba2f18ec3d91ced775fdc6ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae0cbafee9b68c3a3cbba03540d18a31" id="r_aae0cbafee9b68c3a3cbba03540d18a31"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae0cbafee9b68c3a3cbba03540d18a31">applySetting</a> (vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; currentRecipes, int timeFilter, int difficultyFilter)</td></tr>
-<tr class="memdesc:aae0cbafee9b68c3a3cbba03540d18a31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to apply the settings set by the user.  <br /></td></tr>
-<tr class="separator:aae0cbafee9b68c3a3cbba03540d18a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac08db92c1143f55c47fc2d406ba6b19a" id="r_ac08db92c1143f55c47fc2d406ba6b19a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac08db92c1143f55c47fc2d406ba6b19a">printSettings</a> (int timeFilter, int difficultyFilter, int sortFilter)</td></tr>
-<tr class="memdesc:ac08db92c1143f55c47fc2d406ba6b19a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to print the settings set by the user.  <br /></td></tr>
-<tr class="separator:ac08db92c1143f55c47fc2d406ba6b19a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0672855db61ee4fd98bfa82f169eb9ac" id="r_a0672855db61ee4fd98bfa82f169eb9ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0672855db61ee4fd98bfa82f169eb9ac">setSettings</a> (<a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;app)</td></tr>
-<tr class="memdesc:a0672855db61ee4fd98bfa82f169eb9ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set settings for the recipes.  <br /></td></tr>
-<tr class="separator:a0672855db61ee4fd98bfa82f169eb9ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95efbc3803453953d04d17fb4321439b" id="r_a95efbc3803453953d04d17fb4321439b"><td class="memItemLeft" align="right" valign="top"><a id="a95efbc3803453953d04d17fb4321439b" name="a95efbc3803453953d04d17fb4321439b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>handleDifficultyFilter</b> (<a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;app)</td></tr>
-<tr class="memdesc:a95efbc3803453953d04d17fb4321439b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set difficulty filter. <br /></td></tr>
-<tr class="separator:a95efbc3803453953d04d17fb4321439b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad30b43b8e9d5014c986286b7074555a2" id="r_ad30b43b8e9d5014c986286b7074555a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad30b43b8e9d5014c986286b7074555a2">handleTimeFilter</a> (<a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;app)</td></tr>
-<tr class="memdesc:ad30b43b8e9d5014c986286b7074555a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to handle the time filter.  <br /></td></tr>
-<tr class="separator:ad30b43b8e9d5014c986286b7074555a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42b10038db1695fd4a44e80397a738e6" id="r_a42b10038db1695fd4a44e80397a738e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42b10038db1695fd4a44e80397a738e6">handleSort</a> (<a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;app)</td></tr>
-<tr class="memdesc:a42b10038db1695fd4a44e80397a738e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to handle the sort.  <br /></td></tr>
-<tr class="separator:a42b10038db1695fd4a44e80397a738e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac34096a6a543164114fbffb340fc421e" id="r_ac34096a6a543164114fbffb340fc421e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac34096a6a543164114fbffb340fc421e">showInvalidChoiceMessage</a> ()</td></tr>
-<tr class="memdesc:ac34096a6a543164114fbffb340fc421e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to display an invalid choice message.  <br /></td></tr>
-<tr class="separator:ac34096a6a543164114fbffb340fc421e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbcbaac1a73452ddf9992785edada36b" id="r_acbcbaac1a73452ddf9992785edada36b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbcbaac1a73452ddf9992785edada36b">random</a> (const vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; &amp;allRecipes, int timeFilter, int difficultyFilter, int sortFilter)</td></tr>
-<tr class="memdesc:acbcbaac1a73452ddf9992785edada36b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that displays a random recipe within the allRecipes array.  <br /></td></tr>
-<tr class="separator:acbcbaac1a73452ddf9992785edada36b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9756e96383e90eabcf40e8853f43309" id="r_aa9756e96383e90eabcf40e8853f43309"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9756e96383e90eabcf40e8853f43309">searchByName</a> (vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; allRecipes)</td></tr>
-<tr class="memdesc:aa9756e96383e90eabcf40e8853f43309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to search the recipes array by specific name.  <br /></td></tr>
-<tr class="separator:aa9756e96383e90eabcf40e8853f43309"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07eaad3df8e33601cf88310a06c346c9" id="r_a07eaad3df8e33601cf88310a06c346c9"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07eaad3df8e33601cf88310a06c346c9">searchByIngredient</a> (const vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; &amp;allRecipes, int timeFilter, int difficultyFilter, int sortFilter)</td></tr>
-<tr class="memdesc:a07eaad3df8e33601cf88310a06c346c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that searches the array of recipes by ingredient(s) separated by commas ingredient(s) will be inputed by the user by typing.  <br /></td></tr>
-<tr class="separator:a07eaad3df8e33601cf88310a06c346c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dad8b2f1400df21d857bcc407504427" id="r_a0dad8b2f1400df21d857bcc407504427"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0dad8b2f1400df21d857bcc407504427">searchBySeries</a> (const vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; &amp;allRecipes, const vector&lt; string &gt; &amp;allSeries, int timeFilter, int difficultyFilter, int sortFilter)</td></tr>
-<tr class="memdesc:a0dad8b2f1400df21d857bcc407504427"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to filter the recipes by series.  <br /></td></tr>
-<tr class="separator:a0dad8b2f1400df21d857bcc407504427"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ef9e9450725a96ab31a7cb28650e895" id="r_a8ef9e9450725a96ab31a7cb28650e895"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ef9e9450725a96ab31a7cb28650e895">options</a> (<a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;app)</td></tr>
-<tr class="memdesc:a8ef9e9450725a96ab31a7cb28650e895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to display the options for the user.  <br /></td></tr>
-<tr class="separator:a8ef9e9450725a96ab31a7cb28650e895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header file for Support.cpp. </p>
 <dl class="section author"><dt>Author</dt><dd>Natasha and Nadia </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aae0cbafee9b68c3a3cbba03540d18a31" name="aae0cbafee9b68c3a3cbba03540d18a31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae0cbafee9b68c3a3cbba03540d18a31">&#9670;&#160;</a></span>applySetting()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; applySetting </td>
-          <td>(</td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>currentRecipes</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeFilter</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>difficultyFilter</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to apply the settings set by the user. </p>
-<p>Filters the recipes based on the filters set </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">currentRecipes</td><td>the recipes to filter </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>vector of recipes containing the recipes that pass the filters</dd></dl>
-<p>Function to apply the settings set by the user Filters the recipes based on the filters set </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">currentRecipes</td><td>the recipes to filter </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>vector of recipes containing the recipes that pass the filters </dd></dl>
-
-</div>
-</div>
-<a id="ab77b01a7fb2d26067d84587f3ae354f8" name="ab77b01a7fb2d26067d84587f3ae354f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab77b01a7fb2d26067d84587f3ae354f8">&#9670;&#160;</a></span>display()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void display </td>
-          <td>(</td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>recipes</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isShort</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to display recipes specified in the param. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array</td><td>of recipes</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Function to display recipes specified in the param </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array</td><td>of recipes </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a88a3f2cc5383c1730d5e9f838aa952a9" name="a88a3f2cc5383c1730d5e9f838aa952a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88a3f2cc5383c1730d5e9f838aa952a9">&#9670;&#160;</a></span>getCurrentColor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getCurrentColor </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to get the current color of the text in the console. </p>
-<dl class="section return"><dt>Returns</dt><dd>the current color of the text in the console as an integer </dd></dl>
-
-</div>
-</div>
-<a id="a42b10038db1695fd4a44e80397a738e6" name="a42b10038db1695fd4a44e80397a738e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42b10038db1695fd4a44e80397a738e6">&#9670;&#160;</a></span>handleSort()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleSort </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>app</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to handle the sort. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">app</td><td>the <a class="el" href="class_realm_of_recipes.html" title="Represents a realm of recipes with a vector of recipes, time filter, difficulty filter,...">RealmOfRecipes</a> object</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Function to handle the sort </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">app</td><td>the <a class="el" href="class_realm_of_recipes.html" title="Represents a realm of recipes with a vector of recipes, time filter, difficulty filter,...">RealmOfRecipes</a> object </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ad30b43b8e9d5014c986286b7074555a2" name="ad30b43b8e9d5014c986286b7074555a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad30b43b8e9d5014c986286b7074555a2">&#9670;&#160;</a></span>handleTimeFilter()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleTimeFilter </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>app</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to handle the time filter. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">app</td><td>the <a class="el" href="class_realm_of_recipes.html" title="Represents a realm of recipes with a vector of recipes, time filter, difficulty filter,...">RealmOfRecipes</a> object</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Function to handle the time filter </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">app</td><td>the <a class="el" href="class_realm_of_recipes.html" title="Represents a realm of recipes with a vector of recipes, time filter, difficulty filter,...">RealmOfRecipes</a> object </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a8ef9e9450725a96ab31a7cb28650e895" name="a8ef9e9450725a96ab31a7cb28650e895"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ef9e9450725a96ab31a7cb28650e895">&#9670;&#160;</a></span>options()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void options </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>app</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to display the options for the user. </p>
-<p>Takes the user input and calls the appropriate function</p>
-<p>Function to display the options for the user Takes the user input and calls the appropriate function </p>
-
-</div>
-</div>
-<a id="ab4cb332bcfb39d2ca0a01305817fb959" name="ab4cb332bcfb39d2ca0a01305817fb959"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4cb332bcfb39d2ca0a01305817fb959">&#9670;&#160;</a></span>printGoodbye()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void printGoodbye </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function to print goodbye </p>
-
-</div>
-</div>
-<a id="ac08db92c1143f55c47fc2d406ba6b19a" name="ac08db92c1143f55c47fc2d406ba6b19a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac08db92c1143f55c47fc2d406ba6b19a">&#9670;&#160;</a></span>printSettings()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void printSettings </td>
-          <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeFilter</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>difficultyFilter</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>sortFilter</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to print the settings set by the user. </p>
-<p>Function to print the settings set by the user </p>
-
-</div>
-</div>
-<a id="a70e30bd8f5a977fb75df62c764b44978" name="a70e30bd8f5a977fb75df62c764b44978"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70e30bd8f5a977fb75df62c764b44978">&#9670;&#160;</a></span>process_difficulty()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="_recipes_8h.html#a221b779e6bb7b8d40677d7642bfefac5">Level</a> process_difficulty </td>
-          <td>(</td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>difficulty_str</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Converts a difficulty string into its corresponding enum Level value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">difficulty_str</td><td>The string to convert. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The corresponding enum Level value. </dd></dl>
-
-</div>
-</div>
-<a id="a738d8542a9b8fde75d94e6722ee8c221" name="a738d8542a9b8fde75d94e6722ee8c221"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a738d8542a9b8fde75d94e6722ee8c221">&#9670;&#160;</a></span>process_ingred()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_ingredients.html">Ingredients</a> &gt; process_ingred </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;</td>          <td class="paramname"><span class="paramname"><em>ingred</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to process the ingredients string. </p>
-<p>Splits the ingredients string by commas and then by * </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ingred</td><td>the ingredients string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>vector of <a class="el" href="class_ingredients.html" title="Represents an ingredient in a recipe with a name, unit, and quantity.">Ingredients</a> objects</dd></dl>
-<p>Function to process the ingredients string Splits the ingredients string by commas and then by * </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ingred</td><td>the ingredients string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>vector of <a class="el" href="class_ingredients.html" title="Represents an ingredient in a recipe with a name, unit, and quantity.">Ingredients</a> objects </dd></dl>
-
-</div>
-</div>
-<a id="aa9c43f170a38aa8aede964ecd84c5430" name="aa9c43f170a38aa8aede964ecd84c5430"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9c43f170a38aa8aede964ecd84c5430">&#9670;&#160;</a></span>process_instructions()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string process_instructions </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;</td>          <td class="paramname"><span class="paramname"><em>instruct</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to process the instructions string. </p>
-<p>Replaces || with new line </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instruct</td><td>the instructions string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the processed instructions string</dd></dl>
-<p>Function to process the instructions string Replaces || with new line </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instruct</td><td>the instructions string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the processed instructions string </dd></dl>
-
-</div>
-</div>
-<a id="a11fab33b1b6656f431c601dd308de4bc" name="a11fab33b1b6656f431c601dd308de4bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11fab33b1b6656f431c601dd308de4bc">&#9670;&#160;</a></span>process_time()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int process_time </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;</td>          <td class="paramname"><span class="paramname"><em>time_str</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to process the time string. </p>
-<p>Converts the time string to an integer </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">time_str</td><td>the time string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the time as an integer</dd></dl>
-<p>Function to process the time string Converts the time string to an integer </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">time_str</td><td>the time string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the time as an integer </dd></dl>
-
-</div>
-</div>
 <a id="a2463a3acef2df4c951ce942a3229e44e" name="a2463a3acef2df4c951ce942a3229e44e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2463a3acef2df4c951ce942a3229e44e">&#9670;&#160;</a></span>quit()</h2>
 
@@ -567,40 +154,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handleDifficultyFilte
 
 <p>Function to quit the program. </p>
 <p>Terminates the program's execution </p>
-
-</div>
-</div>
-<a id="acbcbaac1a73452ddf9992785edada36b" name="acbcbaac1a73452ddf9992785edada36b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbcbaac1a73452ddf9992785edada36b">&#9670;&#160;</a></span>random()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void random </td>
-          <td>(</td>
-          <td class="paramtype">const vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>allRecipes</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeFilter</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>difficultyFilter</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>sortFilter</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function that displays a random recipe within the allRecipes array. </p>
-<p>Function that displays a random recipe within the allRecipes array </p>
 
 </div>
 </div>
@@ -667,286 +220,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handleDifficultyFilte
 
 </div>
 </div>
-<a id="a07eaad3df8e33601cf88310a06c346c9" name="a07eaad3df8e33601cf88310a06c346c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07eaad3df8e33601cf88310a06c346c9">&#9670;&#160;</a></span>searchByIngredient()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; searchByIngredient </td>
-          <td>(</td>
-          <td class="paramtype">const vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>allRecipes</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeFilter</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>difficultyFilter</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>sortFilter</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function that searches the array of recipes by ingredient(s) separated by commas ingredient(s) will be inputed by the user by typing. </p>
-<p>Displays recipes that contains all of the specified ingredient(s) </p><dl class="section return"><dt>Returns</dt><dd>vector of recipes containing recipes that contain the ingredient(s)</dd></dl>
-<p>Function that searches the array of recipes by ingredient(s) separated by commas ingredient(s) will be inputed by the user by typing Displays recipes that contains all of the specified ingredient(s) </p><dl class="section return"><dt>Returns</dt><dd>vector of recipes containing recipes that contain the ingredient(s) </dd></dl>
-
-</div>
-</div>
-<a id="aa9756e96383e90eabcf40e8853f43309" name="aa9756e96383e90eabcf40e8853f43309"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9756e96383e90eabcf40e8853f43309">&#9670;&#160;</a></span>searchByName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; searchByName </td>
-          <td>(</td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>allRecipes</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to search the recipes array by specific name. </p>
-<p>Prints out recipes with the searched string in its name </p><dl class="section return"><dt>Returns</dt><dd>vector of recipes containing the instance of recipes that contain the searched string</dd></dl>
-<p>Function to search the recipes array by specific name Prints out recipes with the searched string in its name </p><dl class="section return"><dt>Returns</dt><dd>vector of recipes containing the instance of recipes that contain the searched string </dd></dl>
-
-</div>
-</div>
-<a id="a0dad8b2f1400df21d857bcc407504427" name="a0dad8b2f1400df21d857bcc407504427"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0dad8b2f1400df21d857bcc407504427">&#9670;&#160;</a></span>searchBySeries()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; searchBySeries </td>
-          <td>(</td>
-          <td class="paramtype">const vector&lt; <a class="el" href="class_recipes.html">Recipes</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>allRecipes</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const vector&lt; string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>allSeries</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeFilter</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>difficultyFilter</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>sortFilter</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to filter the recipes by series. </p>
-<p>Displays recipes that are in the specified series </p><dl class="section return"><dt>Returns</dt><dd>vector of recipes containing recipes that are in the specified series</dd></dl>
-<p>Function to filter the recipes by series Displays recipes that are in the specified series </p><dl class="section return"><dt>Returns</dt><dd>vector of recipes containing recipes that are in the specified series </dd></dl>
-
-</div>
-</div>
-<a id="a75b9cb32ff80bf061791beb01a8433d0" name="a75b9cb32ff80bf061791beb01a8433d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75b9cb32ff80bf061791beb01a8433d0">&#9670;&#160;</a></span>setColor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setColor </td>
-          <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>color</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to set the color of the text in the console. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">color</td><td>the color to set </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a0672855db61ee4fd98bfa82f169eb9ac" name="a0672855db61ee4fd98bfa82f169eb9ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0672855db61ee4fd98bfa82f169eb9ac">&#9670;&#160;</a></span>setSettings()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setSettings </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>app</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to set settings for the recipes. </p>
-<p>User can set filters for difficulty and time and sort </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">app</td><td>the <a class="el" href="class_realm_of_recipes.html" title="Represents a realm of recipes with a vector of recipes, time filter, difficulty filter,...">RealmOfRecipes</a> object</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Function to set settings for the recipes User can set filters for difficulty and time User can set sorting for the recipes </p>
-
-</div>
-</div>
-<a id="afb61613f4aec044add16bd24c30d9972" name="afb61613f4aec044add16bd24c30d9972"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb61613f4aec044add16bd24c30d9972">&#9670;&#160;</a></span>setup()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setup </td>
-          <td>(</td>
-          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>fileName</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_realm_of_recipes.html">RealmOfRecipes</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>app</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to read the data from the file and initialise the allRecipes array. </p>
-<p>Creates a new <a class="el" href="class_recipes.html" title="Represents a recipe in a recipe with a name, series, description, ingredients, instructions,...">Recipes</a> object for each recipe and adds it to the allRecipes array </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">fileName</td><td>the name of the file to read the data from</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Function to read the data from the file and initialise the allRecipes array Creates a new <a class="el" href="class_recipes.html" title="Represents a recipe in a recipe with a name, series, description, ingredients, instructions,...">Recipes</a> object for each recipe and adds it to the allRecipes array </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">fileName</td><td>the name of the file to read the data from </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ac34096a6a543164114fbffb340fc421e" name="ac34096a6a543164114fbffb340fc421e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac34096a6a543164114fbffb340fc421e">&#9670;&#160;</a></span>showInvalidChoiceMessage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void showInvalidChoiceMessage </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to display an invalid choice message. </p>
-<p>Function to display an invalid choice message </p>
-
-</div>
-</div>
-<a id="a16b921dd5065040cc58307e8d0cae132" name="a16b921dd5065040cc58307e8d0cae132"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16b921dd5065040cc58307e8d0cae132">&#9670;&#160;</a></span>sortByDifficulty()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool sortByDifficulty </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_recipes.html">Recipes</a></td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_recipes.html">Recipes</a></td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to sort the recipes by difficulty. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">a</td><td>recipe a </td></tr>
-    <tr><td class="paramname">b</td><td>recipe b </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if a is less difficult than b</dd></dl>
-<p>Function to sort the recipes by difficulty </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">a</td><td>recipe a </td></tr>
-    <tr><td class="paramname">b</td><td>recipe b </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if a is less difficult than b </dd></dl>
-
-</div>
-</div>
-<a id="a503d163ba2f18ec3d91ced775fdc6ec7" name="a503d163ba2f18ec3d91ced775fdc6ec7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a503d163ba2f18ec3d91ced775fdc6ec7">&#9670;&#160;</a></span>sortByTime()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool sortByTime </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_recipes.html">Recipes</a></td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_recipes.html">Recipes</a></td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to sort the recipes by time. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">a</td><td>recipe a </td></tr>
-    <tr><td class="paramname">b</td><td>recipe b </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if a takes less time than b</dd></dl>
-<p>Function to sort the recipes by time </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">a</td><td>recipe a </td></tr>
-    <tr><td class="paramname">b</td><td>recipe b </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if a takes less time than b </dd></dl>
-
-</div>
-</div>
 <a id="a95a73531f3f5e52a492eefb23921e7bc" name="a95a73531f3f5e52a492eefb23921e7bc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a95a73531f3f5e52a492eefb23921e7bc">&#9670;&#160;</a></span>split_string()</h2>
 
@@ -986,10 +259,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handleDifficultyFilte
 </div>
 </div>
 </div><!-- contents -->
-<!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
-</small></address>
 </div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="_support_8h.html">Support.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
 </body>
 </html>

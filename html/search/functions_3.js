@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['handledifficultyfilter_0',['handleDifficultyFilter',['../_support_8h.html#a95efbc3803453953d04d17fb4321439b',1,'Support.cpp']]],
-  ['handlesort_1',['handleSort',['../_support_8h.html#a42b10038db1695fd4a44e80397a738e6',1,'Support.cpp']]],
-  ['handletimefilter_2',['handleTimeFilter',['../_support_8h.html#ad30b43b8e9d5014c986286b7074555a2',1,'Support.cpp']]]
+  ['process_5fdifficulty_0',['process_difficulty',['../_app_8h.html#a6f8cfb8f721ecffd9abcde412b9b41ca',1,'App.cpp']]],
+  ['process_5fingred_1',['process_ingred',['../_app_8h.html#a587b282046f73ead8cf80fa60be92a92',1,'App.cpp']]]
 ];

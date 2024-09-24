@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ingredients_0',['Ingredients',['../class_ingredients.html#a9b089f54a3616a238b3fbd49b582fe8f',1,'Ingredients::Ingredients()'],['../class_ingredients.html#a87db308ff053301ea0b1562a7572549f',1,'Ingredients::Ingredients(double q, const string &amp;un, string nm)']]]
+  ['quit_0',['quit',['../_support_8h.html#a2463a3acef2df4c951ce942a3229e44e',1,'Support.cpp']]]
 ];

@@ -1,0 +1,115 @@
+\doxysection{App.\+h File Reference}
+\label{_app_8h}\index{App.h@{App.h}}
+
+
+contains the declarations of the functions used in the main program  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include "{}Recipes.\+h"{}}\newline
+{\ttfamily \#include "{}Ingredients.\+h"{}}\newline
+{\ttfamily \#include "{}Support.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \textbf{ Ingredients} $>$ \textbf{ process\+\_\+ingred} (string ingred)
+\begin{DoxyCompactList}\small\item\em Function to process the ingredients string. \end{DoxyCompactList}\item 
+\textbf{ Level} \textbf{ process\+\_\+difficulty} (const string \&difficulty\+\_\+str)
+\begin{DoxyCompactList}\small\item\em Converts a difficulty string into its corresponding enum Level value. \end{DoxyCompactList}\item 
+int \textbf{ main} ()
+\begin{DoxyCompactList}\small\item\em Main function to run the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\label{_app_8h_a07b0bce7f7b2af50a9ed8da635bf7b2b} 
+vector$<$ \textbf{ Recipes} $>$ {\bfseries all\+Recipes}
+\begin{DoxyCompactList}\small\item\em Vector containing all recipes. \end{DoxyCompactList}\item 
+\label{_app_8h_a5a42e95ea6086dd73805c1c70830632f} 
+int {\bfseries time\+Filter} = 0
+\begin{DoxyCompactList}\small\item\em Time filter for recipes. \end{DoxyCompactList}\item 
+\label{_app_8h_a8731859fd88192701a5c84643a6dee87} 
+int {\bfseries difficulty\+Filter} = 0
+\begin{DoxyCompactList}\small\item\em difficulty filter of all recipes \end{DoxyCompactList}\item 
+\label{_app_8h_a679e65a456c553404d99a6b2a4a54f58} 
+int {\bfseries sort\+Filter} = 0
+\begin{DoxyCompactList}\small\item\em sort filter for all recipes \end{DoxyCompactList}\item 
+\label{_app_8h_a8724f040786d2b8781c9c65648abb922} 
+vector$<$ string $>$ {\bfseries all\+Series}
+\begin{DoxyCompactList}\small\item\em Vector containing all the series names of recipes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+contains the declarations of the functions used in the main program 
+
+\begin{DoxyAuthor}{Authors}
+Natasha, Nadia and Bernice 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\index{App.h@{App.h}!main@{main}}
+\index{main@{main}!App.h@{App.h}}
+\doxysubsubsection{main()}
+{\footnotesize\ttfamily \label{_app_8h_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Main function to run the program. 
+
+Calls the setup function to initialise the data Calls the options function to display the options for the user
+
+Main function to run the program Calls the setup function to initialise the data Calls the options function to display the options for the user \index{App.h@{App.h}!process\_difficulty@{process\_difficulty}}
+\index{process\_difficulty@{process\_difficulty}!App.h@{App.h}}
+\doxysubsubsection{process\_difficulty()}
+{\footnotesize\ttfamily \label{_app_8h_a6f8cfb8f721ecffd9abcde412b9b41ca} 
+\textbf{ Level} process\+\_\+difficulty (\begin{DoxyParamCaption}\item[{const string \&}]{difficulty\+\_\+str}{}\end{DoxyParamCaption})}
+
+
+
+Converts a difficulty string into its corresponding enum Level value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em difficulty\+\_\+str} & The string to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding enum Level value. 
+\end{DoxyReturn}
+\index{App.h@{App.h}!process\_ingred@{process\_ingred}}
+\index{process\_ingred@{process\_ingred}!App.h@{App.h}}
+\doxysubsubsection{process\_ingred()}
+{\footnotesize\ttfamily \label{_app_8h_a587b282046f73ead8cf80fa60be92a92} 
+vector$<$ \textbf{ Ingredients} $>$ process\+\_\+ingred (\begin{DoxyParamCaption}\item[{string}]{ingred}{}\end{DoxyParamCaption})}
+
+
+
+Function to process the ingredients string. 
+
+Splits the ingredients string by commas and then by $\ast$ 
+\begin{DoxyParams}{Parameters}
+{\em ingred} & the ingredients string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of \doxyref{Ingredients}{p.}{class_ingredients} objects
+\end{DoxyReturn}
+Function to process the ingredients string Splits the ingredients string by commas and then by $\ast$ 
+\begin{DoxyParams}{Parameters}
+{\em ingred} & the ingredients string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of \doxyref{Ingredients}{p.}{class_ingredients} objects 
+\end{DoxyReturn}

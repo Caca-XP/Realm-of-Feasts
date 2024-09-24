@@ -11,6 +11,8 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -24,7 +26,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="Realm of Feast V2 Logo .png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="66ce39610cbb3_download.jpg"/></td>
   <td id="projectalign">
    <div id="projectname">Realm of Feasts
    </div>
@@ -50,19 +52,29 @@ $(function() { codefold.init(0); });
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Search',false);
+  initMenu('',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div id="doc-content">
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){ initResizable(false); });
+$(function(){initNavTree('globals_func.html',''); initResizable(true); });
 /* @license-end */
 </script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -86,40 +98,21 @@ $(function(){ initResizable(false); });
 
 <div class="contents">
 <div class="textblock">Here is a list of all documented functions with links to the documentation:</div><ul>
-<li>applySetting()&#160;:&#160;<a class="el" href="_support_8h.html#aae0cbafee9b68c3a3cbba03540d18a31">Support.h</a></li>
-<li>display()&#160;:&#160;<a class="el" href="_support_8h.html#ab77b01a7fb2d26067d84587f3ae354f8">Support.h</a></li>
-<li>getCurrentColor()&#160;:&#160;<a class="el" href="_support_8h.html#a88a3f2cc5383c1730d5e9f838aa952a9">Support.h</a></li>
-<li>handleDifficultyFilter()&#160;:&#160;<a class="el" href="_support_8h.html#a95efbc3803453953d04d17fb4321439b">Support.h</a></li>
-<li>handleSort()&#160;:&#160;<a class="el" href="_support_8h.html#a42b10038db1695fd4a44e80397a738e6">Support.h</a></li>
-<li>handleTimeFilter()&#160;:&#160;<a class="el" href="_support_8h.html#ad30b43b8e9d5014c986286b7074555a2">Support.h</a></li>
 <li>main()&#160;:&#160;<a class="el" href="_app_8h.html#ae66f6b31b5ad750f1fe042a706a4e3d4">App.h</a></li>
-<li>options()&#160;:&#160;<a class="el" href="_support_8h.html#a8ef9e9450725a96ab31a7cb28650e895">Support.h</a></li>
-<li>printGoodbye()&#160;:&#160;<a class="el" href="_support_8h.html#ab4cb332bcfb39d2ca0a01305817fb959">Support.h</a></li>
-<li>printSettings()&#160;:&#160;<a class="el" href="_support_8h.html#ac08db92c1143f55c47fc2d406ba6b19a">Support.h</a></li>
-<li>process_difficulty()&#160;:&#160;<a class="el" href="_support_8h.html#a70e30bd8f5a977fb75df62c764b44978">Support.h</a></li>
-<li>process_ingred()&#160;:&#160;<a class="el" href="_support_8h.html#a738d8542a9b8fde75d94e6722ee8c221">Support.h</a></li>
-<li>process_instructions()&#160;:&#160;<a class="el" href="_support_8h.html#aa9c43f170a38aa8aede964ecd84c5430">Support.h</a></li>
-<li>process_time()&#160;:&#160;<a class="el" href="_support_8h.html#a11fab33b1b6656f431c601dd308de4bc">Support.h</a></li>
+<li>process_difficulty()&#160;:&#160;<a class="el" href="_app_8h.html#a6f8cfb8f721ecffd9abcde412b9b41ca">App.h</a></li>
+<li>process_ingred()&#160;:&#160;<a class="el" href="_app_8h.html#a587b282046f73ead8cf80fa60be92a92">App.h</a></li>
 <li>quit()&#160;:&#160;<a class="el" href="_support_8h.html#a2463a3acef2df4c951ce942a3229e44e">Support.h</a></li>
-<li>random()&#160;:&#160;<a class="el" href="_support_8h.html#acbcbaac1a73452ddf9992785edada36b">Support.h</a></li>
 <li>readLine()&#160;:&#160;<a class="el" href="_support_8h.html#a7fabf8d9d5025e6e31de6a5cfca48651">Support.h</a></li>
 <li>replaceAll()&#160;:&#160;<a class="el" href="_support_8h.html#a1c1e3c0ee46becf76e2dce73e65e18d1">Support.h</a></li>
-<li>searchByIngredient()&#160;:&#160;<a class="el" href="_support_8h.html#a07eaad3df8e33601cf88310a06c346c9">Support.h</a></li>
-<li>searchByName()&#160;:&#160;<a class="el" href="_support_8h.html#aa9756e96383e90eabcf40e8853f43309">Support.h</a></li>
-<li>searchBySeries()&#160;:&#160;<a class="el" href="_support_8h.html#a0dad8b2f1400df21d857bcc407504427">Support.h</a></li>
-<li>setColor()&#160;:&#160;<a class="el" href="_support_8h.html#a75b9cb32ff80bf061791beb01a8433d0">Support.h</a></li>
-<li>setSettings()&#160;:&#160;<a class="el" href="_support_8h.html#a0672855db61ee4fd98bfa82f169eb9ac">Support.h</a></li>
-<li>setup()&#160;:&#160;<a class="el" href="_support_8h.html#afb61613f4aec044add16bd24c30d9972">Support.h</a></li>
-<li>showInvalidChoiceMessage()&#160;:&#160;<a class="el" href="_support_8h.html#ac34096a6a543164114fbffb340fc421e">Support.h</a></li>
-<li>sortByDifficulty()&#160;:&#160;<a class="el" href="_support_8h.html#a16b921dd5065040cc58307e8d0cae132">Support.h</a></li>
-<li>sortByTime()&#160;:&#160;<a class="el" href="_support_8h.html#a503d163ba2f18ec3d91ced775fdc6ec7">Support.h</a></li>
 <li>split_string()&#160;:&#160;<a class="el" href="_support_8h.html#a95a73531f3f5e52a492eefb23921e7bc">Support.h</a></li>
 </ul>
 </div><!-- contents -->
-<!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
-</small></address>
 </div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['display_0',['display',['../_support_8h.html#ab77b01a7fb2d26067d84587f3ae354f8',1,'Support.cpp']]]
+  ['ingredients_0',['Ingredients',['../class_ingredients.html#a9b089f54a3616a238b3fbd49b582fe8f',1,'Ingredients::Ingredients()'],['../class_ingredients.html#a87db308ff053301ea0b1562a7572549f',1,'Ingredients::Ingredients(double q, const string &amp;un, string nm)']]]
 ];
