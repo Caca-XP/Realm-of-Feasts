@@ -112,4 +112,3 @@ The software relies on the following C/C++ packages:
 -- `CppUnitTest.h`
 
 Ensure that these packages and libraries are available in you C/C++ environment.
-
