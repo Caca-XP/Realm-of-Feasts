@@ -19,3 +19,5 @@ tests/RealmOfFeastTest/x64/Debug/RealmOfFeastTest.tlog/RealmOfFeastTest.lastbuil
 x64/Debug/RealmOfFeastTest.dll
 x64/Debug/RealmOfFeastTest.exp
 x64/Debug/RealmOfFeastTest.lib
+html/
+latex/

@@ -33,6 +33,8 @@ Bernice Ishumi
 
 Tell us your experience with the App:[User Survey](https://forms.gle/r95YtPtUNcKDYVTXA)
 
+Note: Using the search for a Recipe using ingredients is very picky.Thus Whole Milk and Milk will bring about different results. 
+
 ### Testing
 
 The application was tested using Unit Tests. The tests can be found in the RealmOfFeastsTest folder in the tests directory.
@@ -110,4 +112,3 @@ The software relies on the following C/C++ packages:
 -- `CppUnitTest.h`
 
 Ensure that these packages and libraries are available in you C/C++ environment.
-
