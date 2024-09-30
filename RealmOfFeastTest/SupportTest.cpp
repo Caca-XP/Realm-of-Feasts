@@ -122,6 +122,56 @@ namespace RealmOfFeastTest
 			}
 		}
 
+		TEST_METHOD(TestRestrinctLineLength) {
+			// Test for a string that is already within the limit
+			std::string testString = "This is a test string";
+			std::string expectedString = "This is a test string";
+			std::string actualString = restrictLineLength(testString, 30, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString, actualString);
+
+			// Test for a string that is longer than the limit
+			std::string testString2 = "This is a test string that is longer than the limit";
+			std::string expectedString2 = "This is a test string that is\n longer than the limit";
+			std::string actualString2 = restrictLineLength(testString2, 30, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString2, actualString2);
+
+			// Test for a string that is exactly the limit
+			std::string testString3 = "This is a test string thats 30";
+			std::string expectedString3 = "This is a test string thats 30";
+			std::string actualString3 = restrictLineLength(testString3, 30, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString3, actualString3);
+
+			// Test for a string that has divider and space
+			std::string testString4 = "This is test string with __ divider and 2 spaces";
+			std::string expectedString4 = "This is test string with __ divider and 2 spaces";
+			std::string actualString4 = restrictLineLength(testString4, 30, '__', 2);
+
+			// Test
+			Assert::AreEqual(expectedString4, actualString4);
+
+			// Test for a string that has divider and space but actually longer than the limit
+			std::string testString5 = "This is test string with __ divider and 2 spaces yay";
+			std::string expectedString5 = "This is test string\n  with __ divider and 2\n  spaces yay";
+			std::string actualString5 = restrictLineLength(testString5, 15, '__', 2);
+
+			// Test
+			Assert::AreEqual(expectedString5, actualString5);
+
+			// Test for a string with qoutes and longer than the limit
+			std::string testString6 = "\"This is a test string with quotes and is longer than the limit\"";
+			std::string expectedString6 = "This is a test string with quotes\n and is longer than the limit";
+			std::string actualString6 = restrictLineLength(testString6, 30, ' ', 0);
+			
+			// Test
+			Assert::AreEqual(expectedString6, actualString6);
+		}
+
 		TEST_METHOD(TestProcessIngredients)
 		{
 			// Test for valid string ingredients for process_ingred function
@@ -186,12 +236,12 @@ namespace RealmOfFeastTest
             std::string result = process_instructions("\"Step1||Step2\"");
 
             // The expected result should have newlines instead of '||' and no quotes
-            std::string expected = "Step1\nStep2";
+            std::string expected = "Step1\n\nStep2";
             Assert::AreEqual(expected, result);
 
 			// Test for string without quotes
 			result = process_instructions("Step1||Step2");
-			expected = "Step1\nStep2";
+			expected = "Step1\n\nStep2";
 			Assert::AreEqual(expected, result);
 
 			// Test for string with no '||'
@@ -206,7 +256,7 @@ namespace RealmOfFeastTest
 
 			// Test for single '||'
 			result = process_instructions("||");
-			expected = "\n";  // The '||' should be replaced by a newline
+			expected = "\n\n";  // The '||' should be replaced by a newline
 			Assert::AreEqual(expected, result);
 		}
 
@@ -371,22 +421,27 @@ namespace RealmOfFeastTest
 				"Series: Italian\n"
 				"Time: \033[92m20 minutes\033[0m\n"
 				"Difficulty: \033[92mEasy\033[0m\n"
-				"Description: Delicious spaghetti with tomato sauce\n"
+				"Description: Delicious spaghetti with tomato sauce\n\n"
 				"Ingredients: \n"
 				"- 1 cup Pasta\n"
-				"- 1 can Tomato Sauce\n"
+				"- 1 can Tomato Sauce\n\n"
 				"Instructions: \nBoil and mix\n"
 				"\n"
+				"******************************************************************************************************************"
+				"\n\n\n"
 				"Name: Salad\n"
 				"Series: Vegetarian\n"
 				"Time: \033[92m15 minutes\033[0m\n"
 				"Difficulty: \033[33mMedium\033[0m\n"
-				"Description: Fresh garden salad with vinaigrette\n"
+				"Description: Fresh garden salad with vinaigrette\n\n"
 				"Ingredients: \n"
 				"- 1 Lettuce\n"
 				"- 1 Tomato\n"
-				"- 1 Vinaigrette\n"
-				"Instructions: \nMix all ingredients\n\n", buffer.str().c_str());
+				"- 1 Vinaigrette\n\n"
+				"Instructions: \nMix all ingredients\n"
+				"\n"
+				"******************************************************************************************************************"
+				"\n\n\n", buffer.str().c_str());
 
 
 			// Restore original cout buffer

@@ -81,6 +81,16 @@ void setColor(int color);
 int getCurrentColor();
 
 /*!
+ * @brief Function to restrict each line length
+ * @param str the string to restrict
+ * @param length the length to restrict the string to
+ * @param divider the divider for next lines
+ * @param space the space to add
+ * @return the restricted string
+ */
+string restrictLineLength(string str, int length, char divider, int space);
+
+/*!
  * @brief Function to process the ingredients string
  * @details Splits the ingredients string by commas and then by *
  * @param ingred the ingredients string

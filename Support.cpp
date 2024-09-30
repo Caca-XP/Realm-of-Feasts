@@ -96,6 +96,44 @@ int getCurrentColor() {
     return -1; // Return -1 if getting the information fails
 }
 
+/** Function to restrict each line length
+* @param str the string to restrict
+* @param length the length to restrict the string to
+* @param divider the divider for next lines
+* @param space the space to add
+* @return the restricted string
+*/
+string restrictLineLength(string str, int length, char divider, int space) {
+    // Only attempt to trim quotes if the string is long enough
+    if (str.length() > 1 && str.front() == '"' && str.back() == '"') {
+        str = str.substr(1, str.length() - 2);
+    }
+
+    // for every length characters after a newline, add a new line at the next space
+    int counter = 0;
+    for (int i = 0; i < str.length(); i++) {
+        if (divider != ' ' && str[i] == divider) {
+            counter = 0;
+        }
+        else {
+            counter++;
+        }
+        if (counter >= length) {
+            if (str[i] == ' ') {
+				if (space == 0) {
+					str.insert(i, "\n");
+				}
+				else {
+					str.insert(i, "\n" + string(space - 1, ' '));
+				}
+                counter = 0;
+            }
+        }
+    }
+	return str;
+}
+
+
 /***************************************************************************************************************************************
  *          Setup functions                                                                                                            *
 ****************************************************************************************************************************************/
@@ -150,13 +188,11 @@ vector<Ingredients> process_ingred(const string& ingred) {
  string process_instructions(const string& instruct) {
     string instructions = instruct;
 
-    // Only attempt to trim quotes if the string is long enough
-    if (instruct.length() > 1 && instruct.front() == '"' && instruct.back() == '"') {
-        instructions = instruct.substr(1, instruct.length() - 2);
-    }
+	instructions = restrictLineLength(instructions, 100, '|', 3);
 
     // Replace all occurrences of "||" with newline characters
-    instructions = replaceAll(instructions, "||", "\n");
+    instructions = replaceAll(instructions, "||", "\n\n");
+
 
     return instructions;
 
@@ -241,9 +277,9 @@ void setup(string fileName, RealmOfRecipes& app) {
         //split the line into the different parts
         vector<string> parts = split_string(line, "\t", false);
 
-        name = parts[0];
-        series = parts[1];
-        description = parts[2];
+		name = restrictLineLength(parts[0], 100, ' ', 6);
+		series = restrictLineLength(parts[1], 100, ' ', 8);
+		description = restrictLineLength(parts[2], 80, ' ', 13);
         vector<Ingredients> ingredients_parts = process_ingred(parts[3]);
         instructions = process_instructions(parts[4]);
         time = process_time(parts[5]);
@@ -528,6 +564,11 @@ void setup(string fileName, RealmOfRecipes& app) {
      }
  }
 
+
+ /**
+  * Function to handle the excluded ingredients
+  * @param app the RealmOfRecipes object
+  */
  void handleExcludedIngredients(RealmOfRecipes& app) {
      while (true) {
         // print the excluded ingredients
