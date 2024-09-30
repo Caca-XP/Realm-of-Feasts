@@ -109,6 +109,10 @@ string restrictLineLength(string str, int length, char divider, int space) {
         str = str.substr(1, str.length() - 2);
     }
 
+	// Remove leading and trailing spaces
+	str.erase(0, str.find_first_not_of(" "));
+	str.erase(str.find_last_not_of(" ") + 1);
+
     // for every length characters after a newline, add a new line at the next space
     int counter = 0;
     for (int i = 0; i < str.length(); i++) {
@@ -187,8 +191,10 @@ vector<Ingredients> process_ingred(const string& ingred) {
  */
  string process_instructions(const string& instruct) {
     string instructions = instruct;
+	instructions = replaceAll(instructions, "|| ", "||");
 
 	instructions = restrictLineLength(instructions, 100, '|', 3);
+
 
     // Replace all occurrences of "||" with newline characters
     instructions = replaceAll(instructions, "||", "\n\n");

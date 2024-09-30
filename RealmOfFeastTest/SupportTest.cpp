@@ -170,6 +170,30 @@ namespace RealmOfFeastTest
 			
 			// Test
 			Assert::AreEqual(expectedString6, actualString6);
+
+			// Test for a string with qoutes and leading spaces and longer than the limit
+			std::string testString7 = "\"  This is a test string with quotes and is longer than the limit\"";
+			std::string expectedString7 = "This is a test string with quotes\n and is longer than the limit";
+			std::string actualString7 = restrictLineLength(testString7, 30, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString7, actualString7);
+
+			// Test for a string with qoutes and leading spaces and trailing spaces and longer than the limit
+			std::string testString8 = "\"  This is a test string with quotes and is longer than the limit  \"";
+			std::string expectedString8 = "This is a test string with quotes\n and is longer than the limit";
+			std::string actualString8 = restrictLineLength(testString8, 30, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString8, actualString8);
+
+			// Test for a string with qoutes and leading spaces and trailing spaces not longer than the limit
+			std::string testString9 = "\"  This is a test string with quotes and is not longer than the limit  \"";
+			std::string expectedString9 = "This is a test string with quotes and is not longer than the limit";
+			std::string actualString9 = restrictLineLength(testString9, 70, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString9, actualString9);
 		}
 
 		TEST_METHOD(TestProcessIngredients)
