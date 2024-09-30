@@ -122,6 +122,80 @@ namespace RealmOfFeastTest
 			}
 		}
 
+		TEST_METHOD(TestRestrinctLineLength) {
+			// Test for a string that is already within the limit
+			std::string testString = "This is a test string";
+			std::string expectedString = "This is a test string";
+			std::string actualString = restrictLineLength(testString, 30, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString, actualString);
+
+			// Test for a string that is longer than the limit
+			std::string testString2 = "This is a test string that is longer than the limit";
+			std::string expectedString2 = "This is a test string that is\n longer than the limit";
+			std::string actualString2 = restrictLineLength(testString2, 30, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString2, actualString2);
+
+			// Test for a string that is exactly the limit
+			std::string testString3 = "This is a test string thats 30";
+			std::string expectedString3 = "This is a test string thats 30";
+			std::string actualString3 = restrictLineLength(testString3, 30, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString3, actualString3);
+
+			// Test for a string that has divider and space
+			std::string testString4 = "This is test string with __ divider and 2 spaces";
+			std::string expectedString4 = "This is test string with __ divider and 2 spaces";
+			std::string actualString4 = restrictLineLength(testString4, 30, '__', 2);
+
+			// Test
+			Assert::AreEqual(expectedString4, actualString4);
+
+			// Test for a string that has divider and space but actually longer than the limit
+			std::string testString5 = "This is test string with __ divider and 2 spaces yay";
+			std::string expectedString5 = "This is test string\n  with __ divider and 2\n  spaces yay";
+			std::string actualString5 = restrictLineLength(testString5, 15, '__', 2);
+
+			// Test
+			Assert::AreEqual(expectedString5, actualString5);
+
+			// Test for a string with qoutes and longer than the limit
+			std::string testString6 = "\"This is a test string with quotes and is longer than the limit\"";
+			std::string expectedString6 = "This is a test string with quotes\n and is longer than the limit";
+			std::string actualString6 = restrictLineLength(testString6, 30, ' ', 0);
+			
+			// Test
+			Assert::AreEqual(expectedString6, actualString6);
+
+			// Test for a string with qoutes and leading spaces and longer than the limit
+			std::string testString7 = "\"  This is a test string with quotes and is longer than the limit\"";
+			std::string expectedString7 = "This is a test string with quotes\n and is longer than the limit";
+			std::string actualString7 = restrictLineLength(testString7, 30, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString7, actualString7);
+
+			// Test for a string with qoutes and leading spaces and trailing spaces and longer than the limit
+			std::string testString8 = "\"  This is a test string with quotes and is longer than the limit  \"";
+			std::string expectedString8 = "This is a test string with quotes\n and is longer than the limit";
+			std::string actualString8 = restrictLineLength(testString8, 30, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString8, actualString8);
+
+			// Test for a string with qoutes and leading spaces and trailing spaces not longer than the limit
+			std::string testString9 = "\"  This is a test string with quotes and is not longer than the limit  \"";
+			std::string expectedString9 = "This is a test string with quotes and is not longer than the limit";
+			std::string actualString9 = restrictLineLength(testString9, 70, ' ', 0);
+
+			// Test
+			Assert::AreEqual(expectedString9, actualString9);
+		}
+
 		TEST_METHOD(TestProcessIngredients)
 		{
 			// Test for valid string ingredients for process_ingred function
@@ -186,12 +260,12 @@ namespace RealmOfFeastTest
             std::string result = process_instructions("\"Step1||Step2\"");
 
             // The expected result should have newlines instead of '||' and no quotes
-            std::string expected = "Step1\nStep2";
+            std::string expected = "Step1\n\nStep2";
             Assert::AreEqual(expected, result);
 
 			// Test for string without quotes
 			result = process_instructions("Step1||Step2");
-			expected = "Step1\nStep2";
+			expected = "Step1\n\nStep2";
 			Assert::AreEqual(expected, result);
 
 			// Test for string with no '||'
@@ -206,7 +280,7 @@ namespace RealmOfFeastTest
 
 			// Test for single '||'
 			result = process_instructions("||");
-			expected = "\n";  // The '||' should be replaced by a newline
+			expected = "\n\n";  // The '||' should be replaced by a newline
 			Assert::AreEqual(expected, result);
 		}
 
@@ -371,22 +445,27 @@ namespace RealmOfFeastTest
 				"Series: Italian\n"
 				"Time: \033[92m20 minutes\033[0m\n"
 				"Difficulty: \033[92mEasy\033[0m\n"
-				"Description: Delicious spaghetti with tomato sauce\n"
+				"Description: Delicious spaghetti with tomato sauce\n\n"
 				"Ingredients: \n"
 				"- 1 cup Pasta\n"
-				"- 1 can Tomato Sauce\n"
+				"- 1 can Tomato Sauce\n\n"
 				"Instructions: \nBoil and mix\n"
 				"\n"
+				"******************************************************************************************************************"
+				"\n\n\n"
 				"Name: Salad\n"
 				"Series: Vegetarian\n"
 				"Time: \033[92m15 minutes\033[0m\n"
 				"Difficulty: \033[33mMedium\033[0m\n"
-				"Description: Fresh garden salad with vinaigrette\n"
+				"Description: Fresh garden salad with vinaigrette\n\n"
 				"Ingredients: \n"
 				"- 1 Lettuce\n"
 				"- 1 Tomato\n"
-				"- 1 Vinaigrette\n"
-				"Instructions: \nMix all ingredients\n\n", buffer.str().c_str());
+				"- 1 Vinaigrette\n\n"
+				"Instructions: \nMix all ingredients\n"
+				"\n"
+				"******************************************************************************************************************"
+				"\n\n\n", buffer.str().c_str());
 
 
 			// Restore original cout buffer
@@ -442,10 +521,6 @@ namespace RealmOfFeastTest
 
 		TEST_METHOD(TestApplySettingFilters) 
 		{
-			// Redirect cout to a string stream to capture the output
-			std::ostringstream buffer;
-			std::streambuf* oldCoutBuffer = std::cout.rdbuf(buffer.rdbuf());
-
 			// Sample recipes
 			vector<Recipes> recipes = {
 				Recipes("Pasta", "Italian", "Delicious spaghetti with tomato sauce", {}, "Boil and mix", 20, Easy),
@@ -456,49 +531,81 @@ namespace RealmOfFeastTest
 			};
 
 			// Case 1: Filter by time (less than 30 minutes) and no difficulty filter
-			vector<Recipes> result = applySetting(recipes, 1, 0);
+			vector<Recipes> result = applySetting(recipes, 1, 0, {});
 			Assert::AreEqual(2, (int)result.size());
 			Assert::AreEqual("Pasta (Italian) - \033[92m20 minutes\033[0m - \033[92mEasy\033[0m", result[0].toStringShort().c_str());
 			Assert::AreEqual("Salad (Vegetarian) - \033[92m15 minutes\033[0m - \033[33mMedium\033[0m", result[1].toStringShort().c_str());
 
-			buffer.str(""); buffer.clear();  // Clear the buffer for next test
-
 			// Case 2: Filter by time (30-60 minutes) and difficulty = Medium
-			result = applySetting(recipes, 2, 2);
+			result = applySetting(recipes, 2, 2, {});
 			Assert::AreEqual(1, (int)result.size());
 			Assert::AreEqual("Soup (Vegetarian) - \033[33m45 minutes\033[0m - \033[33mMedium\033[0m", result[0].toStringShort().c_str());
 
-			buffer.str(""); buffer.clear();  // Clear the buffer for next test
-
 			// Case 3: Filter by time (greater than 60 minutes) and difficulty = Hard
-			result = applySetting(recipes, 3, 3);
+			result = applySetting(recipes, 3, 3, {});
 			Assert::AreEqual(1, (int)result.size());
 
 			Assert::AreEqual("Lasagna (Italian) - \033[91m90 minutes\033[0m - \033[91mHard\033[0m", result[0].toStringShort().c_str());
 
-			buffer.str(""); buffer.clear();  // Clear the buffer for next test
-
 			// Case 4: Filter with no matching results (timeFilter = 1, difficulty = Hard)
-			result = applySetting(recipes, 1, 3);
+			result = applySetting(recipes, 1, 3, {});
 			Assert::AreEqual(0, (int)result.size());
-
-			buffer.str(""); buffer.clear();  // Clear the buffer for next test
 
 			// Case 5: Filter with no recipes (empty input)
-			result = applySetting({}, 1, 0);
+			result = applySetting({}, 1, 0, {});
 			Assert::AreEqual(0, (int)result.size());
 
-			buffer.str(""); buffer.clear();  // Clear the buffer for next test
-
 			// Case 6: Filter with just difficulty filter (difficulty = Easy)
-			result = applySetting(recipes, 0, 1);
+			result = applySetting(recipes, 0, 1, {});
 			Assert::AreEqual(1, (int)result.size());
 			Assert::AreEqual("Pasta (Italian) - \033[92m20 minutes\033[0m - \033[92mEasy\033[0m", result[0].toStringShort().c_str());
 
-			buffer.str(""); buffer.clear();  // Clear the buffer for next test
+		}
 
-			// Restore original cout buffer
-			std::cout.rdbuf(oldCoutBuffer);
+		TEST_METHOD(TestApplySettingsExludeIngredients) {
+			// Sample recipes
+			vector<Recipes> recipes = {
+				Recipes("Pasta", "Italian", "Delicious spaghetti with tomato sauce", { Ingredients(1, "cup", "Pasta"), Ingredients(1, "can", "Tomato Sauce") }, "Boil and mix", 20, Easy),
+				Recipes("Salad", "Vegetarian", "Fresh garden salad with vinaigrette", { Ingredients(1, "null", "Lettuce"), Ingredients(1, "null", "Tomato"), Ingredients(1, "null", "Vinaigrette") }, "Mix all ingredients", 15, Medium),
+				Recipes("Soup", "Vegetarian", "Warm soup with vegetables", { Ingredients(1, "null", "Carrot"), Ingredients(1, "null", "Potato"), Ingredients(1, "null", "Onion") }, "Boil and simmer", 45, Medium),
+				Recipes("Pizza", "Italian", "Cheesy pizza with tomato sauce", { Ingredients(1, "null", "Dough"), Ingredients(1, "null", "Cheese"), Ingredients(1, "null", "Tomato Sauce") }, "Bake and serve", 30, Hard),
+				Recipes("Lasagna", "Italian", "Layered pasta with cheese and tomato sauce", { Ingredients(1, "null", "Pasta"), Ingredients(1, "null", "Cheese"), Ingredients(1, "null", "Tomato Sauce") }, "Bake and serve", 90, Hard)
+			};
+
+			// Case 1: Exclude "Tomato Sauce"
+			vector<Recipes> result = applySetting(recipes, 0, 0, { "tomato sauce" });
+
+			// Check the result
+			Assert::AreEqual(2, (int)result.size());
+			Assert::AreEqual("Salad (Vegetarian) - \033[92m15 minutes\033[0m - \033[33mMedium\033[0m", result[0].toStringShort().c_str());
+			Assert::AreEqual("Soup (Vegetarian) - \033[33m45 minutes\033[0m - \033[33mMedium\033[0m", result[1].toStringShort().c_str());
+
+			// Case 2: Exclude "Pasta" and "Cheese"
+			result = applySetting(recipes, 0, 0, { "pasta", "cheese" });
+
+			// Check the result
+			Assert::AreEqual(2, (int)result.size());
+			Assert::AreEqual("Salad (Vegetarian) - \033[92m15 minutes\033[0m - \033[33mMedium\033[0m", result[0].toStringShort().c_str());
+			Assert::AreEqual("Soup (Vegetarian) - \033[33m45 minutes\033[0m - \033[33mMedium\033[0m", result[1].toStringShort().c_str());
+
+			// Case 3: Exclude non-existent ingredient
+			result = applySetting(recipes, 0, 0, { "non-existent" });
+
+			// Check the result
+			Assert::AreEqual(5, (int)result.size());
+
+			// Case 4: Exclude all ingredients
+			result = applySetting(recipes, 0, 0, { "pasta", "tomato sauce", "lettuce", "tomato", "vinaigrette", "carrot", "potato", "onion", "dough", "cheese" });
+
+			// Check the result
+			Assert::AreEqual(0, (int)result.size());
+
+			// Case 5: Exclude "Lettuce" and a non-existent ingredient
+			result = applySetting(recipes, 0, 0, { "lettuce", "non-existent" });
+
+			// Check the result
+			Assert::AreEqual(4, (int)result.size());
+
 		}
 
 		TEST_METHOD(TestPrintSettings) 
@@ -508,36 +615,43 @@ namespace RealmOfFeastTest
 			std::streambuf* oldCoutBuffer = std::cout.rdbuf(buffer.rdbuf());
 
 			// Case 1: All filters set (timeFilter = 2, difficultyFilter = 1, sortFilter = 3)
-			printSettings(2, 1, 3);
+			printSettings(2, 1, 3, {});
 			Assert::AreEqual("\nActive selections: \nDifficulty: Easy \nTime: 30 to 60 minutes \nActive arrangement: \nSort by time \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 2: No filters set (timeFilter = 0, difficultyFilter = 0, sortFilter = 0)
-			printSettings(0, 0, 0);
+			printSettings(0, 0, 0, {});
 			Assert::AreEqual("\nActive selections: \nNaught \nActive arrangement: \nNaught \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 3: Only time filter set (timeFilter = 3, difficultyFilter = 0, sortFilter = 0)
-			printSettings(3, 0, 0);
+			printSettings(3, 0, 0, {});
 			Assert::AreEqual("\nActive selections: \nTime: More than 60 minutes \nActive arrangement: \nNaught \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 4: Only difficulty and sorting set (timeFilter = 0, difficultyFilter = 2, sortFilter = 1)
-			printSettings(0, 2, 1);
+			printSettings(0, 2, 1, {});
 			Assert::AreEqual("\nActive selections: \nDifficulty: Medium \nActive arrangement: \nSort by difficulty \n\n", buffer.str().c_str());
 
 			// Clear buffer for next case
 			buffer.str(""); buffer.clear();
 
 			// Case 5: Sorting only (timeFilter = 0, difficultyFilter = 0, sortFilter = 4)
-			printSettings(0, 0, 4);
+			printSettings(0, 0, 4, {});
 			Assert::AreEqual("\nActive selections: \nNaught \nActive arrangement: \nSort by time reverse \n\n", buffer.str().c_str());
+
+			// Clear buffer for next case
+			buffer.str(""); buffer.clear();
+
+			// Case 6: Excluded ingredients
+			printSettings(0, 0, 0, { "tomato", "pasta" });
+			Assert::AreEqual("\nActive selections: \nNaught \nActive arrangement: \nNaught \nExcluded ingredients: tomato, pasta\n\n", buffer.str().c_str());
 
 			// Restore original cout buffer
 			std::cout.rdbuf(oldCoutBuffer);
@@ -700,6 +814,85 @@ namespace RealmOfFeastTest
 			std::cin.rdbuf(originalCinBuffer);
 		}
 
+		TEST_METHOD(TestHandleExcludedIngredients){
+			RealmOfRecipes app;
+			app.excludedIngredients = {};
+
+			// Save the original buffer of std::cin
+			std::streambuf* originalCinBuffer = std::cin.rdbuf();
+
+			// Simulate user input for excluded ingredients
+			// 1 for add, 2 for clear, 3 for remove, 4 to exit loop
+			istringstream input("1\nSauce, Pasta, Tomato\n4\n");
+			cin.rdbuf(input.rdbuf());  // Mock user input
+
+			handleExcludedIngredients(app);
+
+			// Check if the excluded ingredients were added correctly
+			Assert::AreEqual(size_t(3), app.excludedIngredients.size());
+			// check if it's been lowercased and sorted
+			Assert::AreEqual(std::string("pasta"), app.excludedIngredients[0]);
+			Assert::AreEqual(std::string("sauce"), app.excludedIngredients[1]);
+			Assert::AreEqual(std::string("tomato"), app.excludedIngredients[2]);
+
+			// add another ingredient
+			istringstream input2("1\nCheese\n4\n");
+			cin.rdbuf(input2.rdbuf());  // Mock user input
+
+			handleExcludedIngredients(app);
+
+			// Check if the excluded ingredients were added correctly
+			Assert::AreEqual(size_t(4), app.excludedIngredients.size());
+			// check if it's been lowercased and sorted
+			Assert::AreEqual(std::string("cheese"), app.excludedIngredients[0]);
+
+
+			// Simulate user input for remove excluded ingredients
+			istringstream input3("3\nSauce, Pasta, Something else\n4\n");
+			cin.rdbuf(input3.rdbuf());  // Mock user input
+
+			handleExcludedIngredients(app);
+
+			// Check if the excluded ingredients were removed correctly
+			Assert::AreEqual(size_t(2), app.excludedIngredients.size());
+			// check if it's been lowercased and sorted
+			Assert::AreEqual(std::string("cheese"), app.excludedIngredients[0]);
+			Assert::AreEqual(std::string("tomato"), app.excludedIngredients[1]);
+
+			// Try going back
+			// Simulate user input
+			istringstream input5("4\n");
+			cin.rdbuf(input5.rdbuf());  // Mock user input
+
+			handleExcludedIngredients(app);
+
+			// Check if the excluded ingredients were not changed
+			Assert::AreEqual(size_t(2), app.excludedIngredients.size());
+
+			// Case for invalid input
+			// Simulate user input
+			istringstream input6("abc\n4\n");
+			cin.rdbuf(input6.rdbuf());  // Mock user input
+
+			handleExcludedIngredients(app);
+
+			// Check if the excluded ingredients were not changed
+			Assert::AreEqual(size_t(2), app.excludedIngredients.size());
+
+
+			// Simulate user input for clear excluded ingredients
+			istringstream input4("2\n\4n");
+			cin.rdbuf(input4.rdbuf());  // Mock user input
+
+			handleExcludedIngredients(app);
+
+			// Check if the excluded ingredients were cleared
+			Assert::AreEqual(size_t(0), app.excludedIngredients.size());
+
+			// Restore std::cin
+			std::cin.rdbuf(originalCinBuffer);
+		}
+
 		TEST_METHOD(TestShowInvalidChoiceMessage)
 		{
 			// Redirect cout to a string stream to capture the output
@@ -730,8 +923,8 @@ namespace RealmOfFeastTest
 			std::streambuf* originalCinBuffer = std::cin.rdbuf();
 
 			// Simulate user input for reset filters
-			// 3 -> Reset filters, 6 -> Exit loop, 2 -> Save settings
-			istringstream input("3\n6\n2\n");
+			// 3 -> Reset filters, 7 -> Exit loop, 2 -> Save settings
+			istringstream input("3\n7\n2\n");
 			cin.rdbuf(input.rdbuf());  // Mock user input
 
 			setSettings(app);
@@ -741,8 +934,8 @@ namespace RealmOfFeastTest
 
 
 			// Simulate user input for reset sort
-			// 5 -> Reset sort, 6 -> Exit loop, 2 -> Save settings
-			istringstream input2("5\n6\n2\n");
+			// 5 -> Reset sort, 7 -> Exit loop, 2 -> Save settings
+			istringstream input2("5\n7\n2\n");
 			cin.rdbuf(input2.rdbuf());  // Mock user input
 
 			setSettings(app);
@@ -772,7 +965,7 @@ namespace RealmOfFeastTest
 			std::streambuf* oldCoutBuffer = std::cout.rdbuf(buffer.rdbuf());
 
 			srand(42); // Control randomness
-			random(allRecipes, timeFilter, difficultyFilter, sortFilter);
+			random(allRecipes, timeFilter, difficultyFilter, sortFilter, {});
 
 			// Check if the output has Salad in it
 			Assert::IsTrue(buffer.str().find("Salad") != string::npos);
@@ -783,7 +976,7 @@ namespace RealmOfFeastTest
 
 			// Empty recipes case
 			vector<Recipes> emptyRecipes = {};
-			random(emptyRecipes, timeFilter, difficultyFilter, sortFilter);
+			random(emptyRecipes, timeFilter, difficultyFilter, sortFilter, {});
 
 			// Check if the output is No matching recipes found
 			Assert::AreEqual("No recipes align with your search.\n", buffer.str().c_str());
@@ -792,7 +985,7 @@ namespace RealmOfFeastTest
 			buffer.str(""); buffer.clear();
 			
 			// Empty applied filters case
-			random(allRecipes, 3, 1, 0);
+			random(allRecipes, 3, 1, 0, {});
 
 			// Check if the output is No matching recipes found
 			Assert::AreEqual("\nNo such recipe exists within the forgotten archives.\n\n", buffer.str().c_str());
@@ -801,12 +994,51 @@ namespace RealmOfFeastTest
 			std::cout.rdbuf(oldCoutBuffer);
 		}
 
+		TEST_METHOD(TestRandomWithExcludedIngredients) {
+			vector<Recipes> allRecipes = {
+				Recipes("Pasta", "Italian", "Delicious spaghetti with tomato sauce", { Ingredients(1, "cup", "Pasta"), Ingredients(1, "can", "Tomato Sauce") }, "Boil and mix", 20, Easy),
+				Recipes("Salad", "Vegetarian", "Fresh garden salad with vinaigrette", { Ingredients(1, "null", "Lettuce"), Ingredients(1, "null", "Tomato"), Ingredients(1, "null", "Vinaigrette") }, "Mix all ingredients", 15, Medium),
+				Recipes("Soup", "Vegetarian", "Warm soup with vegetables", { Ingredients(1, "null", "Carrot"), Ingredients(1, "null", "Potato"), Ingredients(1, "null", "Onion") }, "Boil and simmer", 45, Medium),
+				Recipes("Pizza", "Italian", "Cheesy pizza with tomato sauce", { Ingredients(1, "null", "Dough"), Ingredients(1, "null", "Cheese"), Ingredients(1, "null", "Tomato Sauce") }, "Bake and serve", 30, Hard),
+				Recipes("Lasagna", "Italian", "Layered pasta with cheese and tomato sauce", { Ingredients(1, "null", "Pasta"), Ingredients(1, "null", "Cheese"), Ingredients(1, "null", "Tomato Sauce") }, "Bake and serve", 90, Hard)
+			};
+
+			int timeFilter = 0;
+			int difficultyFilter = 0;
+			int sortFilter = 0;
+
+			// redirect cout to a string stream to capture the output
+			std::ostringstream buffer;
+			std::streambuf* oldCoutBuffer = std::cout.rdbuf(buffer.rdbuf());
+
+			srand(42); // Control randomness
+			random(allRecipes, timeFilter, difficultyFilter, sortFilter, { "tomato sauce" });
+
+			// Check if the output has Soup in it
+			Assert::IsTrue(buffer.str().find("Soup") != string::npos);
+
+			// clear the buffer for the next test
+			buffer.str(""); buffer.clear();
+
+			// Case for no matching recipes
+			random(allRecipes, timeFilter, difficultyFilter, sortFilter, { "pasta", "tomato sauce", "lettuce", "tomato", "vinaigrette", "carrot", "potato", "onion", "dough", "cheese" });
+
+			// Check if the output is No matching recipes found
+			Assert::AreEqual("\nNo such recipe exists within the forgotten archives.\n\n", buffer.str().c_str());
+
+			// Restore original cout buffer
+			std::cout.rdbuf(oldCoutBuffer);
+
+		}
 
 		/** Testing Search by name function 
 		* 
 		*/
 		TEST_METHOD(TestSearchByName)
 		{
+			// Save cin buffer
+			std::streambuf* originalCinBuffer = std::cin.rdbuf();
+
 			std::vector<Recipes> allRecipes;
 
 			//Mock user input
@@ -851,7 +1083,10 @@ namespace RealmOfFeastTest
 
 			results = searchByName(allRecipes);
 
-			Assert::IsTrue(results.empty());		
+			Assert::IsTrue(results.empty());
+
+			// Restore cin buffer
+			std::cin.rdbuf(originalCinBuffer);
 		}
 
 		/** Testing Search by ingredients function
@@ -860,13 +1095,16 @@ namespace RealmOfFeastTest
 		*/
 		TEST_METHOD(TestSearchByIngredients)
 		{
+			// Save cin buffer
+			std::streambuf* originalCinBuffer = std::cin.rdbuf();
+
 			std::vector<Recipes> allRecipes;
 
 			//Mock user input
 			std::istringstream input("apple\n");
 			std::cin.rdbuf(input.rdbuf());
 
-			std::vector<Recipes> results = searchByIngredient(allRecipes, 0, 0, 0);
+			std::vector<Recipes> results = searchByIngredient(allRecipes, 0, 0, 0, {});
 			Assert::IsTrue(results.empty());
 
 			// Test for a single ingredient (banana)
@@ -878,7 +1116,7 @@ namespace RealmOfFeastTest
 			std::istringstream input2(" banana\n"); 
 			std::cin.rdbuf(input2.rdbuf());
 
-			results = searchByIngredient(allRecipes, 0, 0, 0);
+			results = searchByIngredient(allRecipes, 0, 0, 0, {});
 
 			// Check if the function finds exactly one recipe, and it's the correct one
 			Assert::AreEqual(size_t(1), results.size());
@@ -893,7 +1131,7 @@ namespace RealmOfFeastTest
 			std::istringstream input3(" sugar\n");
 			std::cin.rdbuf(input3.rdbuf());
 
-			results = searchByIngredient(allRecipes, 0, 0, 0);
+			results = searchByIngredient(allRecipes, 0, 0, 0, {});
 
 			Assert::AreEqual(size_t(2), results.size());
 			Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
@@ -905,10 +1143,41 @@ namespace RealmOfFeastTest
 			std::istringstream input4(" apple, sugar\n");
 			std::cin.rdbuf(input4.rdbuf());
 
-			results = searchByIngredient(allRecipes, 0, 0, 0);
+			results = searchByIngredient(allRecipes, 0, 0, 0, {});
 
 			Assert::AreEqual(size_t(1), results.size());
 			Assert::AreEqual(std::string("Apple Crumble"), results[0].getName());
+
+			//Test for no results
+			//Mock user input
+			std::istringstream input5(" orange\n");
+			std::cin.rdbuf(input5.rdbuf());
+
+			results = searchByIngredient(allRecipes, 0, 0, 0, {});
+
+			Assert::IsTrue(results.empty());
+
+			//Test for exlude ingredients
+			//Mock user input
+			std::istringstream input6(" apple\n");
+			std::cin.rdbuf(input6.rdbuf());
+
+			results = searchByIngredient(allRecipes, 0, 0, 0, { "sugar" });
+
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
+
+			//Test for exlude ingredients with no results
+			//Mock user input
+			std::istringstream input7(" apple\n");
+			std::cin.rdbuf(input7.rdbuf());
+
+			results = searchByIngredient(allRecipes, 0, 0, 0, { "apple", "sugar" });
+
+			Assert::IsTrue(results.empty());
+
+			// Restore cin buffer
+			std::cin.rdbuf(originalCinBuffer);
 		}
 
 		/** Testing Search by series function
@@ -917,6 +1186,9 @@ namespace RealmOfFeastTest
 		*/
 		TEST_METHOD(TestSearchBySeries)
 		{
+			// Store cin buffer
+			std::streambuf* originalCinBuffer = std::cin.rdbuf();
+
 			std::vector<Recipes> allRecipes;
 			std::vector<std::string> allSeries;
 
@@ -924,11 +1196,11 @@ namespace RealmOfFeastTest
 			std::istringstream input("cakes\n");
 			std::cin.rdbuf(input.rdbuf());
 
-			std::vector<Recipes> results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+			std::vector<Recipes> results = searchBySeries(allRecipes, allSeries, 0, 0, 0, {});
 			Assert::IsTrue(results.empty());
 
-			Recipes recipe1("Apple Pie", "Desserts", "", {}, "", 0, Easy);
-			Recipes recipe2("Banana Bread", "Bread", "", {}, "", 0, Easy);
+			Recipes recipe1("Apple Pie", "Desserts", "", { Ingredients(1, "", "apple") }, "", 0, Easy);
+			Recipes recipe2("Banana Bread", "Bread", "", { Ingredients(1, "", "banana") }, "", 0, Easy);
 			allRecipes = { recipe1, recipe2 };
 			allSeries = { "Desserts", "Cakes", "Bread"};
 
@@ -936,19 +1208,19 @@ namespace RealmOfFeastTest
 			std::istringstream input2("desserts\n");
 			std::cin.rdbuf(input2.rdbuf());
 
-			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0, {});
 
 			Assert::AreEqual(size_t(1), results.size());
 			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
 
-			Recipes recipe3("Apple Crumble", "Desserts", "", {}, "", 0, Easy);
+			Recipes recipe3("Apple Crumble", "Desserts", "", { Ingredients(1, "apple", "apple"), Ingredients(1, "cup", "sugar") }, "", 0, Easy);
 			allRecipes = { recipe1, recipe2, recipe3 };
 
 			// Mock user input
 			std::istringstream input3("desserts\n");
 			std::cin.rdbuf(input3.rdbuf());
 
-			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0, {});
 
 			Assert::AreEqual(size_t(2), results.size());
 			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
@@ -960,7 +1232,7 @@ namespace RealmOfFeastTest
 			std::istringstream input4(" all\n bread\n");
 			std::cin.rdbuf(input4.rdbuf());
 
-			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0, {});
 
 			Assert::AreEqual(size_t(1), results.size());
 			Assert::AreEqual(std::string("Banana Bread"), results[0].getName());
@@ -970,9 +1242,33 @@ namespace RealmOfFeastTest
 			std::istringstream input5("orange\n");
 			std::cin.rdbuf(input5.rdbuf());
 
-			results = searchBySeries(allRecipes, allSeries, 0, 0, 0);
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0, {});
 
 			Assert::IsTrue(results.empty());
+
+			//Test for exlude ingredients
+			//Mock user input
+			std::istringstream input6("desserts\n");
+			std::cin.rdbuf(input6.rdbuf());
+
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0, { "sugar" });
+
+			Assert::AreEqual(size_t(1), results.size());
+			Assert::AreEqual(std::string("Apple Pie"), results[0].getName());
+
+			//Test for exlude ingredients with no results
+			//Mock user input
+
+			std::istringstream input7("desserts\n");
+			std::cin.rdbuf(input7.rdbuf());
+
+			results = searchBySeries(allRecipes, allSeries, 0, 0, 0, { "apple", "sugar" });
+
+			Assert::IsTrue(results.empty());
+
+			// Restore cin buffer
+			std::cin.rdbuf(originalCinBuffer);
+
 		}
 
 		//OPTIONS ONLY CALL OTHER METHODS, NO TESTS

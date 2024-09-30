@@ -81,6 +81,16 @@ void setColor(int color);
 int getCurrentColor();
 
 /*!
+ * @brief Function to restrict each line length
+ * @param str the string to restrict
+ * @param length the length to restrict the string to
+ * @param divider the divider for next lines
+ * @param space the space to add
+ * @return the restricted string
+ */
+string restrictLineLength(string str, int length, char divider, int space);
+
+/*!
  * @brief Function to process the ingredients string
  * @details Splits the ingredients string by commas and then by *
  * @param ingred the ingredients string
@@ -146,12 +156,12 @@ Level process_difficulty(string difficulty_str);
  * @param currentRecipes the recipes to filter
  * @return vector of recipes containing the recipes that pass the filters
 */
- vector<Recipes> applySetting(vector<Recipes> currentRecipes, int timeFilter, int difficultyFilter);
+ vector<Recipes> applySetting(vector<Recipes> currentRecipes, int timeFilter, int difficultyFilter, const vector<string>& excludedIngredients);
 
 /*!
  *@brief Function to print the settings set by the user
 */
- void printSettings(int timeFilter, int difficultyFilter, int sortFilter);
+ void printSettings(int timeFilter, int difficultyFilter, int sortFilter, const vector<string>& excludedIngredients);
 
 /*!
  * @brief Function to set settings for the recipes
@@ -178,6 +188,12 @@ void handleTimeFilter(RealmOfRecipes& app);
 void handleSort(RealmOfRecipes& app);
 
 /*!
+ * @brief Function to handle the excluded ingredients
+ * @param app the RealmOfRecipes object
+ */
+void handleExcludedIngredients(RealmOfRecipes& app);
+
+/*!
  * @brief Function to display an invalid choice message
  */
 void showInvalidChoiceMessage();
@@ -185,7 +201,7 @@ void showInvalidChoiceMessage();
 /*!
  * @brief Function that displays a random recipe within the allRecipes array
 */
- void random(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter) ;
+ void random(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter, const vector<string>& excludedIngredients); ;
 
 /*!
  * @brief Function to search the recipes array by specific name
@@ -200,14 +216,14 @@ void showInvalidChoiceMessage();
  * @details Displays recipes that contains all of the specified ingredient(s)
  * @return vector of recipes containing recipes that contain the ingredient(s)
 */
- vector<Recipes> searchByIngredient(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter);
+ vector<Recipes> searchByIngredient(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter, const vector<string>& excludedIngredients) ;
  
  /*!
  * @brief Function to filter the recipes by series
  * @details Displays recipes that are in the specified series
  * @return vector of recipes containing recipes that are in the specified series
 */
- vector<Recipes> searchBySeries(const vector<Recipes>& allRecipes, const vector<string>& allSeries, int timeFilter, int difficultyFilter, int sortFilter) ;
+ vector<Recipes> searchBySeries(const vector<Recipes>& allRecipes, const vector<string>& allSeries, int timeFilter, int difficultyFilter, int sortFilter, const vector<string>& excludedIngredients) ;
 
 
 

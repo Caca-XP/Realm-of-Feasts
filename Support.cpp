@@ -96,6 +96,48 @@ int getCurrentColor() {
     return -1; // Return -1 if getting the information fails
 }
 
+/** Function to restrict each line length
+* @param str the string to restrict
+* @param length the length to restrict the string to
+* @param divider the divider for next lines
+* @param space the space to add
+* @return the restricted string
+*/
+string restrictLineLength(string str, int length, char divider, int space) {
+    // Only attempt to trim quotes if the string is long enough
+    if (str.length() > 1 && str.front() == '"' && str.back() == '"') {
+        str = str.substr(1, str.length() - 2);
+    }
+
+	// Remove leading and trailing spaces
+	str.erase(0, str.find_first_not_of(" "));
+	str.erase(str.find_last_not_of(" ") + 1);
+
+    // for every length characters after a newline, add a new line at the next space
+    int counter = 0;
+    for (int i = 0; i < str.length(); i++) {
+        if (divider != ' ' && str[i] == divider) {
+            counter = 0;
+        }
+        else {
+            counter++;
+        }
+        if (counter >= length) {
+            if (str[i] == ' ') {
+				if (space == 0) {
+					str.insert(i, "\n");
+				}
+				else {
+					str.insert(i, "\n" + string(space - 1, ' '));
+				}
+                counter = 0;
+            }
+        }
+    }
+	return str;
+}
+
+
 /***************************************************************************************************************************************
  *          Setup functions                                                                                                            *
 ****************************************************************************************************************************************/
@@ -149,14 +191,14 @@ vector<Ingredients> process_ingred(const string& ingred) {
  */
  string process_instructions(const string& instruct) {
     string instructions = instruct;
+	instructions = replaceAll(instructions, "|| ", "||");
 
-    // Only attempt to trim quotes if the string is long enough
-    if (instruct.length() > 1 && instruct.front() == '"' && instruct.back() == '"') {
-        instructions = instruct.substr(1, instruct.length() - 2);
-    }
+	instructions = restrictLineLength(instructions, 100, '|', 3);
+
 
     // Replace all occurrences of "||" with newline characters
-    instructions = replaceAll(instructions, "||", "\n");
+    instructions = replaceAll(instructions, "||", "\n\n");
+
 
     return instructions;
 
@@ -241,9 +283,9 @@ void setup(string fileName, RealmOfRecipes& app) {
         //split the line into the different parts
         vector<string> parts = split_string(line, "\t", false);
 
-        name = parts[0];
-        series = parts[1];
-        description = parts[2];
+		name = restrictLineLength(parts[0], 100, ' ', 6);
+		series = restrictLineLength(parts[1], 100, ' ', 8);
+		description = restrictLineLength(parts[2], 80, ' ', 13);
         vector<Ingredients> ingredients_parts = process_ingred(parts[3]);
         instructions = process_instructions(parts[4]);
         time = process_time(parts[5]);
@@ -313,7 +355,7 @@ void setup(string fileName, RealmOfRecipes& app) {
  * @param currentRecipes the recipes to filter
  * @return vector of recipes containing the recipes that pass the filters
 */
- vector<Recipes> applySetting(vector<Recipes> currentRecipes, int timeFilter, int difficultyFilter) {
+ vector<Recipes> applySetting(vector<Recipes> currentRecipes, int timeFilter, int difficultyFilter, const vector<string>& excludedIngredients) {
 
     vector<Recipes> results;
 
@@ -331,6 +373,27 @@ void setup(string fileName, RealmOfRecipes& app) {
         if (timeFilter == 3 && currentRecipes[i].getTime() <= 60) {
             continue;
         }
+        if (excludedIngredients.size() > 0) {
+            bool excluded = false;
+            vector<string> ingredientsNames = currentRecipes[i].getIngredientsNames();
+            // if any of the excluded ingredients are in the recipe, exclude it
+            for (int j = 0; j < excludedIngredients.size(); j++) {
+                for (int k = 0; k < ingredientsNames.size(); k++) {
+                    // if the excluded ingredient is a substring of any ingredient name
+                    if (ingredientsNames[k].find(excludedIngredients[j]) != string::npos) {
+                        excluded = true;
+                        break;
+                    }
+                }
+                if (excluded) {
+                    break;
+                }
+            }
+            if (excluded) {
+                continue;
+            }
+        }
+        
         results.push_back(currentRecipes[i]);
     }
     if (results.size() == 0) {
@@ -345,7 +408,7 @@ void setup(string fileName, RealmOfRecipes& app) {
 /**
  * Function to print the settings set by the user
 */
- void printSettings(int timeFilter, int difficultyFilter, int sortFilter) {
+ void printSettings(int timeFilter, int difficultyFilter, int sortFilter, const vector<string>& excludedIngredients) {
 	// set colour to light yellow
 	setColor(14);
 
@@ -418,6 +481,18 @@ void setup(string fileName, RealmOfRecipes& app) {
 		//set colour to white
 		setColor(15);
         cout << "Naught \n";
+    }
+    if (excludedIngredients.size() > 0) {
+        //set colour to light red
+        setColor(12);
+        cout << "Excluded ingredients: ";
+        for (int i = 0; i < excludedIngredients.size(); i++) {
+            cout << excludedIngredients[i];
+            if (i != excludedIngredients.size() - 1) {
+                cout << ", ";
+            }
+        }
+        cout << endl;
     }
 
     cout << "\n";
@@ -501,6 +576,62 @@ void setup(string fileName, RealmOfRecipes& app) {
      }
  }
 
+
+ /**
+  * Function to handle the excluded ingredients
+  * @param app the RealmOfRecipes object
+  */
+ void handleExcludedIngredients(RealmOfRecipes& app) {
+     while (true) {
+        // print the excluded ingredients
+        setColor(12); printf("Excluded ingredients: ");
+        for (int i = 0; i < app.excludedIngredients.size(); i++) {
+            cout << app.excludedIngredients[i];
+            if (i != app.excludedIngredients.size() - 1) {
+                cout << ", ";
+            }
+        }
+        cout << endl << endl;
+
+        // Ask to add, or clear, or remove
+        setColor(10); printf("1. Add excluded ingredients\n");
+        setColor(6); printf("2. Clear excluded ingredients\n");
+        setColor(12); printf("3. Remove excluded ingredients\n");
+        setColor(15); printf("4. Return to the previous chapter\n");
+
+        int excludedChoice;
+        cin >> excludedChoice;
+
+        if (excludedChoice == 1) {
+            setColor(10); printf("Enter the ingredients you wish to exclude (separated by commas): ");
+            string excludedIngredients = readLine(true);
+            vector<string> excluded = split_string(excludedIngredients, ",");
+            app.excludedIngredients.insert(app.excludedIngredients.end(), excluded.begin(), excluded.end());
+            // sort the excluded ingredients
+            sort(app.excludedIngredients.begin(), app.excludedIngredients.end());
+            break;
+        }
+        else if (excludedChoice == 2) {
+            app.excludedIngredients.clear();
+            break;
+        }
+        else if (excludedChoice == 3) {
+            setColor(12); printf("Enter the ingredients you wish to remove (separated by commas): ");
+            string removeIngredients = readLine(true);
+            vector<string> remove = split_string(removeIngredients, ",");
+            for (int i = 0; i < remove.size(); i++) {
+                vector<string>::iterator it = find(app.excludedIngredients.begin(), app.excludedIngredients.end(), remove[i]);
+                if (it != app.excludedIngredients.end()) {
+                    app.excludedIngredients.erase(it);
+                }
+            }
+            break;
+        }
+        else if (excludedChoice == 4) break;
+        else showInvalidChoiceMessage();
+     }
+ }
+
  /**
   * Function to display an invalid choice message
   */
@@ -520,7 +651,7 @@ void setup(string fileName, RealmOfRecipes& app) {
 	 bool exitMenu = false;
 
      while (!exitMenu) {
-         printSettings(app.timeFilter, app.difficultyFilter, app.sortFilter);
+         printSettings(app.timeFilter, app.difficultyFilter, app.sortFilter, app.excludedIngredients);
          
          setColor(3);
          printf("1. Filter by difficulty\n");
@@ -528,7 +659,8 @@ void setup(string fileName, RealmOfRecipes& app) {
          printf("3. Reset filters\n");
          printf("4. Set sort\n");
          printf("5. Reset sort\n");
-         printf("6. Return to the previous chapter\n");
+         printf("6. Set banned ingredients\n");
+         printf("7. Return to the previous chapter\n");
 
          int filterChoice;
          cin >> filterChoice;
@@ -539,7 +671,8 @@ void setup(string fileName, RealmOfRecipes& app) {
              case 3: app.timeFilter = 0; app.difficultyFilter = 0; break;
              case 4: handleSort(app); break;
              case 5: app.sortFilter = 0; break;
-			 case 6: exitMenu = true; break;
+             case 6: handleExcludedIngredients(app); break;
+			 case 7: exitMenu = true; break;
              default: showInvalidChoiceMessage(); break;
          }
      }
@@ -553,7 +686,7 @@ void setup(string fileName, RealmOfRecipes& app) {
          cin >> applyChoice;
 
          if (applyChoice == 1) {
-             vector<Recipes> applied = applySetting(app.allRecipes, app.timeFilter, app.difficultyFilter);
+             vector<Recipes> applied = applySetting(app.allRecipes, app.timeFilter, app.difficultyFilter, app.excludedIngredients);
              setColor(7);
              display(applied);
              break;
@@ -574,7 +707,7 @@ void setup(string fileName, RealmOfRecipes& app) {
 /**
  * Function that displays a random recipe within the allRecipes array
 */
- void random(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
+ void random(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter, const vector<string>& excludedIngredients) {
     // Check if recipes vector is empty
     if (allRecipes.empty()) {
         // set colour to red for the message
@@ -583,14 +716,14 @@ void setup(string fileName, RealmOfRecipes& app) {
         return; // Exit the function
     }
 
-    vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter);
+    vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter, excludedIngredients);
 
 	if (applied.size() == 0) {
         return;
 	}
 
     int randomIndex = rand() % applied.size();
-    printSettings(timeFilter, difficultyFilter, sortFilter);
+    printSettings(timeFilter, difficultyFilter, sortFilter, excludedIngredients);
 	// set colour to white 7
 	setColor(7);
     cout << applied[randomIndex].toString() << endl;
@@ -659,7 +792,7 @@ void setup(string fileName, RealmOfRecipes& app) {
  * Displays recipes that contains all of the specified ingredient(s)
  * @return vector of recipes containing recipes that contain the ingredient(s)
 */
- vector<Recipes> searchByIngredient(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter) {
+ vector<Recipes> searchByIngredient(const vector<Recipes>& allRecipes, int timeFilter, int difficultyFilter, int sortFilter, const vector<string>& excludedIngredients) {
     vector<Recipes> results;
     string search;
 
@@ -689,7 +822,7 @@ void setup(string fileName, RealmOfRecipes& app) {
     }
 
     // Search for recipes that contain the all the ingredients
-    vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter);
+    vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter, excludedIngredients);
     for (int i = 0; i < applied.size(); i++) {
         vector<string> ingredients = applied[i].getIngredientsNames();
         // use double pointer to check if all the search ingredients are in the recipe ingredients
@@ -698,7 +831,7 @@ void setup(string fileName, RealmOfRecipes& app) {
         }
 
     }
-    printSettings(timeFilter, difficultyFilter, sortFilter);
+    printSettings(timeFilter, difficultyFilter, sortFilter, excludedIngredients);
     if (results.size() == 0) {
 		// set colour to red
 		setColor(4);
@@ -722,7 +855,7 @@ void setup(string fileName, RealmOfRecipes& app) {
  * Displays recipes that are in the specified series
  * @return vector of recipes containing recipes that are in the specified series
 */
- vector<Recipes> searchBySeries(const vector<Recipes>& allRecipes, const vector<string>& allSeries, int timeFilter, int difficultyFilter, int sortFilter) {
+ vector<Recipes> searchBySeries(const vector<Recipes>& allRecipes, const vector<string>& allSeries, int timeFilter, int difficultyFilter, int sortFilter, const vector<string>& excludedIngredients) {
     vector<Recipes> results;
     string search;
 	// get the search string from the user
@@ -757,7 +890,7 @@ void setup(string fileName, RealmOfRecipes& app) {
     search.erase(search.find_last_not_of(" ") + 1);
 
     // Go through all the recipes and check if the search string is in the name
-    vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter);
+    vector<Recipes> applied = applySetting(allRecipes, timeFilter, difficultyFilter, excludedIngredients);
     for (int i = 0; i < applied.size(); i++) {
         string series = applied[i].getSeries();
 
@@ -770,7 +903,7 @@ void setup(string fileName, RealmOfRecipes& app) {
             results.push_back(applied[i]);
         }
     }
-    printSettings(timeFilter, difficultyFilter, sortFilter);
+    printSettings(timeFilter, difficultyFilter, sortFilter, excludedIngredients);
     // Check that there are recipes based on the search input
     if (results.size() == 0) {
 		// set colour to red
@@ -829,16 +962,16 @@ void setup(string fileName, RealmOfRecipes& app) {
         searchByName(app.allRecipes);
     }
     else if (choice == 3) {
-        searchBySeries(app.allRecipes, app.allSeries, app.timeFilter,app.difficultyFilter, app.sortFilter);
+        searchBySeries(app.allRecipes, app.allSeries, app.timeFilter,app.difficultyFilter, app.sortFilter, app.excludedIngredients);
     }
     else if (choice == 4) {
-        searchByIngredient(app.allRecipes, app.timeFilter, app.difficultyFilter, app.sortFilter);
+        searchByIngredient(app.allRecipes, app.timeFilter, app.difficultyFilter, app.sortFilter, app.excludedIngredients);
     }
     else if (choice == 5) {
         setSettings(app);
     }
     else if (choice == 6) {
-        random(app.allRecipes, app.timeFilter, app.difficultyFilter, app.sortFilter);
+        random(app.allRecipes, app.timeFilter, app.difficultyFilter, app.sortFilter, app.excludedIngredients);
     }
     else if (choice == 7) {
 		// set colour to magenta

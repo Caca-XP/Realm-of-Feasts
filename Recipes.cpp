@@ -134,8 +134,9 @@ string Recipes::toString() {
     }
 
     result += "Description: " + description + "\n";
-    result += "Ingredients: \n" + ingredients_str + "\n";
-    result += "Instructions: \n" + instructions + "\n";
+    result += "\nIngredients: \n" + ingredients_str + "\n";
+    result += "\nInstructions: \n" + instructions + "\n";
+	result += "\n******************************************************************************************************************\n\n";
 
     return result;
 }
