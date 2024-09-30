@@ -378,8 +378,14 @@ void setup(string fileName, RealmOfRecipes& app) {
             vector<string> ingredientsNames = currentRecipes[i].getIngredientsNames();
             // if any of the excluded ingredients are in the recipe, exclude it
             for (int j = 0; j < excludedIngredients.size(); j++) {
-                if (find(ingredientsNames.begin(), ingredientsNames.end(), excludedIngredients[j]) != ingredientsNames.end()) {
-                    excluded = true;
+                for (int k = 0; k < ingredientsNames.size(); k++) {
+                    // if the excluded ingredient is a substring of any ingredient name
+                    if (ingredientsNames[k].find(excludedIngredients[j]) != string::npos) {
+                        excluded = true;
+                        break;
+                    }
+                }
+                if (excluded) {
                     break;
                 }
             }
