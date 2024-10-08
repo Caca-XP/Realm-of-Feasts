@@ -41,7 +41,7 @@ The application was tested using Unit Tests. The tests can be found in the Realm
 
 ## Version History 
 
-### Alpha
+### <u> Alpha </u>
 
 Basic functionality of the App.
 
@@ -51,7 +51,7 @@ Tag: Alpha.2
 
 Release: Alpha Version
 
-### Beta 
+### <u> Beta </u>
 
 Better functionality of the App.
 
@@ -61,9 +61,13 @@ Tag: Beta.1
 
 Release: Beta Version
 
-### Final Product 
+### <u> Final Product </u>
 
-Currently Unreleased 
+The finished, working, debugged, app.
+
+Released on: 11.10.2024
+
+Tag: v.01
 
 ## Acknowledgments
 
