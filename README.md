@@ -41,7 +41,7 @@ The application was tested using Unit Tests. The tests can be found in the Realm
 
 ## Version History 
 
-### <u> Alpha </u>
+### Alpha
 
 Basic functionality of the App.
 
@@ -51,7 +51,7 @@ Tag: Alpha.2
 
 Release: Alpha Version
 
-### <u> Beta </u>
+### Beta
 
 Better functionality of the App.
 
@@ -61,7 +61,7 @@ Tag: Beta.1
 
 Release: Beta Version
 
-### <u> Final Product </u>
+### Final Product
 
 The finished, working, debugged, app.
 
