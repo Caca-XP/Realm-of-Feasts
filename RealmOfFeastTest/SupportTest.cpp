@@ -84,8 +84,37 @@ namespace RealmOfFeastTest
 
 			// Instead of calling quit(), call printGoodbye() so the test doesn't exit the program
 			printGoodbye();
-            Assert::AreEqual(std::string("Farewell traveler, may our paths cross once more.\n"), output.str());  // Stop execution if this fails
+            // Assert::AreEqual(std::string("Farewell traveler, may our paths cross once more.\n"), output.str());  // Stop execution if this fails
 
+			std::string expectedOutput = R"(  
+  ______                          _ _   _                       _           
+ |  ____|                        | | | | |                     | |          
+ | |__ __ _ _ __ _____      _____| | | | |_ _ __ __ ___   _____| | ___ _ __ 
+ |  __/ _` | '__/ _ \ \ /\ / / _ \ | | | __| '__/ _` \ \ / / _ \ |/ _ \ '__| 
+ | | | (_| | | |  __/\ V  V /  __/ | | | |_| | | (_| |\ V /  __/ |  __/ |_  
+ |_|  \__,_|_|  \___| \_/\_/ \___|_|_|  \__|_|  \__,_| \_/ \___|_|\___|_( ) 
+                                                                        |/  
+                                                                           
+                                                         _   _                                                                                      
+                                                        | | | |                                                                                     
+  _ __ ___   __ _ _   _    ___  _   _ _ __   _ __   __ _| |_| |__  ___    ___ _ __ ___  ___ ___    ___  _ __   ___ ___   _ __ ___   ___  _ __ ___   
+ | '_ ` _ \ / _` | | | |  / _ \| | | | '__| | '_ \ / _` | __| '_ \/ __|  / __| '__/ _ \/ __/ __|  / _ \| '_ \ / __/ _ \ | '_ ` _ \ / _ \| '__/ _ \  
+ | | | | | | (_| | |_| | | (_) | |_| | |    | |_) | (_| | |_| | | \__ \ | (__| | | (_) \__ \__ \ | (_) | | | | (_|  __/ | | | | | | (_) | | |  __/_ 
+ |_| |_| |_|\__,_|\__, |  \___/ \__,_|_|    | .__/ \__,_|\__|_| |_|___/  \___|_|  \___/|___/___/  \___/|_| |_|\___\___| |_| |_| |_|\___/|_|  \___(_)
+                   __/ |                    | |                                                                                                     
+                  |___/                     |_|                                                                                                    
+   
+   _____                 _ _                _ 
+  / ____|               | | |              | |
+ | |  __  ___   ___   __| | |__  _   _  ___| |
+ | | |_ |/ _ \ / _ \ / _` | '_ \| | | |/ _ \ |
+ | |__| | (_) | (_) | (_| | |_) | |_| |  __/_|
+  \_____|\___/ \___/ \__,_|_.__/ \__, |\___(_)
+                                  __/ |       
+                                 |___/       
+)";
+
+		Assert::AreEqual(expectedOutput, output.str());
 			// Restore std::cout
 			std::cout.rdbuf(oldCoutStreamBuf);
 		}

@@ -19,7 +19,39 @@ int main() {
     // read and initialize the data for recipes
     setup("RecipesTest.txt", app);//change to database later
 
-    std::cout << "Welcome, brave traveler, to the Realm of Feasts!" << std::endl;
+    // std::cout << "Welcome, brave traveler, to the Realm of Feasts!" << std::endl;
+std::cout << R"( 
+ __          __  _                            
+ \ \        / / | |                           
+  \ \  /\  / /__| | ___ ___  _ __ ___   ___   
+   \ \/  \/ / _ \ |/ __/ _ \| '_ ` _ \ / _ \  
+    \  /\  /  __/ | (_| (_) | | | | | |  __/_ 
+     \/  \/ \___|_|\___\___/|_| |_| |_|\___( )
+                                           |/ 
+                                              )" << '\n';         
+
+std::cout << R"(  
+  ____                        _______                  _ _           
+ |  _ \                      |__   __|                | | |          
+ | |_) |_ __ __ ___   _____     | |_ __ __ ___   _____| | | ___ _ __ 
+ |  _ <| '__/ _` \ \ / / _ \    | | '__/ _` \ \ / / _ \ | |/ _ \ '__|
+ | |_) | | | (_| |\ V /  __/    | | | | (_| |\ V /  __/ | |  __/ |_  
+ |____/|_|  \__,_| \_/ \___|    |_|_|  \__,_| \_/ \___|_|_|\___|_( ) 
+                                                                 |/  
+                                                                     )" << '\n';
+
+std::cout << R"(   
+  _          _   _            _____            _                    __   ______             _       _ 
+ | |        | | | |          |  __ \          | |                  / _| |  ____|           | |     | |
+ | |_ ___   | |_| |__   ___  | |__) |___  __ _| |_ __ ___     ___ | |_  | |__ ___  __ _ ___| |_ ___| |
+ | __/ _ \  | __| '_ \ / _ \ |  _  // _ \/ _` | | '_ ` _ \   / _ \|  _| |  __/ _ \/ _` / __| __/ __| |
+ | || (_) | | |_| | | |  __/ | | \ \  __/ (_| | | | | | | | | (_) | |   | | |  __/ (_| \__ \ |_\__ \_|
+  \__\___/   \__|_| |_|\___| |_|  \_\___|\__,_|_|_| |_| |_|  \___/|_|   |_|  \___|\__,_|___/\__|___(_)
+)" << '\n';
+                                                                                                      
+                                                                                                      
+
+                                                                  
     std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Delay for 500 milliseconds
 
     // set colour to purple
@@ -39,6 +71,7 @@ int main() {
 
     std::cout << "May fortune guide your quest!" << std::endl << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(1600)); 
+    
     
     while (true) {
         options(app);
