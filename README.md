@@ -51,7 +51,7 @@ Tag: Alpha.2
 
 Release: Alpha Version
 
-### Beta 
+### Beta
 
 Better functionality of the App.
 
@@ -61,9 +61,13 @@ Tag: Beta.1
 
 Release: Beta Version
 
-### Final Product 
+### Final Product
 
-Currently Unreleased 
+The finished, working, debugged, app.
+
+Released on: 11.10.2024
+
+Tag: v.01
 
 ## Acknowledgments
 
