@@ -67,7 +67,7 @@ The finished, working, debugged, app.
 
 Released on: 11.10.2024
 
-Tag: v.01
+Tag: v.03
 
 ## Acknowledgments
 

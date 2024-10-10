@@ -491,12 +491,12 @@ void setup(string fileName, RealmOfRecipes& app) {
         if (sortFilter == 1) {
 			//set colour to light blue
 			setColor(11);
-            cout << "Sort by difficulty (easy ->  hard)\n";
+            cout << "Sort by difficulty \n";
         }
         else if (sortFilter == 2) {
 			//set colour to blue
 			setColor(11);
-            cout << "Sort by difficulty reverse ( hard -> easy) \n";
+            cout << "Sort by difficulty reverse \n";
         }
         else if (sortFilter == 3) {
 			//set colour to light magenta
