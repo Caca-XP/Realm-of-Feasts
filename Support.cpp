@@ -991,7 +991,7 @@ void setup(string fileName, RealmOfRecipes& app) {
 */
 void clearScreen() {
     setColor(9);  // Assuming setColor is defined elsewhere
-    std::cout << "\nPress any key to continue... " << std::endl;
+    std::cout << "\nPress Enter to continue... " << std::endl;
 
     // Clear any leftover characters from the input buffer
     std::cin.clear();                      // Clear any error flags
