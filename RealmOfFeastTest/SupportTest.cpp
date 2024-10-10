@@ -1288,7 +1288,7 @@ namespace RealmOfFeastTest
 			clearScreen();
 		
 			// Check if the output contains the expected prompt
-			Assert::IsTrue(buffer.str().find("Press any key to continue...") != std::string::npos);
+			Assert::IsTrue(buffer.str().find("Press Enter to continue...") != std::string::npos);
 		
 			// Restore original cout and cin buffers
 			std::cout.rdbuf(oldCoutBuffer);
