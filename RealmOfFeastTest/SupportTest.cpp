@@ -84,9 +84,9 @@ namespace RealmOfFeastTest
 
 			// Instead of calling quit(), call printGoodbye() so the test doesn't exit the program
 			printGoodbye();
-            // Assert::AreEqual(std::string("Farewell traveler, may our paths cross once more.\n"), output.str());  // Stop execution if this fails
+            Assert::AreEqual(std::string("Farewell traveler, may our paths cross once more.\n"), output.str());  // Stop execution if this fails
 
-			                                                                                                
+/* 	                                                                                                
 std::string expectedFare=  R"(  
   ______                          _ _   _                       _           
  |  ____|                        | | | | |                     | |          
@@ -124,8 +124,8 @@ std::string expectedFare=  R"(
  )";
 
 		Assert::AreEqual(expectedFare + expectedPaths + expectedBye, output.str());
-			// Restore std::cout
-			std::cout.rdbuf(oldCoutStreamBuf);
+			// Restore std::cout*/
+			std::cout.rdbuf(oldCoutStreamBuf); 
 		}
 		
 		// Test the real getCurrentColor function, but only if a console is available

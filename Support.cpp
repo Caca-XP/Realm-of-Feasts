@@ -28,8 +28,8 @@ vector<string> split_string(string str, string delimiter, bool lowercase = true)
 /* Function to print goodbye
 */
 void printGoodbye() {
-    // cout << "Farewell traveler, may our paths cross once more." << endl;
-    std::cout << R"(  
+    cout << "Farewell traveler, may our paths cross once more." << endl;
+   /* std::cout << R"(  
   ______                          _ _   _                       _           
  |  ____|                        | | | | |                     | |          
  | |__ __ _ _ __ _____      _____| | | | |_ _ __ __ ___   _____| | ___ _ __ 
@@ -60,7 +60,7 @@ void printGoodbye() {
                                   __/ |       
                                  |___/       
 
- )" << '\n';
+ )" << '\n'; */
 }
 
 /* Function to quit the program
