@@ -95,7 +95,8 @@ std::string expectedFare=  R"(
  | | | (_| | | |  __/\ V  V /  __/ | | | |_| | | (_| |\ V /  __/ |  __/ |_  
  |_|  \__,_|_|  \___| \_/\_/ \___|_|_|  \__|_|  \__,_| \_/ \___|_|\___|_( ) 
                                                                         |/  
-                                                                            )" << '\n';
+                                                                            
+																			)"
 
  std::string expectedPaths =  R"(                                                         
                                                          _   _                                                                                      
@@ -107,7 +108,8 @@ std::string expectedFare=  R"(
                    __/ |                    | |                                                                                                     
                   |___/                     |_|                                                                                                    
                   
- )" << '\n';
+ 
+ )";
  std::string expectedBye =R"(   
    _____                 _ _                _ 
   / ____|               | | |              | |
@@ -118,7 +120,8 @@ std::string expectedFare=  R"(
                                   __/ |       
                                  |___/       
 
- )" << '\n';
+ 
+ )";
 
 		Assert::AreEqual(expectedFare + expectedPaths + expectedBye, output.str());
 			// Restore std::cout
