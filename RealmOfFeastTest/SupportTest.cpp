@@ -1272,6 +1272,28 @@ namespace RealmOfFeastTest
 		}
 
 		//OPTIONS ONLY CALL OTHER METHODS, NO TESTS
+		/** Testing clear screen function
+		* @see Support.cpp
+		* @test
+		*/
+		TEST_METHOD(TestClearScreen) {
+			// Redirect cout to a string stream to capture the output
+			std::ostringstream buffer;
+			std::streambuf* oldCoutBuffer = std::cout.rdbuf(buffer.rdbuf());
+		
+			// Redirect cin to simulate user input
+			std::istringstream input("a\n");  // Simulate user pressing any key followed by Enter
+			std::streambuf* oldCinBuffer = std::cin.rdbuf(input.rdbuf());
+		
+			clearScreen();
+		
+			// Check if the output contains the expected prompt
+			Assert::IsTrue(buffer.str().find("Press Enter to continue...") != std::string::npos);
+		
+			// Restore original cout and cin buffers
+			std::cout.rdbuf(oldCoutBuffer);
+			std::cin.rdbuf(oldCinBuffer);
+		}
 	};
 
 }

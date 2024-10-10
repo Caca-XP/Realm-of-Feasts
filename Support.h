@@ -237,4 +237,10 @@ void showInvalidChoiceMessage();
 */
  void options(RealmOfRecipes& app) ;
 
+ /**
+ *@brief Function to check with the user to continue and clear the commandline screen
+ *@details Takes the user input and calls the system clear
+*/
+ void clearScreen();
+
 #endif // SUPPORT_H

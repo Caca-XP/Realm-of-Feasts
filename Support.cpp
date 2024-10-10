@@ -984,3 +984,22 @@ void setup(string fileName, RealmOfRecipes& app) {
     }
 
 }
+
+/**
+* Function to check with the user to continue and clear the command-line screen.
+* Takes the user input using std::cin and calls the system clear.
+*/
+void clearScreen() {
+    setColor(9);  // Assuming setColor is defined elsewhere
+    std::cout << "\nPress Enter to continue... " << std::endl;
+
+    // Clear any leftover characters from the input buffer
+    std::cin.clear();                      // Clear any error flags
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Discard any leftover input
+
+    // Now wait for the user to provide input (including just pressing Enter)
+    std::string dummyInput;
+    std::getline(std::cin, dummyInput);    // Wait for any user input
+
+    system("cls");  // Clear the screen (use "clear" instead of "cls" on Linux/macOS)
+}

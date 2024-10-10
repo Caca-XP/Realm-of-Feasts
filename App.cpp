@@ -69,6 +69,7 @@ std::cout << R"(
     
     while (true) {
         options(app);
+        clearScreen();
     }
 
     return 0;
