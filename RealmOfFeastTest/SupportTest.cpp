@@ -96,7 +96,7 @@ std::string expectedFare=  R"(
  |_|  \__,_|_|  \___| \_/\_/ \___|_|_|  \__|_|  \__,_| \_/ \___|_|\___|_( ) 
                                                                         |/  
                                                                             
-																			)"
+																			)";
 
  std::string expectedPaths =  R"(                                                         
                                                          _   _                                                                                      
