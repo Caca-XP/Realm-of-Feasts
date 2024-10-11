@@ -9,6 +9,7 @@ This section outlines which versions of "Realm of Feasts" are actively supported
 | Alpha.1.2   | :white_check_mark: |
 | Alpha.1  | :x:                |
 | Beta.1  | :white_check_mark: |
+| v0.1  | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
